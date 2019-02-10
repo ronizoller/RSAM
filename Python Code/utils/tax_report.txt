@@ -1,0 +1,205 @@
+
+code	|	name	|	preferred name	|	taxid
+1	|	Clostridium hylemonae	|	[Clostridium] hylemonae	|	89153
+1	|	Desulfovibrio magneticus	|	 	|	184917
+1	|	Bacillus pumilus	|	 	|	1408
+1	|	Roseburia inulinivorans	|	 	|	360807
+1	|	Sphingobacterium sp. 21	|	 	|	743722
+1	|	Zunongwangia profunda	|	 	|	398743
+1	|	Dorea formicigenerans	|	 	|	39486
+1	|	Arcobacter butzleri	|	 	|	28197
+1	|	Riemerella anatipestifer	|	 	|	34085
+2	|	Legionella pneumophila Paris	|	Legionella pneumophila str. Paris	|	297246
+1	|	Bacillus licheniformis	|	 	|	1402
+1	|	Mucilaginibacter paludis	|	 	|	423351
+3	|	Flavobacteriales bacterium ALC1	|	 	|	 
+1	|	Mesorhizobium loti	|	 	|	381
+1	|	Hylemonella gracilis	|	 	|	80880
+1	|	Bacillus atrophaeus	|	 	|	1452
+1	|	Burkholderia pseudomallei	|	 	|	28450
+1	|	Desmospora sp. 8437	|	 	|	997346
+1	|	Staphylococcus lugdunensis	|	 	|	28035
+2	|	Clostridium lentocellum	|	Cellulosilyticum lentocellum	|	29360
+1	|	Burkholderia glumae	|	 	|	337
+2	|	Ralstonia eutropha H16	|	Cupriavidus necator H16	|	381666
+1	|	Eubacterium rectale	|	[Eubacterium] rectale	|	39491
+2	|	Clostridium difficile	|	Clostridioides difficile	|	1496
+1	|	Chloroherpeton thalassium	|	 	|	100716
+1	|	Pelobacter propionicus	|	 	|	29543
+1	|	Chlorobium limicola	|	 	|	1092
+3	|	Lachnospiraceae bacterium 3157FAACT1	|	 	|	 
+1	|	Clostridium saccharolyticum WM1	|	[Clostridium] saccharolyticum WM1	|	610130
+3	|	Leptospira interrogans Lai	|	 	|	 
+1	|	Niastella koreensis	|	 	|	354356
+1	|	Shewanella loihica	|	 	|	359303
+2	|	Leptospira interrogans Copenhageni	|	Leptospira interrogans serovar Copenhageni	|	44275
+1	|	Paenibacillus mucilaginosus	|	 	|	61624
+1	|	Sebaldella termitidis	|	 	|	826
+1	|	Shewanella piezotolerans	|	 	|	404011
+1	|	Ruminococcus lactaris	|	 	|	46228
+1	|	Acinetobacter calcoaceticus	|	 	|	471
+1	|	Riemerella anatipestifer	|	 	|	34085
+1	|	Delftia acidovorans	|	 	|	80866
+1	|	Haliscomenobacter hydrossis	|	 	|	2350
+1	|	Acinetobacter oleivorans	|	 	|	1148157
+1	|	Bilophila wadsworthia	|	 	|	35833
+1	|	Aeromonas caviae	|	 	|	648
+3	|	Achromobacter xylosoxidans AXXA	|	 	|	 
+1	|	Staphylococcus lugdunensis	|	 	|	28035
+1	|	Bacillus atrophaeus	|	 	|	1452
+1	|	Bacillus clausii	|	 	|	79880
+1	|	Shewanella oneidensis	|	 	|	70863
+3	|	Clostridium saccharolyticum K10	|	 	|	 
+2	|	Nostoc sp. PCC7120	|	Nostoc sp. PCC 7120	|	103690
+3	|	Propionibacterium acnes SK182BJCVI	|	 	|	 
+3	|	Ruminococcus obeum ATCC29174	|	 	|	 
+1	|	Aeromonas veronii	|	 	|	654
+1	|	Acinetobacter baumannii	|	 	|	470
+3	|	Legionella pneumophila Philadelphia	|	 	|	 
+1	|	Colwellia psychrerythraea	|	 	|	28229
+2	|	Clostridium difficile	|	Clostridioides difficile	|	1496
+1	|	Legionella longbeachae	|	 	|	450
+3	|	Desulfovibrio vulgaris Miyazaki	|	 	|	 
+1	|	Bacillus licheniformis	|	 	|	1402
+1	|	Legionella drancourtii	|	 	|	168933
+1	|	Nostoc punctiforme	|	 	|	272131
+1	|	Dorea longicatena	|	 	|	88431
+1	|	Acetonema longum	|	 	|	2374
+1	|	Methylomonas methanica	|	 	|	421
+1	|	Burkholderia gladioli	|	 	|	28095
+1	|	Sebaldella termitidis	|	 	|	826
+1	|	Paenibacillus mucilaginosus	|	 	|	61624
+3	|	Ruminococcus sp. 5139BFAA	|	 	|	 
+1	|	Methylobacillus flagellatus	|	 	|	405
+1	|	Arcobacter sp. L	|	 	|	944547
+1	|	Leptospira borgpetersenii	|	 	|	174
+1	|	Staphylococcus epidermidis RP62A	|	 	|	176279
+3	|	Staphylococcus epidermidis ATCC12228	|	 	|	 
+1	|	Clostridiales bacterium	|	 	|	1898207
+1	|	Rhodospirillum centenum	|	 	|	34018
+1	|	Sphingobacterium spiritivorum	|	 	|	258
+1	|	Rheinheimera sp. A13L	|	 	|	506534
+2	|	Eubacterium biforme	|	Holdemanella biformis	|	1735
+1	|	Thermomonospora curvata	|	 	|	2020
+1	|	Achromobacter piechaudii	|	 	|	72556
+3	|	Bacillus sp. 2A57CT2	|	 	|	 
+1	|	Clostridium sp. D5	|	 	|	556261
+1	|	Clostridium bolteae	|	[Clostridium] bolteae	|	208479
+3	|	Chlorobium phaeobacteroides DSM266	|	 	|	 
+1	|	Paenibacillus vortex	|	 	|	71995
+3	|	Ruminococcus obeum A2162	|	 	|	 
+1	|	Desulfovibrio salexigens	|	 	|	880
+1	|	Pseudomonas stutzeri	|	 	|	316
+1	|	Chlorobium phaeobacteroides BS1	|	 	|	331678
+1	|	Bradyrhizobiaceae bacterium	|	 	|	2072420
+1	|	Rheinheimera sp. A13L	|	 	|	506534
+1	|	Victivallis vadensis	|	 	|	172901
+1	|	Chlorobium ferrooxidans	|	 	|	84205
+1	|	Mesorhizobium ciceri	|	 	|	39645
+1	|	Campylobacter lari	|	 	|	201
+1	|	Oceanicaulis sp. HTCC2633	|	 	|	314254
+1	|	Burkholderia cenocepacia	|	 	|	95486
+2	|	Bradyrhizobium japonicum USDA110	|	Bradyrhizobium diazoefficiens USDA 110	|	224911
+1	|	Chitinophaga pinensis	|	 	|	79329
+1	|	Caenorhabditis remanei	|	 	|	31234
+3	|	Campylobacter jejuni NCTC11168	|	 	|	 
+1	|	Clostridium scindens	|	[Clostridium] scindens	|	29347
+1	|	Rickettsia sibirica	|	 	|	35793
+1	|	Idiomarina loihiensis	|	 	|	135577
+1	|	Pelodictyon phaeoclathratiforme	|	 	|	34090
+1	|	Brachyspira pilosicoli	|	 	|	52584
+1	|	Microscilla marina	|	 	|	1027
+1	|	Acinetobacter radioresistens	|	 	|	40216
+1	|	Methylococcus capsulatus	|	 	|	414
+1	|	Roseburia hominis	|	 	|	301301
+1	|	Staphylococcus pseudintermedius	|	 	|	283734
+1	|	Hyphomonas neptunium	|	 	|	81032
+1	|	alpha proteobacterium BAL199	|	 	|	331869
+1	|	Aeromonas hydrophila	|	 	|	644
+3	|	Staphylococcus epidermidis M23864W1	|	 	|	 
+1	|	Brevibacillus brevis	|	 	|	1393
+1	|	Limnobacter sp. MED105	|	 	|	391597
+1	|	Prosthecochloris aestuarii	|	 	|	1102
+3	|	Staphylococcus aureus Mu50	|	 	|	 
+1	|	Ornithinibacillus scapharcae	|	 	|	1147159
+3	|	Ruminococcus obeum A2162	|	 	|	 
+2	|	Bacillus subtilis 168	|	Bacillus subtilis subsp. subtilis str. 168	|	224308
+1	|	Cytophaga hutchinsonii	|	 	|	985
+1	|	Mesorhizobium opportunistum	|	 	|	593909
+1	|	Paenibacillus sp. Y412MC10	|	 	|	481743
+1	|	Pseudomonas aeruginosa	|	 	|	287
+1	|	Staphylococcus haemolyticus	|	 	|	1283
+1	|	Shewanella halifaxensis	|	 	|	271098
+1	|	Staphylococcus pseudintermedius	|	 	|	283734
+1	|	Streptosporangium roseum	|	 	|	2001
+1	|	Succinatimonas hippei	|	 	|	626938
+1	|	Rhodopseudomonas palustris HaA2	|	 	|	316058
+1	|	Variovorax paradoxus EPS	|	 	|	595537
+2	|	Dechlorosoma suillum	|	Azospira oryzae	|	146939
+1	|	Ralstonia pickettii	|	 	|	329
+1	|	Delftia acidovorans	|	 	|	80866
+1	|	Blautia hansenii	|	 	|	1322
+1	|	Synechococcus sp. RS9917	|	 	|	221360
+1	|	Acaryochloris marina	|	 	|	155978
+1	|	Verrucomicrobiae bacterium DG1235	|	 	|	382464
+1	|	Bacillus clausii	|	 	|	79880
+1	|	Rhodopseudomonas palustris BisA53	|	 	|	316055
+1	|	Herbaspirillum seropedicae	|	 	|	964
+1	|	Clostridium scindens	|	[Clostridium] scindens	|	29347
+1	|	Shewanella putrefaciens	|	 	|	24
+1	|	Anaerostipes caccae	|	 	|	105841
+1	|	Agrobacterium tumefaciens F2	|	 	|	1050720
+2	|	Synechocystis sp. PCC6803	|	Synechocystis sp. PCC 6803	|	1148
+3	|	Lachnospiraceae bacterium 9143BFAA	|	 	|	 
+1	|	Aeromonas salmonicida	|	 	|	645
+1	|	Acinetobacter lwoffii	|	 	|	28090
+1	|	Cupriavidus taiwanensis	|	 	|	164546
+3	|	Agrobacterium tumefaciens C58	|	 	|	 
+1	|	Synechococcus sp. CB0101	|	 	|	232348
+1	|	Rhodopseudomonas palustris BisB5	|	 	|	316057
+1	|	Ruegeria pomeroyi	|	 	|	89184
+2	|	Odyssella thessalonicensis	|	Candidatus Odyssella thessalonicensis	|	84647
+1	|	Xanthobacter autotrophicus	|	 	|	280
+1	|	Synechococcus sp. CB0101	|	 	|	232348
+1	|	Parvibaculum lavamentivorans	|	 	|	256618
+3	|	Ruminococcus torques ATCC27756	|	 	|	 
+1	|	Ruegeria sp. TM1040	|	 	|	292414
+1	|	Blautia hansenii	|	 	|	1322
+1	|	Geobacter lovleyi	|	 	|	313985
+3	|	Campylobacterales bacterium	|	 	|	 
+1	|	Sulfurimonas denitrificans	|	 	|	39766
+1	|	Coprococcus eutactus	|	 	|	33043
+1	|	Sebaldella termitidis	|	 	|	826
+1	|	Agrobacterium vitis	|	 	|	373
+1	|	Bdellovibrio bacteriovorus	|	 	|	959
+3	|	Comamonas testosteroni CNB2	|	 	|	 
+1	|	Magnetococcus marinus	|	 	|	1124597
+1	|	Eubacterium limosum	|	 	|	1736
+1	|	gamma proteobacterium HdN1	|	 	|	83406
+1	|	Parachlamydia acanthamoebae	|	 	|	83552
+3	|	Bacillus sp. 2A57CT2	|	 	|	 
+1	|	Shewanella baltica	|	 	|	62322
+1	|	Ralstonia pickettii	|	 	|	329
+2	|	Anabaena variabilis	|	Trichormus variabilis	|	264691
+2	|	Legionella pneumophila Paris	|	Legionella pneumophila str. Paris	|	297246
+3	|	Lachnospiraceae bacterium 1456FAA	|	 	|	 
+1	|	Chlorobaculum parvum	|	 	|	274539
+1	|	Shewanella pealeana	|	 	|	70864
+3	|	Bradyrhizobium japonicum USDA6	|	 	|	 
+3	|	Staphylococcus epidermidis ATCC12228	|	 	|	 
+3	|	Shewanella sp. ANA3	|	 	|	 
+1	|	Rickettsia bellii	|	 	|	33990
+1	|	Ruminococcus gnavus	|	[Ruminococcus] gnavus	|	33038
+1	|	Brevibacillus laterosporus	|	 	|	1465
+1	|	Staphylococcus epidermidis RP62A	|	 	|	176279
+1	|	Microcoleus vaginatus	|	 	|	119532
+1	|	Geobacter uraniireducens	|	 	|	351604
+2	|	Bradyrhizobium sp. ORS278	|	Bradyrhizobium sp. ORS 278	|	114615
+2	|	Synechococcus sp. PCC7002	|	Synechococcus sp. PCC 7002	|	32049
+1	|	Rickettsia felis	|	 	|	42862
+1	|	Nocardiopsis dassonvillei	|	 	|	2014
+1	|	Bradyrhizobium sp. BTAi1	|	 	|	288000
+3	|	Agrobacterium sp. H133	|	 	|	 
+1	|	Rickettsia sibirica	|	 	|	35793
+3	|	Acinetobacter sp. ATCC27244	|	 	|	 
+1	|	Rhodopseudomonas palustris BisB18	|	 	|	316056

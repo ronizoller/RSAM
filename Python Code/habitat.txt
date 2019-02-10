@@ -1,0 +1,210 @@
+
+Candidatus Odyssella thessalonicensis L13 (985867.COdytL_010100005231) bacteria proteobacteria alphaproteobacteria rickettsiales rickettsiales genera incertae sedis candidatus odyssella candidatus odyssella thessalonicensis  Habitat:AH  Protozoan Host (Ameba)
+Parachlamydia acanthamoebae UV-7 (765952.PUV_15980) bacteria chlamydiae/verrucomicrobia group chlamydiae chlamydiia chlamydiales parachlamydiaceae parachlamydia AH Habitat:AH   Protozoan Host (Ameba)
+Legionella longbeachae NSW150 (661367.LLO_1201) bacteria proteobacteria gammaproteobacteria legionellales legionellaceae legionella legionella longbeachae Habitat:AH  Soil and Compost Human Pathogen
+Legionella pneumophila str. Paris(297246.plpp0077) bacteria proteobacteria gammaproteobacteria legionellales legionellaceae legionella legionella pneumophila Habitat:AH   Protozoan Host (Ameba) Human Pathogen
+Legionella pneumophila str. Paris (297246.lpp1588) bacteria proteobacteria gammaproteobacteria legionellales legionellaceae legionella legionella pneumophila bacteria proteobacteria gammaproteobacteria legionellales legionellaceae legionella legionella pneumophila Habitat:AH   Human Pathogen
+Rickettsia sibirica 246 (272951.34581163) bacteria proteobacteria alphaproteobacteria rickettsiales rickettsiaceae rickettsieae rickettsia Habitat:HP Human Pathogen
+Rickettsia bellii OSU 85-389 (391896.A1I_07395) bacteria proteobacteria alphaproteobacteria rickettsiales rickettsiaceae rickettsieae rickettsia Habitat:HP Human Pathogen
+Rickettsia sibirica 246 (272951.34581164) bacteria proteobacteria alphaproteobacteria rickettsiales rickettsiaceae rickettsieae rickettsia Habitat:HP Human Pathogen
+Rickettsia felis URRWXCal2 (315456.RF_1275) bacteria proteobacteria alphaproteobacteria rickettsiales rickettsiaceae rickettsieae rickettsia Habitat:HP;AP Human Pathogen Animal Pathogen
+Legionella drancourtii LLAP12 (658187.LDG_5700) bacteria proteobacteria gammaproteobacteria legionellales legionellaceae legionella legionella drancourtii Habitat:AP; Pathogenic to Ameaba
+Desulfovibrio vulgaris str. 'Miyazaki F' (883.DvMF_0389) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfovibrionales desulfovibrionaceae desulfovibrio Habitat:HP;O;S; Human Pathogen Soil Opportunistic
+Xanthobacter autotrophicus Py2 (78245.Xaut_1441) bacteria proteobacteria alphaproteobacteria rhizobiales xanthobacteraceae xanthobacter xanthobacter autotrophicus Habitat:S;W;  Soil and Water (Sludge)
+Aeromonas hydrophila subsp. hydrophila ATCC 7966 (380703.AHA_4258) bacteria proteobacteria gammaproteobacteria aeromonadales aeromonadaceae aeromonas aeromonas hydrophila Habitat:W;  Fresh Water
+Aeromonas veronii B565 (998088.B565_4000) bacteria proteobacteria gammaproteobacteria aeromonadales aeromonadaceae aeromonas aeromonas veronii Habitat:W;HP;  Human Pathogen Fresh Water
+Aeromonas salmonicida subsp. salmonicida A449 (382245.ASA_4346) bacteria proteobacteria gammaproteobacteria aeromonadales aeromonadaceae aeromonas aeromonas salmonicida Habitat: AP; Fish Pathogen
+Aeromonas caviae Ae398 (878320.AcavA_010100000135) bacteria proteobacteria gammaproteobacteria aeromonadales aeromonadaceae aeromonas aeromonas caviae Habitat:W;AP;  Animal Pathogen (Pig)
+Agrobacterium vitis S4 (311402.Avi_1053) bacteria proteobacteria alphaproteobacteria rhizobiales rhizobiaceae rhizobium/agrobacterium group agrobacterium  Habitat:PP;  Plant Pathogen
+Burkholderia pseudomallei K96243 (272560.BPSS1997) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae burkholderia pseudomallei group Habitat:AP;HP;  Human Pathogen Animal Pathogen
+Ralstonia pickettii 12J (402626.Rpic_3817) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae ralstonia ralstonia pickettii Habitat:W;S;  Soil River Lake
+Burkholderia cenocepacia J2315 (216591.BCAM0393) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae burkholderia burkholderia cepacia complex Habitat:HP;  Human Pathogen
+Burkholderia gladioli BSR3 (999541.bgla_2g09520) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae burkholderia burkholderia gladioli Habitat:HP;PP;  Human Pathogen Plant Pathogen
+Burkholderia glumae BGR1 (626418.bglu_2g15400) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae burkholderia burkholderia glumae Habitat:HP;PP;  Human Pathogen Plant Pathogen
+Delftia acidovorans SPH-1 (398578.Daci_4544) bacteria proteobacteria betaproteobacteria burkholderiales comamonadaceae delftia delftia acidovorans Habitat:HP;E;   Environmental, Human Pathogen
+Achromobacter xylosoxidans AXX-A (1003200.AXXA_05708) bacteria proteobacteria betaproteobacteria burkholderiales alcaligenaceae achromobacter achromobacter xylosoxidans Habitat:HP;W;   Human Pathogen, Water Environments
+Herbaspirillum seropedicae SmR1 (757424.Hsero_3593) bacteria proteobacteria betaproteobacteria burkholderiales oxalobacteraceae herbaspirillum herbaspirillum seropedicae Habitat:PNP;   Plant Symbiosis Nitrogen Fixing $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Rhodospirillum centenum SW (414684.RC1_2760) bacteria proteobacteria alphaproteobacteria rhodospirillales rhodospirillaceae rhodospirillum rhodospirillum centenum Habitat:E;   Environmental Photosynthesis
+Agrobacterium sp. H13-3(861208.AGROH133_04800) bacteria proteobacteria alphaproteobacteria rhizobiales rhizobiaceae rhizobium/agrobacterium group agrobacterium Habitat:PP;HO;     Plant Pathogen Soil, Opportunistic in Human
+Agrobacterium fabrum str. C58 (176299.Atu0933) bacteria proteobacteria alphaproteobacteria rhizobiales rhizobiaceae rhizobium/agrobacterium group agrobacterium Habitat:PP;S; Plant Pathogen Soil
+Agrobacterium tumefaciens F2 (1050720.Agau_C202134) bacteria proteobacteria alphaproteobacteria rhizobiales rhizobiaceae rhizobium/agrobacterium group agrobacterium Habitat:PP;S;  Plant Pathogen Soil
+gamma proteobacterium HdN1 (83406.HDN1F_04970) bacteria proteobacteria gammaproteobacteria unclassified gammaproteobacteria unclassified gammaproteobacteria (miscellaneous) gamma proteobacterium hdn1 Habitat: S; Plant Pathogen Soil
+Mesorhizobium loti MAFF303099(266835.mll0916) bacteria proteobacteria alphaproteobacteria rhizobiales phyllobacteriaceae mesorhizobium mesorhizobium loti Habitat:PNP;  Plant Endosymbiont Nitrogen Fixation
+Mesorhizobium opportunistum WSM2075 (536019.Mesop_4048) bacteria proteobacteria alphaproteobacteria rhizobiales phyllobacteriaceae mesorhizobium mesorhizobium opportunistum  Habitat:PNP;  Plant Endosymbiont
+Mesorhizobium ciceri biovar biserrulae WSM1271 (765698.Mesci_4203) bacteria proteobacteria alphaproteobacteria rhizobiales phyllobacteriaceae mesorhizobium mesorhizobium cicero Habitat:PNP;  Plant Endosymbiont Nitrogen Fixation
+Pelobacter propionicus DSM 2379 (338966.Ppro_0184) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfuromonadales pelobacteraceae pelobacter Habitat:E;  Environmental (Fermentation)
+Bdellovibrio bacteriovorus HD100 (264462.Bd3212) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria bdellovibrionales bdellovibrionaceae bdellovibrio Habitat:BP;BF;  Biofilms, Pathogen of other Bacteria$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Bacillus sp. 2_A_57_CT2 (665959.HMPREF1013_03386) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus sp. 2_a_57_ct2 Habitat:H;  Human Oral Swab
+Paenibacillus sp. Y412MC10 (481743.GYMC10_3486) bacteria firmicutes bacilli bacillales paenibacillaceae paenibacillus paenibacillus sp. y412mc10 Habitat:S;   Soil, Wood
+Paenibacillus vortex V453 (715225.PVOR_17869) bacteria firmicutes bacilli bacillales paenibacillaceae paenibacillus paenibacillus vortex Habitat:S;W;ANP;H;   soil, water, vegetable matter, forage and insect larvae, as well as clinical samples
+Paenibacillus mucilaginosus KNP414 (1036673.KNP414_06766) bacteria firmicutes bacilli bacillales paenibacillaceae paenibacillus paenibacillus mucilaginosus Habitat:S; Soil, Agriculture (Nitrogen Fixation)
+Bacillus subtilis subsp. subtilis str. 168 (224308.Bsubs1_010100001168) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus subtilis group   Habitat:S;HNP;  Soil Human Gut Animal Gut, Industry
+Bacillus atrophaeus 1942 (720555.BATR1942_19650) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus subtilis group Habitat:S;HNP;   Human NP, Biomedicine
+Bacillus pumilus SAFR-032 (315750.BPUM_2340) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus pumilus  Habitat:S;  Soil
+Bacillus clausii KSM-K16 (66692.ABC3481) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus clausii Habitat:S;HNP;  Soil and Human (probiotic)
+laterosporus LMG 15441 (1042163.BRLA_c01450) bacteria firmicutes bacilli bacillales paenibacillaceae brevibacillus brevibacillus laterosporus Habitat:AP;   Pathogen of invertebrates (Honey Bees)
+Bacillus atrophaeus 1942 (720555.BATR1942_00355) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus subtilis group Habitat:HNP;  Human NP, (Biomedicine)$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Chloroherpeton thalassium ATCC 35110 (517418.Ctha_1121) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chloroherpeton Habitat:W;  Marine
+Chlorobium ferrooxidans DSM 13031 (377431.CferDRAFT_0003) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobium/pelodictyon group Habitat:W;S; FreshWater Sediment
+Pelodictyon phaeoclathratiforme BU-1 (324925.Ppha_1109) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobium/pelodictyon group Habitat:W;   Fresh Water Lakes
+Chlorobium phaeobacteroides DSM 266 (290317.Cpha266_1596) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobium/pelodictyon group Habitat:W;S;   Fresh Water Sediment Sulfide-rich 
+Chlorobium phaeobacteroides BS1 (331678.Cphamn1_1050) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobium/pelodictyon group Habitat:W;S;   Fresh Water Sediment Sulfide-rich 
+Prosthecochloris aestuarii DSM 271 (290512.Paes_1435) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae prosthecochloris Habitat:W;S;    Fresh Water Sediment Sulfide-rich 
+Verrucomicrobiae bacterium DG1235 (382464.VDG1235_710) bacteria chlamydiae/verrucomicrobia group verrucomicrobia verrucomicrobiae verrucomicrobiales unclassified verrucomicrobiales unclassified verrucomicrobiales (miscellaneous)  Habitat:S;   Soil
+Synechococcus sp. PCC 7002 (32049.SYNPCC7002_A2334) bacteria cyanobacteria oscillatoriophycideae chroococcales synechococcus synechococcus sp. pcc 7002 Habitat:W;   Marine
+Acaryochloris marina MBIC11017 (329726.AM1_4306) bacteria cyanobacteria oscillatoriophycideae chroococcales acaryochloris acaryochloris marina acaryochloris marina mbic11017 Habitat:W;    Marine
+Microcoleus vaginatus FGP-2 (756067.MicvaDRAFT_3369) bacteria cyanobacteria oscillatoriophycideae oscillatoriales microcoleus microcoleus vaginatus microcoleus vaginatus fgp-2 Habitat:S;    Soil
+Nostoc punctiforme PCC 73102 (63737.Npun_F3980) bacteria cyanobacteria nostocales nostocaceae nostoc nostoc punctiforme nostoc punctiforme pcc 73102 Habitat:W;PNP;   Water Plant Symbiont
+Anabaena variabilis ATCC 29413 (240292.Ava_0412) bacteria cyanobacteria nostocales nostocaceae anabaena anabaena variabilis anabaena variabilis atcc 29413 Habitat:W;PNP;   Water Plant Symbiont
+Nostoc sp. PCC 7120 (103690.all2480) bacteria cyanobacteria nostocales nostocaceae nostoc nostoc sp. pcc 7120 Habitat:W;PNP;   Water Plant Symbiont
+Achromobacter piechaudii ATCC 43553 (742159.HMPREF0004_3176) bacteria proteobacteria betaproteobacteria burkholderiales alcaligenaceae achromobacter achromobacter piechaudii Habitat:S;HO;    Soil Opportunistic
+Riemerella anatipestifer RA-GD (992406.RIA_2139) bacteria bacteroidetes/chlorobi group bacteroidetes flavobacteriia flavobacteriales flavobacteriaceae riemerella  Habitat:AP;    Animal Pathogen (Birds)
+Geobacter lovleyi SZ (398767.Glov_0120) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfuromonadales geobacteraceae geobacter Habitat:S;     Soil Sediment
+Geobacter uraniireducens Rf4 (351605.Gura_3505) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfuromonadales geobacteraceae geobacter Habitat:S;W;    Soil Water Sediment
+Magnetococcus marinus MC-1 (156889.Mmc1_0424) bacteria proteobacteria alphaproteobacteria magnetococcales magnetococcaceae magnetococcus magnetococcus marinus Habitat:S;W;     Water Soil
+Rheinheimera sp. A13L (506534.Rhein_0437) bacteria proteobacteria gammaproteobacteria chromatiales chromatiaceae rheinheimera rheinheimera sp. a13l Habitat:W;    Water Lake Antimicrobial activity
+Chlorobaculum parvum NCIB 8327 (517417.Cpar_0567) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobaculum Habitat:W;    Brackish water and Marine
+Methylomonas methanica MC09 (857087.Metme_3233) bacteria proteobacteria gammaproteobacteria methylococcales methylococcaceae methylomonas methylomonas methanica Habitat:W;    Marine Soil Extreme Environment
+Chlorobium limicola DSM 245 (290315.Clim_1276) bacteria bacteroidetes/chlorobi group chlorobi chlorobia chlorobiales chlorobiaceae chlorobium/pelodictyon group Habitat:W;    Marine
+Pseudomonas stutzeri A1501 (379731.PST_2699) bacteria proteobacteria gammaproteobacteria pseudomonadales pseudomonadaceae pseudomonas pseudomonas stutzeri group Habitat:S;PNP;   Soil Plant Symboyant
+Sulfurimonas gotlandica GD1 (439483.CBGD1_115) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales helicobacteraceae sulfurimonas Habitat:W;    Marine
+Arcobacter sp. L (944547.ABLL_1963) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales campylobacteraceae arcobacter Habitat:S;    BioFuel Industry
+Arcobacter butzleri RM4018 (367737.Abu_1478) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales campylobacteraceae arcobacter Habitat:HP;    Human Pathogen (Gut)
+Flavobacteriales bacterium ALC-1 (391603.FBALC1_08253) bacteria bacteroidetes/chlorobi group bacteroidetes flavobacteriia flavobacteriales unclassified flavobacteriales unclassified flavobacteriales (miscellaneous)  Habitat:E;    Environmental
+Riemerella anatipestifer RA-GD (992406.RIA_0366) bacteria bacteroidetes/chlorobi group bacteroidetes flavobacteriia flavobacteriales flavobacteriaceae riemerella  Habitat:AP;    Animal Pathogen (Ducks and Geese)
+Acinetobacter baumannii ATCC 19606 = CIP 70.34 (575584.HMPREF0010_00844) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter calcoaceticus/baumannii complex Habitat:W;S;HO;    Soil Water Opportunistic human pathogen
+Acinetobacter oleivorans DR1 (436717.AOLE_11070) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter oleivorans Habitat:W;S;HO;    Soil Water Opportunistic human pathogen
+Acinetobacter calcoaceticus PHEA-2 (871585.BDGL_000903) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter calcoaceticus/baumannii complex Habitat:W;S;HO;    Soil Water Opportunistic human pathogen
+Acinetobacter radioresistens SH164 (575589.HMPREF0018_00443) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter radioresistens Habitat:HP;     Human Pathogen
+Acinetobacter lwoffii SH145 (575588.HMPREF0017_02813) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter lwoffii Habitat:HO;    Human Skin Flora Opportunistic  Foodborne
+Caenorhabditis remanei (31234.CRE30635) eukaryota opisthokonta metazoa eumetazoa bilateria protostomia ecdysozoa  Habitat:S;    Soil Compost- note that this is a worm not a bacteria…
+Acinetobacter sp. ATCC 27244 (525244.HMPREF0023_2248) bacteria proteobacteria gammaproteobacteria pseudomonadales moraxellaceae acinetobacter acinetobacter sp. atcc 27244 Habitat:S;    Soil  Industry
+Sulfurimonas denitrificans DSM 1251 (326298.Suden_0951) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales helicobacteraceae sulfurimonas Habitat:W;    Marine
+Synechococcus sp. RS9917(221360.RS9917_00472) bacteria cyanobacteria oscillatoriophycideae chroococcales synechococcus synechococcus sp. rs9917 Habitat:W;    Marine
+Synechococcus sp. CB0101 (232348.SCB01_010100007715) bacteria cyanobacteria oscillatoriophycideae chroococcales synechococcus synechococcus sp. cb0101 Habitat:W;    Marine
+Synechococcus sp. CB0101 (232348.SCB01_010100012008) bacteria cyanobacteria oscillatoriophycideae chroococcales synechococcus synechococcus sp. cb0101 Habitat:W;    Marine
+Methylobacillus flagellatus KT (265072.Mfla_2477) bacteria proteobacteria betaproteobacteria methylophilales methylophilaceae methylobacillus methylobacillus flagellates Habitat:W;    Marine Fresh Water
+Methylococcus capsulatus str. Bath (243233.MCA2220) bacteria proteobacteria gammaproteobacteria methylococcales methylococcaceae methylococcus methylococcus capsulatus Habitat:S;    Soil (Industry)
+Pseudomonas aeruginosa PAO1 (208964.PA5514) bacteria proteobacteria gammaproteobacteria pseudomonadales pseudomonadaceae pseudomonas pseudomonas aeruginosa group Habitat:HP;    Human Pathogen Multi Drug resistant
+Ruegeria pomeroyi DSS-3 (246200.SPO2592) bacteria proteobacteria alphaproteobacteria rhodobacterales rhodobacteraceae ruegeria ruegeria pomeroyi Habitat:W;    Marine
+Ralstonia pickettii 12J (402626.Rpic_3962) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae ralstonia ralstonia pickettii Habitat:W;S;   Soil River Lake
+Variovorax paradoxus EPS (595537.Varpa_1477) bacteria proteobacteria betaproteobacteria burkholderiales comamonadaceae variovorax variovorax paradoxus Habitat:W;    Wastewater
+Parvibaculum lavamentivorans DS-1 (402881.Plav_3016) bacteria proteobacteria alphaproteobacteria rhizobiales rhodobiaceae parvibaculum parvibaculum lavamentivorans Habitat:S;    Soil?
+Nocardiopsis dassonvillei subsp. dassonvillei DSM 43111 (446468.Ndas_0427) bacteria actinobacteria actinobacteria actinobacteridae actinomycetales streptosporangineae nocardiopsaceae Habitat:S;    Soil (produces antibiotics)
+Thermomonospora curvata DSM 43183 (471852.Tcur_2040) bacteria actinobacteria actinobacteria actinobacteridae actinomycetales streptosporangineae thermomonosporaceae Habitat:S;    Soil Industry
+Streptosporangium roseum DSM 43021 (479432.Sros_8961) bacteria actinobacteria actinobacteria actinobacteridae actinomycetales streptosporangineae streptosporangiaceae Habitat:S;    Soil
+Succinatimonas hippei YIT 12066 (762983.HMPREF9444_00979) bacteria proteobacteria gammaproteobacteria aeromonadales succinivibrionaceae succinatimonas succinatimonas hippei Habitat:HNP;    Human Gut
+Brachyspira pilosicoli 95/1000 (759914.BP951000_1338) bacteria spirochaetes spirochaetia spirochaetales brachyspiraceae brachyspira brachyspira pilosicoli Habitat:HP;AP;  Human and Animal Gut Pathogen
+Campylobacter jejuni subsp. jejuni NCTC 11168 = ATCC 700819 (192222.Cj0299) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales campylobacteraceae campylobacter Habitat:HP;  Human Gut Pathogen
+Campylobacter lari RM2100 (306263.Cla_1383) bacteria proteobacteria delta/epsilon subdivisions epsilonproteobacteria campylobacterales campylobacteraceae campylobacter Habitat:HNP; Human Gut Pathogen$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Hyphomonas neptunium ATCC 15444 (228405.HNE_2763) bacteria proteobacteria alphaproteobacteria rhodobacterales hyphomonadaceae hyphomonas hyphomonas neptunium Habitat:W;  Marine
+ Cupriavidus taiwanensis LMG 19424 (977880.RALTA_B1278) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae cupriavidus cupriavidus taiwanensis Habitat:PNP;  Plant
+Ralstonia eutropha H16 (381666.H16_B1495) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae cupriavidus cupriavidus necator Habitat:EE;  Extreme Environment, Industry
+Desulfovibrio magneticus RS-1 (573370.DMR_04670) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfovibrionales desulfovibrionaceae desulfovibrio Habitat:W;S;EE;  Water, Soil, Extreme Environments
+Bradyrhizobiaceae bacterium SG-6C (709797.CSIRO_3456) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae unclassified bradyrhizobiaceae bradyrhizobiaceae bacterium sg-6c V Habitat:S;  Soil?
+Rhodopseudomonas palustris BisB5 (316057.RPD_3124) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae rhodopseudomonas rhodopseudomonas palustris Habitat:S;  Soil
+Rhodopseudomonas palustris HaA2 (316058.RPB_2340) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae rhodopseudomonas rhodopseudomonas palustris Habitat:S;  Soil
+Rhodopseudomonas palustris BisB18 (316056.RPC_3398) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae rhodopseudomonas rhodopseudomonas palustris Habitat:S;  Soil
+Rhodopseudomonas palustris BisA53 (316055.RPE_3542) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae rhodopseudomonas rhodopseudomonas palustris Habitat:S;  Soil
+Bradyrhizobium japonicum USDA 6 (1037409.BJ6T_44270) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae bradyrhizobium bradyrhizobium japonicum Habitat:S;  Soil
+Bradyrhizobium diazoefficiens USDA 110 (224911.bll5360) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae bradyrhizobium bradyrhizobium diazoefficiens Habitat:S;  Soil
+Bradyrhizobium sp. BTAi1 (288000.BBta_5028) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae bradyrhizobium bradyrhizobium sp. btai1 Habitat:S;  Soil
+Bradyrhizobium sp. ORS 278 (114615.BRADO4627) bacteria proteobacteria alphaproteobacteria rhizobiales bradyrhizobiaceae bradyrhizobium bradyrhizobium sp. ors 278 Habitat:S;  Soil
+alpha proteobacterium BAL199 (331869.BAL199_26132) bacteria proteobacteria alphaproteobacteria unclassified alphaproteobacteria unclassified alphaproteobacteria (miscellaneous) alpha proteobacterium bal199 Habitat:S;  Soil and Sediment?
+Limnobacter sp. MED105 (391597.LMED105_11645) bacteria proteobacteria betaproteobacteria burkholderiales burkholderiaceae limnobacter limnobacter sp. med105 Habitat:S; Soil and Sediment
+Idiomarina loihiensis L2TR (283942.IL1808) bacteria proteobacteria gammaproteobacteria alteromonadales idiomarinaceae idiomarina idiomarina loihiensis Habitat:W;  Marine 
+Synechocystis sp. PCC 6803 (1148.SYNGTS_2726) bacteria cyanobacteria oscillatoriophycideae chroococcales synechocystis synechocystis sp. pcc 6803 Habitat:S;W;   Marine and Soil
+Rheinheimera sp. A13L (506534.Rhein_2116) bacteria proteobacteria gammaproteobacteria chromatiales chromatiaceae rheinheimera rheinheimera sp. a13l Habitat:W;  Marine
+Shewanella halifaxensis HAW-EB4 (458817.Shal_2710) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella halifaxensis Habitat:W;  Marine
+Shewanella pealeana ATCC 700345 (398579.Spea_2637) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella pealeana Habitat:W;  Marine
+Dechlorosoma suillum PS (640081.Dsui_1823) bacteria proteobacteria betaproteobacteria rhodocyclales rhodocyclaceae azospira azospira oryzae Habitat:PNP;   Plant(root)
+Hylemonella gracilis ATCC 19624 (887062.HGR_08939) bacteria proteobacteria betaproteobacteria burkholderiales comamonadaceae hylemonella hylemonella gracilis  Habitat:W;  stagnant or still fresh water.
+Delftia acidovorans SPH-1 (398578.Daci_2332) bacteria proteobacteria betaproteobacteria burkholderiales comamonadaceae delftia delftia acidovorans Habitat:E;C;  Environmental (rarely Clinic)
+Comamonas testosteroni CNB-2 (688245.CtCNB1_2597) bacteria proteobacteria betaproteobacteria burkholderiales comamonadaceae comamonas comamonas testosterone Habitat:HP;HNP;C;  HP HNP Hospital
+Shewanella loihica PV-4 (323850.Shew_3220) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella loihica Habitat:E;  Environmental
+Shewanella piezotolerans WP3 (225849.swp_4470) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella piezotolerans Habitat:E;  ??
+Shewanella baltica OS155 (325240.Sbal_3522) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella baltica Habitat:E;   Environmental
+ Shewanella putrefaciens CN-32 (319224.Sputcn32_3157) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella putrefaciens Habitat:E;   Environmental
+Shewanella oneidensis MR-1 (211586.SO_0837) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella oneidensis Habitat:E;  Environmental
+Shewanella sp. ANA-3 (94122.Shewana3_3440) bacteria proteobacteria gammaproteobacteria alteromonadales shewanellaceae shewanella shewanella sp. ana-3 Habitat:E;   Environmental Extreme aquatic habitats
+Cytophaga hutchinsonii ATCC 33406 (269798.CHU_1887) bacteria bacteroidetes/chlorobi group bacteroidetes cytophagia cytophagales cytophagaceae cytophaga Habitat:E;  Environmental
+Zunongwangia profunda SM-A87 (655815.ZPR_0717) bacteria bacteroidetes/chlorobi group bacteroidetes flavobacteriia flavobacteriales flavobacteriaceae zunongwangia Habitat:E;  Environmental
+Microscilla marina ATCC 23134 (313606.M23134_01068) bacteria bacteroidetes/chlorobi group bacteroidetes cytophagia cytophagales cytophagaceae microscilla Habitat:E;  Environmental
+Sphingobacterium sp. 21 (743722.Sph21_2800) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales sphingobacteriaceae sphingobacterium Habitat:E;   Environmental
+Sphingobacterium spiritivorum ATCC 33861 (525373.HMPREF0766_13310) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales sphingobacteriaceae sphingobacterium Habitat:E;  Environmental
+Mucilaginibacter paludis DSM 18603 (714943.Mucpa_6343) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales sphingobacteriaceae mucilaginibacter Habitat:E;  Environmental
+Haliscomenobacter hydrossis DSM 1100 (760192.Halhy_1719) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales saprospiraceae haliscomenobacter Habitat:E;  Environmental
+Sebaldella termitidis ATCC 33386 (526218.Sterm_0301) bacteria fusobacteria fusobacteriia fusobacteriales leptotrichiaceae sebaldella sebaldella termitidis Habitat:ANP;  AG (termites)
+Sebaldella termitidis ATCC 33386 (526218.Sterm_3353) bacteria fusobacteria fusobacteriia fusobacteriales leptotrichiaceae sebaldella sebaldella termitidis Habitat:ANP;   AG (termites)
+Niastella koreensis GR20-10 (700598.Niako_6692) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales chitinophagaceae niastella Habitat:HNP;  HNP?
+Chitinophaga pinensis DSM 2588 (485918.Cpin_0907) bacteria bacteroidetes/chlorobi group bacteroidetes sphingobacteriia sphingobacteriales chitinophagaceae chitinophaga Habitat:S;  Soil
+Desulfovibrio salexigens DSM 2638 (526222.Desal_3073) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfovibrionales desulfovibrionaceae desulfovibrion Habitat:S;W;  Soil Marine
+Colwellia psychrerythraea 34H (167879.CPS_0483) bacteria proteobacteria gammaproteobacteria alteromonadales colwelliaceae colwellia colwellia psychrerythraea Habitat:W;  Marine
+Oceanicaulis sp. HTCC2633 (314254.OA2633_03171) bacteria proteobacteria alphaproteobacteria rhodobacterales hyphomonadaceae oceanicaulis oceanicaulis sp. htcc2633 Habitat:W;  Marine
+Ruegeria sp. TM1040 (292414.TM1040_0211) bacteria proteobacteria alphaproteobacteria rhodobacterales rhodobacteraceae ruegeria ruegeria sp. tm1040 Habitat:W;  Marin$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Bilophila wadsworthia 3_1_6 (563192.HMPREF0179_02588) bacteria proteobacteria delta/epsilon subdivisions deltaproteobacteria desulfovibrionales desulfovibrionaceae bilophila Habitat:HNP;ANP;   HG AG 
+Acetonema longum DSM 6540 (1009370.ALO_07713) bacteria firmicutes negativicutes selenomonadales veillonellaceae acetonema acetonema longum Habitat:ANP;   AG (termites)
+Clostridium difficile 630 (272563.CD0458) bacteria firmicutes clostridia clostridiales peptostreptococcaceae [clostridium] difficile clostridium difficile 630 Habitat:HP;   HP
+Victivallis vadensis ATCC BAA-548 (340101.Vvad_PD2127) bacteria chlamydiae/verrucomicrobia group lentisphaerae lentisphaeria victivallales victivallaceae victivallis Habitat:HNP;   NHG
+Ruminococcus obeum A2-162 (657314.CK5_34400) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia [ruminococcus] obeum Habitat:HNP;   HG
+Lachnospiraceae bacterium 3_1_57FAA_CT1 (658086.HMPREF0994_05461) bacteria firmicutes clostridia clostridiales lachnospiraceae unclassified lachnospiraceae lachnospiraceae bacterium 3_1_57faa_ct1 Habitat:HNP;   HG
+Clostridiales bacterium 1_7_47FAA (457421.CBFG_00766) bacteria firmicutes clostridia clostridiales unclassified clostridiales unclassified clostridiales (miscellaneous) clostridiales bacterium 1_7_47faa Habitat:S;   SOIL
+Clostridium cf. saccharolyticum K10 (717608.CLS_31020) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium saccharolyticum Habitat:S;HNP;  soils, aquatic sediments and the intestinal tracts of animals and humans 
+Eubacterium limosum KIST612 (903814.ELI_4241) bacteria firmicutes clostridia clostridiales eubacteriaceae eubacterium eubacterium limosum Habitat:HP;     
+Staphylococcus pseudintermedius ED99 (984892.SPSE_1775) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus pseudintermedius Habitat:HP;AP;   
+Staphylococcus epidermidis RP62A (176279.SERP1460) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus epidermidis Habitat:HO;  
+Staphylococcus epidermidis ATCC 12228 (176280.SE1607) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus epidermidis Habitat:HO;  
+Propionibacterium acnes SK182B-JCVI (1051006.HMPREF1162_1146) bacteria actinobacteria actinobacteria actinobacteridae actinomycetales propionibacterineae propionibacteriaceae Habitat:HNP;
+Staphylococcus epidermidis ATCC 12228 (176280.SE_p507) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus epidermidis Habitat:HO;  
+Staphylococcus haemolyticus JCSC1435 (279808.SH1763) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus haemolyticus Habitat:HP;  
+Staphylococcus pseudintermedius ED99 (984892.SPSE_2388) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus pseudintermedius Habitat:HP;  
+Staphylococcus epidermidis M23864:W1 (525378.HMPREF0793_1693) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus epidermidis Habitat:HO;  
+Staphylococcus lugdunensis HKU09-01 (698737.SLGD_01660) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus lugdunensis Habitat:HP;  
+Staphylococcus lugdunensis HKU09-01 (698737.SLGD_00887) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus lugdunensis Habitat:HP;  
+Staphylococcus aureus subsp. aureus Mu50 (158878.SAV0042) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus aureus Habitat:HP;  
+Staphylococcus epidermidis RP62A (176279.SERP2520) bacteria firmicutes bacilli bacillales staphylococcaceae staphylococcus staphylococcus epidermidis Habitat:HO;  
+Paenibacillus mucilaginosus KNP414 (1036673.KNP414_02413) bacteria firmicutes bacilli bacillales paenibacillaceae paenibacillus paenibacillus mucilaginosus Habitat:S;W;   SOIL WATER Agriculture
+Desmospora sp. 8437 (997346.HMPREF9374_3946) bacteria firmicutes bacilli bacillales thermoactinomycetaceae desmospora desmospora sp. 8437 Habitat:HNP;  
+Bacillus sp. 2_A_57_CT2 (665959.HMPREF1013_04537) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus sp. 2_a_57_ct2  Habitat:HP;  Human (Oral Swab)??
+Brevibacillus brevis NBRC 100599 (358681.BBR47_12020) bacteria firmicutes bacilli bacillales paenibacillaceae brevibacillus brevibacillus brevis Habitat:S;W;   soil, air, water, and decaying matter. Produces antibiotics  
+Ornithinibacillus scapharcae TW25 (981383.OTW25_010100006087) bacteria firmicutes bacilli bacillales bacillaceae ornithinibacillus ornithinibacillus scapharcae Habitat:ANP Animal  (Clam)
+Bacillus clausii KSM-K16 (66692.ABC0265) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus clausii Habitat:HNP;  produces antibiotics
+Bacillus licheniformis DSM 13 = ATCC 14580 (279010.BL01788) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus subtilis group Habitat:HP;HNP; 
+Bacillus licheniformis DSM 13 = ATCC 14580 (279010.BLi00278) bacteria firmicutes bacilli bacillales bacillaceae bacillus bacillus subtilis group Habitat:HP;HNP;  
+Sebaldella termitidis ATCC 33386 (526218.Sterm_3351) bacteria fusobacteria fusobacteriia fusobacteriales leptotrichiaceae sebaldella sebaldella termitidis Habitat:ANP; Animal Gut (termite)
+Clostridium difficile 630 (272563.CD0470) bacteria firmicutes clostridia clostridiales peptostreptococcaceae [clostridium] difficile clostridium difficile 630 Habitat:HP;  Gut
+Clostridium saccharolyticum WM1 (610130.Closa_3340) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium saccharolyticum Habitat:HNP;ANP;W;   HGut AGut SOIL AQUA
+Clostridium scindens ATCC 35704 (411468.CLOSCI_03207) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium scindens Habitat:HNP;
+Clostridium scindens ATCC 35704 (411468.CLOSCI_02046) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium scindens Habitat:HNP;
+Coprococcus eutactus ATCC 27759 (411474.COPEUT_01351) bacteria firmicutes clostridia clostridiales lachnospiraceae coprococcus coprococcus eutactus Habitat:HNP;
+Lachnospiraceae bacterium 9_1_43BFAA (658088.HMPREF0987_01392) bacteria firmicutes clostridia clostridiales lachnospiraceae unclassified lachnospiraceae lachnospiraceae bacterium 9_1_43bfaa Habitat:HNP;
+Lachnospiraceae bacterium 1_4_56FAA (658655.HMPREF0988_03035) bacteria firmicutes clostridia clostridiales lachnospiraceae unclassified lachnospiraceae lachnospiraceae bacterium 1_4_56faa Habitat:HNP; 
+Clostridium bolteae ATCC BAA-613 (411902.CLOBOL_04085) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium bolteae Habitat:HNP;ANP;W; S;  HGut AGut SOIL AQUA
+Eubacterium biforme DSM 3989 (518637.EUBIFOR_00819) bacteria firmicutes erysipelotrichia erysipelotrichales erysipelotrichaceae unclassified erysipelotrichaceae [eubacterium] biforme Habitat:HNP;   HGut
+Eubacterium rectale DSM 17629 (657318.EUR_10680) bacteria firmicutes clostridia clostridiales eubacteriaceae eubacterium eubacterium rectale Habitat:HNP;   HGut
+Roseburia inulinivorans DSM 16841 (622312.ROSEINA2194_01800) bacteria firmicutes clostridia clostridiales lachnospiraceae roseburia roseburia inulinivorans Habitat:HNP;   Gut
+Roseburia hominis A2-183 (585394.RHOM_15305) bacteria firmicutes clostridia clostridiales lachnospiraceae roseburia roseburia hominis Habitat:HNP;    Gut 
+Ruminococcus torques ATCC 27756 (411460.RUMTOR_00886) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia [ruminococcus] torques Habitat:HNP;    Gut
+Blautia hansenii DSM 20583 (537007.BLAHAN_06649) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia blautia hansenii Habitat:HNP;    Gut
+Blautia hansenii DSM 20583 (537007.BLAHAN_04954) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia blautia hansenii Habitat:HNP;    Gut 
+Ruminococcus gnavus ATCC 29149 (411470.RUMGNA_02849) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia [ruminococcus] gnavus Habitat:HNP;    Gut 
+Ruminococcus sp. 5_1_39BFAA (457412.RSAG_00587) bacteria firmicutes clostridia clostridiales ruminococcaceae ruminococcus ruminococcus sp. 5_1_39bfaa Habitat:HNP;    Gut
+Ruminococcus obeum A2-162 (657314.CK5_08890) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia [ruminococcus] obeum Habitat:HNP;    Gut
+Ruminococcus obeum ATCC 29174 (411459.RUMOBE_00587) bacteria firmicutes clostridia clostridiales lachnospiraceae blautia [ruminococcus] obeum Habitat:HNP;    Gut
+Dorea longicatena DSM 13814(411462.DORLON_01764) bacteria firmicutes clostridia clostridiales lachnospiraceae dorea dorea longicatena Habitat:HNP;    Gut
+Dorea formicigenerans ATCC 27755 (411461.DORFOR_00187) bacteria firmicutes clostridia clostridiales lachnospiraceae dorea dorea formicigenerans Habitat:HNP;    Gut
+Ruminococcus lactaris ATCC 29176 (471875.RUMLAC_01237) bacteria firmicutes clostridia clostridiales ruminococcaceae ruminococcus ruminococcus lactaris Habitat:HNP;    Gut
+Clostridium sp. D5 (556261.HMPREF0240_00065) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium sp. d5 Habitat:HP;    
+Clostridium hylemonae DSM 15053 (553973.CLOHYLEM_04847) bacteria firmicutes clostridia clostridiales clostridiaceae clostridium clostridium hylemonae Habitat:HNP;    Gut
+Anaerostipes caccae DSM 14662 (411490.ANACAC_01104) bacteria firmicutes clostridia clostridiales lachnospiraceae anaerostipes anaerostipes caccae Habitat:HNP;    Gut
+Clostridium lentocellum DSM 5427 (642492.Clole_2896) bacteria firmicutes clostridia clostridiales lachnospiraceae cellulosilyticum cellulosilyticum lentocellum Habitat: NH? SOIL?
+Leptospira borgpetersenii serovar Hardjo-bovis str. L550 (355276.LBL_1082) bacteria spirochaetes spirochaetia spirochaetales leptospiraceae leptospira leptospira borgpetersenii Habitat:HNP;    Gut
+eptospira interrogans serovar Copenhageni str. Fiocruz L1-130 (267671.LIC12220) bacteria spirochaetes spirochaetia spirochaetales leptospiraceae leptospira leptospira interrogans Habitat:HP;AP;  
+Leptospira interrogans serovar Lai str. 56601 (189518.LA_1549) bacteria spirochaetes spirochaetia spirochaetales leptospiraceae leptospira leptospira interrogans  Habitat:HP;AP;  
+
+Trichormusvariabilis () Habitat:W; 
+Cellulosilyticumlentocellum () Habitat: W; don river
+Holdemanellabiformis () Habitat: HP
+LeptospirainterrogansserovarCopenhageni () Habitat: AP
+CupriavidusnecatorH16 () Habitat: S
+Azospiraoryzae () Habitat: S
