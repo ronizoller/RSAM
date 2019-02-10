@@ -1,7 +1,7 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import dendropy as tr
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Simulator'
+path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
 exte = 'all'
 
 def get_edgelist(tree):

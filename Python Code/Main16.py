@@ -12,8 +12,9 @@ import inits_v1 as inits
 import draw
 import hypergraph_v1 as hypergraph
 import pattern_identify_v4 as pattern_identify
+from multiprocessing import Pool
 
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Simulator'
+path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 
@@ -33,12 +34,12 @@ S_cost = 0
 
 number_of_marked_vertices = 1
 marked_vertex = 'u189'
-random_for_prec = 10
+random_for_prec = 50
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [0,2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50]
+noise_level_list = [2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50,]
 
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
@@ -258,177 +259,302 @@ def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
     print('Finished weighting G...')
     return G_nodes_to_weight
 
+def RSAM_finder_multithread(noise_level):
+    #noise_level = parameters[0]
+    list_of_scores_for_rand_num = {}
+    random_for_prec_curr = random_for_prec
+    for rand_num in range (0, random_for_prec_curr):
+        print('                 ****     Iteration %s.%s/%s.%s     ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
+        S_dis_matrix = {}
+        nodes_table = {}
+        S_colors = {}
+        all_vertices = {}
+        H = nx.MultiDiGraph()
+        H_number_of_nodes = 0
+        temp_iter = 0
+        all_vertices_with_index = {}
+
+        G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+        S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
+
+        print("     Reading file "+path+"/sigma.txt'...")
+        input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+        sigma = []
+        for line in input:
+            sigma.append(eval(line))
+        sigma = sigma[0]
+        print("     Finished reading file  "+path+"/sigma.txt'")
+
+        print("     Reading file " + path + "/colors.txt'...")
+        input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+        colors = []
+        for line in input:
+            colors.append(eval(line))
+        colors = colors[0]
+        print("     Finished reading file  " + path + "/colors.txt'")
+        G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
+
+        S = utiles.init_internal_labels(S, 'x', sigma, path)
+        G = utiles.init_internal_labels(G, 'u', sigma, path)
+
+        G = tree_operations.collapse_edges(G)
+        S = tree_operations.collapse_edges(S)
+
+        S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S,G,sigma)
+        sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
+        G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
+        colors,old_colors = inits.update_colors(S, colors,exact_names)
+        TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
+        TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_marked_vertices)
+
+        S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
+        nodes_table = inits.init_nodes_table(S, G, nodes_table)
+
+        H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+                                                                         nodes_table, D_cost, S_cost, HT_cost, path, alpha,
+                                                                         sigma)
+        if check_diffreance_between_solutions:
+            max_dis = tree_operations.max_dis(S_dis_matrix)
+            print(max_dis)
+            if iterations * factor < k:
+                all_marked = []
+                new_G = {}
+                solutions = {}
+                red_HT_vertices_in_G = []
+                black_HT_vertices_in_G = []
+                nCr_lookup_table = {}
+                fact_lookup_table = {}
+                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+
+
+                for iter in range (0,iterations):
+                    print('\n                                               *** '+str(iter+1)+'th iteration ***\n')
+
+                    TH_pattern_in_subtree = 2 / (max_dis * k)
+                    new_G[iter] = nx.DiGraph()
+                    deleted_nodes = []
+                    G_internal_colors = {}
+
+                    solutions[iter] = nx.DiGraph()
+                    H_root = [nd for nd in list(H.node(data=True)) if
+                    nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
+                    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], iter * factor)
+                    solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
+
+                    red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
+                        solutions[iter], S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
+                        black_HT_vertices_in_G, pattern, evolutinary_event,S_colors)
+
+                    solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
+                    max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
+
+                    new_G[iter] = tree_operations.weight_G_based_on_same_color_HT(G, new_G[iter], red_HT_vertices_in_G,black_HT_vertices_in_G,max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+                    new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
+
+                    G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+                    all_vertices = {}
+                    marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k , alpha, both, G_internal_colors,iter,speciesTreespecification,compare_subtrees, TH_edges_in_subtree,check_diffreance_between_solutions)
+                    all_vertices_with_index.update({iter * factor: all_vertices})
+                    all_marked.append(list(marked_nodes.items()))
+                print('all_marked =%s' % str(all_marked))
+                draw.draw_compare_k_plot(all_vertices_with_index,path)
+                draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
+                                                       compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
+                quit()
+            else:
+                print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
+                quit()
+
+        else:
+            iter = -1
+            new_G = nx.DiGraph()
+            red_HT_vertices_in_G = []
+            black_HT_vertices_in_G = []
+            deleted_nodes = []
+            nCr_lookup_table = {}
+            fact_lookup_table = {}
+            G_internal_colors = {}
+            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+            if H == None:
+                list_of_scores_for_rand_num.update({rand_num: {}})
+            else:
+                ##      PROBABILITIES, COLORS, PATTERN      ##
+
+                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+
+                H = hypergraph.remove_prob_zero(H, deleted_nodes)
+                red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
+                                                                                                                       S_dis_matrix,
+                                                                                                                       nCr_lookup_table,
+                                                                                                                       fact_lookup_table,
+                                                                                                                       red_HT_vertices_in_G,
+                                                                                                                       black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
+                max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
+
+                new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
+                                                                              black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+                new_G = tree_operations.number_of_edges_in_subtree(new_G)
+
+                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+                marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
+                                                                    G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
+
+                list_of_scores_for_rand_num.update({rand_num:all_vertices})
+    print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
+    return (noise_level,utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr))
+
 ##********  MAIN ***********
 
 def main():
     global S, G, H, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,marked_vertex, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
     all_vertices_with_index = {}
-    #pattern_identify.compare_marked_nodes(1, 1,path, 100, 1, True, True,0 ,9 ,10,speciesTreespecification)
-    for noise_level in noise_level_list:
-        list_of_scores_for_rand_num = {}
-        if noise_level == 0:
-            random_for_prec_curr = 1
-        else:
-            random_for_prec_curr = random_for_prec
-        for rand_num in range (0, random_for_prec_curr):
-            print('                 ****     Iteration %s.%s/%s.%s     ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
-            old_sigma = {}
-            S_labels_table = {}
-            G_labels_table = {}
-            S_dis_matrix = {}
-            nodes_table = {}
-            S_colors = {}
-            all_vertices = {}
-            H = nx.DiGraph()
-            H = nx.MultiDiGraph()
-            H_number_of_nodes = 0
-            temp_iter = 0
+    list_of_scores_for_rand_num = {}
+    noise_level = 0
+    rand_num = 0
+    random_for_prec_curr = 1
+    print('                 ****     Iteration %s.%s/%s.%s     ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
+    S_dis_matrix = {}
+    nodes_table = {}
+    S_colors = {}
+    all_vertices = {}
+    H = nx.DiGraph()
+    H = nx.MultiDiGraph()
+    H_number_of_nodes = 0
+    temp_iter = 0
 
-            if glob:
-                G = tr.Tree.get_from_path(path+"/GeneTree(binary)_global.txt", schema="newick")
-            else:
-                G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
-            S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
+    G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+    S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
 
-            print("     Reading file "+path+"/sigma.txt'...")
-            input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
-            sigma = []
-            for line in input:
-                sigma.append(eval(line))
-            sigma = sigma[0]
-            print("     Finished reading file  "+path+"/sigma.txt'")
+    print("     Reading file "+path+"/sigma.txt'...")
+    input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+    sigma = []
+    for line in input:
+        sigma.append(eval(line))
+    sigma = sigma[0]
+    print("     Finished reading file  "+path+"/sigma.txt'")
 
-            print("     Reading file " + path + "/colors.txt'...")
-            input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
-            colors = []
-            for line in input:
-                colors.append(eval(line))
-            colors = colors[0]
-            print("     Finished reading file  " + path + "/colors.txt'")
-            G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
+    print("     Reading file " + path + "/colors.txt'...")
+    input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+    colors = []
+    for line in input:
+        colors.append(eval(line))
+    colors = colors[0]
+    print("     Finished reading file  " + path + "/colors.txt'")
+    G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
-            S = utiles.init_internal_labels(S, 'x', sigma, path)
-            G = utiles.init_internal_labels(G, 'u', sigma, path)
+    S = utiles.init_internal_labels(S, 'x', sigma, path)
+    G = utiles.init_internal_labels(G, 'u', sigma, path)
 
-            G = tree_operations.collapse_edges(G)
-            S = tree_operations.collapse_edges(S)
+    G = tree_operations.collapse_edges(G)
+    S = tree_operations.collapse_edges(S)
 
-            S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S,G,sigma)
-            sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
-            G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
-            colors,old_colors = inits.update_colors(S, colors,exact_names)
-            TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-            TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_marked_vertices)
+    S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S,G,sigma)
+    sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
+    G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
+    colors,old_colors = inits.update_colors(S, colors,exact_names)
+    TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_marked_vertices)
 
-            #draw.draw_tree(S,'S',old_sigma,colors,sigma)
-            #1draw.draw_S_and_G(S,G,old_sigma,colors,sigma,path,{},'_noise_level_'+str(noise_level))
+    S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
+    nodes_table = inits.init_nodes_table(S, G, nodes_table)
 
-            S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
-            nodes_table = inits.init_nodes_table(S, G, nodes_table)
-
-            H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
-                                                                             nodes_table, D_cost, S_cost, HT_cost, path, alpha,
-                                                                             sigma)
-            if check_diffreance_between_solutions:
-                max_dis = tree_operations.max_dis(S_dis_matrix)
-                print(max_dis)
-                if iterations * factor < k:
-                    all_marked = []
-                    new_G = {}
-                    solutions = {}
-                    red_HT_vertices_in_G = []
-                    black_HT_vertices_in_G = []
-                    nCr_lookup_table = {}
-                    fact_lookup_table = {}
-                    S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+    H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+                                                                     nodes_table, D_cost, S_cost, HT_cost, path, alpha,
+                                                                     sigma)
+    if check_diffreance_between_solutions:
+        max_dis = tree_operations.max_dis(S_dis_matrix)
+        print(max_dis)
+        if iterations * factor < k:
+            all_marked = []
+            new_G = {}
+            solutions = {}
+            red_HT_vertices_in_G = []
+            black_HT_vertices_in_G = []
+            nCr_lookup_table = {}
+            fact_lookup_table = {}
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
 
-                    for iter in range (0,iterations):
-                        print('\n                                               *** '+str(iter+1)+'th iteration ***\n')
+            for iter in range (0,iterations):
+                print('\n                                               *** '+str(iter+1)+'th iteration ***\n')
 
-                        TH_pattern_in_subtree = 2 / (max_dis * k)
-                        new_G[iter] = nx.DiGraph()
-                        deleted_nodes = []
-                        G_internal_colors = {}
-
-                        solutions[iter] = nx.DiGraph()
-                        H_root = [nd for nd in list(H.node(data=True)) if
-                        nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-                        solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], iter * factor)
-                        solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
-
-                        red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
-                            solutions[iter], S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
-                            black_HT_vertices_in_G, pattern, evolutinary_event,S_colors)
-
-                        solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
-                        max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
-
-                        new_G[iter] = tree_operations.weight_G_based_on_same_color_HT(G, new_G[iter], red_HT_vertices_in_G,black_HT_vertices_in_G,max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
-                        new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
-
-                        G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                        all_vertices = {}
-                        marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k , alpha, both, G_internal_colors,iter,speciesTreespecification,compare_subtrees, TH_edges_in_subtree,check_diffreance_between_solutions)
-                        all_vertices_with_index.update({iter * factor: all_vertices})
-                        all_marked.append(list(marked_nodes.items()))
-                    print('all_marked =%s' % str(all_marked))
-                    draw.draw_compare_k_plot(all_vertices_with_index,path)
-                    draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                                                           compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
-                    quit()
-                else:
-                    print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
-                    quit()
-
-            else:
-                iter = -1
-                new_G = nx.DiGraph()
-                red_HT_vertices_in_G = []
-                black_HT_vertices_in_G = []
+                TH_pattern_in_subtree = 2 / (max_dis * k)
+                new_G[iter] = nx.DiGraph()
                 deleted_nodes = []
-                nCr_lookup_table = {}
-                fact_lookup_table = {}
                 G_internal_colors = {}
-                H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
-                if H == None:
-                    list_of_scores_for_rand_num.update({rand_num: {}})
-                else:
-                    ##      PROBABILITIES, COLORS, PATTERN      ##
 
-                    S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+                solutions[iter] = nx.DiGraph()
+                H_root = [nd for nd in list(H.node(data=True)) if
+                nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
+                solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], iter * factor)
+                solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
 
-                    H = hypergraph.remove_prob_zero(H, deleted_nodes)
-                    red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
-                                                                                                                           S_dis_matrix,
-                                                                                                                           nCr_lookup_table,
-                                                                                                                           fact_lookup_table,
-                                                                                                                           red_HT_vertices_in_G,
-                                                                                                                           black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
-                    max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
+                red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
+                    solutions[iter], S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
+                    black_HT_vertices_in_G, pattern, evolutinary_event,S_colors)
 
-                    new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
-                                                                                  black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
-                    new_G = tree_operations.number_of_edges_in_subtree(new_G)
+                solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
+                max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
-                    G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                    marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
-                                                                        G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
+                new_G[iter] = tree_operations.weight_G_based_on_same_color_HT(G, new_G[iter], red_HT_vertices_in_G,black_HT_vertices_in_G,max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+                new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
 
-                    #for nd,x in marked_nodes.items():
-                    #    r,l = tree_operations.leaf_in_subtrees(G, nd, old_sigma,False)
-                    #    print('For %s:\nlist_r = %s \nlist_l = %s\n' % (str(nd),str(r),str(l)))
-                    list_of_scores_for_rand_num.update({rand_num:all_vertices})
-        print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
-        all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
-        if noise_level == 0:
-            draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
-                             TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
-                             big_size, evolutinary_event, compare_subtrees, 1)
+                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+                all_vertices = {}
+                marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k , alpha, both, G_internal_colors,iter,speciesTreespecification,compare_subtrees, TH_edges_in_subtree,check_diffreance_between_solutions)
+                all_vertices_with_index.update({iter * factor: all_vertices})
+                all_marked.append(list(marked_nodes.items()))
+            print('all_marked =%s' % str(all_marked))
+            draw.draw_compare_k_plot(all_vertices_with_index,path)
+            draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
+                                                   compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
+            quit()
+        else:
+            print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
+            quit()
 
+    else:
+        iter = -1
+        new_G = nx.DiGraph()
+        red_HT_vertices_in_G = []
+        black_HT_vertices_in_G = []
+        deleted_nodes = []
+        nCr_lookup_table = {}
+        fact_lookup_table = {}
+        G_internal_colors = {}
+        H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+        if H == None:
+            list_of_scores_for_rand_num.update({rand_num: {}})
+        else:
+            ##      PROBABILITIES, COLORS, PATTERN      ##
 
-    print('     all vertex: %s' % str(all_vertices_with_index))
-    draw.draw_plot(all_vertices_with_index,path,marked_vertex)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+
+            H = hypergraph.remove_prob_zero(H, deleted_nodes)
+            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
+                                                                                                                   S_dis_matrix,
+                                                                                                                   nCr_lookup_table,
+                                                                                                                   fact_lookup_table,
+                                                                                                                   red_HT_vertices_in_G,
+                                                                                                                   black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
+            max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
+
+            new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
+                                                                          black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+            new_G = tree_operations.number_of_edges_in_subtree(new_G)
+
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
+                                                                G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
+
+            list_of_scores_for_rand_num.update({rand_num:all_vertices})
+    print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
+    all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
+    p = Pool(15)
+    #for i in range(0,len(noise_level_list)):
+    #    noise_level_list[i] = (noise_level_list[i])
+    print(p.map(RSAM_finder_multithread, noise_level_list))
+    #draw.draw_plot(all_vertices_with_index,path,marked_vertex)
 
 if __name__ == "__main__":
     main()

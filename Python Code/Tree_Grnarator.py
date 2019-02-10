@@ -11,9 +11,10 @@ import utiles
 import inits_v1 as inits
 import draw
 import os
-import errno
+from multiprocessing import Pool
 
-path  = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Simulator'
+
+path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
 add_noise = False
 number_of_marked_vertices = 1
 S = Tree()
@@ -24,10 +25,10 @@ both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 150
-noise_level = [0,2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50]
+number_of_leaves = 400
+noise_level = [2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50,]
 number_of_nodes = 0
-random_for_precentage = 10                              #number of different random noise for each noise %
+random_for_precentage = 50                              #number of different random noise for each noise %
 accur = 5
 nCr_lookup_table = {}
 fact_lookup_table = {}
@@ -545,142 +546,184 @@ def check_if_enriched(source, target,nCr_lookup_table,fact_lookup_table, accur,G
         return nCr_lookup_table,fact_lookup_table,'black-to-black'
     else: return nCr_lookup_table,fact_lookup_table,'nothing-to-nothing'
 
+def create_graph_for_noise(parameters):
+    noise = parameters[0]
+    number_of_HT_under_marked = parameters[1]
+    G_internal_colors = parameters[2]
+    S_colors = parameters[3]
+    nCr_lookup_table = parameters[4]
+    fact_lookup_table = parameters[5]
+
+    number_of_random_changes = number_of_leaves * (noise / 100)
+    random_for_prec = random_for_precentage
+    for rand_num in range(0, random_for_prec):
+        print("     Reading file " + path + "/sigma.txt'...")
+        input = open(path + '/0/sigma0.0' + '.txt', 'r')
+        sigma = []
+        for line in input:
+            sigma.append(eval(line))
+        sigma = sigma[0]
+        print("     Finished reading file  " + path + "/sigma.txt'")
+
+        print("     Reading file " + path + "/colors.txt'...")
+        input = open(path + '/0/colors0.0' + '.txt', 'r')
+        colors = []
+        for line in input:
+            colors.append(eval(line))
+        colors = colors[0]
+        print("     Finished reading file  " + path + "/colors.txt'")
+
+        S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
+        G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+
+        S = utiles.init_internal_labels(S, 'x', sigma, path)
+        G = utiles.init_internal_labels(G, 'u', sigma, path)
+
+        G = tree_operations.collapse_edges(G)
+        S = tree_operations.collapse_edges(S)
+
+        S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S, G, sigma)
+
+        sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
+        colors, old_colors = inits.update_colors(S, colors, True)
+
+        i = 0
+        all_random_sources_red_to_red = []
+        all_random_sources_black_to_black = []
+        all_random_nutral = []
+        print('Number of random changes:' + str(int(number_of_random_changes)))
+        while i < number_of_random_changes:
+            print('sigma: %s' % str(sigma))
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            # number_of_HT_to_make = randint(1, number_of_random_changes)
+            number_of_nodes = tree_operations.number_of_leafs(G, 'G')
+            random_source = random_vertex_in_tree(number_of_nodes, G)
+            random_target = random_vertex_in_tree(number_of_nodes, G)
+            random_vertex_to_change_color = randome_leave_from_tree(G, number_of_nodes, True)
+            print('%s/%s\nrandom_source: %s, random_target: %s, random_vertex_to_change_color: %s' % (
+            str(i), str(number_of_random_changes), str(random_source), str(random_target),
+            str(random_vertex_to_change_color)))
+            sigma, old_sigma, changed = change_sigma(sigma, old_sigma, S, G,
+                                                     [(random_source.label, random_target.label)],
+                                                     number_of_HT_under_marked)
+            colors = change_color_of_vertex(random_vertex_to_change_color, colors, None, sigma, True)
+            nCr_lookup_table, fact_lookup_table, enriched = check_if_enriched(random_source, random_target,
+                                                                              nCr_lookup_table, fact_lookup_table,
+                                                                              accur, G_internal_colors)
+            if enriched == 'red-to-red':
+                all_random_sources_red_to_red.append(random_source)
+            elif enriched == 'black_to_balck':
+                all_random_sources_black_to_black.append(random_source)
+            else:
+                all_random_nutral.append(random_source)
+            i += changed
+        old_colors = return_color_to_taxon(S, colors)
+        save_data(old_sigma, old_colors, {}, noise, rand_num)
 
 ##********  MAIN ***********
 
 def main():
     global sol,random_for_precentage,old_colors,old_sigma,new_G,all_edges,S,G,number_of_nodes,number_of_leaves,names,colors,sigma,S_dis_matrix,S_colors,G_internal_colors,k,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,k,both,TH_both,accur,nCr_lookup_table,fact_lookup_table,old_colors,number_of_marked_vertices,S_labels_table,G_labels_table
+    noise = 0
+    number_of_random_changes = 0
     number_of_HT_under_marked = 10
-    for noise in noise_level:
-        number_of_random_changes = number_of_leaves * (noise / 100)
-        if noise == 0:
-            random_for_prec = 1
+    S = Tree()
+    for i in range(0, number_of_leaves):
+        names.append(sym + str(i))
+    S.populate(number_of_leaves, names_library=names)
+    number_of_nodes = count_nodes_and_update_internal_names(S)
+    S = random_again(S, number_of_leaves / 4)
+    colors = random_colors(S, colors)
+
+    G = S.copy("newick")
+    for leaf in G.iter_leaves():
+        if leaf.name[:6] == 'Specie':
+            leaf.name = "Gene" + leaf.name[6:]
         else:
-            random_for_prec = random_for_precentage
-        for rand_num in range (0,random_for_prec):
-            if noise == 0:
-                S = Tree()
-                for i in range(0,number_of_leaves):
-                    names.append(sym+str(i))
-                S.populate(number_of_leaves, names_library=names)
-                number_of_nodes = count_nodes_and_update_internal_names(S)
-                S = random_again(S,number_of_leaves/4)
-                colors = random_colors(S,colors)
+            leaf.name = "GeneI" + leaf.name[8:]
 
-                G = S.copy("newick")
-                for leaf in G.iter_leaves():
-                    if leaf.name[:6] == 'Specie':
-                        leaf.name = "Gene"+leaf.name[6:]
-                    else:
-                        leaf.name = "GeneI" + leaf.name[8:]
+    sigma = create_sigme(number_of_leaves, sigma)
 
-                sigma = create_sigme(number_of_leaves,sigma)
+    print_tree(S, 'S')
+    print_tree(G, 'G')
+    print('sigma:%s\ncolors:%s' % (str(sigma), str(colors)))
+    utils.newick2edgelist.main()
+    save_edgelist(S_dis_matrix)
 
-                print_tree(S,'S')
-                print_tree(G,'G')
-                print('sigma:%s\ncolors:%s' % (str(sigma),str(colors)))
-                utils.newick2edgelist.main()
-                save_edgelist(S_dis_matrix)
-            else:
-                print("     Reading file " + path + "/sigma.txt'...")
-                input = open(path + '/0/sigma0.0'+'.txt', 'r')
-                sigma = []
-                for line in input:
-                    sigma.append(eval(line))
-                sigma = sigma[0]
-                print("     Finished reading file  " + path + "/sigma.txt'")
+    S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
+    G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
 
-                print("     Reading file " + path + "/colors.txt'...")
-                input = open(path + '/0/colors0.0'+'.txt', 'r')
-                colors = []
-                for line in input:
-                    colors.append(eval(line))
-                colors = colors[0]
-                print("     Finished reading file  " + path + "/colors.txt'")
+    S = utiles.init_internal_labels(S, 'x', sigma, path)
+    G = utiles.init_internal_labels(G, 'u', sigma, path)
 
-            S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
-            G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+    G = tree_operations.collapse_edges(G)
+    S = tree_operations.collapse_edges(S)
 
-            S = utiles.init_internal_labels(S, 'x', sigma, path)
-            G = utiles.init_internal_labels(G, 'u', sigma, path)
+    S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S, G, sigma)
 
-            G = tree_operations.collapse_edges(G)
-            S = tree_operations.collapse_edges(S)
+    sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
+    colors, old_colors = inits.update_colors(S, colors, True)
+    max_dis = tree_operations.max_dis(S_dis_matrix)
 
-            S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S,G,sigma)
+    flag = True
+    j = 0
+    all_random_sources_red_to_red = []
+    all_random_sources_black_to_black = []
+    all_random_nutral = []
+    print('Number of random changes:' + str(int(number_of_random_changes)))
+    all_random_sources = (all_random_sources_red_to_red, all_random_sources_black_to_black, all_random_nutral)
+    new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, [],
+                                                            [], 0, False,
+                                                            'HT', False, k)
+    new_G = tree_operations.number_of_edges_in_subtree(new_G)
 
-            sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path,True,S_labels_table, G_labels_table)
-            colors,old_colors = inits.update_colors(S, colors,True)
-            max_dis = tree_operations.max_dis(S_dis_matrix)
+    S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+    G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
 
-            flag = True
-            i = 0
-            j = 0
-            all_random_sources_red_to_red = []
-            all_random_sources_black_to_black = []
-            all_random_nutral = []
-            print('Number of random changes:'+str(int(number_of_random_changes)))
-            while i < number_of_random_changes:
-                print('sigma: %s' % str(sigma))
-                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-                #number_of_HT_to_make = randint(1, number_of_random_changes)
-                number_of_nodes = tree_operations.number_of_leafs(G, 'G')
-                random_source = random_vertex_in_tree(number_of_nodes,G)
-                random_target = random_vertex_in_tree(number_of_nodes,G)
-                random_vertex_to_change_color = randome_leave_from_tree(G,number_of_nodes,True)
-                print('%s/%s\nrandom_source: %s, random_target: %s, random_vertex_to_change_color: %s' % (str(i),str(number_of_random_changes),str(random_source),str(random_target),str(random_vertex_to_change_color)))
-                sigma, old_sigma,changed = change_sigma(sigma, old_sigma, S, G, [(random_source.label, random_target.label)],number_of_HT_under_marked)
-                colors = change_color_of_vertex(random_vertex_to_change_color,colors,None,sigma,True)
-                nCr_lookup_table, fact_lookup_table,enriched = check_if_enriched(random_source, random_target,nCr_lookup_table,fact_lookup_table, accur,G_internal_colors)
-                if enriched == 'red-to-red':
-                    all_random_sources_red_to_red.append(random_source)
-                elif enriched == 'black_to_balck':
-                    all_random_sources_black_to_black.append(random_source)
-                else: all_random_nutral.append(random_source)
-                i += changed
-            all_random_sources = (all_random_sources_red_to_red,all_random_sources_black_to_black,all_random_nutral)
-            if noise != 0:
-                old_colors = return_color_to_taxon(S, colors)
-                save_data(old_sigma, old_colors,{},noise,rand_num)
-            else:
-                new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, [],
-                                                                       [], 0, False,
-                                                                       'HT', False, k)
-                new_G = tree_operations.number_of_edges_in_subtree(new_G)
+    while j < number_of_marked_vertices:
+        print(
+            '                                                                 *****         %sth vertex            ******' % str(
+                j))
+        sol[j] = {}
+        nCr_lookup_table, fact_lookup_table, (
+            sol[j]['Marked'], sol[j]['list_of_couples']), colors = choose_marked_vertex(new_G, S, G,
+                                                                                        G_internal_colors,
+                                                                                        TH_edges_in_subtree,
+                                                                                        compare_subtrees,
+                                                                                        TH_compare_subtrees,
+                                                                                        TH_pattern_in_subtree,
+                                                                                        k,
+                                                                                        both,
+                                                                                        TH_both, j, sol, accur,
+                                                                                        nCr_lookup_table,
+                                                                                        fact_lookup_table,
+                                                                                        all_random_sources,
+                                                                                        colors,
+                                                                                        S_colors, max_dis)
+        if sol[j]['Marked'] == False:
+            flag = flag and sol[j]['Marked']
+        else:
+            sigma, old_sigma, y = change_sigma(sigma, old_sigma, S, G, sol[j]['list_of_couples'],
+                                               number_of_HT_under_marked)
+            print('sigma: ' + str(sigma))
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+        j += 1
+        if not flag:
+            draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+            quit()
+        print('Marked vertices:%s' % str(sol))
 
-                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                draw.draw_S_and_G(S,G,old_sigma,colors,sigma,path,None,'_rand_before')
+        #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
+        old_colors = return_color_to_taxon(S, colors)
+        save_data(old_sigma, old_colors, sol, noise, 0)
 
-                while j < number_of_marked_vertices:
-                    print(
-                        '                                                                 *****         %sth vertex            ******' % str(
-                            j))
-                    sol[j] = {}
-                    nCr_lookup_table, fact_lookup_table,(sol[j]['Marked'], sol[j]['list_of_couples']),colors = choose_marked_vertex(new_G, S, G, G_internal_colors,
-                                                                                                TH_edges_in_subtree,
-                                                                                                compare_subtrees, TH_compare_subtrees,
-                                                                                                TH_pattern_in_subtree, k, both,
-                                                                                                TH_both, j, sol, accur,
-                                                                                                nCr_lookup_table, fact_lookup_table,all_random_sources,colors,S_colors,max_dis)
-                    if sol[j]['Marked'] == False:
-                        flag = flag and sol[j]['Marked']
-                    else:
-                        sigma, old_sigma,y = change_sigma(sigma, old_sigma, S, G, sol[j]['list_of_couples'],number_of_HT_under_marked)
-                        print('sigma: ' + str(sigma))
-                        S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-                        G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                    j += 1
-                if not flag:
-                    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
-                    quit()
-                print('Marked vertices:%s' % str(sol))
-
-                draw.draw_S_and_G(S,G,old_sigma,colors,sigma,path,sol,'_rand'+str(noise)+'.'+str(rand_num))
-                old_colors = return_color_to_taxon(S,colors)
-                save_data(old_sigma,old_colors,sol,noise,rand_num)
-                #number_of_nodes = count_nodes_and_update_internal_names(S)
+    p = Pool(15)
+    for i in range(0,len(noise_level)):
+        noise_level[i] = (noise_level[i],number_of_HT_under_marked,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table)
+    p.map(create_graph_for_noise, noise_level)
 
 if __name__ == "__main__":
     main()

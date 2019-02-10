@@ -1,20 +1,8 @@
-import sys
-sys.path.append('/anaconda3/lib/python3.6/site-packages')
-from ete3 import Tree
-import random
-from random import randint
-import utils.newick2edgelist
-import networkx as nx
-import dendropy as tr
-import tree_operations_v1 as tree_operations
-import utiles
-import inits_v1 as inits
-import draw
-import os
-import errno
+from multiprocessing import Pool
 
-S = Tree()
+def f(x):
+    return x*x
 
-S.populate(10)
-
-print(S)
+if __name__ == '__main__':
+    p = Pool(15)
+    print(p.map(f, [1, 2, 3]))
