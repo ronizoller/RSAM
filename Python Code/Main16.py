@@ -14,7 +14,12 @@ import hypergraph_v1 as hypergraph
 import pattern_identify_v4 as pattern_identify
 from multiprocessing import Pool
 
-path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+on_lab = False
+
+if on_lab:
+    path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+else:
+    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 
@@ -33,13 +38,17 @@ D_cost = 1
 S_cost = 0
 
 number_of_marked_vertices = 1
-marked_vertex = 'u189'
-random_for_prec = 50
+marked_vertex = []
+input = open(path + '/saved_data/all_marked.txt', 'r')
+for line in input:
+    marked_vertex.append(eval(line))
+marked_vertex = marked_vertex[0]
+random_for_prec = 5
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50,]
+noise_level_list = [10]
 
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
@@ -401,7 +410,7 @@ def RSAM_finder_multithread(noise_level):
 
                 list_of_scores_for_rand_num.update({rand_num:all_vertices})
     print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
-    return (noise_level,utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr))
+    return utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)
 
 ##********  MAIN ***********
 
@@ -548,13 +557,22 @@ def main():
                                                                 G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
+            draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
+                             TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
+                             big_size, evolutinary_event, compare_subtrees, 1)
     print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
+
     p = Pool(15)
     #for i in range(0,len(noise_level_list)):
     #    noise_level_list[i] = (noise_level_list[i])
-    print(p.map(RSAM_finder_multithread, noise_level_list))
-    #draw.draw_plot(all_vertices_with_index,path,marked_vertex)
+    list_of_results = p.map(RSAM_finder_multithread, noise_level_list)
+    ind = 0
+    for res in list_of_results:
+        all_vertices_with_index.update({noise_level_list[ind]:res})
+        ind += 1
+    print('all_vertices_with_index: %s' % str(all_vertices_with_index))
+    draw.draw_plot(all_vertices_with_index,path,marked_vertex)
 
 if __name__ == "__main__":
     main()

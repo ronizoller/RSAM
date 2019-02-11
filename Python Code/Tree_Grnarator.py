@@ -11,10 +11,16 @@ import utiles
 import inits_v1 as inits
 import draw
 import os
+import numpy
+from functools import reduce
 from multiprocessing import Pool
 
+on_lab = False
 
-path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+if on_lab:
+    path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+else:
+    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
 add_noise = False
 number_of_marked_vertices = 1
 S = Tree()
@@ -25,10 +31,10 @@ both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 400
-noise_level = [2.5,5,7.5,10,12.5,15,17.5,20,22.5,25,27.5,30,32.5,35,37.5,40,42.5,45,47.5,50,]
+number_of_leaves = 100
+noise_level = [10]
 number_of_nodes = 0
-random_for_precentage = 50                              #number of different random noise for each noise %
+random_for_precentage = 5                              #number of different random noise for each noise %
 accur = 5
 nCr_lookup_table = {}
 fact_lookup_table = {}
@@ -621,6 +627,35 @@ def create_graph_for_noise(parameters):
         old_colors = return_color_to_taxon(S, colors)
         save_data(old_sigma, old_colors, {}, noise, rand_num)
 
+def return_marked_nodes_new_name(list_of_marked,prev_G):
+    list_of_marked_nodes = []
+    for k, l in list_of_marked.items():
+        list_of_marked_nodes.append(l['Marked'])
+    main_G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+    print("     Reading file " + path + "/sigma.txt'...")
+    input = open(path + '/0/sigma0.0.txt', 'r')
+    main_sigma = []
+    for line in input:
+        main_sigma.append(eval(line))
+    main_sigma = main_sigma[0]
+    print("     Finished reading file  " + path + "/sigma.txt'")
+    main_G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(main_G, main_sigma, True))
+    main_G = utiles.init_internal_labels(main_G, 'u', main_sigma, path)
+    res = []
+    for u in list_of_marked_nodes:
+        print('Searching for node %s' % str(u))
+        marked_in_G = prev_G.find_node(lambda n: (n.label == u))
+        print('Found %s' % str(marked_in_G))
+        to_find_leaf_nodes = list(map((lambda x:x.taxon.label),marked_in_G.leaf_nodes()))
+        for v in main_G.postorder_node_iter():
+            curr_leaf_nodes = list(map((lambda x:x.taxon.label),v.leaf_nodes()))
+            if (len(curr_leaf_nodes) == len(to_find_leaf_nodes)) and (reduce((lambda x, y: x and y), list(numpy.in1d(to_find_leaf_nodes, curr_leaf_nodes)))):
+                print('%s is marked as %s' % (str(u),v.label))
+                res.append(v.label)
+    file = open(path + '/saved_data/all_marked.txt', 'w')
+    file.write(str(res))
+    file.close()
+
 ##********  MAIN ***********
 
 def main():
@@ -680,7 +715,7 @@ def main():
 
     S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
     G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
+    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
 
     while j < number_of_marked_vertices:
         print(
@@ -712,14 +747,14 @@ def main():
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
         j += 1
         if not flag:
-            draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+            #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
             quit()
         print('Marked vertices:%s' % str(sol))
 
-        #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
         old_colors = return_color_to_taxon(S, colors)
         save_data(old_sigma, old_colors, sol, noise, 0)
-
+    return_marked_nodes_new_name(sol,G)
     p = Pool(15)
     for i in range(0,len(noise_level)):
         noise_level[i] = (noise_level[i],number_of_HT_under_marked,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table)

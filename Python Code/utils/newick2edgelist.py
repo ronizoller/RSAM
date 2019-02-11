@@ -1,7 +1,11 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import dendropy as tr
-path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+on_lab = False
+if on_lab:
+    path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+else:
+    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
 exte = 'all'
 
 def get_edgelist(tree):

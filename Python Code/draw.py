@@ -458,11 +458,11 @@ def draw_plot(all_vertices_with_noise,path,marked_vertex):
                 max = couple[1]
             if max_noise_level < noise_level:
                 max_noise_level = noise_level
-            if u == marked_vertex:
+            if u in marked_vertex:
                 to_connect.append(couple[1])
                 length_to_connect.append(noise_level)
     fig, ax = plt.subplots()
-    ax.plot(length, list_to_draw_reds, 'ro', length, list_to_draw_blacks, 'ko')
+    ax.plot(length, list_to_draw_reds, 'ro', length, list_to_draw_blacks, 'ro')
     for X, Y, Z in zip(length, list_to_draw_reds, names):
         # Annotate the points 5 _points_ above and to the left of the vertex
         ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
