@@ -1,12 +1,6 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import dendropy as tr
-on_lab = True
-if on_lab:
-    path = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data'
-else:
-    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
-exte = 'all'
 
 def get_edgelist(tree):
     edgelist = []
@@ -26,7 +20,16 @@ def init_internal_labels (tree,char):
     print('Finished inisilasing internal leafs.\n')
     return tree
 
-def main():
+def main(on_lab,compare):
+    if on_lab:
+        if compare:
+            path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+        else:
+            path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
+    else:
+        path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
+    exte = 'all'
+
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
     file = open(path+'/saved_data/S_edgelist_'+exte+'.txt', 'w')

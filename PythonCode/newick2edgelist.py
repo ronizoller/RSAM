@@ -29,6 +29,7 @@ def init_internal_labels (tree,char):
     return tree
 
 def main():
+    print('*******')
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
     file = open(path+'/saved_data/S_edgelist_'+exte+'.txt', 'w')

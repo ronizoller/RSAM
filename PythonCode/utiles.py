@@ -240,3 +240,11 @@ def calculate_presentage(all_marked_list,planted_vertex):
     for i, score in sensitivity.items():
         sensitivity_sum += score
     return [round((sensitivity_sum / len(all_marked_list))*100,2), round((1-sensitivity_sum / len(all_marked_list))*100,2)]
+
+def frange(start,end,step):
+    res = []
+    i = start
+    while i<end:
+        res.append(i)
+        i += step
+    return res
