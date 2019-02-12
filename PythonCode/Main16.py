@@ -468,7 +468,7 @@ def main():
         print(max_dis)
         if iterations * factor < k:
             all_marked_for_TH = {}
-            for TH_both in [0,0.5,1]:
+            for TH_both in [0,0.2,0.4,0.6,0.8,1]:
                 all_marked = []
                 new_G = {}
                 solutions = {}
