@@ -9,7 +9,7 @@ import draw
 import hypergraph_v1 as hypergraph
 import pattern_identify_v4 as pattern_identify
 from multiprocessing import Pool
-
+#TEST
 on_lab = True
 
 if on_lab:
