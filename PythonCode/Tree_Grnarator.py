@@ -467,25 +467,45 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make):
 
     return sigma,old_sigma, number_of_HT_to_make
 
-def save_data(sigma,colors,marked,noise,internal_index):
-    print('     Writing sigma...')
-    path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
-    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-    file = open(path_curr, 'w')
-    file.write(str(sigma))
-    file.close()
-    print('     Writing colors...')
-    path_curr = path +'/'+ str(noise)+'/colors'+str(noise)+'.'+str(internal_index)+'.txt'
-    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-    file = open(path_curr, 'w')
-    file.write(str(colors))
-    file.close()
-    print('     Writing marked...')
-    path_curr = path +'/'+ str(noise)+'/marked'+str(noise)+'.'+str(internal_index)+'.txt'
-    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-    file = open(path_curr, 'w')
-    file.write(str(marked))
-    file.close()
+def save_data(sigma,colors,marked,noise,internal_index,compare):
+    if not compare:
+        print('     Writing sigma...')
+        path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(sigma))
+        file.close()
+        print('     Writing colors...')
+        path_curr = path +'/'+ str(noise)+'/colors'+str(noise)+'.'+str(internal_index)+'.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(colors))
+        file.close()
+        print('     Writing marked...')
+        path_curr = path +'/'+ str(noise)+'/marked'+str(noise)+'.'+str(internal_index)+'.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(marked))
+        file.close()
+    else:
+        print('     Writing sigma...')
+        path_curr = path + '/0/sigma0.0.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(sigma))
+        file.close()
+        print('     Writing colors...')
+        path_curr = path + '/0/colors0.0.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(colors))
+        file.close()
+        print('     Writing marked...')
+        path_curr = path + '/0/marked0.0.txt'
+        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+        file = open(path_curr, 'w')
+        file.write(str(marked))
+        file.close()
 
 def check_if_vertex_was_chosen(j,sol,curr_sol):
     for p in range(0, j):  # check if this solution was already chosen
@@ -628,7 +648,7 @@ def create_graph_for_noise(parameters):
                 all_random_nutral.append(random_source)
             i += changed
         old_colors = return_color_to_taxon(S, colors)
-        save_data(old_sigma, old_colors, {}, noise, rand_num)
+        save_data(old_sigma, old_colors, {}, noise, rand_num,compare)
 
 def return_marked_nodes_new_name(list_of_marked,prev_G):
     list_of_marked_nodes = []
@@ -655,7 +675,7 @@ def return_marked_nodes_new_name(list_of_marked,prev_G):
             if (len(curr_leaf_nodes) == len(to_find_leaf_nodes)) and (reduce((lambda x, y: x and y), list(numpy.in1d(to_find_leaf_nodes, curr_leaf_nodes)))):
                 print('%s is marked as %s' % (str(u),v.label))
                 res.append(v.label)
-    file = open(path + '/saved_data/all_marked.txt', 'w')
+    file = open(path + '/saved_data/marked_nodes_correct_names.txt', 'w')
     file.write(str(res))
     file.close()
 
@@ -759,7 +779,7 @@ def main():
         if not on_lab:
             draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
         old_colors = return_color_to_taxon(S, colors)
-        save_data(old_sigma, old_colors, sol, noise, 0)
+        save_data(old_sigma, old_colors, sol, noise, 0,compare)
     return_marked_nodes_new_name(sol,G)
     p = Pool(15)
     for i in range(0,len(noise_level)):

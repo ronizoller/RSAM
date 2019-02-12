@@ -11,7 +11,7 @@ from multiprocessing import Pool
 
 on_lab = True
 check_diffreance_between_solutions = True
-#TEST
+
 if on_lab:
     if check_diffreance_between_solutions:
         path  = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
@@ -23,13 +23,11 @@ else:
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
-
-
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 200
+k = 210
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -44,22 +42,20 @@ input = open(path + '/saved_data/all_marked.txt', 'r')
 for line in input:
     marked_vertex.append(eval(line))
 marked_vertex = marked_vertex[0]
-random_for_prec = 5
+random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [10]
-
+noise_level_list = [0]
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
 TH_compare_subtrees = 1
 
-check_diffreance_between_solutions = False
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 40                                  #will check for each i=0 to iteration the solution i*factor
-    factor = 5
+    iterations = 10                                  #will check for each i=0 to iteration the solution i*factor
+    factor = 20
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
@@ -281,7 +277,14 @@ def RSAM_finder_multithread(noise_level):
         H = nx.MultiDiGraph()
         H_number_of_nodes = 0
         temp_iter = 0
-        all_vertices_with_index = {}
+        iter = -1
+        new_G = nx.DiGraph()
+        red_HT_vertices_in_G = []
+        black_HT_vertices_in_G = []
+        deleted_nodes = []
+        nCr_lookup_table = {}
+        fact_lookup_table = {}
+        G_internal_colors = {}
 
         G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
         S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
@@ -322,94 +325,33 @@ def RSAM_finder_multithread(noise_level):
         H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                          nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                          sigma)
-        if check_diffreance_between_solutions:
-            max_dis = tree_operations.max_dis(S_dis_matrix)
-            print(max_dis)
-            if iterations * factor < k:
-                all_marked = []
-                new_G = {}
-                solutions = {}
-                red_HT_vertices_in_G = []
-                black_HT_vertices_in_G = []
-                nCr_lookup_table = {}
-                fact_lookup_table = {}
-                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
-
-                for iter in range (0,iterations):
-                    print('\n                                               *** '+str(iter+1)+'th iteration ***\n')
-
-                    TH_pattern_in_subtree = 2 / (max_dis * k)
-                    new_G[iter] = nx.DiGraph()
-                    deleted_nodes = []
-                    G_internal_colors = {}
-
-                    solutions[iter] = nx.DiGraph()
-                    H_root = [nd for nd in list(H.node(data=True)) if
-                    nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-                    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], iter * factor)
-                    solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
-
-                    red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
-                        solutions[iter], S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
-                        black_HT_vertices_in_G, pattern, evolutinary_event,S_colors)
-
-                    solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
-                    max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
-
-                    new_G[iter] = tree_operations.weight_G_based_on_same_color_HT(G, new_G[iter], red_HT_vertices_in_G,black_HT_vertices_in_G,max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
-                    new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
-
-                    G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                    all_vertices = {}
-                    marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k , alpha, both, G_internal_colors,iter,speciesTreespecification,compare_subtrees, TH_edges_in_subtree,check_diffreance_between_solutions)
-                    all_vertices_with_index.update({iter * factor: all_vertices})
-                    all_marked.append(list(marked_nodes.items()))
-                print('all_marked =%s' % str(all_marked))
-                if not on_lab:
-                    draw.draw_compare_k_plot(all_vertices_with_index,path)
-                    draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                                                       compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
-                quit()
-            else:
-                print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
-                quit()
-
+        H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+        if H == None:
+            list_of_scores_for_rand_num.update({rand_num: {}})
         else:
-            iter = -1
-            new_G = nx.DiGraph()
-            red_HT_vertices_in_G = []
-            black_HT_vertices_in_G = []
-            deleted_nodes = []
-            nCr_lookup_table = {}
-            fact_lookup_table = {}
-            G_internal_colors = {}
-            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
-            if H == None:
-                list_of_scores_for_rand_num.update({rand_num: {}})
-            else:
-                ##      PROBABILITIES, COLORS, PATTERN      ##
+            ##      PROBABILITIES, COLORS, PATTERN      ##
 
-                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
-                H = hypergraph.remove_prob_zero(H, deleted_nodes)
-                red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
-                                                                                                                       S_dis_matrix,
-                                                                                                                       nCr_lookup_table,
-                                                                                                                       fact_lookup_table,
-                                                                                                                       red_HT_vertices_in_G,
-                                                                                                                       black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
-                max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
+            H = hypergraph.remove_prob_zero(H, deleted_nodes)
+            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
+                                                                                                                   S_dis_matrix,
+                                                                                                                   nCr_lookup_table,
+                                                                                                                   fact_lookup_table,
+                                                                                                                   red_HT_vertices_in_G,
+                                                                                                                   black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
+            max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
-                new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
-                                                                              black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
-                new_G = tree_operations.number_of_edges_in_subtree(new_G)
+            new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
+                                                                          black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+            new_G = tree_operations.number_of_edges_in_subtree(new_G)
 
-                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-                marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
-                                                                    G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
+                                                                G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
 
-                list_of_scores_for_rand_num.update({rand_num:all_vertices})
+            list_of_scores_for_rand_num.update({rand_num:all_vertices})
     print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
     return utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)
 
@@ -424,6 +366,7 @@ def extract_and_tarce_a_solution(parameters):
     red_HT_vertices_in_G = parameters[7]
     black_HT_vertices_in_G = parameters[8]
     S_colors = parameters[9]
+    TH_both = parameters[10]
 
     print('\n                                               *** ' + str(iter + 1) + 'th iteration ***\n')
 
@@ -524,31 +467,34 @@ def main():
         max_dis = tree_operations.max_dis(S_dis_matrix)
         print(max_dis)
         if iterations * factor < k:
-            all_marked = []
-            new_G = {}
-            solutions = {}
-            red_HT_vertices_in_G = []
-            black_HT_vertices_in_G = []
-            nCr_lookup_table = {}
-            fact_lookup_table = {}
-            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            all_marked_for_TH = {}
+            for TH_both in [0,0.5,1]:
+                all_marked = []
+                new_G = {}
+                solutions = {}
+                red_HT_vertices_in_G = []
+                black_HT_vertices_in_G = []
+                nCr_lookup_table = {}
+                fact_lookup_table = {}
+                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
-
-            p1 = Pool(15)
-            parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors) for x in range(0,iterations)]
-            list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
-            for res in list_of_results:
-                all_vertices_with_index.update(res[0])
-                all_marked.append(res[1])
-            print('all_marked =%s' % str(all_marked))
-            if not on_lab:
-                draw.draw_compare_k_plot(all_vertices_with_index,path)
-                draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                                                   compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
+                p1 = Pool(15)
+                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both) for x in range(0,iterations)]
+                list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
+                for res in list_of_results:
+                    all_vertices_with_index.update(res[0])
+                    all_marked.append(res[1])
+                print('all_marked :%s' % str(all_marked))
+                if not on_lab:
+                    draw.draw_compare_k_plot(all_vertices_with_index,path)
+                    draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
+                                                       compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
+                all_marked_for_TH.update({TH_both:(all_marked)})
+            print('all_marked_for_TH: %s' % str(all_marked_for_TH))
             quit()
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
-            quit()
+        quit()
 
     else:
         iter = -1

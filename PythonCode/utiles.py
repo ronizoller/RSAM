@@ -211,35 +211,36 @@ def average_of_list(dict,num):
 
 def calculate_presentage(all_marked_list,planted_vertex):
     planted_vertex = planted_vertex[0]
-    FP = {}
-    TP = {}
-    FN = {}
     sensitivity = {}
-    for index, marked_list in all_marked_list.items():
-        planted_vertex_to_check = planted_vertex.copy()
-        FP.update({index: 0})
-        FN.update({index: 0})
-        TP.update({index:0})
-        sensitivity.update({index:0})
-        for u, score in marked_list.items():
-            if u not in planted_vertex:
-                FP[index] += 1
+    for TH, marked_list in all_marked_list.items():
+        sensitivity.update({TH: []})
+        for list_for_TH_sol in marked_list:
+            planted_vertex_to_check = planted_vertex.copy()
+            temp_FP = 0
+            temp_TP = 0
+            for u in list_for_TH_sol:
+                if u not in planted_vertex:
+                    temp_FP += 1
+                else:
+                    temp_TP += 1
+                if u in planted_vertex_to_check:
+                    planted_vertex_to_check.remove(u)
+            if planted_vertex_to_check != []:
+                temp_FN = len(planted_vertex_to_check)
             else:
-                TP[index] += 1
-            if u in planted_vertex_to_check:
-                planted_vertex_to_check.remove(u)
-        if planted_vertex_to_check != []:
-            FN[index] = len(planted_vertex_to_check)
-        else:
-            FN[index] = 0
-        if len(marked_list) == 0:
-            sensitivity = 0
-        else:
-            sensitivity = TP[index] / TP[index]+FN[index]
-    sensitivity_sum = 0
-    for i, score in sensitivity.items():
-        sensitivity_sum += score
-    return [round((sensitivity_sum / len(all_marked_list))*100,2), round((1-sensitivity_sum / len(all_marked_list))*100,2)]
+               temp_FN= 0
+            if len(marked_list) == 0:
+                sensitivity[TH].append(0)
+            else:
+                sensitivity[TH].append(temp_TP / (temp_TP+temp_FN))
+    print(sensitivity)
+    res = {}
+    for TH, sen_list in sensitivity.items():
+        sensitivity_sum = 0
+        for score in sen_list:
+            sensitivity_sum += score
+        res.update({TH:(round(sensitivity_sum/len(sen_list),2),1-round(sensitivity_sum/len(sen_list),2))})
+    return res
 
 def frange(start,end,step):
     res = []

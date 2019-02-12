@@ -1,1 +1,3 @@
-print([(x,'roni') for x in range(0,10)])
+import time
+time.sleep(30)
+print('roni')
