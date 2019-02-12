@@ -3,11 +3,17 @@ sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import numpy as np
 import matplotlib.pyplot as plt
 import utiles
+on_lab = True
+if on_lab:
+    path  = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+else:
+    path = '/Users/ronizoller/Documents/school/Master/XXX/DATA'
+    import sys
+    sys.path.append('/anaconda3/lib/python3.6/site-packages')
 
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Simulator/one_best_compare'
 number_of_one_bests = 40
 
-number_of_random_inputs = 4
+number_of_random_inputs = 1                                 #Number of random trees to test
 planted_vertex = {}
 all_marked = {}
 precentage = []                                             #{random_input_index:(false pos,false neg)}

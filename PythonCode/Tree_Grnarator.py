@@ -18,7 +18,7 @@ from multiprocessing import Pool
 on_lab = True
 
 if on_lab:
-    path = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data'
+    path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
 else:
     path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
 add_noise = False
@@ -32,9 +32,9 @@ TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
 number_of_leaves = 200
-noise_level = [10,20]
+noise_level = [5]
 number_of_nodes = 0
-random_for_precentage = 5                              #number of different random noise for each noise %
+random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
 nCr_lookup_table = {}
 fact_lookup_table = {}
@@ -425,7 +425,7 @@ def save_edgelist(S_dis_matrix):
             S_dis_matrix.update(
                 {(nd1, nd2): nx.shortest_path_length(networkx_S, source=nd1, target=nd2)})
     print('     Writing S_edge_list...')
-    file = open(path + '/saved_data/S_dist_matrix' + '.txt', 'w')
+    file = open(path + '/saved_data/S_dist_matrix.txt', 'w')
     file.write(str(S_dis_matrix))
     file.close()
 

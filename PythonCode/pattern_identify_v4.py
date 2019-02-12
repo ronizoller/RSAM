@@ -125,7 +125,7 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
     print ('        marked nodes: %s' % str(marked_nodes))
     print('     Writing marked nodes...')
     if check_diff_sol:
-        file = open(path+'/one_best_compare/saved_data/marked_nodes/0/'+str(index)+'.txt', 'w')
+        file = open(path+'comparsion/saved_data/marked_nodes/'+str(index)+'.txt', 'w')
     else:
         file = open(path + '/saved_data/marked.txt', 'w')
     file.write(str(marked_nodes))

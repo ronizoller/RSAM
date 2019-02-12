@@ -211,30 +211,32 @@ def average_of_list(dict,num):
 
 def calculate_presentage(all_marked_list,planted_vertex):
     planted_vertex = planted_vertex[0]
-    false_pos = {}
-    false_neg = {}
+    FP = {}
+    TP = {}
+    FN = {}
+    sensitivity = {}
     for index, marked_list in all_marked_list.items():
         planted_vertex_to_check = planted_vertex.copy()
-        false_pos.update({index: 0})
-        false_neg.update({index: 0})
+        FP.update({index: 0})
+        FN.update({index: 0})
+        TP.update({index:0})
+        sensitivity.update({index:0})
         for u, score in marked_list.items():
             if u not in planted_vertex:
-                false_pos[index] += 1
+                FP[index] += 1
+            else:
+                TP[index] += 1
             if u in planted_vertex_to_check:
                 planted_vertex_to_check.remove(u)
         if planted_vertex_to_check != []:
-            false_neg[index] = len(planted_vertex_to_check)
+            FN[index] = len(planted_vertex_to_check)
         else:
-            false_neg[index] = 0
+            FN[index] = 0
         if len(marked_list) == 0:
-            false_pos[index] = 0
+            sensitivity = 0
         else:
-            false_pos[index] = false_pos[index] / len(marked_list)
-        false_neg[index] = false_neg[index] / len(planted_vertex)
-    sum_false_pos = 0
-    for i, score in false_pos.items():
-        sum_false_pos += score
-    sum_false_neg = 0
-    for i, score in false_neg.items():
-        sum_false_neg += score
-    return [round((sum_false_pos / len(all_marked_list))*100,2), round((sum_false_neg / len(all_marked_list))*100,2)]
+            sensitivity = TP[index] / TP[index]+FN[index]
+    sensitivity_sum = 0
+    for i, score in sensitivity.items():
+        sensitivity_sum += score
+    return [round((sensitivity_sum / len(all_marked_list))*100,2), round((1-sensitivity_sum / len(all_marked_list))*100,2)]

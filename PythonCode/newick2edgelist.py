@@ -1,7 +1,13 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import dendropy as tr
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Simulator'
+on_lab = True
+if on_lab:
+    path  = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/comparsion1'
+else:
+    path = '/Users/ronizoller/Documents/school/Master/XXX/DATA'
+    import sys
+    sys.path.append('/anaconda3/lib/python3.6/site-packages')
 exte = 'all'
 
 def get_edgelist(tree):
