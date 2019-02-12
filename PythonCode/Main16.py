@@ -11,7 +11,7 @@ from multiprocessing import Pool
 
 on_lab = True
 check_diffreance_between_solutions = True
-
+#TEST
 if on_lab:
     if check_diffreance_between_solutions:
         path  = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
