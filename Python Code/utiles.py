@@ -2,7 +2,7 @@ import math
 import tree_operations
 import utiles
 
-def check_precentage(num):
+def check_precentage(num,k):
     num = num/k
     if num >= 0 and num < 0.3:
         return 'red'

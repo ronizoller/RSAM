@@ -15,10 +15,10 @@ import numpy
 from functools import reduce
 from multiprocessing import Pool
 
-on_lab = False
+on_lab = True
 
 if on_lab:
-    path  = '/users/studs/bsc/2016/ronizo/Documents/Python_simulator_data'
+    path = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data'
 else:
     path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
 add_noise = False
@@ -31,8 +31,8 @@ both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 100
-noise_level = [10]
+number_of_leaves = 200
+noise_level = [10,20]
 number_of_nodes = 0
 random_for_precentage = 5                              #number of different random noise for each noise %
 accur = 5
@@ -715,7 +715,8 @@ def main():
 
     S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
     G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
+    if not on_lab:
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
 
     while j < number_of_marked_vertices:
         print(
@@ -747,11 +748,13 @@ def main():
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
         j += 1
         if not flag:
-            #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+            if not on_lab:
+                draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
             quit()
         print('Marked vertices:%s' % str(sol))
 
-        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
+        if not on_lab:
+            draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
         old_colors = return_color_to_taxon(S, colors)
         save_data(old_sigma, old_colors, sol, noise, 0)
     return_marked_nodes_new_name(sol,G)

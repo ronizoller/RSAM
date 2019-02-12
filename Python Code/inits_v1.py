@@ -1,7 +1,6 @@
 import math
 import tree_operations
 import networkx as nx
-from numpy import inf
 import random
 
 def find_max_S_d(max_S_d, S_dis_matrix):
