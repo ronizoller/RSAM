@@ -375,6 +375,7 @@ def extract_and_tarce_a_solution(parameters):
     H = parameters[11]
     S = parameters[12]
     G = parameters[13]
+    old_sigma = parameters[14]
 
     print('\n                                               *** ' + str(iter + 1) + 'th iteration ***\n')
 
@@ -411,6 +412,12 @@ def extract_and_tarce_a_solution(parameters):
                                                                       speciesTreespecification, compare_subtrees,
                                                                       TH_edges_in_subtree,
                                                                       check_diffreance_between_solutions)
+    if (not on_lab) and (iter == 0):
+        # draw.draw_compare_k_plot(all_vertices_with_index,path)
+        draw.draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, new_G, G, k, path, both, alpha,
+                                               True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
+                                               compare_subtrees, evolutinary_event, pattern, iterations, factor,
+                                               big_size)
     return([{iter * factor: all_vertices},list(marked_nodes.items())])
 
 ##********  MAIN ***********
@@ -476,6 +483,7 @@ def main():
             all_marked_for_TH = {}
             all_unmarked_for_TH = {}
             H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+
             if H == None:
                 quit()
             for TH_both in [0,0.2,0.4,0.6,0.8,1]:
@@ -489,7 +497,7 @@ def main():
                 S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
                 p1 = Pool(15)
-                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both,H,S,G) for x in range(0,iterations)]
+                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both,H,S,G,old_sigma) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
                 for res in list_of_results:
                     all_vertices_with_index.update(res[0])
@@ -506,10 +514,6 @@ def main():
                         if not flag:
                             list_of_unmarked.append(u.label)
                     list_of_unmarked_all.append(list(list_of_unmarked))
-                #if not on_lab:
-                    #draw.draw_compare_k_plot(all_vertices_with_index,path)
-                    #draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                    #                                   compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
@@ -520,6 +524,9 @@ def main():
             file.close()
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
+            draw.draw_new_G2([], colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
+                             TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
+                             big_size, evolutinary_event, compare_subtrees, 1)
             file.close()
             quit()
         else:
