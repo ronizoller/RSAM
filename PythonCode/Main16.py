@@ -1,5 +1,5 @@
 
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -9,7 +9,6 @@ if on_lab:
         path = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/noise'
 else:
     import sys
-
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
@@ -413,18 +412,14 @@ def extract_and_tarce_a_solution(parameters):
                                                                       speciesTreespecification, compare_subtrees,
                                                                       TH_edges_in_subtree,
                                                                       check_diffreance_between_solutions)
-    if (not on_lab) and (iter == 0):
-        # draw.draw_compare_k_plot(all_vertices_with_index,path)
-        draw.draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, new_G, G, k, path, both, alpha,
-                                               True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                                               compare_subtrees, evolutinary_event, pattern, iterations, factor,
-                                               big_size)
-    return([{iter * factor: all_vertices},list(marked_nodes.items())])
+
+    return([{iter * factor: all_vertices},list(marked_nodes.items()),new_G[iter]])
 
 ##********  MAIN ***********
 
 def main():
     global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,marked_vertex, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+    starting_time = datetime.now()
 
     all_vertices_with_index = {}
     list_of_scores_for_rand_num = {}
@@ -501,9 +496,11 @@ def main():
                 p1 = Pool(15)
                 parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both,H,S,G,old_sigma) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
+                new_G_to_save = []
                 for res in list_of_results:
                     all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
+                    new_G_to_save.append(res[2])
                 list_of_unmarked_all = []
                 print('all_marked: '+str(all_marked))
                 for li in all_marked:
@@ -518,6 +515,14 @@ def main():
                     list_of_unmarked_all.append(list(list_of_unmarked))
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
+
+                if (not on_lab) and (TH == 0):
+                    # draw.draw_compare_k_plot(all_vertices_with_index,path)
+                    draw.draw_G_diffrent_optimal_solutions([], colors, sigma, old_sigma, new_G[0], G, k, path, both,
+                                                       alpha,
+                                                       True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
+                                                       compare_subtrees, evolutinary_event, pattern, iterations, factor,
+                                                       big_size)
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
             print('all_unmarked_for_TH: %s' % str(all_unmarked_for_TH))
 
@@ -595,6 +600,7 @@ def main():
     file.close()
     if not on_lab:
         draw.draw_plot(all_vertices_with_index,path,marked_vertex)
+    print('Running time: '+str(datetime.now()-starting_time))
 
 if __name__ == "__main__":
     main()
