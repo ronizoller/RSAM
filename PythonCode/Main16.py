@@ -1,5 +1,5 @@
 
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = True
 
 if on_lab:
