@@ -400,6 +400,7 @@ def track_a_solution(root, H, S, G, solution, list_place):
     print('Tracking ' + str(list_place) +'th solution...')
 
     new_nodes_table = inits.init_nodes_table(S, G, {})
+    print('root: '+str(root))
     root_numbers_in_H = [root[0][0]]
     root_numbers_in_solution = [0]
 

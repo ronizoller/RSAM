@@ -15,7 +15,7 @@ import numpy
 from functools import reduce
 from multiprocessing import Pool
 
-on_lab = True
+on_lab = False
 compare = True
 if on_lab:
     if compare:
@@ -23,18 +23,19 @@ if on_lab:
     else:
         path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
 else:
-    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
+    if compare:
+        path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
 number_of_marked_vertices = 1
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 200
+k = 150
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 200
+number_of_leaves = 150
 noise_level = [10]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
@@ -686,10 +687,13 @@ def main():
             leaf.name = "Gene" + leaf.name[6:]
         else:
             leaf.name = "GeneI" + leaf.name[8:]
+    print_tree(G,'G')
+    print_tree(S,'S')
 
     sigma = create_sigme(number_of_leaves, sigma)
     utils.newick2edgelist.main(on_lab,compare)
     save_edgelist(S_dis_matrix)
+
 
     S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")

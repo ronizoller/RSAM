@@ -198,36 +198,55 @@ def average_of_list(dict,num):
     print('         Average list: %s\n' % str(res))
     return res
 
-def calculate_presentage(all_marked_list,planted_vertex):
+def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
     planted_vertex = planted_vertex[0]
+    print('planted: %s, marked: %s, unmarked: %s' % (str(planted_vertex),str(all_marked_list),str(all_unmarked_list)))
+
     sensitivity = {}
+    specifity = {}
+    TN = {}
+    for TH,unmarked_list in all_unmarked_list.items():
+        TN.update({TH:[]})
+        for list_for_TH_sol in unmarked_list:
+            temp_TN = 0
+            for u in list_for_TH_sol:
+                if u not in planted_vertex:
+                    temp_TN += 1
+            TN[TH].append([temp_TN])
     for TH, marked_list in all_marked_list.items():
         sensitivity.update({TH: []})
+        specifity.update({TH: [] })
+        i = 0
         for list_for_TH_sol in marked_list:
             planted_vertex_to_check = planted_vertex.copy()
             temp_FP = 0
             temp_TP = 0
             for u in list_for_TH_sol:
-                if u not in planted_vertex:
+                print('u: '+str(u))
+                if u[0] not in planted_vertex:
                     temp_FP += 1
                 else:
                     temp_TP += 1
                 if u in planted_vertex_to_check:
-                    planted_vertex_to_check.remove(u)
-            if planted_vertex_to_check != []:
-                temp_FN = len(planted_vertex_to_check)
-            else:
-               temp_FN= 0
-            if len(marked_list) == 0:
-                sensitivity[TH].append(0)
-            else:
-                sensitivity[TH].append(temp_TP / (temp_TP+temp_FN))
+                    planted_vertex_to_check.remove(u[0])
+            temp_FN = len(planted_vertex_to_check)
+            sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
+            specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
+            i += 1
     res = {}
+    print('sensitivity: %s' % str(sensitivity))
     for TH, sen_list in sensitivity.items():
         sensitivity_sum = 0
         for score in sen_list:
             sensitivity_sum += score
-        res.update({TH:(round(sensitivity_sum/len(sen_list),2),1-round(sensitivity_sum/len(sen_list),2))})
+        res.update({TH:round(sensitivity_sum/len(sen_list),2)})
+    print(res)
+    for TH, sen_list in specifity.items():
+        specifity_sum = 0
+        for score in sen_list:
+            specifity_sum += score
+        res.update({TH: (1-round(specifity_sum / len(sen_list), 2),res[TH])})
+    print(res)
     return res
 
 def frange(start,end,step):

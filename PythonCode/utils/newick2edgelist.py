@@ -27,7 +27,8 @@ def main(on_lab,compare):
         else:
             path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
     else:
-        path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA'
+        if compare:
+            path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
     exte = 'all'
 
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
