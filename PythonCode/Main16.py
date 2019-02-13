@@ -530,7 +530,8 @@ def main():
             file.close()
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
-            draw.draw_new_G2([], colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
+            if not on_lab:
+                draw.draw_new_G2([], colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
                              TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
                              big_size, evolutinary_event, compare_subtrees, 1)
             file.close()
