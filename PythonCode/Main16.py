@@ -1,5 +1,5 @@
 
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -515,8 +515,7 @@ def main():
                     list_of_unmarked_all.append(list(list_of_unmarked))
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
-
-                if (not on_lab) and (TH == 0):
+                if (not on_lab) and (TH_both == 0):
                     # draw.draw_compare_k_plot(all_vertices_with_index,path)
                     draw.draw_G_diffrent_optimal_solutions([], colors, sigma, old_sigma, new_G[0], G, k, path, both,
                                                        alpha,
