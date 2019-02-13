@@ -516,12 +516,10 @@ def main():
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
                 if (not on_lab) and (TH_both == 0):
-                    # draw.draw_compare_k_plot(all_vertices_with_index,path)
-                    draw.draw_G_diffrent_optimal_solutions([], colors, sigma, old_sigma, new_G[0], G, k, path, both,
-                                                       alpha,
-                                                       True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
-                                                       compare_subtrees, evolutinary_event, pattern, iterations, factor,
-                                                       big_size)
+                    draw.draw_new_G2([], colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
+                                     TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
+                                     pattern,
+                                     big_size, evolutinary_event, compare_subtrees, 1)
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
             print('all_unmarked_for_TH: %s' % str(all_unmarked_for_TH))
 
@@ -530,10 +528,7 @@ def main():
             file.close()
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
-            if not on_lab:
-                draw.draw_new_G2([], colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
-                             TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
-                             big_size, evolutinary_event, compare_subtrees, 1)
+
             file.close()
             quit()
         else:
