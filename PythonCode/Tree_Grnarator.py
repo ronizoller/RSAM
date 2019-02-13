@@ -14,8 +14,9 @@ import os
 import numpy
 from functools import reduce
 from multiprocessing import Pool
+from datetime import datetime
 
-on_lab = False
+on_lab = True
 compare = True
 if on_lab:
     if compare:
@@ -30,12 +31,12 @@ number_of_marked_vertices = 1
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 150
+k = 200
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 150
+number_of_leaves = 200
 noise_level = [10]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
@@ -670,8 +671,9 @@ def return_marked_nodes_new_name(list_of_marked,prev_G):
 
 def main():
     global sol,random_for_precentage,old_colors,old_sigma,new_G,all_edges,S,G,number_of_nodes,number_of_leaves,names,colors,sigma,S_dis_matrix,S_colors,G_internal_colors,k,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,k,both,TH_both,accur,nCr_lookup_table,fact_lookup_table,old_colors,number_of_marked_vertices,S_labels_table,G_labels_table
+    starting_time = datetime.now()
+
     noise = 0
-    number_of_random_changes = 0
     number_of_HT_under_marked = 10
     S = Tree()
     for i in range(0, number_of_leaves):
@@ -768,6 +770,7 @@ def main():
     for i in range(0,len(noise_level)):
         noise_level[i] = (noise_level[i],number_of_HT_under_marked,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table)
     p.map(create_graph_for_noise, noise_level)
+    print('Running time: %s' % str(datetime.now()-starting_time))
 
 if __name__ == "__main__":
     main()

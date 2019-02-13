@@ -1,5 +1,5 @@
 
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -24,6 +24,7 @@ import draw
 import hypergraph_v1 as hypergraph
 import pattern_identify_v4 as pattern_identify
 from multiprocessing import Pool
+from datetime import datetime
 
 
 speciesTreespecification = 'all'
@@ -32,7 +33,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 150
+k = 210
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -59,7 +60,7 @@ TH_compare_subtrees = 1
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 4                                  #will check for each i=0 to iteration the solution i*factor
+    iterations = 10                                  #will check for each i=0 to iteration the solution i*factor
     factor = 20
 
 ####FOR HT EVOLUTNARY EVENTS###
@@ -424,6 +425,7 @@ def extract_and_tarce_a_solution(parameters):
 
 def main():
     global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,marked_vertex, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+
     all_vertices_with_index = {}
     list_of_scores_for_rand_num = {}
     noise_level = 0
