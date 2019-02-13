@@ -27,7 +27,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 210
+k = 100
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -38,7 +38,7 @@ S_cost = 0
 
 number_of_marked_vertices = 1
 marked_vertex = []
-input = open(path + '/saved_data/all_marked.txt', 'r')
+input = open(path + '/saved_data/marked_nodes_correct_names.txt', 'r')
 for line in input:
     marked_vertex.append(eval(line))
 marked_vertex = marked_vertex[0]
@@ -54,8 +54,8 @@ TH_compare_subtrees = 1
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 10                                  #will check for each i=0 to iteration the solution i*factor
-    factor = 20
+    iterations = 2                                  #will check for each i=0 to iteration the solution i*factor
+    factor = 5
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
@@ -352,7 +352,7 @@ def RSAM_finder_multithread(noise_level):
                                                                 G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
-    print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
+    #print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
     return utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)
 
 def extract_and_tarce_a_solution(parameters):
@@ -465,7 +465,6 @@ def main():
                                                                      sigma)
     if check_diffreance_between_solutions:
         max_dis = tree_operations.max_dis(S_dis_matrix)
-        print(max_dis)
         if iterations * factor < k:
             all_marked_for_TH = {}
             for TH_both in [0,0.2,0.4,0.6,0.8,1]:
@@ -484,13 +483,16 @@ def main():
                 for res in list_of_results:
                     all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
-                print('all_marked :%s' % str(all_marked))
+                #print('all_marked :%s' % str(all_marked))
                 if not on_lab:
                     draw.draw_compare_k_plot(all_vertices_with_index,path)
                     draw.draw_G_diffrent_optimal_solutions(all_marked, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, True, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,
                                                        compare_subtrees,evolutinary_event,pattern,iterations,factor,big_size)
                 all_marked_for_TH.update({TH_both:(all_marked)})
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
+            file = open(path + '/saved_data/all_marked_for_TH.txt', 'w')
+            file.write(str(all_marked_for_TH))
+            file.close()
             quit()
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
@@ -535,7 +537,7 @@ def main():
                 draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
                              TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification, pattern,
                              big_size, evolutinary_event, compare_subtrees, 1)
-    print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
+    #print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
     p = Pool(15)
@@ -548,6 +550,12 @@ def main():
         ind += 1
     print('all_vertices_with_index: %s' % str(all_vertices_with_index))
     print('marked_vertex: %s' % str(marked_vertex))
+    file = open(path + '/saved_data/all_vertices_with_index.txt', 'w')
+    file.write(str(all_vertices_with_index))
+    file.close()
+    file = open(path + '/saved_data/marked_vertex.txt', 'w')
+    file.write(str(marked_vertex))
+    file.close()
     if not on_lab:
         draw.draw_plot(all_vertices_with_index,path,marked_vertex)
 

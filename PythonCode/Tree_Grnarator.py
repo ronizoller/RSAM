@@ -98,7 +98,7 @@ def random_again(t,iter):
 
 def number_of_HT_needed(u,all_random_sources,TH,color):
     print('     Calculating number of HT under %s' % str(u))
-    print('all_random_sources: '+str(all_random_sources))
+    #print('all_random_sources: '+str(all_random_sources))
     if color == 'red':
         to_chack_in = all_random_sources[0]
     if color == 'black':
@@ -116,17 +116,17 @@ def number_of_HT_needed(u,all_random_sources,TH,color):
     #    return int(num_of_edges*0.05)
     #else:
     if int(TH*bad_HT)>0:
-        print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str((TH * bad_HT)+3), str(bad_HT)))
+        #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str((TH * bad_HT)+3), str(bad_HT)))
         return int(TH*bad_HT)+3
     else:
-        print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(3), str(bad_HT)))
+        #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(3), str(bad_HT)))
         return 3
 
 def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix):
     HT_sources_for_subtree = [None]     #to chack if HT has already been choose
     list_of_answers = []               #to return
     for i in range(0, number_of_HT):
-        print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
+        #print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
         nCr_lookup_table, fact_lookup_table,HT = find_enriched_subtree_rec(G, new_G, child_to_fhind_HT_in, nCr_lookup_table, fact_lookup_table,
                                        accur, Pr_red, Pr_black, p, color,
                                        G_internal_colors,HT_sources_for_subtree)
@@ -138,8 +138,8 @@ def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fh
                                                                   G_internal_colors,HT_sources_for_subtree)
             i += 1
         if HT[0]:
-            print('     Found HT source')
-            print('     Start looking for HT traget')
+            #print('     Found HT source')
+            #print('     Start looking for HT traget')
             HT_random_son = tree_operations.random_son(new_G, HT)
             HT_sources_for_subtree.append(HT[1])
             HT_source_in_S = S.find_node(lambda n: (n.label == 'x' + HT[1]['label'][1:]))
@@ -153,17 +153,17 @@ def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fh
                         nCr_lookup_table, fact_lookup_table,HT_to = find_enriched_subtree_rec(G, new_G, x, nCr_lookup_table,
                                                           fact_lookup_table, accur, Pr_red,
                                                           Pr_black, p, color, G_internal_colors,[])
-                        print('Dis between %s and %s is %s, max: %s' % (str(HT_source_in_S.label), str(x), str(dis),str(max_dis)))
+                        #print('Dis between %s and %s is %s, max: %s' % (str(HT_source_in_S.label), str(x), str(dis),str(max_dis)))
             if HT_to[0]:
-                print('     Found HT target')
-                print('     HT: %s' % str(HT))
-                print('     HT_to: %s\n' % str(HT_to))
+                #print('     Found HT target')
+                #print('     HT: %s' % str(HT))
+                #print('     HT_to: %s\n' % str(HT_to))
                 list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
             else:
                 return nCr_lookup_table, fact_lookup_table, (False, list_of_answers)
         else:
             return nCr_lookup_table,fact_lookup_table,(False,list_of_answers)
-    print('     list of HT:'+str(list_of_answers))
+    #print('     list of HT:'+str(list_of_answers))
     return nCr_lookup_table,fact_lookup_table,(u['label'],list_of_answers)
 
 def change_color_of_vertex(u,colors,color,sigma,switch_colors):
@@ -174,14 +174,13 @@ def change_color_of_vertex(u,colors,color,sigma,switch_colors):
             color = 'red'
         else:
             color = 'pink'
-        print ('Cahnging %s color from %s to %s' % (str(u),str(colors[sigma[u.label]]),str(color)))
+        #print ('Changing %s color from %s to %s' % (str(u),str(colors[sigma[u.label]]),str(color)))
     colors.update({sigma[u.label]:color})
     return colors
 
 def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
     old_colors = colors.copy()
     old_S = S
-    print('inside change_colors:\nold_colors:%s' % (str(old_colors)))
     old_S_colors = S_colors.copy()
     old_internal_G_colors = G_internal_colors.copy()
     reds_under_w = G_internal_colors[w['label']][0]
@@ -205,11 +204,9 @@ def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
         to_return = w
         all_leafs_father = all_leafs_v
     father_to_change_in_G = G.find_node(lambda n: (n.label == father_to_change['label']))
-    print(father_to_change)
-    print(father_to_change_in_G)
     for to_change in father_to_change_in_G.leaf_nodes():
-        print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
-        str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
+        #print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
+        #str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
         if color_under_father/all_leafs_father < TH_both:
             colors = change_color_of_vertex(to_change,colors,color,sigma,False)
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
@@ -221,7 +218,6 @@ def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
                 color_under_father = G_internal_colors[father_to_change['label']][1]
             all_leafs_father = color_under_father + other_color_under_father
     S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-    print('inside change_colors:\ncolors:%s\nold_colors:%s' % (str(colors),str(old_colors)))
     G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
     return colors,to_return,to_return_color,G_internal_colors,old_colors,old_internal_G_colors,S,S_colors,old_S,old_S_colors
 
@@ -231,8 +227,6 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
     num_of_leafs = tree_operations.number_of_leafs(S,'S')
     Pr_red = total_red / num_of_leafs
     Pr_black = total_black / num_of_leafs
-    print ('TH_edges_in_subtree: '+str(TH_edges_in_subtree))
-
     for u in list(reversed(list(nx.topological_sort(new_G)))):
         old_colors = colors.copy()
         old_internal_G_colors = G_internal_colors.copy()
@@ -254,37 +248,37 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
             all_leafs_w = reds_under_w + blacks_under_w
             if compare_subtrees:
                 if v['edges_in_subtree'] > TH_edges_in_subtree and w['edges_in_subtree'] > TH_edges_in_subtree and not check_if_vertex_was_chosen(vertex_number,sol,u['label']):
-                    print('\n***\nVertex ' + str(u) + ' was chosen to be marked.')
-                    print(
-                        '   %s (v = %s, w = %s) :\n [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n    edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n' %
-                        (u['label'], str(v['label']), str(w['label']),
-                         str(reds_under_v / all_leafs_v), str(blacks_under_v / all_leafs_v),
-                         str(reds_under_w / all_leafs_w), str(blacks_under_w / all_leafs_w),
-                         str(u['edges_in_subtree']), str(v['edges_in_subtree']), str(w['edges_in_subtree']),
-                         str(TH_edges_in_subtree), str(TH_pattern_in_subtree)))
+                    #print('\n***\nVertex ' + str(u) + ' was chosen to be marked.')
+                    #print(
+                    #    '   %s (v = %s, w = %s) :\n [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n    edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n' %
+                    #    (u['label'], str(v['label']), str(w['label']),
+                    #     str(reds_under_v / all_leafs_v), str(blacks_under_v / all_leafs_v),
+                    #     str(reds_under_w / all_leafs_w), str(blacks_under_w / all_leafs_w),
+                    #     str(u['edges_in_subtree']), str(v['edges_in_subtree']), str(w['edges_in_subtree']),
+                    #     str(TH_edges_in_subtree), str(TH_pattern_in_subtree)))
                     if not both:
                         if blacks_under_w / all_leafs_w > TH_both:
-                            print('     %s is black' % str(w))
+                            #print('     %s is black' % str(w))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'red',
                                           max_dis,S_dis_matrix)
                         elif blacks_under_v / all_leafs_v > TH_both:
-                            print('     %s is black' % str(v))
+                            #print('     %s is black' % str(v))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'red',
                                                                                      max_dis, S_dis_matrix)
                         elif reds_under_w / all_leafs_w > TH_both:
-                            print('     %s is red' % str(w))
+                            #print('     %s is red' % str(w))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'black',
                                                                                      max_dis, S_dis_matrix)
                         elif reds_under_v / all_leafs_v > TH_both:
-                            print('     %s is red' % str(v))
+                            #print('     %s is red' % str(v))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'black',
                                                                                      max_dis, S_dis_matrix)
                         else:
-                            print('     Changing color in order to create a good pattern')
+                            #print('     Changing color in order to create a good pattern')
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'all')
                             colors, father_to_change, color, G_internal_colors, old_colors, old_internal_G_colors, S, S_colors, old_S, old_S_colors = change_colors(v, w, colors,
                                                                                                G_internal_colors,S_colors,
@@ -307,9 +301,7 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
                                                                                       max_dis, S_dis_matrix)
                         if ans[0] == u['label']:
                             return nCr_lookup_table,fact_lookup_table,ans,colors
-                        print('Initilazing back')
                         colors = old_colors
-                        print(colors)
                         G_internal_colors = old_internal_G_colors
                         S = old_S
                         S_colors = old_S_colors
@@ -320,7 +312,6 @@ def find_enriched_subtree(G,v,color,reds_under_v, blacks_under_v,all_leafs_v,nCr
                                                                                     accur, Pr_red,
                                                                                     Pr_black,p):
     #print('     Checking if %s is an enriched subtree...' % str(v))
-
     v = G.find_node(lambda n: (n.label == v['label']))
     if color == 'red':
         p_value_v_red, nCr_lookup_table, fact_lookup_table = utiles.p_value_calculation(reds_under_v, all_leafs_v,
@@ -329,11 +320,10 @@ def find_enriched_subtree(G,v,color,reds_under_v, blacks_under_v,all_leafs_v,nCr
                                                                                     Pr_black, v.label)
 
         if p_value_v_red < p:
-            print('         %s is an enriched with RED subtree.' % str(v))
+            #print('         %s is an enriched with RED subtree.' % str(v))
             return 1,nCr_lookup_table,fact_lookup_table,p_value_v_red
         else:
             return 0, nCr_lookup_table, fact_lookup_table,0
-
     elif color == 'black':
         p_value_v_black, nCr_lookup_table, fact_lookup_table = utiles.p_value_calculation(blacks_under_v,
                                                                                       all_leafs_v,
@@ -343,7 +333,7 @@ def find_enriched_subtree(G,v,color,reds_under_v, blacks_under_v,all_leafs_v,nCr
                                                                                       Pr_red,
                                                                                       v.label)
         if p_value_v_black < p:
-            print('         %s is an enriched with BLACK subtree.' % str(v))
+            #print('         %s is an enriched with BLACK subtree.' % str(v))
             return 1,nCr_lookup_table,fact_lookup_table,p_value_v_black
         else:
             return 0, nCr_lookup_table, fact_lookup_table,0
@@ -359,9 +349,9 @@ def find_enriched_subtree_rec(G,new_G,u,nCr_lookup_table,fact_lookup_table,accur
     if len(outgoing_edges) > 0:
         ans_u, nCr_lookup_table, fact_lookup_table,p_value = find_enriched_subtree(G,u, color, reds_under_u, blacks_under_u,all_leafs_u, nCr_lookup_table, fact_lookup_table,accur, Pr_red,Pr_black, p)
         if ans_u == 1 and u not in bad_vertices:
-            print('     FOUND!')
-            print('     curr = %s\n     curr_red = %s, curr_black = %s, p_value_curr = %s\n        Pr_red = %s, Pr_black = %s' % (
-                str(u), str(reds_under_u), str(blacks_under_u), str(p_value),str(Pr_red),str(Pr_black)))
+            #print('     FOUND!')
+            #print('     curr = %s\n     curr_red = %s, curr_black = %s, p_value_curr = %s\n        Pr_red = %s, Pr_black = %s' % (
+            #    str(u), str(reds_under_u), str(blacks_under_u), str(p_value),str(Pr_red),str(Pr_black)))
 
             return nCr_lookup_table,fact_lookup_table,(True, u)
         elif len(outgoing_edges) == 2:
@@ -522,7 +512,6 @@ def return_color_to_taxon(S,colors):
     return to_return
 
 def check_if_enriched(source, target,nCr_lookup_table,fact_lookup_table, accur,G_internal_colors):
-    print(G_internal_colors)
     reds_under_source = G_internal_colors[source.label][0]
     blacks_under_source = G_internal_colors[source.label][1]
     reds_under_target = G_internal_colors[target.label][0]
@@ -536,7 +525,7 @@ def check_if_enriched(source, target,nCr_lookup_table,fact_lookup_table, accur,G
     Pr_red = total_red / num_of_leafs
     Pr_black = total_black / num_of_leafs
 
-    print('source: %s, target: %s, reds_under_source: %s, blacks_under_source: %s, reds_under_target: %s, blacks_under_target: %s' % (str(source),str(target),str(reds_under_source), str(blacks_under_source),str(reds_under_target),str(blacks_under_target)))
+    #print('source: %s, target: %s, reds_under_source: %s, blacks_under_source: %s, reds_under_target: %s, blacks_under_target: %s' % (str(source),str(target),str(reds_under_source), str(blacks_under_source),str(reds_under_target),str(blacks_under_target)))
 
 
     p_value_source_red, nCr_lookup_table, fact_lookup_table = utiles.p_value_calculation(reds_under_source, total_source,
@@ -564,10 +553,10 @@ def check_if_enriched(source, target,nCr_lookup_table,fact_lookup_table, accur,G
                                                                                          Pr_black,
                                                                                          Pr_red,
                                                                                          target.label)
-    print('     p_value_source_red: %s\n        p_value_target_red:%s' % (
-    str(p_value_source_red), str(p_value_target_red)))
-    print('     p_value_source_black: %s\n        p_value_target_black:%s' % (
-    str(p_value_source_black), str(p_value_target_black)))
+    #print('     p_value_source_red: %s\n        p_value_target_red:%s' % (
+    #str(p_value_source_red), str(p_value_target_red)))
+    #print('     p_value_source_black: %s\n        p_value_target_black:%s' % (
+    #str(p_value_source_black), str(p_value_target_black)))
 
     if p_value_source_red < p and p_value_target_red < p:
         return nCr_lookup_table,fact_lookup_table,'red-to-red'
@@ -620,9 +609,8 @@ def create_graph_for_noise(parameters):
         all_random_sources_red_to_red = []
         all_random_sources_black_to_black = []
         all_random_nutral = []
-        print('Number of random changes:' + str(int(number_of_random_changes)))
+        #print('Number of random changes:' + str(int(number_of_random_changes)))
         while i < number_of_random_changes:
-            print('sigma: %s' % str(sigma))
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
             # number_of_HT_to_make = randint(1, number_of_random_changes)
@@ -630,9 +618,9 @@ def create_graph_for_noise(parameters):
             random_source = random_vertex_in_tree(number_of_nodes, G)
             random_target = random_vertex_in_tree(number_of_nodes, G)
             random_vertex_to_change_color = randome_leave_from_tree(G, number_of_nodes, True)
-            print('%s/%s\nrandom_source: %s, random_target: %s, random_vertex_to_change_color: %s' % (
-            str(i), str(number_of_random_changes), str(random_source), str(random_target),
-            str(random_vertex_to_change_color)))
+            #print('%s/%s\nrandom_source: %s, random_target: %s, random_vertex_to_change_color: %s' % (
+            #str(i), str(number_of_random_changes), str(random_source), str(random_target),
+            #str(random_vertex_to_change_color)))
             sigma, old_sigma, changed = change_sigma(sigma, old_sigma, S, G,
                                                      [(random_source.label, random_target.label)],
                                                      number_of_HT_under_marked)
@@ -666,14 +654,12 @@ def return_marked_nodes_new_name(list_of_marked,prev_G):
     main_G = utiles.init_internal_labels(main_G, 'u', main_sigma, path)
     res = []
     for u in list_of_marked_nodes:
-        print('Searching for node %s' % str(u))
         marked_in_G = prev_G.find_node(lambda n: (n.label == u))
-        print('Found %s' % str(marked_in_G))
         to_find_leaf_nodes = list(map((lambda x:x.taxon.label),marked_in_G.leaf_nodes()))
         for v in main_G.postorder_node_iter():
             curr_leaf_nodes = list(map((lambda x:x.taxon.label),v.leaf_nodes()))
             if (len(curr_leaf_nodes) == len(to_find_leaf_nodes)) and (reduce((lambda x, y: x and y), list(numpy.in1d(to_find_leaf_nodes, curr_leaf_nodes)))):
-                print('%s is marked as %s' % (str(u),v.label))
+                #print('%s is marked as %s' % (str(u),v.label))
                 res.append(v.label)
     file = open(path + '/saved_data/marked_nodes_correct_names.txt', 'w')
     file.write(str(res))
@@ -702,10 +688,6 @@ def main():
             leaf.name = "GeneI" + leaf.name[8:]
 
     sigma = create_sigme(number_of_leaves, sigma)
-
-    print_tree(S, 'S')
-    print_tree(G, 'G')
-    print('sigma:%s\ncolors:%s' % (str(sigma), str(colors)))
     utils.newick2edgelist.main(on_lab,compare)
     save_edgelist(S_dis_matrix)
 
@@ -729,7 +711,6 @@ def main():
     all_random_sources_red_to_red = []
     all_random_sources_black_to_black = []
     all_random_nutral = []
-    print('Number of random changes:' + str(int(number_of_random_changes)))
     all_random_sources = (all_random_sources_red_to_red, all_random_sources_black_to_black, all_random_nutral)
     new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, [],
                                                             [], 0, False,
@@ -766,7 +747,6 @@ def main():
         else:
             sigma, old_sigma, y = change_sigma(sigma, old_sigma, S, G, sol[j]['list_of_couples'],
                                                number_of_HT_under_marked)
-            print('sigma: ' + str(sigma))
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
         j += 1
@@ -775,7 +755,6 @@ def main():
                 draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
             quit()
         print('Marked vertices:%s' % str(sol))
-
         if not on_lab:
             draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
         old_colors = return_color_to_taxon(S, colors)

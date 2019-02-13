@@ -38,8 +38,8 @@ def init_distance_S(S_dis_matrix, k, test, path,spe):
         file.write(str(S_dis_matrix))
         file.close()
         print('     Finished writing S_dist_matrix.\n')
-    return S_dis_matrix
     print('Finished initing Distances...')
+    return S_dis_matrix
 
 def init_nodes_table(S,G,nodes_table):
     print('Initilasinig node table...')
@@ -47,8 +47,8 @@ def init_nodes_table(S,G,nodes_table):
         nodes_table[s_nd.label] = {}
         for g_nd in G.postorder_node_iter():
             nodes_table[s_nd.label].update({g_nd.label:-1})
-    return nodes_table
     print('Finished initilasinig node table.\n')
+    return nodes_table
 
 def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
     print('Initialasing hypergraph leafs...')

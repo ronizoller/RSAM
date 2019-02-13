@@ -138,16 +138,6 @@ def string_into_array (string):
     print (" ]",end = "")
     quit()
 
-def string_into_array (string):
-    print ("[ '",end = "")
-    for i in range (0,len(string)):
-        if string[i] != " ":
-            print(string[i],end = '')
-        else:
-            print("', '",end = "")
-    print (" ]",end = "")
-    quit()
-
 def map_max(map,number_of_fields):
     max = 0
     for u,array in map.items():
@@ -159,7 +149,6 @@ def map_max(map,number_of_fields):
     return max
 
 def compare_dict_entries(dict):
-    print(dict)
     keys = []
     for k,internal_dict in dict.items():
         for u,couple in internal_dict.items():
@@ -233,7 +222,6 @@ def calculate_presentage(all_marked_list,planted_vertex):
                 sensitivity[TH].append(0)
             else:
                 sensitivity[TH].append(temp_TP / (temp_TP+temp_FN))
-    print(sensitivity)
     res = {}
     for TH, sen_list in sensitivity.items():
         sensitivity_sum = 0

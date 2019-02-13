@@ -37,16 +37,13 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
                         G_nodes_identified.update({curr['s']:new_prob})
                         print('     %s has alot of black HT and %s has alot of red HT.' % (child1_in_H['s'],child2_in_H['s']))
     print ('        G_nodes_identified = %s' % str(G_nodes_identified))
-    return G_nodes_identified
     print('Finished dentifing patterns...\n')
+    return G_nodes_identified
 
 def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both, G_internal_colors,index,spec,compare_subtrees, TH_edges_in_subtree,check_diff_sol):        #if both = True the pattern will be two sibs which are riched with same color HT
     marked_nodes = {}
     print('Searching for significent diffrence...')
-
-    all_edges = len(new_G.edges())
-    print('     edges TH : %s' % str(TH_edges_in_subtree))
-
+    #print('     edges TH : %s' % str(TH_edges_in_subtree))
     #print('     max_S_d_of_HT_red = %s, max_S_d_of_HT_black = %s, max_prob = %s, threshold_red = %s, threshold_black = %s, len(red_HT_vertices_in_G) = %s, len(blacks_HT_vertices_in_G) = %s' % (str(max_S_d_of_HT[0]),str(max_S_d_of_HT[1]),str(max_prob), str(TH_compare_subtrees), str(TH_compare_subtrees), str(len(red_HT_vertices_in_G)), str(len(blacks_HT_vertices_in_G))))
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
@@ -116,7 +113,7 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
                                                                   'w black HT and reds under v']})
             elif  compare_subtrees:
                 if u['edges_in_subtree'] > TH_edges_in_subtree:
-                    print("u = %s, u_red_HT = %s, u_black_HT = %s, TH = %s" % (str(u),str(u_red_HT),str(u_black_HT),str(TH_pattern_in_subtree)))
+                    #print("u = %s, u_red_HT = %s, u_black_HT = %s, TH = %s" % (str(u),str(u_red_HT),str(u_black_HT),str(TH_pattern_in_subtree)))
                     if u_red_HT > TH_pattern_in_subtree:
                         marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_red']})
                     if u_black_HT > TH_pattern_in_subtree:

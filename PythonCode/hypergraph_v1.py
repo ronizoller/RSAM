@@ -261,11 +261,11 @@ def calculate_color_diffrence(H, G, S, colors, k, nodes_table, test, real):
 
     for x in S_alpha1.postorder_node_iter():
         temp = [x.E_red, x.E_black]
-        if alpha0_map[x.label] != temp:
-            print ('        %s coloring has changed from %s to %s ([red, black])' % (x.label,str(alpha0_map[x.label]),str(temp)))
-            if (temp[0] > temp[1] and alpha0_map[x.label][0] < alpha0_map[x.label][1]) or (temp[0] < temp[1] and alpha0_map[x.label][0] > alpha0_map[x.label][1]):
-                print('             and it changed the relations between the colors.')
-            print('\n')
+        #if alpha0_map[x.label] != temp:
+            #print ('        %s coloring has changed from %s to %s ([red, black])' % (x.label,str(alpha0_map[x.label]),str(temp)))
+            #if (temp[0] > temp[1] and alpha0_map[x.label][0] < alpha0_map[x.label][1]) or (temp[0] < temp[1] and alpha0_map[x.label][0] > alpha0_map[x.label][1]):
+                #print('             and it changed the relations between the colors.')
+            #print('\n')
 
 def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
     print('Coloring hypergraph...')
@@ -287,7 +287,6 @@ def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
                     for e in incoming_edges_v:
                         source = H.nodes(data=True)[e[0]]['l'][e[2]['source']]['t']
                         if nd['l'][i]['event'] == 'HT' and source != nd['t'] and tree_operations.is_not_ancestor(S.find_node(lambda n: (n.label == source)),S.find_node(lambda n: (n.label == nd['t']))):
-                            print('****** %s is a HT to %s' % (str(nd),str(source)))
                             reds = S_colors[source][0] * alpha * prob
                             blacks = S_colors[source][1] * alpha * prob
                         elif nd['l'][i]['event'] == 'HT':
@@ -299,10 +298,9 @@ def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
                             temp = S_colors[nd['t']]
                         else:
                             temp = [0,0]
-                        print('add [%s,%s] to %s (for %s, %s event)' % (str(reds),str(blacks),str(temp),str(nd['t']),str(nd['l'][i]['event'])))
+                        #print('add [%s,%s] to %s (for %s, %s event)' % (str(reds),str(blacks),str(temp),str(nd['t']),str(nd['l'][i]['event'])))
                         S_colors.update({nd['t']: [reds + temp[0], blacks + temp[1]]})
-                        print('S_colors = %s\nnd = %s\nsource nd = %s\n' % (str(S_colors), str(nd), str(source)))
-    print(S_colors)
+                        #print('S_colors = %s\nnd = %s\nsource nd = %s\n' % (str(S_colors), str(nd), str(source)))
     print('Finished coloring hypergraph.\n')
     return H, S, S_colors
 
@@ -313,8 +311,8 @@ def remove_prob_zero(H, deleted_nodes):
             H.remove_node(nd[0])
             deleted_nodes.append(nd[0])
     print("\t\tnode deleted: "+str(deleted_nodes))
-    return H
     print('Finished removing prob. 0.\n')
+    return H
 
 def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
     print('Assigning probs to hypergraph....')
@@ -436,7 +434,7 @@ def track_a_solution(root, H, S, G, solution, list_place):
             root_numbers_in_H.append([nd for nd in list(H.node(data=True)) if nd[1]['s'] == left_child['s'] and nd[1]['t'] == left_child['t']][0][0])
             root_numbers_in_solution.append(solution_number_of_nodes-1)
             root_numbers_in_solution.append(solution_number_of_nodes-1)
-    print('     solution number %s is: \n   %s' % (str(list_place),str(solution.nodes(data=True))))
+    #print('     solution number %s is: \n   %s' % (str(list_place),str(solution.nodes(data=True))))
     print('Finished tracking ' + str(list_place) + 'th solution...\n')
     return solution, new_nodes_table
 
@@ -447,13 +445,12 @@ def find_number_of_cooptimal(H,G,S,k):
         nd = H.nodes(data=True)[nd]
         if (nd['s'] == G.seed_node.label and nd['t'] == S.seed_node.label):
             optimal_cost = nd['l'][0]['cost']
-            print(optimal_cost)
             for j in range(1, len(nd['l'])):
                 if nd['l'][j]['cost'] == optimal_cost:
                     counter += 1
                 else:
-                    print ('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]),str(counter)))
+                    #print ('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]),str(counter)))
                     quit()
-            print('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]), str(counter)))
+            #print('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]), str(counter)))
             quit()
     print('Finished computing number of co-optimal solutions.'+str(counter))
