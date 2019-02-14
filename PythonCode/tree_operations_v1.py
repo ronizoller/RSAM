@@ -43,7 +43,7 @@ def is_not_ancestor (nd,x):
         return ans
 
 def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
-    print('Coloring internal vertices of S...')
+    #print('Coloring internal vertices of S...')
     for u in tree.postorder_node_iter():
         tree_internal_colors.update({u.label: [0, 0]})
 
@@ -71,7 +71,7 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
                 blacks += tree_internal_colors[child[i].label][1]
                 i += 1
                 tree_internal_colors.update({u.label: [reds, blacks]})
-    print('Finished coloring internal vertices of S...')
+    #print('Finished coloring internal vertices of S...')
     return tree_internal_colors
 
 def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,max_distance,distance_flag,evol,compare_solutions,k):

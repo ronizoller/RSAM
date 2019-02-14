@@ -79,11 +79,11 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
             all_leafs_v = reds_under_v + blacks_under_v
             all_leafs_w = reds_under_w + blacks_under_w
 
-            #print('       %s (v = %s, w = %s)\n     all_leafs_v: %s, all_leafs_w: %s' % (u['label'] ,str(v['label']),str(w['label']),str(all_leafs_v), str(all_leafs_w)))
-            #print('     %s (v = %s, w = %s) :\n        [red HT v: %s ,black HT v: %s], [red HT w: %s ,black HT w: %s]\n      [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n       edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n' %
-            #     (u['label'] ,str(v['label']),str(w['label']),str(v_red_HT),str(v_black_HT),str(w_red_HT),str(w_black_HT),
-            #       str(reds_under_v/all_leafs_v),str(blacks_under_v/all_leafs_v),str(reds_under_w/all_leafs_w),str(blacks_under_w/all_leafs_w),
-            #       str(u['edges_in_subtree']),str(v['edges_in_subtree']),str(w['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree)))
+            print('       %s (v = %s, w = %s)\n     all_leafs_v: %s, all_leafs_w: %s' % (u['label'] ,str(v['label']),str(w['label']),str(all_leafs_v), str(all_leafs_w)))
+            print('     %s (v = %s, w = %s) :\n        [red HT v: %s ,black HT v: %s], [red HT w: %s ,black HT w: %s]\n      [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n       edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n       TH_both: %s\n' %
+                 (u['label'] ,str(v['label']),str(w['label']),str(v_red_HT),str(v_black_HT),str(w_red_HT),str(w_black_HT),
+                   str(reds_under_v/all_leafs_v),str(blacks_under_v/all_leafs_v),str(reds_under_w/all_leafs_w),str(blacks_under_w/all_leafs_w),
+                   str(u['edges_in_subtree']),str(v['edges_in_subtree']),str(w['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree),str(TH_both)))
             if not compare_subtrees:
                 if not both:
                     if v['edges_in_subtree'] > TH_edges_in_subtree and w['edges_in_subtree'] > TH_edges_in_subtree:

@@ -1,5 +1,5 @@
 
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -42,11 +42,11 @@ D_cost = 1
 S_cost = 0
 
 number_of_marked_vertices = 1
-marked_vertex = []
+planted_vertices = []
 input = open(path + '/saved_data/marked_nodes_correct_names.txt', 'r')
 for line in input:
-    marked_vertex.append(eval(line))
-marked_vertex = marked_vertex[0]
+    planted_vertices.append(eval(line))
+planted_vertices = planted_vertices[0]
 random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
@@ -270,7 +270,10 @@ def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
     print('Finished weighting G...')
     return G_nodes_to_weight
 
-def RSAM_finder_multithread(noise_level):
+def RSAM_finder_multithread(parameters):
+    noise_level = parameters[0]
+    TH_both = parameters[1]
+
     list_of_scores_for_rand_num = {}
     random_for_prec_curr = random_for_prec
     for rand_num in range (0, random_for_prec_curr):
@@ -418,7 +421,7 @@ def extract_and_tarce_a_solution(parameters):
 ##********  MAIN ***********
 
 def main():
-    global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,marked_vertex, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+    global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,planted_vertices, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
     starting_time = datetime.now()
 
     all_vertices_with_index = {}
@@ -483,7 +486,23 @@ def main():
 
             if H == None:
                 quit()
-            for TH_both in [0,0.2,0.4,0.6,0.8,1]:
+            list_of_TH_both = [0,0.2,0.4,0.6,0.8,1]
+            parameters = []
+            p = Pool(15)
+            for i in range(0, len(list_of_TH_both)):
+                parameters.append([noise_level_list[0], list_of_TH_both[i]])
+            list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
+            ind = 0
+            for res in list_of_RSAM_results:
+                all_vertices_with_index.update({list_of_TH_both[ind]: res})
+                ind += 1
+            print('all_vertices_with_index: %s' % str(all_vertices_with_index))
+            print('Planted_vertices: %s' % str(marked_vertex))
+            file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
+            file.write(str(all_vertices_with_index))
+            file.close()
+            for TH_both in list_of_TH_both:
+
                 all_marked = []
                 new_G = {}
                 solutions = {}
@@ -516,7 +535,7 @@ def main():
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
                 if (not on_lab) and (TH_both == 0):
-                    draw.draw_new_G2([], colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
+                    draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
                                      TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
                                      pattern,
                                      big_size, evolutinary_event, compare_subtrees, 1)
@@ -577,22 +596,22 @@ def main():
     #print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
+    parameters = []
     p = Pool(15)
-    #for i in range(0,len(noise_level_list)):
-    #    noise_level_list[i] = (noise_level_list[i])
-    list_of_results = p.map(RSAM_finder_multithread, noise_level_list)
+    for i in range(0,len(noise_level_list)):
+        parameters.append([noise_level_list[i],TH_both])
+    list_of_results = p.map(RSAM_finder_multithread, parameters)
     ind = 0
     for res in list_of_results:
         all_vertices_with_index.update({noise_level_list[ind]:res})
         ind += 1
     print('all_vertices_with_index: %s' % str(all_vertices_with_index))
-    print('marked_vertex: %s' % str(marked_vertex))
-    file = open(path + '/saved_data/all_vertices_with_index.txt', 'w')
+    print('Planted vertices: %s' % str(marked_vertex))
+    file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
     file.write(str(all_vertices_with_index))
+
     file.close()
-    file = open(path + '/saved_data/marked_vertex.txt', 'w')
-    file.write(str(marked_vertex))
-    file.close()
+
     if not on_lab:
         draw.draw_plot(all_vertices_with_index,path,marked_vertex)
     print('Running time: '+str(datetime.now()-starting_time))
