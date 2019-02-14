@@ -37,7 +37,7 @@ TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
 number_of_leaves = 200
-noise_level = [10]
+noise_level = [0]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
@@ -64,7 +64,7 @@ def randome_leave_from_tree(t,number_of_leaves,dend):
     ran = (randint(1,number_of_leaves))
     i = 1
     if dend:
-        for leaf in t.leaf_iter():
+        for leaf in t.leaf_node_iter():
             if i == ran:
                 return leaf
             else:
@@ -207,8 +207,8 @@ def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
         all_leafs_father = all_leafs_v
     father_to_change_in_G = G.find_node(lambda n: (n.label == father_to_change['label']))
     for to_change in father_to_change_in_G.leaf_nodes():
-        #print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
-        #str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
+        print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
+        str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
         if color_under_father/all_leafs_father < TH_both:
             colors = change_color_of_vertex(to_change,colors,color,sigma,False)
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
@@ -260,27 +260,27 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
                     #     str(TH_edges_in_subtree), str(TH_pattern_in_subtree)))
                     if not both:
                         if blacks_under_w / all_leafs_w > TH_both:
-                            #print('     %s is black' % str(w))
+                            print('     %s is black' % str(w))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'red',
                                           max_dis,S_dis_matrix)
                         elif blacks_under_v / all_leafs_v > TH_both:
-                            #print('     %s is black' % str(v))
+                            print('     %s is black' % str(v))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'red',
                                                                                      max_dis, S_dis_matrix)
                         elif reds_under_w / all_leafs_w > TH_both:
-                            #print('     %s is red' % str(w))
+                            print('     %s is red' % str(w))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'black',
                                                                                      max_dis, S_dis_matrix)
                         elif reds_under_v / all_leafs_v > TH_both:
-                            #print('     %s is red' % str(v))
+                            print('     %s is red' % str(v))
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'black',
                                                                                      max_dis, S_dis_matrix)
                         else:
-                            #print('     Changing color in order to create a good pattern')
+                            print('     Changing color in order to create a good pattern')
                             number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'all')
                             colors, father_to_change, color, G_internal_colors, old_colors, old_internal_G_colors, S, S_colors, old_S, old_S_colors = change_colors(v, w, colors,
                                                                                                G_internal_colors,S_colors,

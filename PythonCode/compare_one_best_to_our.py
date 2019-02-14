@@ -3,7 +3,7 @@ sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import numpy as np
 import matplotlib.pyplot as plt
 import utiles
-on_lab = False
+on_lab = True
 if on_lab:
     path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
 else:
