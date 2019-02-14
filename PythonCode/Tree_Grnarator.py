@@ -12,11 +12,12 @@ import inits_v1 as inits
 import draw
 import os
 import numpy
+import EfficiantVersion as effi
 from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = True
+on_lab = False
 compare = True
 if on_lab:
     if compare:
@@ -31,7 +32,7 @@ number_of_marked_vertices = 1
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 200
+k = 100
 both = False
 TH_both = 0.8
 compare_subtrees = True

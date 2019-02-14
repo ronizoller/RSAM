@@ -1,5 +1,5 @@
 
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -33,7 +33,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 210
+k = 110
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -60,7 +60,7 @@ TH_compare_subtrees = 1
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 10                                  #will check for each i=0 to iteration the solution i*factor
+    iterations = 4                                  #will check for each i=0 to iteration the solution i*factor
     factor = 20
 
 ####FOR HT EVOLUTNARY EVENTS###
@@ -331,7 +331,7 @@ def RSAM_finder_multithread(parameters):
         S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
         nodes_table = inits.init_nodes_table(S, G, nodes_table)
 
-        H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+        H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                          nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                          sigma)
 
@@ -484,11 +484,11 @@ def main():
         if iterations * factor < k:
             all_marked_for_TH = {}
             all_unmarked_for_TH = {}
-            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+            H, max_prob = effi.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
 
             if H == None:
                 quit()
-            list_of_TH_both = utiles.frange(0,1.1,0.1)
+            list_of_TH_both = utiles.frange(0,1,0.1)
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH_both)):

@@ -1,7 +1,7 @@
 import math
 import tree_operations
 import networkx as nx
-import EfficiantVersion
+import EfficiantVersion as effi
 import random
 
 def find_max_S_d(max_S_d, S_dis_matrix):
@@ -72,7 +72,6 @@ def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
 def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
     print('Initialasing efficient hypergraph leafs...')
     for leaf in G.leaf_nodes():
-        subtree.update({leaf: {}})
         if not tree_operations.isolated(leaf):
             H.add_node(H_number_of_nodes,s=leaf.label,t=sigma[leaf.label],l=list())
             big_node = H_number_of_nodes
@@ -85,18 +84,27 @@ def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree)
                 new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
                 H.nodes[big_node]['l'].insert(i,new_item)
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
-        for x in S.find_node (lambda n: (n.label == sigma[leaf.label])).ancestor_iter():
-            subtree[leaf].update({x:[(0,EfficiantVersion.find_nodes_in_hypergraph(H, leaf.label, x.label, 0, nodes_table))]})
     print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table,subtree
 
-def init_taxon_to_label_table(S,G,sigma):
+def init_taxon_to_label_table(S,G,sigma,):
     S_labels_table = {}
     G_labels_table = {}
     for leaf_S in S.leaf_nodes():
         S_labels_table.update({leaf_S.taxon.label:leaf_S.label})
     for leaf_G in G.leaf_nodes():
         G_labels_table.update({sigma[leaf_G].taxon.label: leaf_G.label})
+
+def init_dict_inf(H,S,G,k,nodes_table):
+    res = {}
+    for u in G.postorder_node_iter():
+        res.update({u.label:{}})
+        for x in S.postorder_node_iter():
+            if effi.find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table) != []:
+                res[u.label].update({x.label:[effi.find_nodes_in_hypergraph(H, u.label, x.label, i, nodes_table)[0] for i in range (0,k)]})
+            else:
+                res[u.label].update({x.label: []})
+    return res
 
 def update_sigma(S, G, k, sigma, test, path,exect_names):
     print('Updating sigma...')

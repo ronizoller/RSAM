@@ -1,6 +1,7 @@
 import math
 import tree_operations
 import utiles
+import EfficiantVersion as effi
 
 def check_precentage(num,k):
     num = num/k
@@ -257,26 +258,46 @@ def frange(start,end,step):
         i += step
     return res
 
-def kmin_positive (l,k):
+def kmin_positive (l,k,H,nodes_table):
+    l_temp = l.copy()
     res = []
-    for i in range(0,min([len(l),k])):
-        temp_index = l.index(min([x[0] for x in l]))
-        temp_item = l[temp_index]
-        l.remove(l[temp_index])
-        res.append(temp_item)
+    #print('l: ' + str(l))
+    for i in range(0,min([len(l_temp),k])):
+        min_ind = [x[1]['cost'] for x in l_temp].index(min([x[1]['cost'] for x in l_temp]))
+        temp_item = l_temp[min_ind]
+        if temp_item[1]['cost'] == math.inf:
+            return res
+        l_temp.remove(l_temp[min_ind])
+        if type(temp_item) == tuple:
+            res.append(temp_item)
+        else:
+            res.append(
+                effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
+    #if len(l) < k:
+    #    res = res +[(math.inf,None)]*(k-len(l))
     return res
 
-def kmin_list(l,subtree1,subtree2,k):
-    list_of_values = [nd['cost'] for nd in l] + [x[1] for x in subtree1] + [x[1] for x in subtree2]
+def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
+    if l_input != []:
+        node_index = l_input[0][0]
+        l_new = (l_input[0][1]['l']).copy()
+        l = [(node_index,item) for item in l_new] + subtree1.copy() + subtree2.copy()
+        list_of_values = [nd[1]['cost'] for nd in l]
+    else:
+        l = subtree1.copy() + subtree2.copy()
+        list_of_values = [x[1]['cost'] for x in subtree1 + subtree2]
     res = []
-    for i in range(0,min([k,len(list_of_values)])):
-        temp_index = l.index(min(list_of_values))
-        if temp_index < len(l):
-            temp_item = l[temp_index]
-        elif temp_index < len(l) + len(subtree1):
-            temp_item = subtree1[temp_index-len(l)]
-        else:
-            temp_item = subtree2[temp_index-len(l)-len(subtree1)]
+    end = len(list_of_values)
+    for i in range(0,min([k,end])):
+        temp_index = list_of_values.index(min(list_of_values))
+        temp_item = l[temp_index]
+        #print('l: ' + str(l))
+        #print('temp_index: %s, min value: %s,list of values: %s\n\n' % (str(temp_index),str(temp_item),str(list_of_values)))
         l.remove(l[temp_index])
-        res.append(temp_item)
+        list_of_values.remove(list_of_values[temp_index])
+        if type(temp_item) == tuple:
+            res.append(temp_item)
+        else:
+            res.append(
+                effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
     return res

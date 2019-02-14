@@ -49,6 +49,8 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
         H_number_of_nodes = (len(H.nodes()))
     else:
         H, H_number_of_nodes, nodes_table, subtree = inits.init_leafs_efficient(S,G, H, k, 0,sigma,nodes_table,subtree)
+        incomp = inits.init_dict_inf(H,S,G,k,nodes_table)
+        subtree = inits.init_dict_inf(H,S,G,k,nodes_table)
         for u in G.postorder_node_iter():
             subtree.update({u:{}})
 
@@ -60,10 +62,13 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
                 for x in S.postorder_node_iter():
                     key_counter = 0
                     temp_iter += 1
-                    SE = list(map(lambda nd:(nd,'S'), SpeciationEvent_effi(u, x, S_cost,subtree)))
-                    DE = list(map(lambda nd:( nd,'D'),DuplicationEvent_effi(H, u, x, D_cost,nodes_table,subtree)))
-                    HTE = list(map(lambda nd:(nd,'HT'), HTEvent_effi(u, x, HT_cost,subtree,incomp)))
-
+                    S_list,subtree = SpeciationEvent_effi(u, x, S_cost,subtree,k,H,nodes_table)
+                    SE = list(map(lambda nd:(nd,'S'), S_list))
+                    D_list,subtree = DuplicationEvent_effi(H, u, x, D_cost,nodes_table,subtree,k)
+                    DE = list(map(lambda nd:( nd,'D'),S_list))
+                    HT_list,subtree,incomp = HTEvent_effi(u, x, HT_cost,subtree,incomp,k,H,nodes_table)
+                    HTE = list(map(lambda nd:(nd,'HT'),HT_list ))
+                    #print('SE: %s\nDE: %s\nHT: %s' % (str(SE),str(DE),str(HTE)))
                     Kbest = SE+DE+HTE
                     random.shuffle(Kbest,random.random)
                     heapq.heapify(Kbest)
@@ -97,7 +102,7 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
 
                             new_node1 = find_nodes_in_hypergraph(H, match1[1]['s'], match1[1]['t'], match1[1]['list_place']+1, nodes_table)
                             new_node2 = find_nodes_in_hypergraph(H, match2[1]['s'], match2[1]['t'],match2[1]['list_place']+1, nodes_table)
-                            if (new_node1!=[] and new_node2!=[]):
+                            if (new_node1 != [] and new_node2 != []):
                                 new_node1 = new_node1[0]
                                 new_node2 = new_node2[0]
                                 if event=='D':
@@ -119,17 +124,17 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
                     if not tree_operations.is_a_leaf(x):
                         y = x.adjacent_nodes()[0]
                         z = x.adjacent_nodes()[1]
-                        subtree[u][x] = utiles.kmin_list(find_nodes_in_hypergraph(H,u.label,x.label,-1,nodes_table)['l'],subtree[u][y],subtree[u][z])
+                        subtree[u.label][x.label] = utiles.kmin_list(find_nodes_in_hypergraph(H,u.label,x.label,-1,nodes_table),subtree[u.label][y.label],subtree[u.label][z.label],k,H,nodes_table)
                     else:
-                        subtree[u][x] = utiles.kmin_list(
-                            find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table)['l'])
+                        subtree[u.label][x.label] = utiles.kmin_list(
+                            find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table),[],[],k,H,nodes_table)
             for x in S.postorder_node_iter():
                 if not tree_operations.is_a_leaf(x):
                     y = x.adjacent_nodes()[0]
                     z = x.adjacent_nodes()[1]
-                    print('u: %s, subtree: %s, incomp: %s' % (str(u),str(subtree),str(incomp)))
-                    incomp.update({u: {y: utiles.kmin_list(incomp[u][z],subtree[u][z])}})
-                    incomp.update({u: {z: utiles.kmin_list(incomp[u][z], subtree[u][y])}})
+                    #print('subtree: %s\nicomp: %s' % (str(subtree),str(incomp)))
+                    incomp[u.label][y.label] = utiles.kmin_positive(incomp[u.label][z.label]+subtree[u.label][z.label],k,H,nodes_table)
+                    incomp[u.label][z.label] = utiles.kmin_positive(incomp[u.label][z.label]+subtree[u.label][y.label],k,H,nodes_table)
         print('     Writing nodes...')
         file = open(path+'/saved_data/H_nodes_k='+str(k)+'_alpha='+str(alpha)+'.txt', 'w')
         file.write(str(H.nodes(data=True)))
@@ -169,7 +174,7 @@ def find_nodes_in_hypergraph(H, s, t, lp, nodes_table):
         else:
             return []
 
-def SpeciationEvent_effi (u, x, S_cost,subtree):
+def SpeciationEvent_effi (u, x, S_cost,subtree,k,H,nodes_table):
     heap = []
     if tree_operations.has_right_child(u) and tree_operations.has_left_child(u):
         w = u.adjacent_nodes()[0]
@@ -178,10 +183,10 @@ def SpeciationEvent_effi (u, x, S_cost,subtree):
             if (tree_operations.has_left_child(x)) and (tree_operations.has_right_child(x)):
                 y = x.adjacent_nodes()[0]
                 z = x.adjacent_nodes()[1]
-                list_v_to_left =  utiles.kmin(subtree[v][y])
-                list_w_to_left = utiles.kmin(subtree[w][y])
-                list_v_to_right = utiles.kmin(subtree[v][z])
-                list_w_to_right = utiles.kmin(subtree[w][z])
+                list_v_to_left = utiles.kmin_positive(subtree[v.label][y.label],k,H,nodes_table)
+                list_w_to_left = utiles.kmin_positive(subtree[w.label][y.label],k,H,nodes_table)
+                list_v_to_right = utiles.kmin_positive(subtree[v.label][z.label],k,H,nodes_table)
+                list_w_to_right = utiles.kmin_positive(subtree[w.label][z.label],k,H,nodes_table)
 
                 for hyper_node1 in list_v_to_right:
                     for hyper_node2 in list_w_to_left:
@@ -191,9 +196,9 @@ def SpeciationEvent_effi (u, x, S_cost,subtree):
                     for hyper_node2 in list_w_to_right:
                         heapq.heappush(heap,utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+S_cost,hyper_node1,hyper_node2))
 
-    return heap
+    return heap,subtree
 
-def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree):
+def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
     heap = []
     if (not tree_operations.is_a_leaf(x)):
         list_v_to_right = []
@@ -206,18 +211,19 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree):
             w = u.adjacent_nodes()[1]
         if tree_operations.has_right_child(x):
             y = x.adjacent_nodes()[0]
-            list_v_to_left = utiles.kmin(subtree[v][y])
-            list_w_to_left = utiles.kmin(subtree[w][y])
+            list_v_to_left = utiles.kmin_positive(subtree[v.label][y.label],k,H,nodes_table)
+            list_w_to_left = utiles.kmin_positive(subtree[w.label][y.label],k,H,nodes_table)
         if tree_operations.has_left_child(x):
             z = x.adjacent_nodes()[1]
-            list_v_to_right = utiles.kmin(subtree[v][z])
-            list_w_to_right = utiles.kmin(subtree[w][z])
+            list_v_to_right = utiles.kmin_positive(subtree[v.label][z.label],k,H,nodes_table)
+            list_w_to_right = utiles.kmin_positive(subtree[w.label][z.label],k,H,nodes_table)
         for hyper_node1 in list_v_to_right:
             for hyper_node2 in list_w_to_right:
                 heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                                 hyper_node2))
             hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
-            heapq.heappush(heap,
+            if hyper_node2 != []:
+                heapq.heappush(heap,
                            utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                              hyper_node2))
         for hyper_node1 in list_v_to_left:
@@ -225,34 +231,39 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree):
                 heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                                 hyper_node2))
             hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
-            heapq.heappush(heap,
+            if hyper_node2 != []:
+                heapq.heappush(heap,
                            utiles.heap_items(hyper_node1[1]['cost'] + hyper_node1[1]['cost'] + D_cost, hyper_node1,
                                              hyper_node2))
         for hyper_node in list_w_to_right:
             hyper_node2 = find_nodes_in_hypergraph(H, v.label, x.label, 0,nodes_table)
-            heapq.heappush(heap,
+            if hyper_node2 != []:
+                hyper_node2 = hyper_node2[0]
+                heapq.heappush(heap,
                            utiles.heap_items(hyper_node[1]['cost'] + hyper_node2[1]['cost'] + D_cost,
                                              hyper_node1,
                                              hyper_node2))
         for hyper_node in list_w_to_left:
             hyper_node2 = find_nodes_in_hypergraph(H, v.label, x.label, 0,nodes_table)
-            heapq.heappush(heap,
+            if hyper_node2 != []:
+                hyper_node2 = hyper_node2[0]
+                heapq.heappush(heap,
                            utiles.heap_items(hyper_node[1]['cost'] + hyper_node2[1]['cost'] + D_cost,
                                              hyper_node1,
                                              hyper_node2))
 
-    return heap
+    return heap,subtree
 
-def HTEvent_effi (u, x, HT_cost,subtree,incomp):
+def HTEvent_effi (u, x, HT_cost,subtree,incomp,k,H,nodes_table):
     heap = []
     v = u.adjacent_nodes()[0]                                                                                       #left child
     w = u.adjacent_nodes()[1]                                                                                       #right child
 
-    list_v_to_subtree = utiles.kmin(subtree[v][x])
-    list_w_to_subtree = utiles.kmin(subtree[w][x])
+    list_v_to_subtree = utiles.kmin_positive(subtree[v.label][x.label],k,H,nodes_table)
+    list_w_to_subtree = utiles.kmin_positive(subtree[w.label][x.label],k,H,nodes_table)
 
-    list_v_horizontally = utiles.kmin(incomp[v][x])
-    list_w_horizontally = utiles.kmin(incomp[w][x])
+    list_v_horizontally = utiles.kmin_positive(incomp[v.label][x.label],k,H,nodes_table)
+    list_w_horizontally = utiles.kmin_positive(incomp[w.label][x.label],k,H,nodes_table)
 
     for hyper_node1 in list_v_to_subtree:
         for hyper_node2 in list_w_horizontally:
@@ -261,7 +272,7 @@ def HTEvent_effi (u, x, HT_cost,subtree,incomp):
     for hyper_node1 in list_w_to_subtree:
         for hyper_node2 in list_v_horizontally:
             heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+HT_cost,hyper_node1, hyper_node2))
-    return heap
+    return heap,subtree,incomp
 
 def calculate_color_diffrence(H, G, S, colors, k, nodes_table, test, real):
     alpha0_map = {}
