@@ -256,3 +256,27 @@ def frange(start,end,step):
         res.append(i)
         i += step
     return res
+
+def kmin_positive (l,k):
+    res = []
+    for i in range(0,min([len(l),k])):
+        temp_index = l.index(min([x[0] for x in l]))
+        temp_item = l[temp_index]
+        l.remove(l[temp_index])
+        res.append(temp_item)
+    return res
+
+def kmin_list(l,subtree1,subtree2,k):
+    list_of_values = [nd['cost'] for nd in l] + [x[1] for x in subtree1] + [x[1] for x in subtree2]
+    res = []
+    for i in range(0,min([k,len(list_of_values)])):
+        temp_index = l.index(min(list_of_values))
+        if temp_index < len(l):
+            temp_item = l[temp_index]
+        elif temp_index < len(l) + len(subtree1):
+            temp_item = subtree1[temp_index-len(l)]
+        else:
+            temp_item = subtree2[temp_index-len(l)-len(subtree1)]
+        l.remove(l[temp_index])
+        res.append(temp_item)
+    return res

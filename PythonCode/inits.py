@@ -1,7 +1,7 @@
 import math
 import tree_operations
 import networkx as nx
-from numpy import inf
+import EfficiantVersion
 import random
 
 def find_max_S_d(max_S_d, S_dis_matrix):
@@ -68,6 +68,27 @@ def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
     print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table
+
+def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
+    print('Initialasing efficient hypergraph leafs...')
+    for leaf in G.leaf_nodes():
+        subtree.update({leaf: {}})
+        if not tree_operations.isolated(leaf):
+            H.add_node(H_number_of_nodes,s=leaf.label,t=sigma[leaf.label],l=list())
+            big_node = H_number_of_nodes
+            H_number_of_nodes += 1
+            for i in range(0,k):
+                if i==0:
+                    cost=0
+                else:
+                    cost=math.inf
+                new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
+                H.nodes[big_node]['l'].insert(i,new_item)
+            nodes_table[sigma[leaf.label]][leaf.label] = big_node
+        for x in sigma[leaf.label].ancestor_iter():
+            subtree[leaf].update({x:[(0,EfficiantVersion.find_nodes_in_hypergraph(H, leaf.label, x.label, 0, nodes_table))]})
+    print('Finished initialasing hypergraph leafs.\n')
+    return H,H_number_of_nodes, nodes_table,subtree
 
 def init_taxon_to_label_table(S,G,sigma):
     S_labels_table = {}
