@@ -17,7 +17,7 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = False
+on_lab = True
 compare = True
 if on_lab:
     if compare:
@@ -32,12 +32,12 @@ number_of_marked_vertices = 1
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 100
+k = 200
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 200
+number_of_leaves = 300
 noise_level = [0]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %

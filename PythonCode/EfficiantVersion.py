@@ -223,6 +223,7 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
                                                 hyper_node2))
             hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
             if hyper_node2 != []:
+                hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
                            utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                              hyper_node2))
@@ -232,6 +233,7 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
                                                 hyper_node2))
             hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
             if hyper_node2 != []:
+                hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
                            utiles.heap_items(hyper_node1[1]['cost'] + hyper_node1[1]['cost'] + D_cost, hyper_node1,
                                              hyper_node2))

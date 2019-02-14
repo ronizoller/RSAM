@@ -1,5 +1,5 @@
 
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = True
 
 if on_lab:
@@ -33,7 +33,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 110
+k = 210
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -474,7 +474,7 @@ def main():
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
-    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
+    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
 
     H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
