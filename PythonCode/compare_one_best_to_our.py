@@ -21,7 +21,7 @@ planted_vertex_input = open(path + '/saved_data/marked_nodes_correct_names.txt',
 for line in planted_vertex_input:
     planted_vertex.append(eval(line))
 all_marked = []
-marked_input = open(path + '/saved_data/all_marked_nodes_for_TH.txt', 'r')
+marked_input = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'r')
 for line in marked_input:
     all_marked.append(eval(line))
 all_marked = all_marked[0]

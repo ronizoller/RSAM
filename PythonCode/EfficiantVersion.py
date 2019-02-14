@@ -48,9 +48,10 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
         H.add_edges_from(new_edges)
         H_number_of_nodes = (len(H.nodes()))
     else:
-        H, H_number_of_nodes, nodes_table, subtree = inits.init_leafs_efficient(G, H, k, 0,sigma,nodes_table,subtree)
+        H, H_number_of_nodes, nodes_table, subtree = inits.init_leafs_efficient(S,G, H, k, 0,sigma,nodes_table,subtree)
         for u in G.postorder_node_iter():
             subtree.update({u:{}})
+
             if not tree_operations.is_a_leaf(u):
                 if (tree_operations.has_right_child(u)):
                     v = u.adjacent_nodes()[0]
@@ -126,6 +127,7 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
                 if not tree_operations.is_a_leaf(x):
                     y = x.adjacent_nodes()[0]
                     z = x.adjacent_nodes()[1]
+                    print('u: %s, subtree: %s, incomp: %s' % (str(u),str(subtree),str(incomp)))
                     incomp.update({u: {y: utiles.kmin_list(incomp[u][z],subtree[u][z])}})
                     incomp.update({u: {z: utiles.kmin_list(incomp[u][z], subtree[u][y])}})
         print('     Writing nodes...')

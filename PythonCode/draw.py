@@ -348,8 +348,8 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
 
     nx.draw_networkx_edges(S_to_draw, postree_S,ax=ax[0])
     nx.draw_networkx_edges(G_to_draw, postree_G,ax=ax[1])
-
-    plt.savefig(path + '/figures/S+G'+ext+'.png')
+    plt.show()
+    #plt.savefig(path + '/figures/S+G'+ext+'.png')
     print('Drawing S and G')
 
 def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, labels, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,compare_subtrees,evolutinary_event,pattern,iterations, factor,size):

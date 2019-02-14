@@ -22,6 +22,7 @@ import inits_v1 as inits
 import draw
 import hypergraph_v1 as hypergraph
 import pattern_identify_v4 as pattern_identify
+import EfficiantVersion as effi
 from multiprocessing import Pool
 from datetime import datetime
 
@@ -473,8 +474,9 @@ def main():
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
+    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
 
-    H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+    H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                      sigma)
     if check_diffreance_between_solutions:
@@ -486,7 +488,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH_both = [0,0.2,0.4,0.6,0.8,1]
+            list_of_TH_both = utiles.frange(0,1.1,0.1)
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH_both)):
@@ -494,15 +496,13 @@ def main():
             list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
             ind = 0
             for res in list_of_RSAM_results:
-                all_vertices_with_index.update({list_of_TH_both[ind]: res})
+                all_vertices_with_index.update({list_of_TH_both[ind]: [res]})
                 ind += 1
             print('all_vertices_with_index: %s' % str(all_vertices_with_index))
-            print('Planted_vertices: %s' % str(marked_vertex))
             file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_vertices_with_index))
             file.close()
             for TH_both in list_of_TH_both:
-
                 all_marked = []
                 new_G = {}
                 solutions = {}

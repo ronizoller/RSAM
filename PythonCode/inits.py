@@ -69,7 +69,7 @@ def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
     print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table
 
-def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
+def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
     print('Initialasing efficient hypergraph leafs...')
     for leaf in G.leaf_nodes():
         subtree.update({leaf: {}})
@@ -85,7 +85,7 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
                 new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
                 H.nodes[big_node]['l'].insert(i,new_item)
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
-        for x in sigma[leaf.label].ancestor_iter():
+        for x in S.find_node (lambda n: (n.label == sigma[leaf.label])).ancestor_iter():
             subtree[leaf].update({x:[(0,EfficiantVersion.find_nodes_in_hypergraph(H, leaf.label, x.label, 0, nodes_table))]})
     print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table,subtree
