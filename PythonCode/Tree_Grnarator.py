@@ -17,7 +17,7 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = True
+on_lab = False
 compare = True
 minimum_HT_under_planted = 3
 if on_lab:
@@ -33,12 +33,12 @@ number_of_marked_vertices = 1
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 200
+k = 50
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 300
+number_of_leaves = 150
 noise_level = [0]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
@@ -128,6 +128,7 @@ def number_of_HT_needed(u,all_random_sources,TH,color):
 
 def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix):
     HT_sources_for_subtree = [None]     #to chack if HT has already been choose
+    HT_targets_for_subtree = {}
     list_of_answers = []               #to return
     for i in range(0, number_of_HT):
         #print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
@@ -159,10 +160,17 @@ def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fh
                                                           Pr_black, p, color, G_internal_colors,[])
                         #print('Dis between %s and %s is %s, max: %s' % (str(HT_source_in_S.label), str(x), str(dis),str(max_dis)))
             if HT_to[0]:
-                #print('     Found HT target')
-                #print('     HT: %s' % str(HT))
-                #print('     HT_to: %s\n' % str(HT_to))
-                list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
+                print('HT_to: '+str(HT_to[1])+' HT_targets_for_subtree: '+str(HT_targets_for_subtree))
+                if HT_to[1]['label'] in HT_targets_for_subtree:                  ## it is possible to map only 2 verices to 1 species
+                    if HT_targets_for_subtree[HT_to[1]['label']] == 1:
+                        #print('     Found HT target')
+                        #print('     HT: %s' % str(HT))
+                        #print('     HT_to: %s\n' % str(HT_to))
+                        list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
+                        HT_targets_for_subtree[HT_to[1]['label']] = 2
+                else:
+                    list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
+                    HT_targets_for_subtree.update({HT_to[1]['label']:1})
             else:
                 return nCr_lookup_table, fact_lookup_table, (False, list_of_answers)
         else:
@@ -209,8 +217,8 @@ def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
         all_leafs_father = all_leafs_v
     father_to_change_in_G = G.find_node(lambda n: (n.label == father_to_change['label']))
     for to_change in father_to_change_in_G.leaf_nodes():
-        print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
-        str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
+        #print('     Color: %s, vertex: %s, color under/all leaf: %s, TH: %s' % (
+        #str(color), str(father_to_change), str(color_under_father / all_leafs_father), str(TH_both)))
         if color_under_father/all_leafs_father < TH_both:
             colors = change_color_of_vertex(to_change,colors,color,sigma,False)
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
@@ -233,7 +241,6 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
     Pr_black = total_black / num_of_leafs
     for u in list(reversed(list(nx.topological_sort(new_G)))):
         old_colors = colors.copy()
-        old_internal_G_colors = G_internal_colors.copy()
         old_internal_G_colors = G_internal_colors.copy()
         old_S = S
         old_S_colors = S_colors.copy()
@@ -428,6 +435,7 @@ def save_edgelist(S_dis_matrix):
 
 def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make):
     print('Updating sigma..')
+    print('couple_list: %s' % str(couples_list))
     for i in range(0,len(couples_list)):
         HT = couples_list[i][0]
         HT_to = couples_list[i][1]
@@ -441,9 +449,7 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make):
         r_leafs_HT_to, l_leafs_HT_to = tree_operations.leaf_in_subtrees(S,'S', HT_to_in_S, old_sigma,True)
         all_leafs_HT_to = r_leafs_HT_to+l_leafs_HT_to
 
-        if len(all_HT_leafs) < number_of_HT_to_make:
-            number_of_HT_to_make = len(all_HT_leafs)
-
+        number_of_HT_to_make = min([number_of_HT_to_make,len(all_HT_leafs),len(all_leafs_HT_to)])
         if len(all_leafs_HT_to) == 0:
             all_leafs_HT_to = [HT_to_in_S.taxon.label]
         old_sigma_temp = old_sigma.copy()
@@ -452,8 +458,8 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make):
         changed = 0
         for u in all_HT_leafs:
             if changed < number_of_HT_to_make:
-                HT_to_in_S = S.find_node(lambda n: (n.label == 'x' + HT_to[1:]))
-                old_sigma.update({u:random.choice(all_leafs_HT_to)})
+                print('all_HT_leaf: %s\nall_leafs_HT_to: %s\nchanged: %s\nnumber_of_HT_to_make: %s' % (str(all_HT_leafs),str(all_leafs_HT_to),str(changed),str(number_of_HT_to_make)))
+                old_sigma.update({u:all_leafs_HT_to[changed]})
                 changed += 1
             else:
                 old_sigma.update({u: old_sigma_temp[u]})

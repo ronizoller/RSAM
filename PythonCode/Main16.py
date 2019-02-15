@@ -1,12 +1,12 @@
 
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = True
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+        path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
     else:
-        path = '/users/studs/bsc/2016//ronizo/PycharmProjects/RSAM/simulator_data/noise'
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
 else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
@@ -331,7 +331,7 @@ def RSAM_finder_multithread(parameters):
         S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
         nodes_table = inits.init_nodes_table(S, G, nodes_table)
 
-        H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+        H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                          nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                          sigma)
 
@@ -476,7 +476,7 @@ def main():
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
 
-    H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
+    H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k, temp_iter, H_number_of_nodes,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                      sigma)
     if check_diffreance_between_solutions:
@@ -484,11 +484,11 @@ def main():
         if iterations * factor < k:
             all_marked_for_TH = {}
             all_unmarked_for_TH = {}
-            H, max_prob = effi.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
 
             if H == None:
                 quit()
-            list_of_TH_both = utiles.frange(0,1,0.1)
+            list_of_TH_both = [0.8]
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH_both)):
@@ -606,14 +606,13 @@ def main():
         all_vertices_with_index.update({noise_level_list[ind]:res})
         ind += 1
     print('all_vertices_with_index: %s' % str(all_vertices_with_index))
-    print('Planted vertices: %s' % str(marked_vertex))
     file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
     file.write(str(all_vertices_with_index))
 
     file.close()
 
-    if not on_lab:
-        draw.draw_plot(all_vertices_with_index,path,marked_vertex)
+    #if not on_lab:
+        #draw.draw_plot(all_vertices_with_index,path,marked_vertex)
     print('Running time: '+str(datetime.now()-starting_time))
 
 if __name__ == "__main__":

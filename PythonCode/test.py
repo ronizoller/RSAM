@@ -1,3 +1,3 @@
-import time
-time.sleep(30)
-print('roni')
+dic = {'roni':'zoller'}
+if 'roni' in dic:
+    print(dic['roni'])
