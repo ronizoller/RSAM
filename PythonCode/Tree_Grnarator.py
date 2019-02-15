@@ -19,6 +19,7 @@ from datetime import datetime
 
 on_lab = True
 compare = True
+minimum_HT_under_planted = 3
 if on_lab:
     if compare:
         path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
@@ -118,12 +119,12 @@ def number_of_HT_needed(u,all_random_sources,TH,color):
     #    print('     number of HT needed under %s is %s' % (str(u), str(int(num_of_edges*0.05))))
     #    return int(num_of_edges*0.05)
     #else:
-    if int(TH*bad_HT)>0:
+    if int(TH*bad_HT) > 0:
         #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str((TH * bad_HT)+3), str(bad_HT)))
-        return int(TH*bad_HT)+3
+        return int(TH*bad_HT)+minimum_HT_under_planted
     else:
         #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(3), str(bad_HT)))
-        return 3
+        return minimum_HT_under_planted
 
 def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix):
     HT_sources_for_subtree = [None]     #to chack if HT has already been choose
@@ -151,7 +152,7 @@ def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fh
                 dis = S_dis_matrix[((HT_source_in_S.label, x.label))]
                 if not HT_to[0]:
                     if ((tree_operations.is_not_ancestor(HT_source_in_S, x)) and (
-                    tree_operations.is_not_ancestor(x, HT_source_in_S))) and dis > max_dis/2:
+                    tree_operations.is_not_ancestor(x, HT_source_in_S))) and dis > max_dis/2 and len(x.leaf_nodes()) > minimum_HT_under_planted:
                         x = tree_operations.find_node_in_networkx_tree(new_G, 'u' + x.label[1:])
                         nCr_lookup_table, fact_lookup_table,HT_to = find_enriched_subtree_rec(G, new_G, x, nCr_lookup_table,
                                                           fact_lookup_table, accur, Pr_red,
