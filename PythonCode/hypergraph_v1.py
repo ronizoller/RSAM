@@ -11,7 +11,7 @@ import random
 from numpy import inf
 
 
-def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
+def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
     print('Building hypergraph...')
     H = nx.MultiDiGraph()
     H.clear()
@@ -51,7 +51,6 @@ def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_
             if(not tree_operations.is_a_leaf(u)):
                 for x in S.postorder_node_iter():
                     key_counter = 0
-                    temp_iter += 1
                     SE = list(map(lambda nd:(nd,'S'), SpeciationEvent(H, u, x, S_cost, nodes_table)))
                     DE = list(map(lambda nd:( nd,'D'),DuplicationEvent(H, u, x, D_cost, nodes_table)))
                     HTE = list(map(lambda nd:(nd,'HT'), HTEvent(S, H, u, x, HT_cost, nodes_table)))

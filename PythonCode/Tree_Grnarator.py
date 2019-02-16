@@ -32,7 +32,6 @@ add_noise = False
 number_of_marked_vertices = 3
 S = Tree()
 G = Tree()
-new_G = nx.DiGraph()
 k = 100
 both = False
 TH_both = 0.8
@@ -42,17 +41,6 @@ noise_level = [0.5]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
-nCr_lookup_table = {}
-fact_lookup_table = {}
-colors = {}
-old_colors = {}
-sigma = {}
-old_sigma = {}
-S_dis_matrix = {}
-names = []
-S_colors = {}
-G_internal_colors = {}
-sol = {}
 p = 0.05                                                #p_value
 TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = (TH_edges_in_subtree*0.5)/k
@@ -99,7 +87,7 @@ def random_again(t,iter):
         number_of_iter += 1
     return t
 
-def number_of_HT_needed(u,all_random_sources,TH,color):
+def number_of_HT_needed(G,u,all_random_sources,TH,color):
     print('     Calculating number of HT under %s' % str(u))
     #print('all_random_sources: '+str(all_random_sources))
     if color == 'red':
@@ -125,7 +113,7 @@ def number_of_HT_needed(u,all_random_sources,TH,color):
         #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(3), str(bad_HT)))
         return minimum_HT_under_planted
 
-def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix):
+def create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix,new_G,G_internal_colors):
     HT_sources_for_subtree = [None]     #to chack if HT has already been choose
     HT_targets_for_subtree = {}
     list_of_answers = []               #to return
@@ -232,7 +220,7 @@ def change_colors(v, w, colors, G_internal_colors,S_colors,G,S, sigma):
     G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
     return colors,to_return,to_return_color,G_internal_colors,old_colors,old_internal_G_colors,S,S_colors,old_S,old_S_colors
 
-def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compare_subtrees,TH_compare_subtrees,TH_pattern_in_subtree,k,both,TH_both,vertex_number,sol,accur,nCr_lookup_table,fact_lookup_table,all_random_sources,colors,S_colors,max_dis):
+def choose_marked_vertex (S_dis_matrix,new_G,S,G,G_internal_colors,TH_edges_in_subtree,compare_subtrees,TH_compare_subtrees,sigma,k,both,TH_both,vertex_number,sol,accur,nCr_lookup_table,fact_lookup_table,all_random_sources,colors,S_colors,max_dis):
     total_red = S_colors[S.seed_node.label][0]
     total_black = S_colors[S.seed_node.label][1]
     num_of_leafs = tree_operations.number_of_leafs(S,'S')
@@ -269,27 +257,27 @@ def choose_marked_vertex (new_G,S,G,G_internal_colors,TH_edges_in_subtree,compar
                     if not both:
                         if blacks_under_w / all_leafs_w > TH_both:
                             print('     %s is black' % str(w))
-                            number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
+                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'red',
-                                          max_dis,S_dis_matrix)
+                                          max_dis,S_dis_matrix,new_G,G_internal_colors)
                         elif blacks_under_v / all_leafs_v > TH_both:
                             print('     %s is black' % str(v))
-                            number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'red')
+                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'red',
-                                                                                     max_dis, S_dis_matrix)
+                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
                         elif reds_under_w / all_leafs_w > TH_both:
                             print('     %s is red' % str(w))
-                            number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
+                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'black',
-                                                                                     max_dis, S_dis_matrix)
+                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
                         elif reds_under_v / all_leafs_v > TH_both:
                             print('     %s is red' % str(v))
-                            number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'black')
+                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'black')
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'black',
-                                                                                     max_dis, S_dis_matrix)
+                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
                         else:
                             print('     Changing color in order to create a good pattern')
-                            number_of_HT = number_of_HT_needed(u, all_random_sources, TH_compare_subtrees, 'all')
+                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'all')
                             colors, father_to_change, color, G_internal_colors, old_colors, old_internal_G_colors, S, S_colors, old_S, old_S_colors = change_colors(v, w, colors,
                                                                                                G_internal_colors,S_colors,
                                                                                                G,S, sigma)
@@ -402,7 +390,7 @@ def create_sigme(number_of_leaves,sigma):
         sigma.update({"GeneI" + str(i): "internal" + str(i)})
     return sigma
 
-def print_tree(t,name):
+def print_tree(t,name,path):
     print('** Tree: %s **\n     Number of leaves: %s\n     Number of nodes: %s\n       %s\n%s' % (
     name, str(len(t)), number_of_nodes, t.write(format=1), str(t)))
     print('     Writing '+name)
@@ -416,7 +404,7 @@ def print_tree(t,name):
         file.write(str(t.write(format=1)))
         file.close()
 
-def save_edgelist(S_dis_matrix):
+def save_edgelist(S_dis_matrix,path):
     input = open(path + '/saved_data/S_edgelist_all.txt', 'r')
     edgelist = []
     for line in input:
@@ -466,7 +454,7 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make):
 
     return sigma,old_sigma, number_of_HT_to_make
 
-def save_data(sigma,colors,marked,noise,internal_index,compare):
+def save_data(sigma,colors,marked,noise,internal_index,compare,path):
     if not compare:
         print('     Writing sigma...')
         path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
@@ -580,6 +568,7 @@ def create_graph_for_noise(parameters):
     S_colors = parameters[3]
     nCr_lookup_table = parameters[4]
     fact_lookup_table = parameters[5]
+    number_of_leaves = parameters[6]
 
     number_of_random_changes = number_of_leaves * (noise / 100)
     random_for_prec = random_for_precentage
@@ -645,9 +634,9 @@ def create_graph_for_noise(parameters):
                 all_random_nutral.append(random_source)
             i += changed
         old_colors = return_color_to_taxon(S, colors)
-        save_data(old_sigma, old_colors, {}, noise, rand_num,compare)
+        save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path)
 
-def return_marked_nodes_new_name(list_of_marked,prev_G):
+def return_marked_nodes_new_name(list_of_marked,prev_G,path):
     list_of_marked_nodes = []
     for k, l in list_of_marked.items():
         list_of_marked_nodes.append(l['Marked'])
@@ -676,12 +665,25 @@ def return_marked_nodes_new_name(list_of_marked,prev_G):
 
 ##********  MAIN ***********
 
-def main(number_of_leaves,path):
-    global sol,random_for_precentage,old_colors,old_sigma,new_G,all_edges,S,G,number_of_nodes,names,colors,sigma,S_dis_matrix,S_colors,G_internal_colors,k,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,k,both,TH_both,accur,nCr_lookup_table,fact_lookup_table,old_colors,number_of_marked_vertices,S_labels_table,G_labels_table
+def main(number_of_leaves,path,k,running_time,number_of_marked_vertices):
+    global random_for_precentage,all_edges,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,both,TH_both,accur
     starting_time = datetime.now()
+
+    new_G = nx.DiGraph()
     noise = 0
     number_of_HT_under_marked = 10
     S = Tree()
+    sigma = {}
+    nCr_lookup_table = {}
+    fact_lookup_table = {}
+    colors = {}
+    old_colors = {}
+    S_dis_matrix = {}
+    names = []
+    S_colors = {}
+    G_internal_colors = {}
+    sol = {}
+
     for i in range(0, number_of_leaves):
         names.append(sym + str(i))
     S.populate(number_of_leaves, names_library=names)
@@ -695,12 +697,12 @@ def main(number_of_leaves,path):
             leaf.name = "Gene" + leaf.name[6:]
         else:
             leaf.name = "GeneI" + leaf.name[8:]
-    print_tree(G,'G')
-    print_tree(S,'S')
+    print_tree(G,'G',path)
+    print_tree(S,'S',path)
 
     sigma = create_sigme(number_of_leaves, sigma)
-    utils.newick2edgelist.main(on_lab,compare)
-    save_edgelist(S_dis_matrix)
+    utils.newick2edgelist.main(path)
+    save_edgelist(S_dis_matrix,path)
 
     S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
@@ -733,51 +735,55 @@ def main(number_of_leaves,path):
     if not on_lab:
         draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand_before')
 
-    while j < number_of_marked_vertices:
-        print(
-            '                                                                 *****         %sth vertex            ******' % str(
-                j))
-        sol[j] = {}
-        nCr_lookup_table, fact_lookup_table, (
-            sol[j]['Marked'], sol[j]['list_of_couples']), colors = choose_marked_vertex(new_G, S, G,
-                                                                                        G_internal_colors,
-                                                                                        TH_edges_in_subtree,
-                                                                                        compare_subtrees,
-                                                                                        TH_compare_subtrees,
-                                                                                        TH_pattern_in_subtree,
-                                                                                        k,
-                                                                                        both,
-                                                                                        TH_both, j, sol, accur,
-                                                                                        nCr_lookup_table,
-                                                                                        fact_lookup_table,
-                                                                                        all_random_sources,
-                                                                                        colors,
-                                                                                        S_colors, max_dis)
-        if sol[j]['Marked'] == False:
-            flag = flag and sol[j]['Marked']
-        else:
-            sigma, old_sigma, y = change_sigma(sigma, old_sigma, S, G, sol[j]['list_of_couples'],
-                                               number_of_HT_under_marked)
-            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
-        j += 1
-        if not flag:
+    if not running_time:
+        while j < number_of_marked_vertices:
+            print(
+                '                                                                 *****         %sth vertex            ******' % str(
+                    j))
+            sol[j] = {}
+            nCr_lookup_table, fact_lookup_table, (
+                sol[j]['Marked'], sol[j]['list_of_couples']), colors = choose_marked_vertex(S_dis_matrix,new_G, S, G,
+                                                                                            G_internal_colors,
+                                                                                            TH_edges_in_subtree,
+                                                                                            compare_subtrees,
+                                                                                            TH_compare_subtrees,
+                                                                                            sigma,
+                                                                                            k,
+                                                                                            both,
+                                                                                            TH_both, j, sol, accur,
+                                                                                            nCr_lookup_table,
+                                                                                            fact_lookup_table,
+                                                                                            all_random_sources,
+                                                                                            colors,
+                                                                                            S_colors, max_dis)
+            if sol[j]['Marked'] == False:
+                flag = flag and sol[j]['Marked']
+            else:
+                sigma, old_sigma, y = change_sigma(sigma, old_sigma, S, G, sol[j]['list_of_couples'],
+                                                   number_of_HT_under_marked)
+                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+                G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            j += 1
+            if not flag:
+                if not on_lab:
+                    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+                old_colors = return_color_to_taxon(S, colors)
+                save_data(old_sigma, old_colors, sol, noise, 0, compare,path)
+                if not running_time:
+                    quit()
+            print('Marked vertices:%s' % str(sol))
             if not on_lab:
-                draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+                draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
             old_colors = return_color_to_taxon(S, colors)
-            save_data(old_sigma, old_colors, sol, noise, 0, compare)
-            quit()
-        print('Marked vertices:%s' % str(sol))
-        if not on_lab:
-            draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, sol, '_rand' + str(noise) + '.' + str(0))
-        old_colors = return_color_to_taxon(S, colors)
-        save_data(old_sigma, old_colors, sol, noise, 0,compare)
-    return_marked_nodes_new_name(sol,G)
-    p = Pool(15)
-    for i in range(0,len(noise_level)):
-        noise_level[i] = (noise_level[i],number_of_HT_under_marked,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table)
-    p.map(create_graph_for_noise, noise_level)
-    print('Running time: %s' % str(datetime.now()-starting_time))
+            save_data(old_sigma, old_colors, sol, noise, 0,compare,path)
+            return_marked_nodes_new_name(sol,G,path)
+            p = Pool(15)
+            for i in range(0,len(noise_level)):
+                noise_level[i] = (noise_level[i],number_of_HT_under_marked,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table,number_of_leaves)
+            p.map(create_graph_for_noise, noise_level)
+            print('Running time: %s' % str(datetime.now()-starting_time))
+    else:
+        save_data(old_sigma, old_colors, sol, noise, 0, compare, path)
 
 if __name__ == "__main__":
     main()

@@ -87,14 +87,14 @@ def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree)
     print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table,subtree
 
-def init_taxon_to_label_table(S,G,sigma,):
+def init_taxon_to_label_table(S,G,sigma):
     S_labels_table = {}
     G_labels_table = {}
     for leaf_S in S.leaf_nodes():
         S_labels_table.update({leaf_S.taxon.label:leaf_S.label})
     for leaf_G in G.leaf_nodes():
-        G_labels_table.update({sigma[leaf_G].taxon.label: leaf_G.label})
-
+        G_labels_table.update({sigma[leaf_G.taxon.label]: leaf_G.label})
+    return S_labels_table
 def init_dict_inf(H,S,G,k,nodes_table):
     res = {}
     for u in G.postorder_node_iter():

@@ -454,9 +454,6 @@ def main():
     nodes_table = {}
     S_colors = {}
     all_vertices = {}
-    H = nx.MultiDiGraph()
-    H_number_of_nodes = 0
-    temp_iter = 0
 
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
     S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
@@ -495,7 +492,7 @@ def main():
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
 
-    H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter,
+    H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                      sigma)
     if check_diffreance_between_solutions:

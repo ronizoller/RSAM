@@ -83,8 +83,8 @@ def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_ver
         if not is_a_leaf(u):
             child = u.child_nodes()
             if has_left_child(u) and has_right_child(u):
-                right_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[1]) + 1]
-                left_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[0]) + 1]
+                right_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[1]) + 1]
+                left_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[0]) + 1]
                 #print('     u = %s, right_child_in_new_G = %s, left_child_in_new_G = %s' % (str(u), str(right_child_in_new_G), str(left_child_in_new_G)))
 
                 new_weight= edge_weight_based_on_same_color_HT(u,right_child_in_new_G,left_child_in_new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,max_distance,distance_flag,evol,compare_solutions,k)

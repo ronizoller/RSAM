@@ -11,7 +11,7 @@ import random
 from numpy import inf
 
 
-def build_hyper_garph(S, G, test, k, temp_iter,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
+def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
     print('Building hypergraph...')
     H = nx.MultiDiGraph()
     H.clear()
@@ -61,7 +61,6 @@ def build_hyper_garph(S, G, test, k, temp_iter,nodes_table, D_cost, S_cost, HT_c
                     w = u.adjacent_nodes()[1]
                 for x in S.postorder_node_iter():
                     key_counter = 0
-                    temp_iter += 1
                     S_list,subtree = SpeciationEvent_effi(u, x, S_cost,subtree,k,H,nodes_table)
                     SE = list(map(lambda nd:(nd,'S'), S_list))
                     D_list,subtree = DuplicationEvent_effi(H, u, x, D_cost,nodes_table,subtree,k)
