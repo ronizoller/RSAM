@@ -186,6 +186,8 @@ def number_of_different_vertex_in_dict(dict):
 
 def average_of_list(dict,num):
     res = {}
+    if dict == {}:
+        return {}
     for rand_num, list_of_scores in dict.items():
         for u, score in list_of_scores.items():
             if not u in res:
@@ -223,31 +225,27 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
             temp_FP = 0
             temp_TP = 0
             for u in list_for_TH_sol:
-                print('u: '+str(u))
-                if u[0] not in planted_vertex:
+                if u not in planted_vertex:
                     temp_FP += 1
                 else:
                     temp_TP += 1
-                if u in planted_vertex_to_check:
-                    planted_vertex_to_check.remove(u[0])
+                    if u in planted_vertex_to_check:
+                        planted_vertex_to_check.remove(u)
             temp_FN = len(planted_vertex_to_check)
             sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
             specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
             i += 1
     res = {}
-    print('sensitivity: %s' % str(sensitivity))
     for TH, sen_list in sensitivity.items():
         sensitivity_sum = 0
         for score in sen_list:
             sensitivity_sum += score
         res.update({TH:round(sensitivity_sum/len(sen_list),2)})
-    print(res)
-    for TH, sen_list in specifity.items():
+    for TH, spe_list in specifity.items():
         specifity_sum = 0
-        for score in sen_list:
+        for score in spe_list:
             specifity_sum += score
-        res.update({TH: (1-round(specifity_sum / len(sen_list), 2),res[TH])})
-    print(res)
+        res.update({TH: (1-round(specifity_sum / len(spe_list), 2),res[TH])})
     return res
 
 def frange(start,end,step):
@@ -261,7 +259,6 @@ def frange(start,end,step):
 def kmin_positive (l,k,H,nodes_table):
     l_temp = l.copy()
     res = []
-    #print('l: ' + str(l))
     for i in range(0,min([len(l_temp),k])):
         min_ind = [x[1]['cost'] for x in l_temp].index(min([x[1]['cost'] for x in l_temp]))
         temp_item = l_temp[min_ind]
@@ -274,7 +271,7 @@ def kmin_positive (l,k,H,nodes_table):
             res.append(
                 effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
     #if len(l) < k:
-    #    res = res +[(math.inf,None)]*(k-len(l))
+        #res = res +[None]*(k-len(l))
     return res
 
 def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
@@ -300,4 +297,6 @@ def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
         else:
             res.append(
                 effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
+    #if end < k:
+        #res = res +[None]*(k-end)
     return res

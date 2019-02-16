@@ -17,7 +17,7 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = False
+on_lab = True
 compare = True
 minimum_HT_under_planted = 3
 if on_lab:
@@ -29,17 +29,16 @@ else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_marked_vertices = 1
+number_of_marked_vertices = 3
 S = Tree()
 G = Tree()
 new_G = nx.DiGraph()
-k = 50
+k = 100
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-number_of_leaves = 150
-noise_level = [0]
+noise_level = [0.5]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
@@ -677,10 +676,9 @@ def return_marked_nodes_new_name(list_of_marked,prev_G):
 
 ##********  MAIN ***********
 
-def main():
-    global sol,random_for_precentage,old_colors,old_sigma,new_G,all_edges,S,G,number_of_nodes,number_of_leaves,names,colors,sigma,S_dis_matrix,S_colors,G_internal_colors,k,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,k,both,TH_both,accur,nCr_lookup_table,fact_lookup_table,old_colors,number_of_marked_vertices,S_labels_table,G_labels_table
+def main(number_of_leaves,path):
+    global sol,random_for_precentage,old_colors,old_sigma,new_G,all_edges,S,G,number_of_nodes,names,colors,sigma,S_dis_matrix,S_colors,G_internal_colors,k,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,k,both,TH_both,accur,nCr_lookup_table,fact_lookup_table,old_colors,number_of_marked_vertices,S_labels_table,G_labels_table
     starting_time = datetime.now()
-
     noise = 0
     number_of_HT_under_marked = 10
     S = Tree()
@@ -703,7 +701,6 @@ def main():
     sigma = create_sigme(number_of_leaves, sigma)
     utils.newick2edgelist.main(on_lab,compare)
     save_edgelist(S_dis_matrix)
-
 
     S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
@@ -767,6 +764,8 @@ def main():
         if not flag:
             if not on_lab:
                 draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '_rand')
+            old_colors = return_color_to_taxon(S, colors)
+            save_data(old_sigma, old_colors, sol, noise, 0, compare)
             quit()
         print('Marked vertices:%s' % str(sol))
         if not on_lab:

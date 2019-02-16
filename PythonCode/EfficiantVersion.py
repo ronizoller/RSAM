@@ -11,7 +11,7 @@ import random
 from numpy import inf
 
 
-def build_hyper_garph(S, G, test, k, temp_iter,H_number_of_nodes,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
+def build_hyper_garph(S, G, test, k, temp_iter,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
     print('Building hypergraph...')
     H = nx.MultiDiGraph()
     H.clear()
@@ -205,17 +205,21 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
         list_w_to_right = []
         list_v_to_left = []
         list_w_to_left = []
-        if tree_operations.has_right_child(u):
-            v = u.adjacent_nodes()[0]
-        if tree_operations.has_left_child(u):
-            w = u.adjacent_nodes()[1]
-        if tree_operations.has_right_child(x):
+        if tree_operations.has_right_child(x) and tree_operations.has_right_child(u):
             y = x.adjacent_nodes()[0]
+            v = u.adjacent_nodes()[0]
             list_v_to_left = utiles.kmin_positive(subtree[v.label][y.label],k,H,nodes_table)
+        if tree_operations.has_right_child(x) and tree_operations.has_left_child(u):
+            y = x.adjacent_nodes()[0]
+            w = u.adjacent_nodes()[1]
             list_w_to_left = utiles.kmin_positive(subtree[w.label][y.label],k,H,nodes_table)
-        if tree_operations.has_left_child(x):
+        if tree_operations.has_left_child(x) and tree_operations.has_right_child(u):
             z = x.adjacent_nodes()[1]
+            v = u.adjacent_nodes()[0]
             list_v_to_right = utiles.kmin_positive(subtree[v.label][z.label],k,H,nodes_table)
+        if tree_operations.has_left_child(x) and tree_operations.has_left_child(u):
+            z = x.adjacent_nodes()[1]
+            w = u.adjacent_nodes()[1]
             list_w_to_right = utiles.kmin_positive(subtree[w.label][z.label],k,H,nodes_table)
         for hyper_node1 in list_v_to_right:
             for hyper_node2 in list_w_to_right:
@@ -243,7 +247,7 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
                 hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
                            utiles.heap_items(hyper_node[1]['cost'] + hyper_node2[1]['cost'] + D_cost,
-                                             hyper_node1,
+                                             hyper_node,
                                              hyper_node2))
         for hyper_node in list_w_to_left:
             hyper_node2 = find_nodes_in_hypergraph(H, v.label, x.label, 0,nodes_table)
@@ -251,7 +255,7 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
                 hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
                            utiles.heap_items(hyper_node[1]['cost'] + hyper_node2[1]['cost'] + D_cost,
-                                             hyper_node1,
+                                             hyper_node,
                                              hyper_node2))
 
     return heap,subtree
