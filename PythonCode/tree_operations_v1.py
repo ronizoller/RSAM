@@ -116,7 +116,6 @@ def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_ver
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1,
                                weight = left_child_in_new_G['same_HT_score'])
         index += 1
-    print(new_G.nodes(data = True))
     print('Finished weighting G.\n')
     return new_G
 

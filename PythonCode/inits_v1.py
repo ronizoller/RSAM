@@ -2,12 +2,32 @@ import math
 import tree_operations
 import networkx as nx
 import random
+import EfficiantVersion as effi
 
 def find_max_S_d(max_S_d, S_dis_matrix):
     for h, v in S_dis_matrix.items():
         if v > max_S_d:
             max_S_d = v
     return max_S_d
+
+def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
+    print('Initialasing efficient hypergraph leafs...')
+    for leaf in G.leaf_nodes():
+        if not tree_operations.isolated(leaf):
+            H.add_node(H_number_of_nodes,s=leaf.label,t=sigma[leaf.label],l=list())
+            big_node = H_number_of_nodes
+            H_number_of_nodes += 1
+            for i in range(0,k):
+                if i==0:
+                    cost=0
+                else:
+                    cost=math.inf
+                new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
+                H.nodes[big_node]['l'].insert(i,new_item)
+            nodes_table[sigma[leaf.label]][leaf.label] = big_node
+    print('Finished initialasing hypergraph leafs.\n')
+    return H,H_number_of_nodes, nodes_table,subtree
+
 
 def init_distance_S(S_dis_matrix, k, test, path,spe):
     print('Initing Distances...')
@@ -102,11 +122,11 @@ def update_sigma(S, G, k, sigma, test, path,exect_names,S_labels_table,G_labels_
                 print ('        Couldnt find match for: '+u+' and '+x)
                 sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
                 old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
-        print('     Writing sigma...')
-        file = open(path+'/saved_data/sigma.txt', 'w')
-        file.write(str(sigma))
-        file.close()
-        print('     Finished writing sigma.\n')
+        #print('     Writing sigma...')
+        #file = open(path+'/saved_data/sigma.txt', 'w')
+        #file.write(str(sigma))
+        #file.close()
+        #print('     Finished writing sigma.\n')
     print('Finished updating sigma.\n')
     return sigma,old_sigma
 
@@ -153,6 +173,24 @@ def init_H_field(H, field, init,in_list, for_edge):
             if field in e[2]:
                 e[2][field] = init
     return H
+
+def init_dict_inf(H,S,G,k,nodes_table,dict,sigma):
+    res = {}
+    for u in G.postorder_node_iter():
+        res.update({u.label:{}})
+        for x in S.postorder_node_iter():
+            if dict == 'subtree':
+                if effi.find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table) != []:
+                    res[u.label].update({x.label:[effi.find_nodes_in_hypergraph(H, u.label, x.label, i, nodes_table)[0] for i in range (0,k)]})
+                    S.find_node(lambda n: (n.label == sigma[u.label]))
+                elif u.is_leaf() and (x in S.find_node(lambda n: (n.label == sigma[u.label])).ancestor_iter()):
+                    res[u.label].update({x.label: [effi.find_nodes_in_hypergraph(H, u.label, sigma[u.label], i, nodes_table)[0]
+                                                   for i in range(0, k)]})
+                else:
+                    res[u.label].update({x.label: []})
+            else:
+                res[u.label].update({x.label: []})
+    return res
 
 def init_dic (list_to_be_init, init):
     res = {}

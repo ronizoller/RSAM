@@ -139,6 +139,22 @@ def string_into_array (string):
     print (" ]",end = "")
     quit()
 
+
+def avg_dict_datetime (dict):
+    sum_hours = 0
+    sum_mini = 0
+    sum_sec = 0
+    length = 0
+    for d,td in dict.items():
+        days = td.days
+        hours, remainder = divmod(td.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        sum_hours += hours
+        sum_mini += minutes
+        sum_sec += seconds
+        length += 1
+    return round(sum_hours/length+(sum_mini/length)/60+(sum_sec/length)/6000,4)
+
 def map_max(map,number_of_fields):
     max = 0
     for u,array in map.items():
@@ -184,6 +200,7 @@ def number_of_different_vertex_in_dict(dict):
                 res += 1
     return res
 
+
 def average_of_list(dict,num):
     res = {}
     if dict == {}:
@@ -200,6 +217,7 @@ def average_of_list(dict,num):
                 res.update({u: (sum[0]/num,sum[1]/num)})
     print('         Average list: %s\n' % str(res))
     return res
+
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
     planted_vertex = planted_vertex[0]
@@ -284,19 +302,23 @@ def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
         l = subtree1.copy() + subtree2.copy()
         list_of_values = [x[1]['cost'] for x in subtree1 + subtree2]
     res = []
+    #print('l: ' + str(l)+' k: '+str(k))
     end = len(list_of_values)
-    for i in range(0,min([k,end])):
-        temp_index = list_of_values.index(min(list_of_values))
-        temp_item = l[temp_index]
-        #print('l: ' + str(l))
-        #print('temp_index: %s, min value: %s,list of values: %s\n\n' % (str(temp_index),str(temp_item),str(list_of_values)))
-        l.remove(l[temp_index])
-        list_of_values.remove(list_of_values[temp_index])
-        if type(temp_item) == tuple:
-            res.append(temp_item)
+    for i in range(0,end):
+        if min(list_of_values) == math.inf:
+            return res
         else:
-            res.append(
-                effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
+            temp_index = list_of_values.index(min(list_of_values))
+            temp_item = l[temp_index]
+            #print('temp_index: %s, min value: %s,list of values: %s\n\n' % (str(temp_index),str(temp_item),str(list_of_values)))
+            l.remove(l[temp_index])
+            list_of_values.remove(list_of_values[temp_index])
+            if type(temp_item) == tuple:
+                res.append(temp_item)
+            else:
+                res.append(
+                    effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
     #if end < k:
         #res = res +[None]*(k-end)
+    #print('min form l: '+str(res)+'\n')
     return res

@@ -6,7 +6,7 @@ import heapq
 import utiles
 import math
 import networkx as nx
-import inits
+import inits_v1 as inits
 import random
 from numpy import inf
 
@@ -16,7 +16,6 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
     H = nx.MultiDiGraph()
     H.clear()
     subtree = {}
-    incomp = {}
 
     if test:
         print("     Reading file 'H_edges.txt'...")
@@ -49,24 +48,18 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
         H_number_of_nodes = (len(H.nodes()))
     else:
         H, H_number_of_nodes, nodes_table, subtree = inits.init_leafs_efficient(S,G, H, k, 0,sigma,nodes_table,subtree)
-        incomp = inits.init_dict_inf(H,S,G,k,nodes_table)
-        subtree = inits.init_dict_inf(H,S,G,k,nodes_table)
+        incomp = inits.init_dict_inf(H,S,G,k,nodes_table,'incomp',sigma)
+        subtree = inits.init_dict_inf(H,S,G,k,nodes_table,'subtree',sigma)
         for u in G.postorder_node_iter():
-            subtree.update({u:{}})
-
             if not tree_operations.is_a_leaf(u):
-                if (tree_operations.has_right_child(u)):
-                    v = u.adjacent_nodes()[0]
-                if (tree_operations.has_left_child(u)):
-                    w = u.adjacent_nodes()[1]
                 for x in S.postorder_node_iter():
                     key_counter = 0
-                    S_list,subtree = SpeciationEvent_effi(u, x, S_cost,subtree,k,H,nodes_table)
+                    S_list = SpeciationEvent_effi(u, x, S_cost,subtree,k,H,nodes_table)
                     SE = list(map(lambda nd:(nd,'S'), S_list))
-                    D_list,subtree = DuplicationEvent_effi(H, u, x, D_cost,nodes_table,subtree,k)
-                    DE = list(map(lambda nd:( nd,'D'),S_list))
-                    HT_list,subtree,incomp = HTEvent_effi(u, x, HT_cost,subtree,incomp,k,H,nodes_table)
-                    HTE = list(map(lambda nd:(nd,'HT'),HT_list ))
+                    D_list = DuplicationEvent_effi(H, u, x, D_cost,nodes_table,subtree,k)
+                    DE = list(map(lambda nd:( nd,'D'),D_list))
+                    HT_list = HTEvent_effi(u, x, HT_cost,subtree,incomp,k,H,nodes_table)
+                    HTE = list(map(lambda nd:(nd,'HT'),HT_list))
                     #print('SE: %s\nDE: %s\nHT: %s' % (str(SE),str(DE),str(HTE)))
                     Kbest = SE+DE+HTE
                     random.shuffle(Kbest,random.random)
@@ -77,7 +70,6 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
                         nodes_table[x.label][u.label] = H_number_of_nodes
                         big_node = H_number_of_nodes
                         H_number_of_nodes += 1
-
 
                     for i in range(0,k):
                         if (len(Kbest)>0):
@@ -123,19 +115,21 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
                     if not tree_operations.is_a_leaf(x):
                         y = x.adjacent_nodes()[0]
                         z = x.adjacent_nodes()[1]
-                        subtree[u.label][x.label] = utiles.kmin_list(find_nodes_in_hypergraph(H,u.label,x.label,-1,nodes_table),subtree[u.label][y.label],subtree[u.label][z.label],k,H,nodes_table)
+                        #print('u: %s, x: %s\nsubtree[u.label][y.label]:%s\nsubtree[u.label][z.label]:%s\nc(u,x): %s' % (str(u.label),str(x.label),str(subtree[u.label][y.label]),str(subtree[u.label][z.label]),str(find_nodes_in_hypergraph(H,u.label,x.label,-1,nodes_table))))
+                        subtree[u.label][x.label] += utiles.kmin_list(find_nodes_in_hypergraph(H,u.label,x.label,-1,nodes_table),subtree[u.label][y.label],subtree[u.label][z.label],k,H,nodes_table)
+                        #print('subtree[u.label][x.label]: '+str(subtree[u.label][x.label]))
                     else:
-                        subtree[u.label][x.label] = utiles.kmin_list(
-                            find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table),[],[],k,H,nodes_table)
-            for x in S.postorder_node_iter():
+                        subtree[u.label][x.label] += utiles.kmin_list(find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table),[],[],k,H,nodes_table)
+                    if u.label == 'u2' and x.label == 'x3':
+                        print(subtree[u.label][x.label])
+            for x in S.preorder_node_iter():
                 if not tree_operations.is_a_leaf(x):
                     y = x.adjacent_nodes()[0]
                     z = x.adjacent_nodes()[1]
-                    #print('subtree: %s\nicomp: %s' % (str(subtree),str(incomp)))
-                    incomp[u.label][y.label] = utiles.kmin_positive(incomp[u.label][z.label]+subtree[u.label][z.label],k,H,nodes_table)
-                    incomp[u.label][z.label] = utiles.kmin_positive(incomp[u.label][z.label]+subtree[u.label][y.label],k,H,nodes_table)
+                    incomp[u.label][y.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][z.label],k,H,nodes_table)
+                    incomp[u.label][z.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][y.label],k,H,nodes_table)
         print('     Writing nodes...')
-        file = open(path+'/saved_data/H_nodes_k='+str(k)+'_alpha='+str(alpha)+'.txt', 'w')
+        file = open(path+'/saved_data/H_nodes_effi.txt', 'w')
         file.write(str(H.nodes(data=True)))
         file.close()
         print('     Finished writing nodes.\n')
@@ -149,6 +143,16 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
         print('     Writing nodes table...')
         file = open(path+'/saved_data/nodes_table_k='+str(k)+'.txt', 'w')
         file.write(str(nodes_table))
+        file.close()
+        print('     Finished writing nodes table.\n')
+
+        file = open(path+'/saved_data/incomp.txt', 'w')
+        file.write(str(incomp))
+        file.close()
+        print('     Finished writing nodes table.\n')
+
+        file = open(path+'/saved_data/subtree.txt', 'w')
+        file.write(str(subtree))
         file.close()
         print('     Finished writing nodes table.\n')
 
@@ -195,7 +199,7 @@ def SpeciationEvent_effi (u, x, S_cost,subtree,k,H,nodes_table):
                     for hyper_node2 in list_w_to_right:
                         heapq.heappush(heap,utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+S_cost,hyper_node1,hyper_node2))
 
-    return heap,subtree
+    return heap
 
 def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
     heap = []
@@ -224,24 +228,31 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
             for hyper_node2 in list_w_to_right:
                 heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                                 hyper_node2))
-            hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
-            if hyper_node2 != []:
-                hyper_node2 = hyper_node2[0]
+            hyper_node3 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
+            if u.label == 'u5' and x.label == 'x3':
+                print('*'+str(hyper_node3))
+            if hyper_node3 != []:
+                hyper_node3 = hyper_node3[0]
                 heapq.heappush(heap,
-                           utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
-                                             hyper_node2))
+                           utiles.heap_items(hyper_node1[1]['cost'] + hyper_node3[1]['cost'] + D_cost, hyper_node1,
+                                             hyper_node3))
         for hyper_node1 in list_v_to_left:
             for hyper_node2 in list_w_to_left:
                 heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
                                                 hyper_node2))
-            hyper_node2 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
-            if hyper_node2 != []:
-                hyper_node2 = hyper_node2[0]
+            hyper_node3 = find_nodes_in_hypergraph(H,w.label,x.label,0,nodes_table)
+            if u.label == 'u3' and x.label == 'x7':
+                print('**'+str(hyper_node3))
+            if hyper_node3 != []:
+                hyper_node3 = hyper_node3[0]
                 heapq.heappush(heap,
-                           utiles.heap_items(hyper_node1[1]['cost'] + hyper_node1[1]['cost'] + D_cost, hyper_node1,
-                                             hyper_node2))
+                           utiles.heap_items(hyper_node1[1]['cost'] + hyper_node3[1]['cost'] + D_cost, hyper_node1,
+                                             hyper_node3))
+
         for hyper_node in list_w_to_right:
             hyper_node2 = find_nodes_in_hypergraph(H, v.label, x.label, 0,nodes_table)
+            if u.label == 'u3' and x.label == 'x7':
+                print('***'+str(hyper_node2))
             if hyper_node2 != []:
                 hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
@@ -250,17 +261,30 @@ def DuplicationEvent_effi (H, u, x, D_cost,nodes_table,subtree,k):
                                              hyper_node2))
         for hyper_node in list_w_to_left:
             hyper_node2 = find_nodes_in_hypergraph(H, v.label, x.label, 0,nodes_table)
+            if u.label == 'u3' and x.label == 'x7':
+                print('****'+str(hyper_node2))
             if hyper_node2 != []:
                 hyper_node2 = hyper_node2[0]
                 heapq.heappush(heap,
                            utiles.heap_items(hyper_node[1]['cost'] + hyper_node2[1]['cost'] + D_cost,
                                              hyper_node,
                                              hyper_node2))
+        for hyper_node1 in list_v_to_left:
+            for hyper_node2 in list_w_to_right:
+                heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
+                                                hyper_node2))
+        for hyper_node1 in list_w_to_left:
+            for hyper_node2 in list_v_to_right:
+                heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost'] + hyper_node2[1]['cost'] + D_cost, hyper_node1,
+                                                hyper_node2))
+        if u.label == 'u3' and x.label == 'x7':
+            print('list_w_to_left: %s\nlist_w_to_right: %s\nlist_v_to_left: %s\nlist_v_to_right: %s' % (str(list_w_to_left),str(list_w_to_right),str(list_v_to_left),str(list_v_to_right)))
 
-    return heap,subtree
+    return heap
 
 def HTEvent_effi (u, x, HT_cost,subtree,incomp,k,H,nodes_table):
     heap = []
+    to_show = []
     v = u.adjacent_nodes()[0]                                                                                       #left child
     w = u.adjacent_nodes()[1]                                                                                       #right child
 
@@ -273,11 +297,13 @@ def HTEvent_effi (u, x, HT_cost,subtree,incomp,k,H,nodes_table):
     for hyper_node1 in list_v_to_subtree:
         for hyper_node2 in list_w_horizontally:
             heapq.heappush(heap,utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+HT_cost,hyper_node1,hyper_node2))
+            to_show.append(['t: '+hyper_node1[1]['t']+', s: '+hyper_node1[1]['s'],'t: '+hyper_node2[1]['t']+', s: '+hyper_node2[1]['s']])
 
     for hyper_node1 in list_w_to_subtree:
         for hyper_node2 in list_v_horizontally:
             heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+HT_cost,hyper_node1, hyper_node2))
-    return heap,subtree,incomp
+            to_show.append(['t: '+hyper_node1[1]['t']+', s: '+hyper_node1[1]['s'],'t: '+hyper_node2[1]['t']+', s: '+hyper_node2[1]['s']])
+    return heap
 
 def calculate_color_diffrence(H, G, S, colors, k, nodes_table, test, real):
     alpha0_map = {}
@@ -352,44 +378,41 @@ def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
     to_try = G.seed_node.label
     to_try_sp = S.seed_node.label
     max_prob = 0
-    if True:
-        for nd in list(reversed(list(nx.topological_sort(H)))):
-            outgoing_edges = H.out_edges([nd],data=True)
-            incoming_edges = H.in_edges([nd],data=True)
-            nd = H.nodes(data=True)[nd]
-            for i in range(0,len(nd['l'])):
-                outgoing_edges_v = [e for e in outgoing_edges if e[2]['source'] == i]
-                incoming_edges_v = [e for e in incoming_edges if e[2]['target'] == i]
-                if (nd['s'] != to_try or nd['t'] != to_try_sp):
-                    if outgoing_edges_v==[]:
-                        s = 0
-                    else:
-                        s = 0
-                        for cost in outgoing_edges_v:
-                            cost = cost[2]['probability']
-                            s = s+cost
-                    new_prob = s
-                    nd['l'][i].update({'probability':new_prob})
-                    for e in incoming_edges_v:
-                        e[2]['probability'] = new_prob
-                    if new_prob > 1:
-                        print ('This is bad: nd = '+str(nd)+' with prob: '+str(new_prob)+'\n')
+    for nd in list(reversed(list(nx.topological_sort(H)))):
+        outgoing_edges = H.out_edges([nd],data=True)
+        incoming_edges = H.in_edges([nd],data=True)
+        nd = H.nodes(data=True)[nd]
+        for i in range(0,len(nd['l'])):
+            outgoing_edges_v = [e for e in outgoing_edges if e[2]['source'] == i]
+            incoming_edges_v = [e for e in incoming_edges if e[2]['target'] == i]
+            if (nd['s'] != to_try or nd['t'] != to_try_sp):
+                if outgoing_edges_v==[]:
+                    s = 0
                 else:
-                    flag = True
-                    nd['l'] = assign_weights_to_list(nd['l'], gamma)
-                    nd['l'][i].update({'probability': nd['l'][i]['weight']})
-                    for e in incoming_edges_v:
-                        e[2]['probability'] = nd['l'][i]['weight']
-        if flag == False:
-            print('     ** No reconciliation of '+to_try+' exists. **')
-            return None, 0
-        #print('     Writing nodes...')
-        #file = open(path+'/saved_data/H_nodes_k='+str(k)+'_alpha='+str(alpha)+'.txt', 'w')
-        #file.write(str(H.nodes(data=True)))
-        #file.close()
-        print('     Finished writing nodes.\n')
-    #else :
-        print('     Probs were already assinged')
+                    s = 0
+                    for cost in outgoing_edges_v:
+                        cost = cost[2]['probability']
+                        s = s+cost
+                new_prob = s
+                nd['l'][i].update({'probability':new_prob})
+                for e in incoming_edges_v:
+                    e[2]['probability'] = new_prob
+                if new_prob > 1:
+                    print ('This is bad: nd = '+str(nd)+' with prob: '+str(new_prob)+'\n')
+            else:
+                flag = True
+                nd['l'] = assign_weights_to_list(nd['l'], gamma)
+                nd['l'][i].update({'probability': nd['l'][i]['weight']})
+                for e in incoming_edges_v:
+                    e[2]['probability'] = nd['l'][i]['weight']
+    if flag == False:
+        print('     ** No reconciliation of '+to_try+' exists. **')
+        return None, 0
+    #print('     Writing nodes...')
+    #file = open(path+'/saved_data/H_nodes_effi.txt', 'w')
+    #file.write(str(H.nodes(data=True)))
+    #file.close()
+    #print('     Finished writing nodes.\n')
     for nd in H.nodes(data = True):
         for g in range(0,len(nd[1]['l'])):
             if nd[1]['l'][g]['probability'] > max_prob:

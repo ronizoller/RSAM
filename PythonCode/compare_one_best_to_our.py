@@ -1,6 +1,5 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
-import numpy as np
 import matplotlib.pyplot as plt
 import utiles
 on_lab = True

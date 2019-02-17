@@ -11,7 +11,7 @@ else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
     if check_diffreance_between_solutions:
-        path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
+        path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/example'
 
 import networkx as nx
 import dendropy as tr
@@ -20,7 +20,7 @@ import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
 #import draw
-import hypergraph_v1 as hypergraph
+import EfficiantVersion as hypergraph
 import pattern_identify_v4 as pattern_identify
 import EfficiantVersion as effi
 from multiprocessing import Pool
@@ -33,7 +33,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 210
+k = 5
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -42,13 +42,13 @@ HT_cost = 1
 D_cost = 1
 S_cost = 0
 
-number_of_marked_vertices = 1
+number_of_planted_vertices = 5
 planted_vertices = []
-input = open(path + '/saved_data/marked_nodes_correct_names.txt', 'r')
+input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
     planted_vertices.append(eval(line))
 planted_vertices = planted_vertices[0]
-random_for_prec = 20
+random_for_prec = 50
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
@@ -87,7 +87,7 @@ elif not compare_subtrees and evolutinary_event == 'D':
 big_size = 2000                                  #size of nodes
 small_size = 7
 
-def find_Pattern(H, S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G, black_HT_vertices_in_G, pattern, evolutinary_event,S_colors):
+def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G, black_HT_vertices_in_G, pattern, evolutinary_event,S_colors):
     print('Find the pattern within the tree...')
     total_red = S_colors[S.seed_node.label][0]
     total_black = S_colors[S.seed_node.label][1]
@@ -102,6 +102,7 @@ def find_Pattern(H, S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_ve
             if evolutinary_event == 'HT' and curr['event'] == 'HT' and curr['probability'] > 0:
                 x = S.find_node(lambda n: (n.label == curr['t']))
                 incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
+                print(incoming_edges_curr)
                 horizontally_trans_to_option1 = S.find_node(
                     lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
                 horizontally_trans_to_option2 = S.find_node(
@@ -285,7 +286,6 @@ def RSAM_finder_multithread(parameters):
             nodes_table = {}
             S_colors = {}
             all_vertices = {}
-            temp_iter = 0
             iter = -1
             new_G = nx.DiGraph()
             red_HT_vertices_in_G = []
@@ -326,16 +326,16 @@ def RSAM_finder_multithread(parameters):
             G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
             colors,old_colors = inits.update_colors(S, colors,exact_names)
             TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-            TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_marked_vertices)
+            TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
 
             S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
             nodes_table = inits.init_nodes_table(S, G, nodes_table)
 
-            H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k, temp_iter,
+            H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
                                                                              nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                              sigma)
 
-            H, max_prob = effi.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
         else:
             H = parameters[20]
             S = parameters[3]
@@ -363,7 +363,7 @@ def RSAM_finder_multithread(parameters):
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
             H = hypergraph.remove_prob_zero(H, deleted_nodes)
-            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
+            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,
                                                                                                                    S_dis_matrix,
                                                                                                                    nCr_lookup_table,
                                                                                                                    fact_lookup_table,
@@ -381,7 +381,7 @@ def RSAM_finder_multithread(parameters):
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
     #print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
-    return utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)
+    return (utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr))
 
 def extract_and_tarce_a_solution(parameters):
     iter = parameters[0]
@@ -414,7 +414,7 @@ def extract_and_tarce_a_solution(parameters):
     solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
 
     red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
-        solutions[iter], S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
+        solutions[iter], S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
         black_HT_vertices_in_G, pattern, evolutinary_event, S_colors)
 
     solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
@@ -441,7 +441,7 @@ def extract_and_tarce_a_solution(parameters):
 ##********  MAIN ***********
 
 def main():
-    global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,planted_vertices, TH_edges_in_subtree, number_of_marked_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+    global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,planted_vertices, TH_edges_in_subtree, number_of_planted_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
     starting_time = datetime.now()
 
     all_vertices_with_index = {}
@@ -486,13 +486,13 @@ def main():
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_marked_vertices)
+    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, {}, 'all')
 
-    H, H_number_of_nodes, nodes_table = effi.build_hyper_garph(S, G, test, k,
+    H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
                                                                      sigma)
     if check_diffreance_between_solutions:
@@ -537,7 +537,7 @@ def main():
                     all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
-                list_of_unmarked_all = []
+                list_of_unmarked_TH = []
                 print('all_marked: '+str(all_marked))
                 for li in all_marked:
                     list_of_unmarked = []
@@ -548,9 +548,9 @@ def main():
                                 flag = True
                         if not flag:
                             list_of_unmarked.append(u.label)
-                    list_of_unmarked_all.append(list(list_of_unmarked))
+                    list_of_unmarked_TH.append(list(list_of_unmarked))
                 all_marked_for_TH.update({TH_both:(all_marked)})
-                all_unmarked_for_TH.update({TH_both:(list_of_unmarked_all)})
+                all_unmarked_for_TH.update({TH_both:(list_of_unmarked_TH)})
                 if (not on_lab) and (TH_both == 0):
                     draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
                                      TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
@@ -589,7 +589,7 @@ def main():
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
             H = hypergraph.remove_prob_zero(H, deleted_nodes)
-            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,
+            red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,
                                                                                                                    S_dis_matrix,
                                                                                                                    nCr_lookup_table,
                                                                                                                    fact_lookup_table,
@@ -616,8 +616,8 @@ def main():
     parameters = []
     p = Pool(15)
     for i in range(0,len(noise_level_list)):
-        parameters.append([noise_level_list[i],TH_both])
-    list_of_results = p.map(RSAM_finder_multithread, parameters,check_diffreance_between_solutions)
+        parameters.append([noise_level_list[i],TH_both,check_diffreance_between_solutions])
+    list_of_results = p.map(RSAM_finder_multithread, parameters)
     ind = 0
     for res in list_of_results:
         all_vertices_with_index.update({noise_level_list[ind]:res})

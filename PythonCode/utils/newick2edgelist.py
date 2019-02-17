@@ -24,10 +24,9 @@ def init_internal_labels (tree,char):
 
 def main(path):
     exte = 'all'
-
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
-    path_curr = path + 'saved_data/S_edgelist_'+exte+'.txt'
+    path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
     os.makedirs(os.path.dirname(path_curr), exist_ok=True)
     file = open(path+'/saved_data/S_edgelist_'+exte+'.txt', 'w')
     file.write(str(get_edgelist(t)))
