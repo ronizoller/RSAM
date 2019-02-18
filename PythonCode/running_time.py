@@ -29,15 +29,17 @@ import inits_v1 as inits
 import dendropy as tr
 import hypergraph_v1 as hypergraph
 import matplotlib.pyplot as plt
-
+from ete3 import Tree
 
 for number_of_leafs in utiles.frange(100,500,50):
     temp_time_effi = {}
     temp_time_naive = {}
+    path_curr = path + '/number_of_leaves:' + str(number_of_leafs) + '/'
+    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
     for d in range(0,number_of_iter_per_size):
-        path_curr = path + '/number_of_leaves:'+str(number_of_leafs)+'/'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        Tree_Grnarator.main(number_of_leafs,path_curr,k,True,1)
+        S = Tree()
+        G = Tree()
+        Tree_Grnarator.main(S, G, number_of_leafs,path_curr,k,True,1)
 
         G = tr.Tree.get_from_path(path_curr + "/GeneTree(binary)_local.txt", schema="newick")
         S = tr.Tree.get_from_path(path_curr + "/phyliptree(binary," + speciesTreespecification + ").phy", schema="newick")
@@ -64,15 +66,22 @@ for number_of_leafs in utiles.frange(100,500,50):
         nodes_table = inits.init_nodes_table(S, G, {})
 
         start = datetime.now()
-        effi.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1,sigma)
+        effi.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma, False)
         temp_time_effi.update({d:datetime.now()-start})
 
         start = datetime.now()
-        hypergraph.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma)
+        hypergraph.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma, False)
         temp_time_naive.update({d:datetime.now()-start})
 
     times_effi.update({number_of_leafs:utiles.avg_dict_datetime(temp_time_effi)})
     times_naive.update({number_of_leafs:utiles.avg_dict_datetime(temp_time_naive)})
+    file = open(path_curr + 'results_times_effi.txt', 'w')
+    file.write(str(times_effi))
+    file.close()
+    file = open(path_curr + 'results_times_naive.txt', 'w')
+    file.write(str(times_naive))
+    file.close()
+
 
 print('Effi times: %s\nNaive Times: %s' % (str(times_effi),str(times_naive)))
 file = open(path + 'results_times_effi.txt', 'w')

@@ -9,7 +9,7 @@ def is_a_leaf (u):
     return (u.child_nodes() == [])
 
 def collapse_edges(tree):
-    print('Collapsing edges...')
+    #print('Collapsing edges...')
     for nd in tree.postorder_node_iter():
         if len(nd.child_nodes()) == 1:
             if tree.seed_node == nd:
@@ -19,7 +19,7 @@ def collapse_edges(tree):
                 temp_child = nd.child_nodes()[0]    #its only child
                 temp_parent.remove_child(nd)
                 temp_parent.add_child(temp_child)
-    print('Finished collapsing edges.\n')
+    #print('Finished collapsing edges.\n')
     return tree
 
 def has_right_child(x):
@@ -75,7 +75,7 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
     return tree_internal_colors
 
 def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,max_distance,distance_flag,evol,compare_solutions,k):
-    print('Weighting G...')
+    #print('Weighting G...')
     #print ('red_HT_vertices_in_G = %s\nblack_HT_vertices_in_G = %s' % (str(red_HT_vertices_in_G),str(black_HT_vertices_in_G)))
     index = 1
     for u in G.postorder_node_iter():
@@ -116,7 +116,7 @@ def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_ver
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1,
                                weight = left_child_in_new_G['same_HT_score'])
         index += 1
-    print('Finished weighting G.\n')
+    #print('Finished weighting G.\n')
     return new_G
 
 def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_vertices_in_G,max_distance, distance_flag,evol,compare_solutions,k):
@@ -131,7 +131,6 @@ def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_v
                 if not compare_solutions:
                     res[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
                 else:
-                    print("dis %s for %s" % (str(dis_factor),str(x)))
                     res[0] += dis_factor
         for nd in black_HT_vertices_in_G:
             if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
@@ -142,7 +141,6 @@ def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_v
                 if not compare_solutions:
                     res[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
                 else:
-                    print("dis %s for %s" % (str(dis_factor), str(x)))
                     res[1] += dis_factor
     elif evol == 'D':
         for nd in red_HT_vertices_in_G:
@@ -173,7 +171,7 @@ def random_son(t,u):
 
 
 def number_of_edges_in_subtree(G):
-    print ('Counting edges in G...')
+    #print ('Counting edges in G...')
     for nd in (reversed(list(nx.topological_sort(G)))):
         out = G.out_edges([nd], data=True)
         out = [e for e in out]
@@ -183,7 +181,7 @@ def number_of_edges_in_subtree(G):
         while i < len(out):
             nd['edges_in_subtree'] += 1 + G.nodes(data = True)[out[i][1]]['edges_in_subtree']
             i += 1
-    print ('Finished counting edges in G')
+    #print ('Finished counting edges in G')
     return G
 
 def find_max_d_of_HT(dis, red_list, black_list,evolutanry_event):
@@ -207,7 +205,6 @@ def number_of_leafs (tree, name):
     for u in tree.postorder_node_iter():
         if u.is_leaf():
             counter += 1
-    print('number of leafs in %s is %s' % (name,str(counter)))
     return counter
 
 def remove_unsigma_genes(G,sigma,taxon):
@@ -267,7 +264,6 @@ def find_node_in_tree(tree,nd):
 
 def extract_list_of_leafs(name,tree,old_sigma):
     unmarked = leaf_in_subtrees(tree, name, old_sigma)
-    print('%s leafs: %s\n' % (str(name),str(unmarked)))
 
 def find_node_in_networkx_tree(tree,label):
     for u in (list(nx.topological_sort(tree))):

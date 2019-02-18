@@ -1,5 +1,5 @@
 import math
-import tree_operations
+import tree_operations_v1 as tree_operations
 import utiles
 import EfficiantVersion as effi
 
@@ -63,7 +63,7 @@ def p_value_calculation(fro, all, nCr_lookup_table, fact_lookup_table, accur, Pr
         return res, nCr_lookup_table, fact_lookup_table
 
 def init_internal_labels (tree, char, old_sigma, path):
-    print('Inisilasing internal leafs...')
+    #print('Inisilasing internal leafs...')
     counter = 1
     dic = ''
     for nd in tree.postorder_node_iter():
@@ -88,7 +88,7 @@ def init_internal_labels (tree, char, old_sigma, path):
         file = open(path + '/saved_data/S_keys' + '.txt', 'w')
         file.write(str(dic))
         file.close()
-    print('Finished inisilasing internal leafs.\n')
+    #print('Finished inisilasing internal leafs.\n')
     return tree
 
 class heap_items:
@@ -162,7 +162,6 @@ def map_max(map,number_of_fields):
             for k in range(0,2):
                 if array[j][k] > max:
                     max = array[j][k]
-    print('map max = %s' % str(max))
     return max
 
 def compare_dict_entries(dict):
@@ -221,8 +220,6 @@ def average_of_list(dict,num):
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
     planted_vertex = planted_vertex[0]
-    print('planted: %s, marked: %s, unmarked: %s' % (str(planted_vertex),str(all_marked_list),str(all_unmarked_list)))
-
     sensitivity = {}
     specifity = {}
     TN = {}

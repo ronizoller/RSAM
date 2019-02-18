@@ -18,7 +18,7 @@ from datetime import datetime
 import shutil
 
 on_lab = True
-compare = False
+compare = True
 running_time = False
 minimum_HT_under_planted = 3
 number_of_leaves = 500
@@ -34,14 +34,14 @@ add_noise = False
 number_of_planted_vertices = 5
 S = Tree()
 G = Tree()
-k = 100
+k = 210
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = utiles.frange(2.5,50,2.5)
+noise_level = [5]
 number_of_nodes = 0
-random_for_precentage = 50                              #number of different random noise for each noise %
+random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
 TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
@@ -668,7 +668,7 @@ def return_planted_nodes_new_name(list_of_planted,prev_G,path):
 
 ##********  MAIN ***********
 
-def main(number_of_leaves,path,k,running_time,number_of_planted_vertices):
+def main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices):
     global random_for_precentage,all_edges,TH_edges_in_subtree,compare_subtrees,TH_pattern_in_subtree,TH_compare_subtrees,both,TH_both,accur
     starting_time = datetime.now()
     new_G = nx.DiGraph()
@@ -787,4 +787,4 @@ def main(number_of_leaves,path,k,running_time,number_of_planted_vertices):
     print('Running time: %s' % str(datetime.now() - starting_time))
 
 if __name__ == "__main__":
-    main(number_of_leaves,path,k,running_time,number_of_planted_vertices)
+    main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices)

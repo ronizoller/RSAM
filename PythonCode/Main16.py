@@ -1,4 +1,3 @@
-
 on_lab = True
 check_diffreance_between_solutions = False
 
@@ -41,6 +40,7 @@ evolutinary_event = 'HT'
 HT_cost = 1
 D_cost = 1
 S_cost = 0
+save_data = False
 
 number_of_planted_vertices = 5
 planted_vertices = []
@@ -48,12 +48,12 @@ input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
     planted_vertices.append(eval(line))
 planted_vertices = planted_vertices[0]
-random_for_prec = 50
+random_for_prec = 20
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = utiles.frange(2.5,50,2.5)
+noise_level_list = [37.5]
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
 TH_compare_subtrees = 1
@@ -61,7 +61,7 @@ TH_compare_subtrees = 1
 #compare several optimal solutions
 if check_diffreance_between_solutions:
     iterations = 4                                  #will check for each i=0 to iteration the solution i*factor
-    factor = 20
+    factor = 50
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
@@ -88,7 +88,7 @@ big_size = 2000                                  #size of nodes
 small_size = 7
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G, black_HT_vertices_in_G, pattern, evolutinary_event,S_colors):
-    print('Find the pattern within the tree...')
+    #print('Find the pattern within the tree...')
     total_red = S_colors[S.seed_node.label][0]
     total_black = S_colors[S.seed_node.label][1]
     num_of_leafs = tree_operations.number_of_leafs(S,'S')
@@ -102,7 +102,6 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
             if evolutinary_event == 'HT' and curr['event'] == 'HT' and curr['probability'] > 0:
                 x = S.find_node(lambda n: (n.label == curr['t']))
                 incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
-                print(incoming_edges_curr)
                 horizontally_trans_to_option1 = S.find_node(
                     lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
                 horizontally_trans_to_option2 = S.find_node(
@@ -152,32 +151,32 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                             red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                          'probability': curr['probability'],
                                                          'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print('     this is a good pattern (red to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s,  p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
-                                (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
-                                 str(total_HT_to), str(curr['t']), str(p_value_curr_red), str(p_value_curr_black), str(Pr_red), str(Pr_black),
-                                 str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print('     this is a good pattern (red to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s,  p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
+                            #    (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
+                            #     str(total_HT_to), str(curr['t']), str(p_value_curr_red), str(p_value_curr_black), str(Pr_red), str(Pr_black),
+                            #     str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
 
                         elif (pattern == "same_color" or pattern == "only_red") and (p_value_HT_to_red < p): #HT to red
                             red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                                (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                             #   (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                     elif p_value_curr_black < p: #HT from black
                         if (pattern == "different_colors" or pattern == "only_black_to_red") and (p_value_HT_to_red < p):  # HT to red
                             black_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                            'probability': curr['probability'],
                                                            'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print(
-                                '     this is a good pattern (black to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
-                                (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
-                                 str(total_HT_to), str(curr['t']), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),
-                                 str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print(
+                            #    '     this is a good pattern (black to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
+                            #    (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
+                            #     str(total_HT_to), str(curr['t']), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),
+                            #     str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
 
                         elif (pattern == "same_color") and (p_value_HT_to_black < p): #HT to black
                             black_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                                (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                            #    (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                 elif pattern == "any":               #mark HT (in the red list, just for convi)
                     red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                  'probability': curr['probability'],
@@ -219,18 +218,18 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                 flag = False
                 if (pattern == "only_red" or pattern == "any") and p_value_curr_red < p: #duplication in red
                     red_HT_vertices_in_G.append({'curr': curr,'probability': curr['probability']})
-                    print(
-                                '     this is a good pattern (red duplication): \n       curr = %s, total vertices under x = %s,\n       p value red = %s, p value black = %s (Pr red = %s, Pr black = %s)\n      prob = %s \n**\n' %
-                                (str(curr), str(total_curr), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),str(curr['probability'])))
+                    #print(
+                    #            '     this is a good pattern (red duplication): \n       curr = %s, total vertices under x = %s,\n       p value red = %s, p value black = %s (Pr red = %s, Pr black = %s)\n      prob = %s \n**\n' %
+                    #            (str(curr), str(total_curr), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),str(curr['probability'])))
                     flag = True
                 if (pattern == "only_black" or pattern == "any") and p_value_curr_black < p and not flag: #duplication in red
                     black_HT_vertices_in_G.append({'curr': curr,'probability': curr['probability']})
-                    print(
-                                '     this is a good pattern (black duplication): \n       curr = %s, total vertices under x = %s,\n       p value red = %s, p value black = %s (Pr red = %s, Pr black = %s)\n      prob = %s \n**\n' %
-                                (str(curr), str(total_curr), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),str(curr['probability'])))
+                    #print(
+                    #            '     this is a good pattern (black duplication): \n       curr = %s, total vertices under x = %s,\n       p value red = %s, p value black = %s (Pr red = %s, Pr black = %s)\n      prob = %s \n**\n' %
+                    #            (str(curr), str(total_curr), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),str(curr['probability'])))
 
 
-    print('Finished finding same-color HT.\n')
+    #print('Finished finding same-color HT.\n')
     return red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table
 
 def init_G_nodes_to_weight(G, G_nodes_to_weight):
@@ -240,7 +239,7 @@ def init_G_nodes_to_weight(G, G_nodes_to_weight):
     return G_nodes_to_weight
 
 def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
-    print('weighting G...')
+    #print('weighting G...')
     G_nodes_to_weight = init_G_nodes_to_weight(G, G_edges_to_weight)
 
     for nd in (list(nx.topological_sort(H))):
@@ -269,7 +268,7 @@ def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
                 total_weight += S_dis_matrix[(curr['t'],HT_to.label)]
 
                 G_nodes_to_weight.update({(u.label,HT_to_in_G): [number_of_HT, total_weight]})
-    print('Finished weighting G...')
+    #print('Finished weighting G...')
     return G_nodes_to_weight
 
 def RSAM_finder_multithread(parameters):
@@ -280,7 +279,7 @@ def RSAM_finder_multithread(parameters):
     list_of_scores_for_rand_num = {}
     random_for_prec_curr = random_for_prec
     for rand_num in range (0, random_for_prec_curr):
-        print('                 ****     Iteration %s.%s/%s.%s     ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
+        print('                 ****     Iteration %s.%s/%s.%s (Multithread)    ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
         if not check_diffreance_between_solutions:
             S_dis_matrix = {}
             nodes_table = {}
@@ -298,21 +297,17 @@ def RSAM_finder_multithread(parameters):
             G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
             S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
 
-            print("     Reading file "+path+"/sigma.txt'...")
             input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
             sigma = []
             for line in input:
                 sigma.append(eval(line))
             sigma = sigma[0]
-            print("     Finished reading file  "+path+"/sigma.txt'")
 
-            print("     Reading file " + path + "/colors.txt'...")
             input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
             colors = []
             for line in input:
                 colors.append(eval(line))
             colors = colors[0]
-            print("     Finished reading file  " + path + "/colors.txt'")
             G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
             S = utiles.init_internal_labels(S, 'x', sigma, path)
@@ -333,7 +328,7 @@ def RSAM_finder_multithread(parameters):
 
             H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
                                                                              nodes_table, D_cost, S_cost, HT_cost, path, alpha,
-                                                                             sigma)
+                                                                             sigma, save_data)
 
             H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
         else:
@@ -458,21 +453,17 @@ def main():
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
     S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
 
-    print("     Reading file "+path+"/sigma.txt'...")
     input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
     sigma = []
     for line in input:
         sigma.append(eval(line))
     sigma = sigma[0]
-    print("     Finished reading file  "+path+"/sigma.txt'")
 
-    print("     Reading file " + path + "/colors.txt'...")
     input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
     colors = []
     for line in input:
         colors.append(eval(line))
     colors = colors[0]
-    print("     Finished reading file  " + path + "/colors.txt'")
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
     S = utiles.init_internal_labels(S, 'x', sigma, path)
@@ -494,7 +485,7 @@ def main():
 
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
                                                                      nodes_table, D_cost, S_cost, HT_cost, path, alpha,
-                                                                     sigma)
+                                                                     sigma,save_data)
     if check_diffreance_between_solutions:
         max_dis = tree_operations.max_dis(S_dis_matrix)
         if iterations * factor < k:
@@ -538,7 +529,6 @@ def main():
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
                 list_of_unmarked_TH = []
-                print('all_marked: '+str(all_marked))
                 for li in all_marked:
                     list_of_unmarked = []
                     for u in G.postorder_node_iter():

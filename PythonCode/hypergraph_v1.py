@@ -11,8 +11,8 @@ import random
 from numpy import inf
 
 
-def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma):
-    print('Building hypergraph...')
+def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma,save_data):
+    #print('Building hypergraph...')
     H = nx.MultiDiGraph()
     H.clear()
 
@@ -107,26 +107,27 @@ def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, 
                                 else:
                                     heapq.heappush(Kbest, tuple(new_node12))
                                     heapq.heappush(Kbest, tuple(new_node21))
-        print('     Writing nodes...')
-        file = open(path+'/saved_data/H_nodes_naive.txt', 'w')
-        file.write(str(H.nodes(data=True)))
-        file.close()
-        print('     Finished writing nodes.\n')
+        if save_data:
+            print('     Writing nodes...')
+            file = open(path+'/saved_data/H_nodes_naive.txt', 'w')
+            file.write(str(H.nodes(data=True)))
+            file.close()
+            print('     Finished writing nodes.\n')
 
-        #print('     Writing edges...')
-        #file = open(path+'/saved_data/H_edges_k='+str(k)+'.txt', 'w')
-        #file.write(str(H.edges(data=True)))
-        #file.close()
-        #print('     Finished writing edges.\n')
+            print('     Writing edges...')
+            file = open(path+'/saved_data/H_edges_k='+str(k)+'.txt', 'w')
+            file.write(str(H.edges(data=True)))
+            file.close()
+            print('     Finished writing edges.\n')
 
-        #print('     Writing nodes table...')
-        #file = open(path+'/saved_data/nodes_table_k='+str(k)+'.txt', 'w')
-        #file.write(str(nodes_table))
-        #file.close()
-        #print('     Finished writing nodes table.\n')
+            print('     Writing nodes table...')
+            file = open(path+'/saved_data/nodes_table_k='+str(k)+'.txt', 'w')
+            file.write(str(nodes_table))
+            file.close()
+            print('     Finished writing nodes table.\n')
 
-    print('     No. of nodes: '+str(H_number_of_nodes * k)+'        No. on edges: '+str(len(H.edges())))
-    print('Finished building hypergraph.\n')
+    #print('     No. of nodes: '+str(H_number_of_nodes * k)+'        No. on edges: '+str(len(H.edges())))
+    #print('Finished building hypergraph.\n')
     return H,H_number_of_nodes, nodes_table
 
 def find_nodes_in_hypergraph(H, s, t, lp, nodes_table):
@@ -267,7 +268,7 @@ def calculate_color_diffrence(H, G, S, colors, k, nodes_table, test, real):
             #print('\n')
 
 def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
-    print('Coloring hypergraph...')
+    #print('Coloring hypergraph...')
     for nd in (list(nx.topological_sort(H))):
         incoming_edges = H.in_edges([nd], data=True)
         nd = H.nodes(data=True)[nd]
@@ -300,21 +301,21 @@ def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
                         #print('add [%s,%s] to %s (for %s, %s event)' % (str(reds),str(blacks),str(temp),str(nd['t']),str(nd['l'][i]['event'])))
                         S_colors.update({nd['t']: [reds + temp[0], blacks + temp[1]]})
                         #print('S_colors = %s\nnd = %s\nsource nd = %s\n' % (str(S_colors), str(nd), str(source)))
-    print('Finished coloring hypergraph.\n')
+    #print('Finished coloring hypergraph.\n')
     return H, S, S_colors
 
 def remove_prob_zero(H, deleted_nodes):
-    print('Removing prob. 0...')
+    #print('Removing prob. 0...')
     for nd in list(H.node(data=True)):
         if nd[1]['l'][0]['probability'] == 0:
             H.remove_node(nd[0])
             deleted_nodes.append(nd[0])
-    print("\t\tnode deleted: "+str(deleted_nodes))
-    print('Finished removing prob. 0.\n')
+    #print("\t\tnode deleted: "+str(deleted_nodes))
+    #print('Finished removing prob. 0.\n')
     return H
 
 def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
-    print('Assigning probs to hypergraph....')
+    #print('Assigning probs to hypergraph....')
     flag = False
     to_try = G.seed_node.label
     to_try_sp = S.seed_node.label
@@ -339,8 +340,8 @@ def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
                     nd['l'][i].update({'probability':new_prob})
                     for e in incoming_edges_v:
                         e[2]['probability'] = new_prob
-                    if new_prob > 1:
-                        print ('This is bad: nd = '+str(nd)+' with prob: '+str(new_prob)+'\n')
+                    #if new_prob > 1:
+                        #print ('This is bad: nd = '+str(nd)+' with prob: '+str(new_prob)+'\n')
                 else:
                     flag = True
                     nd['l'] = assign_weights_to_list(nd['l'], gamma)
@@ -350,18 +351,18 @@ def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
         if flag == False:
             print('     ** No reconciliation of '+to_try+' exists. **')
             return None, 0
-        print('     Writing nodes...')
-        file = open(path+'/saved_data/H_nodes_naive.txt', 'w')
-        file.write(str(H.nodes(data=True)))
-        file.close()
-        print('     Finished writing nodes.\n')
+        #print('     Writing nodes...')
+        #file = open(path+'/saved_data/H_nodes_naive.txt', 'w')
+        #file.write(str(H.nodes(data=True)))
+        #file.close()
+        #print('     Finished writing nodes.\n')
     #else :
-        print('     Probs were already assinged')
+        #print('     Probs were already assinged')
     for nd in H.nodes(data = True):
         for g in range(0,len(nd[1]['l'])):
             if nd[1]['l'][g]['probability'] > max_prob:
                 max_prob = nd[1]['l'][g]['probability']
-    print('Finished assigning probs to hypergraph.\n')
+    #print('Finished assigning probs to hypergraph.\n')
     return H, max_prob
 
 def assign_weights_to_list(l, gamma):
@@ -396,10 +397,10 @@ def assign_weights_to_list(l, gamma):
         #assign_weights_to_list(nd[1]['l'])
 
 def track_a_solution(root, H, S, G, solution, list_place):
-    print('Tracking ' + str(list_place) +'th solution...')
+    #print('Tracking ' + str(list_place) +'th solution...')
 
     new_nodes_table = inits.init_nodes_table(S, G, {})
-    print('root: '+str(root))
+    #print('root: '+str(root))
     root_numbers_in_H = [root[0][0]]
     root_numbers_in_solution = [0]
 
@@ -435,11 +436,11 @@ def track_a_solution(root, H, S, G, solution, list_place):
             root_numbers_in_solution.append(solution_number_of_nodes-1)
             root_numbers_in_solution.append(solution_number_of_nodes-1)
     #print('     solution number %s is: \n   %s' % (str(list_place),str(solution.nodes(data=True))))
-    print('Finished tracking ' + str(list_place) + 'th solution...\n')
+    #print('Finished tracking ' + str(list_place) + 'th solution...\n')
     return solution, new_nodes_table
 
 def find_number_of_cooptimal(H,G,S,k):
-    print('computing number of co-optimal solutions...')
+    #print('computing number of co-optimal solutions...')
     counter = 1
     for nd in list(reversed(list(nx.topological_sort(H)))):
         nd = H.nodes(data=True)[nd]
@@ -449,8 +450,6 @@ def find_number_of_cooptimal(H,G,S,k):
                 if nd['l'][j]['cost'] == optimal_cost:
                     counter += 1
                 else:
-                    #print ('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]),str(counter)))
                     quit()
-            #print('last optimal solution:%s, number of co-optimal solutions= %s' % (str(nd['l'][j]), str(counter)))
             quit()
-    print('Finished computing number of co-optimal solutions.'+str(counter))
+    #print('Finished computing number of co-optimal solutions.'+str(counter))
