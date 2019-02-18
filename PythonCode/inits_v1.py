@@ -93,7 +93,7 @@ def init_taxon_to_label_table(S,G,sigma):
             G_labels_table.update({leaf_G.taxon.label: leaf_G.label})
         else :
             sigma.update({leaf_G.label:'x'+leaf_G.label[1:]})
-    return S_labels_table,G_labels_table
+    return S_labels_table,G_labels_table,sigma
 
 def update_sigma(S, G, k, sigma, test, path,exect_names,S_labels_table,G_labels_table):
     #print('Updating sigma...')
