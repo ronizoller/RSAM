@@ -85,6 +85,7 @@ def random_again(t,iter):
             remove = random.choice([True, False])
             if remove:
                 removed_subtree = node.detach()
+                print('removed_subtree: '+str(removed_subtree))
                 randome_leave_from_tree(t,len(t),False).add_child(removed_subtree)
         number_of_iter += 1
     return t
@@ -602,7 +603,7 @@ def create_tree_for_noise(parameters):
         G = tree_operations.collapse_edges(G)
         S = tree_operations.collapse_edges(S)
 
-        S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S, G, sigma)
+        S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S, G, sigma)
 
         sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
         colors, old_colors = inits.update_colors(S, colors, True)
@@ -714,7 +715,7 @@ def main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices):
     G = tree_operations.collapse_edges(G)
     S = tree_operations.collapse_edges(S)
 
-    S_labels_table, G_labels_table = inits.init_taxon_to_label_table(S, G, sigma)
+    S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S, G, sigma)
 
     sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
     colors, old_colors = inits.update_colors(S, colors, True)

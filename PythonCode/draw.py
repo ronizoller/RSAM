@@ -1,10 +1,10 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import networkx as nx
-import tree_operations
+import tree_operations_v1 as tree_operation
 from networkx.drawing.nx_agraph import graphviz_layout
 import matplotlib.pyplot as plt
-import inits
+import inits_v1 as inits
 import math
 import utiles
 import seaborn as sns

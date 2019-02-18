@@ -1,12 +1,12 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 
-import tree_operations
+import tree_operations_v1 as tree_operations
 import heapq
 import utiles
 import math
 import networkx as nx
-import inits
+import inits_v1 as inits
 import random
 from numpy import inf
 

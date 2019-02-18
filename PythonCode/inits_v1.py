@@ -86,9 +86,13 @@ def init_taxon_to_label_table(S,G,sigma):
     S_labels_table = {}
     G_labels_table = {}
     for leaf_S in S.leaf_nodes():
-        S_labels_table.update({leaf_S.taxon.label:leaf_S.label})
+        if leaf_S.taxon != None:
+            S_labels_table.update({leaf_S.taxon.label: leaf_S.label})
     for leaf_G in G.leaf_nodes():
-        G_labels_table.update({leaf_G.taxon.label: leaf_G.label})
+        if leaf_G.taxon != None:
+            G_labels_table.update({leaf_G.taxon.label: leaf_G.label})
+        else :
+            sigma.update({leaf_G.label:'x'+leaf_G.label[1:]})
     return S_labels_table,G_labels_table
 
 def update_sigma(S, G, k, sigma, test, path,exect_names,S_labels_table,G_labels_table):

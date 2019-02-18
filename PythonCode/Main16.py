@@ -102,6 +102,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
             if evolutinary_event == 'HT' and curr['event'] == 'HT' and curr['probability'] > 0:
                 x = S.find_node(lambda n: (n.label == curr['t']))
                 incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
+                print('incoming_edges: %s\nincoming_edges_curr: %s\nnd: %s' % (str(incoming_edges),str(incoming_edges_curr),str(nd)))
                 horizontally_trans_to_option1 = S.find_node(
                     lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
                 horizontally_trans_to_option2 = S.find_node(
@@ -357,13 +358,14 @@ def RSAM_finder_multithread(parameters):
 
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
-            H = hypergraph.remove_prob_zero(H, deleted_nodes)
             red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,
                                                                                                                    S_dis_matrix,
                                                                                                                    nCr_lookup_table,
                                                                                                                    fact_lookup_table,
                                                                                                                    red_HT_vertices_in_G,
                                                                                                                    black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
+            H = hypergraph.remove_prob_zero(H, deleted_nodes)
+
             max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
             new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
@@ -578,13 +580,13 @@ def main():
 
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
-            H = hypergraph.remove_prob_zero(H, deleted_nodes)
             red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,
                                                                                                                    S_dis_matrix,
                                                                                                                    nCr_lookup_table,
                                                                                                                    fact_lookup_table,
                                                                                                                    red_HT_vertices_in_G,
                                                                                                                    black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
+            H = hypergraph.remove_prob_zero(H, deleted_nodes)
             max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
             new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
