@@ -130,27 +130,24 @@ def update_colors(S,colors,exact_names):
     #print('Updating colors...')
     old_colors = colors.copy()
     for leaf_S in S.leaf_nodes():
-        degel = False
-        for x,color in colors.items():
-            if not leaf_S.taxon is None:
-                #print(str(leaf_S.taxon.label) + '  **  ' + str(x))
+        if not leaf_S.taxon is None:
+            degel = False
+            for x,color in colors.items():
                 if not exact_names:
                     if x.replace("_","").find(leaf_S.taxon.label) != -1:
-                        #del colors[int(leaf_S.taxon.label)]         #if lables are numbers
                         colors = dict((x, color) for x,color in colors.items() if (x.replace("_","").find(leaf_S.taxon.label) == -1 or leaf_S.taxon.label .find(x.replace("_","")) == -1))
                         colors.update({leaf_S.label: color})
                         degel = True
                 else:
                     if x.replace("_","") == leaf_S.taxon.label:
-                        #del colors[int(leaf_S.taxon.label)]         #if lables are numbers
                         colors = dict((x, color) for x,color in colors.items() if (x != leaf_S.taxon.label))
                         colors.update({leaf_S.label: color})
                         degel = True
-        if degel == False:
-            #print('     No lable was assigned to: '+str(leaf_S))
-            colors = dict((x, color) for x, color in colors.items() if not x == leaf_S.taxon.label)
-            colors.update({leaf_S.label:  random.choice(['black', 'red'])})
-            old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})
+            if degel == False:
+                #print('     No lable was assigned to: '+str(leaf_S))
+                colors = dict((x, color) for x, color in colors.items() if not x == leaf_S.taxon.label)
+                colors.update({leaf_S.label:  random.choice(['black', 'red'])})
+                old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})
     #print('Finished updating colors.\n')
     return colors,old_colors
 

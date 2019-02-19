@@ -1,5 +1,5 @@
 on_lab = True
-check_diffreance_between_solutions = False
+check_diffreance_between_solutions = True
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -32,7 +32,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 5
+k = 210
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -48,12 +48,12 @@ input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
     planted_vertices.append(eval(line))
 planted_vertices = planted_vertices[0]
-random_for_prec = 20
+random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = utiles.frange(2.5,50,2.5)
+noise_level_list = [5]
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
 TH_compare_subtrees = 1
@@ -102,7 +102,6 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
             if evolutinary_event == 'HT' and curr['event'] == 'HT' and curr['probability'] > 0:
                 x = S.find_node(lambda n: (n.label == curr['t']))
                 incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
-                print('incoming_edges: %s\nincoming_edges_curr: %s\nnd: %s' % (str(incoming_edges),str(incoming_edges_curr),str(nd)))
                 horizontally_trans_to_option1 = S.find_node(
                     lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
                 horizontally_trans_to_option2 = S.find_node(
@@ -333,7 +332,6 @@ def RSAM_finder_multithread(parameters):
 
             H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
         else:
-            H = parameters[20]
             S = parameters[3]
             G = parameters[4]
             S_colors = parameters[5]
@@ -351,7 +349,8 @@ def RSAM_finder_multithread(parameters):
             TH_pattern_in_subtree = parameters[17]
             TH_edges_in_subtree = parameters[18]
             iter = parameters[19]
-        if H == None:
+            H = parameters[20]
+        if H is not None:
             list_of_scores_for_rand_num.update({rand_num: {}})
         else:
             ##      PROBABILITIES, COLORS, PATTERN      ##
@@ -497,7 +496,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,10,1)
+            list_of_TH = utiles.frange(0,len(H.edges())/2,1)        #TH_edges_in_subtree
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH)):
@@ -508,7 +507,6 @@ def main():
             for res in list_of_RSAM_results:
                 all_vertices_with_index.update({list_of_TH[ind]: [res]})
                 ind += 1
-            print('all_vertices_with_index: %s' % str(all_vertices_with_index))
             file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_vertices_with_index))
             file.close()
@@ -521,7 +519,6 @@ def main():
                 nCr_lookup_table = {}
                 fact_lookup_table = {}
                 S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-
                 p1 = Pool(15)
                 parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both,H,S,G,old_sigma,TH) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
@@ -543,6 +540,11 @@ def main():
                     list_of_unmarked_TH.append(list(list_of_unmarked))
                 all_marked_for_TH.update({TH_both:(all_marked)})
                 all_unmarked_for_TH.update({TH_both:(list_of_unmarked_TH)})
+                file = open(path + '/saved_data/all_marked_nodes_for_TH.txt', 'w')
+                file.write(str(all_marked_for_TH))
+                file.close()
+                file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
+                file.write(str(all_unmarked_for_TH))
                 if (not on_lab) and (TH_both == 0):
                     draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
                                      TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,

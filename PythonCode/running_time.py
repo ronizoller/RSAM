@@ -6,7 +6,7 @@ speciesTreespecification = 'all'
 HT_cost = 1
 D_cost = 1
 S_cost = 0
-on_lab = False
+on_lab = True
 number_of_iter_per_size = 10
 
 if on_lab:
@@ -28,7 +28,7 @@ import hypergraph_v1 as hypergraph
 import matplotlib.pyplot as plt
 from ete3 import Tree
 
-for number_of_leafs in utiles.frange(350,500,50):
+for number_of_leafs in utiles.frange(350,600,50):
     temp_time_effi = {}
     temp_time_naive = {}
     path_curr = path + '/number_of_leaves:' + str(number_of_leafs) + '/'

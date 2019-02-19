@@ -281,14 +281,11 @@ def HTEvent_effi (u, x, HT_cost,subtree,incomp,k,H,nodes_table):
 
     list_v_horizontally = utiles.kmin_positive(incomp[v.label][x.label],k,H,nodes_table)
     list_w_horizontally = utiles.kmin_positive(incomp[w.label][x.label],k,H,nodes_table)
-    print('u: %s, x: %s' % (str(u),str(x)))
     for hyper_node1 in list_v_to_subtree:
         for hyper_node2 in list_w_horizontally:
-            print('hyper_node1: %s\nhyper_node2: %s\n' % (str(hyper_node1),str(hyper_node2)))
             heapq.heappush(heap,utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+HT_cost,hyper_node1,hyper_node2))
     for hyper_node1 in list_w_to_subtree:
         for hyper_node2 in list_v_horizontally:
-            print('second hyper_node1: %s\nsecond hyper_node2: %s\n' % (str(hyper_node1), str(hyper_node2)))
             heapq.heappush(heap, utiles.heap_items(hyper_node1[1]['cost']+hyper_node2[1]['cost']+HT_cost,hyper_node1, hyper_node2))
     return heap
 
