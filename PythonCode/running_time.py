@@ -1,6 +1,3 @@
-
-
-
 k = 50
 times_effi = {}
 times_naive = {}
@@ -9,7 +6,7 @@ speciesTreespecification = 'all'
 HT_cost = 1
 D_cost = 1
 S_cost = 0
-on_lab = True
+on_lab = False
 number_of_iter_per_size = 10
 
 if on_lab:
@@ -105,5 +102,5 @@ plt.ylabel('Running Time', fontsize=10)
 fig, ax = plt.subplots()
 plt.plot(xs, effi, 'ro')
 plt.plot(xs, naive, 'g^')
-plt.axis([0, max(xs)+50, 0, max(effi+naive)+1])
+plt.axis([0, max(xs)+50, 0, max(effi+naive)+0.5])
 plt.show()
