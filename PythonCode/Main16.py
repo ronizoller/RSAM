@@ -1,11 +1,11 @@
 on_lab = True
-check_diffreance_between_solutions = True
+check_diffreance_between_solutions = False
 
 if on_lab:
     if check_diffreance_between_solutions:
         path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
     else:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
+        path = '/storage/DATA/users/ronizo/noise_data'
 else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
@@ -32,7 +32,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 210
+k = 100
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -42,26 +42,26 @@ D_cost = 1
 S_cost = 0
 save_data = False
 
-number_of_planted_vertices = 5
+number_of_planted_vertices = 1
 planted_vertices = []
 input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
     planted_vertices.append(eval(line))
 planted_vertices = planted_vertices[0]
-random_for_prec = 1
+random_for_prec = 50
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = utiles.frange(2.5,102.5,2.5)
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
 TH_compare_subtrees = 1
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 4                                  #will check for each i=0 to iteration the solution i*factor
-    factor = 50
+    iterations = 5                                  #will check for each i=0 to iteration the solution i*factor
+    factor = 20
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
@@ -350,7 +350,7 @@ def RSAM_finder_multithread(parameters):
             TH_edges_in_subtree = parameters[18]
             iter = parameters[19]
             H = parameters[20]
-        if H is not None:
+        if H is None:
             list_of_scores_for_rand_num.update({rand_num: {}})
         else:
             ##      PROBABILITIES, COLORS, PATTERN      ##
@@ -496,7 +496,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,len(H.edges())/2,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,len(H.nodes())/2,1)        #TH_edges_in_subtree
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH)):
@@ -520,7 +520,8 @@ def main():
                 fact_lookup_table = {}
                 S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
                 p1 = Pool(15)
-                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,black_HT_vertices_in_G,S_colors,TH_both,H,S,G,old_sigma,TH) for x in range(0,iterations)]
+                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,
+                                    black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
                 new_G_to_save = []
                 for res in list_of_results:
@@ -575,7 +576,7 @@ def main():
         fact_lookup_table = {}
         G_internal_colors = {}
         H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
-        if H == None:
+        if H is None:
             list_of_scores_for_rand_num.update({rand_num: {}})
         else:
             ##      PROBABILITIES, COLORS, PATTERN      ##
@@ -619,7 +620,6 @@ def main():
     print('all_vertices_with_index: %s' % str(all_vertices_with_index))
     file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
     file.write(str(all_vertices_with_index))
-
     file.close()
 
     #if not on_lab:

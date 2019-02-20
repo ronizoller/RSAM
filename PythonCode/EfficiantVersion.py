@@ -435,7 +435,6 @@ def track_a_solution(root, H, S, G, solution, list_place):
     print('Tracking ' + str(list_place) +'th solution...')
 
     new_nodes_table = inits.init_nodes_table(S, G, {})
-    print('root: '+str(root))
     root_numbers_in_H = [root[0][0]]
     root_numbers_in_solution = [0]
 
@@ -443,8 +442,6 @@ def track_a_solution(root, H, S, G, solution, list_place):
     roots = [root[0][1]['l'][list_place]]
 
     while not roots == []:
-        #print('**\n roots = %s\n    root_numbers_in_H = %s\n    root_numbers_in_solution = %s\n' % (str(roots),str(root_numbers_in_H),str(root_numbers_in_solution)))
-
         curr_root = roots.pop()
         curr_index_in_H = root_numbers_in_H.pop()
         index_to_edge = root_numbers_in_solution.pop()
@@ -470,7 +467,6 @@ def track_a_solution(root, H, S, G, solution, list_place):
             root_numbers_in_H.append([nd for nd in list(H.node(data=True)) if nd[1]['s'] == left_child['s'] and nd[1]['t'] == left_child['t']][0][0])
             root_numbers_in_solution.append(solution_number_of_nodes-1)
             root_numbers_in_solution.append(solution_number_of_nodes-1)
-    #print('     solution number %s is: \n   %s' % (str(list_place),str(solution.nodes(data=True))))
     #print('Finished tracking ' + str(list_place) + 'th solution...\n')
     return solution, new_nodes_table
 

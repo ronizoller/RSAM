@@ -26,25 +26,25 @@ if on_lab:
     if compare:
         path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
     else:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise'
+        path = '/storage/DATA/users/ronizo/noise_data'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 5
+number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
-k = 210
+k = 100
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [5]
+noise_level = [2.5]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 5                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = (TH_edges_in_subtree*0.5)/k
 if compare_subtrees and evolutinary_event=='HT':
     TH_compare_subtrees =  1

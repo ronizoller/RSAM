@@ -214,7 +214,7 @@ def average_of_list(dict,num):
                             sum[0] += score1[0]
                             sum[1] += score1[1]
                 res.update({u: (sum[0]/num,sum[1]/num)})
-    print('         Average list: %s\n' % str(res))
+    #print('         Average list: %s\n' % str(res))
     return res
 
 
