@@ -1,5 +1,5 @@
 on_lab = True
-check_diffreance_between_solutions = False
+check_diffreance_between_solutions = True
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -18,7 +18,6 @@ import math
 import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
-#import draw
 import EfficiantVersion as hypergraph
 import pattern_identify_v4 as pattern_identify
 import EfficiantVersion as effi
@@ -48,12 +47,12 @@ input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
     planted_vertices.append(eval(line))
 planted_vertices = planted_vertices[0]
-random_for_prec = 50
+random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = utiles.frange(2.5,102.5,2.5)
+noise_level_list = [5]
 TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
 TH_compare_subtrees = 1
@@ -496,7 +495,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,len(H.nodes())/2,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,100,1)        #TH_edges_in_subtree
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH)):

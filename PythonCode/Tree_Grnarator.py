@@ -15,18 +15,17 @@ import numpy
 from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
-import shutil
 
 on_lab = True
 compare = True
 running_time = False
 minimum_HT_under_planted = 3
-number_of_leaves = 500
+number_of_leaves = 400
 if on_lab:
     if compare:
         path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data'
+        path = '/storage/DATA/users/ronizo/noise_data_200'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
@@ -39,7 +38,7 @@ both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [2.5]
+noise_level = [5]
 number_of_nodes = 0
 random_for_precentage = 1                              #number of different random noise for each noise %
 accur = 5
