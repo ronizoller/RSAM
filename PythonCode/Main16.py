@@ -31,7 +31,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 100
+k = 110
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -495,13 +495,15 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,100,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,20,1)        #TH_edges_in_subtree
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH)):
                 parameters.append([noise_level_list[0], TH_both, check_diffreance_between_solutions, S, G, S_colors, colors, [], S_dis_matrix, {}, {},
                                    [], [], sigma, nx.DiGraph(), {}, all_vertices, TH_pattern_in_subtree, list_of_TH[i],i, H])
             list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
+            p.close()
+            p.join()
             ind = 0
             for res in list_of_RSAM_results:
                 all_vertices_with_index.update({list_of_TH[ind]: [res]})
@@ -522,6 +524,8 @@ def main():
                 parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,
                                     black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
+                p1.close()
+                p1.join()
                 new_G_to_save = []
                 for res in list_of_results:
                     all_vertices_with_index.update(res[0])
@@ -612,6 +616,8 @@ def main():
     for i in range(0,len(noise_level_list)):
         parameters.append([noise_level_list[i],TH_both,check_diffreance_between_solutions])
     list_of_results = p.map(RSAM_finder_multithread, parameters)
+    p.close()
+    p.join()
     ind = 0
     for res in list_of_results:
         all_vertices_with_index.update({noise_level_list[ind]:res})
