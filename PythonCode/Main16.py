@@ -495,7 +495,8 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,20,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,2,1)        #TH_edges_in_subtree
+
             parameters = []
             p = Pool(15)
             for i in range(0, len(list_of_TH)):
@@ -506,7 +507,7 @@ def main():
             p.join()
             ind = 0
             for res in list_of_RSAM_results:
-                all_vertices_with_index.update({list_of_TH[ind]: [res]})
+                all_vertices_with_index.update({list_of_TH[ind]: res})
                 ind += 1
             file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_vertices_with_index))
@@ -531,31 +532,16 @@ def main():
                     all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
-                list_of_unmarked_TH = []
-                for li in all_marked:
-                    list_of_unmarked = []
-                    for u in G.postorder_node_iter():
-                        flag = False
-                        for tup in li:
-                            if u.label == tup[0]:
-                                flag = True
-                        if not flag:
-                            list_of_unmarked.append(u.label)
-                    list_of_unmarked_TH.append(list(list_of_unmarked))
-                all_marked_for_TH.update({TH_both:(all_marked)})
-                all_unmarked_for_TH.update({TH_both:(list_of_unmarked_TH)})
-                file = open(path + '/saved_data/all_marked_nodes_for_TH.txt', 'w')
-                file.write(str(all_marked_for_TH))
-                file.close()
-                file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
-                file.write(str(all_unmarked_for_TH))
+                all_marked_for_TH.update({TH:(utiles.average_of_list(all_marked))})
+                all_unmarked_for_TH.update({TH:utiles.find_unmarked(all_marked_for_TH[TH],G)})
                 if (not on_lab) and (TH_both == 0):
                     draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
                                      TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
                                      pattern,
                                      big_size, evolutinary_event, compare_subtrees, 1)
+            all_marked_for_TH = utiles.average_of_list_check_diff(all_marked_for_TH)
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
-            print('all_unmarked_for_TH: %s' % str(all_unmarked_for_TH))
+            #print('all_unmarked_for_TH: %s' % str(all_unmarked_for_TH))
 
             file = open(path + '/saved_data/all_marked_nodes_for_TH.txt', 'w')
             file.write(str(all_marked_for_TH))
