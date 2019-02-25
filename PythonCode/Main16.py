@@ -495,7 +495,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,2,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,20,1)        #TH_edges_in_subtree
 
             parameters = []
             p = Pool(15)
@@ -532,7 +532,7 @@ def main():
                     all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
-                all_marked_for_TH.update({TH:(utiles.average_of_list(all_marked))})
+                all_marked_for_TH.update({TH:(utiles.average_of_list(all_marked,iterations))})
                 all_unmarked_for_TH.update({TH:utiles.find_unmarked(all_marked_for_TH[TH],G)})
                 if (not on_lab) and (TH_both == 0):
                     draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,

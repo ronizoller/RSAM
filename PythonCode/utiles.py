@@ -241,7 +241,7 @@ def find_unmarked(all_marked_for_TH,G):
                 flag = True
         if not flag:
             list_of_unmarked_TH.append(v.label)
-        return list_of_unmarked_TH
+    return list_of_unmarked_TH
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
     sensitivity = {}
