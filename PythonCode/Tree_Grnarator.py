@@ -30,7 +30,7 @@ else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 4
+number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
 k = 100

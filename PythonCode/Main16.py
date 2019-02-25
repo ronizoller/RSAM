@@ -439,7 +439,8 @@ def main():
     global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,planted_vertices, TH_edges_in_subtree, number_of_planted_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
     starting_time = datetime.now()
 
-    all_vertices_with_index = {}
+    all_RSAM_marked = {}
+    all_RSAM_unmarked = {}
     list_of_scores_for_rand_num = {}
     noise_level = 0
     rand_num = 0
@@ -495,7 +496,7 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,20,1)        #TH_edges_in_subtree
+            list_of_TH = utiles.frange(0,2,1)        #TH_edges_in_subtree
 
             parameters = []
             p = Pool(15)
@@ -507,10 +508,14 @@ def main():
             p.join()
             ind = 0
             for res in list_of_RSAM_results:
-                all_vertices_with_index.update({list_of_TH[ind]: res})
+                all_RSAM_marked.update({list_of_TH[ind]: res})
+                all_RSAM_unmarked.update({list_of_TH[ind]: utiles.find_unmarked(res,G,True)})
                 ind += 1
-            file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
-            file.write(str(all_vertices_with_index))
+            file = open(path + '/saved_data/all_marked_vertices_RSAM_finder.txt', 'w')
+            file.write(str(all_RSAM_marked))
+            file.close()
+            file = open(path + '/saved_data/all_unmarked_vertices_RSAM_finder.txt', 'w')
+            file.write(str(all_RSAM_unmarked))
             file.close()
             for TH in list_of_TH:
                 all_marked = []
@@ -529,11 +534,10 @@ def main():
                 p1.join()
                 new_G_to_save = []
                 for res in list_of_results:
-                    all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
-                all_marked_for_TH.update({TH:(utiles.average_of_list(all_marked,iterations))})
-                all_unmarked_for_TH.update({TH:utiles.find_unmarked(all_marked_for_TH[TH],G)})
+                all_marked_for_TH.update({TH:all_marked})
+                all_unmarked_for_TH.update({TH:utiles.find_unmarked(all_marked_for_TH[TH],G,False)})
                 if (not on_lab) and (TH_both == 0):
                     draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
                                      TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,

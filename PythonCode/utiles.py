@@ -217,7 +217,7 @@ def average_of_list(dict,num):
     #print('         Average list: %s\n' % str(res))
     return res
 
-def list_check_diff(dict):
+def average_of_list_check_diff(dict):
     res = {}
     if dict == {}:
         return {}
@@ -231,30 +231,39 @@ def list_check_diff(dict):
         res.update({TH: temp_res})
     return res
 
-def find_unmarked(all_marked_for_TH,G):
+def find_unmarked(all_marked_for_TH,G,RSAM):
     list_of_unmarked_TH = []
-    flag = False
-    for v in G.postorder_node_iter():
-        for u in all_marked_for_TH:
+    if not RSAM:
+        for v in G.postorder_node_iter():
             flag = False
-            if v.label == u:
-                flag = True
-        if not flag:
-            list_of_unmarked_TH.append(v.label)
+            for list_for_one_best in all_marked_for_TH:
+                for u in list_for_one_best:
+                    if v.label == u[0]:
+                        flag = True
+            if not flag:
+                list_of_unmarked_TH.append(v.label)
+    else:
+        for v in G.postorder_node_iter():
+            flag = False
+            for u,score in all_marked_for_TH.items():
+                if v.label == u:
+                    flag = True
+            if not flag:
+                list_of_unmarked_TH.append(v.label)
     return list_of_unmarked_TH
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
+
     sensitivity = {}
     specifity = {}
     TN = {}
     for TH,unmarked_list in all_unmarked_list.items():
         TN.update({TH:[]})
-        for list_for_TH_sol in unmarked_list:
-            temp_TN = 0
-            for u in list_for_TH_sol:
-                if u not in planted_vertex:
-                    temp_TN += 1
-            TN[TH].append([temp_TN])
+        temp_TN = 0
+        for u in unmarked_list:
+            if u not in planted_vertex:
+                temp_TN += 1
+        TN[TH].append([temp_TN])
     for TH, list_for_TH_sol in all_marked_list.items():
         sensitivity.update({TH: []})
         specifity.update({TH: [] })
