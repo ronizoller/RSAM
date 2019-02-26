@@ -65,12 +65,6 @@ for TH,tup in result_RSAM.items():
 plt.xlabel('False Positive Rate (1-Specifity)', fontsize=10)
 plt.ylabel('True Positive Rate (Sensitivity)', fontsize=10)
 fig, ax = plt.subplots()
-for X, Y, Z in zip(xs, ys, names):
-    ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
-                textcoords='offset points')
-for X, Y, Z in zip(xs_RSAM, ys_RSAM, names):
-    ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
-                textcoords='offset points')
 plt.plot(xs, ys, 'ro')
 plt.plot(xs_RSAM, ys_RSAM, 'g^')
 plt.axis([0, 1, 0, 1])

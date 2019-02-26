@@ -20,7 +20,7 @@ on_lab = True
 compare = True
 running_time = False
 minimum_HT_under_planted = 3
-number_of_leaves = 400
+number_of_leaves = 150
 if on_lab:
     if compare:
         path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'

@@ -80,25 +80,25 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
                 if not both:
                     if v['edges_in_subtree'] > TH_edges_in_subtree and w['edges_in_subtree'] > TH_edges_in_subtree:
                         if blacks_under_w / all_leafs_w >= TH_both:
-                            if v_red_HT > TH_compare_subtrees * v_black_HT:
+                            if v_red_HT >= TH_compare_subtrees * v_black_HT:
                                 all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
                                 if v_red_HT >= TH_pattern_in_subtree:
                                     marked_nodes.update({u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
                                                                 'v red HT and blacks under w']})
                         if blacks_under_v / all_leafs_v >= TH_both:
-                            if w_red_HT > TH_compare_subtrees * w_black_HT:
+                            if w_red_HT >= TH_compare_subtrees * w_black_HT:
                                 all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
                                 if w_red_HT >= TH_pattern_in_subtree:
                                     marked_nodes.update({u['label']: [(w_red_HT, w_black_HT), (reds_under_v, blacks_under_v),
                                                                   'w red HT and blacks under v']})
                         if reds_under_w / all_leafs_w >= TH_both:
-                            if v_black_HT > TH_compare_subtrees * v_red_HT:
+                            if v_black_HT >= TH_compare_subtrees * v_red_HT:
                                 all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
                                 if v_black_HT >= TH_pattern_in_subtree:
                                     marked_nodes.update({u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
                                                               'v blacks HT and reds under w']})
                         if reds_under_v / all_leafs_v >= TH_both:
-                            if w_black_HT > TH_compare_subtrees * w_red_HT:
+                            if w_black_HT >= TH_compare_subtrees * w_red_HT:
                                 all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
                                 if w_black_HT >= TH_pattern_in_subtree:
                                     marked_nodes.update({u['label']: [(w_red_HT, w_black_HT), (reds_under_w, blacks_under_w),
@@ -112,12 +112,12 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
 
     print ('        marked nodes: %s' % str(marked_nodes))
     #print('     Writing marked nodes...')
-    if check_diff_sol:
-        file = open(path+'/saved_data/marked_nodes_for_TH_'+str(index)+'.txt', 'w')
-    else:
-        file = open(path + '/saved_data/marked.txt', 'w')
-    file.write(str(marked_nodes))
-    file.close()
+    #if check_diff_sol:
+    #    file = open(path+'/saved_data/marked_nodes_for_TH_'+str(index)+'.txt', 'w')
+    #else:
+    #    file = open(path + '/saved_data/marked.txt', 'w')
+    #file.write(str(marked_nodes))
+    #file.close()
     #print('     Finished writing marked nodes.\n')
 
     print('Finished searching for significent diffrence.\n')

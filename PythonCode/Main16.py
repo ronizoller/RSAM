@@ -41,7 +41,7 @@ D_cost = 1
 S_cost = 0
 save_data = False
 
-number_of_planted_vertices = 1
+number_of_planted_vertices = 4
 planted_vertices = []
 input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
 for line in input:
@@ -53,9 +53,7 @@ alpha = 1                                           # factor for HT counting in 
 both = False
 accur = 5                                           # calculations acuuracy
 noise_level_list = [5]
-TH_both = 0.8                                      # factor for not both
 p = 0.05                                            #p_value
-TH_compare_subtrees = 1
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
@@ -64,10 +62,8 @@ if check_diffreance_between_solutions:
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
-    TH_compare_subtrees =  1
     pattern = "same_color"
 elif not compare_subtrees and evolutinary_event == 'HT':
-    TH_compare_subtrees =  1
     #pattern = "any"
     #pattern = "different_colors"
     #pattern = "only_red"
@@ -77,7 +73,6 @@ elif not compare_subtrees and evolutinary_event == 'HT':
 
 ###FOR DUPLICATIONS EVENTS###
 elif compare_subtrees and evolutinary_event == 'D':
-    TH_compare_subtrees = 1
     pattern = "any"
 elif not compare_subtrees and evolutinary_event == 'D':
     pattern = "any"
@@ -321,6 +316,7 @@ def RSAM_finder_multithread(parameters):
             colors,old_colors = inits.update_colors(S, colors,exact_names)
             TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
             TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
+            TH_compare_subtrees = 1
 
             S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
             nodes_table = inits.init_nodes_table(S, G, nodes_table)
@@ -349,6 +345,7 @@ def RSAM_finder_multithread(parameters):
             TH_edges_in_subtree = parameters[18]
             iter = parameters[19]
             H = parameters[20]
+            TH_compare_subtrees = parameters[21]
         if H is None:
             list_of_scores_for_rand_num.update({rand_num: {}})
         else:
@@ -362,7 +359,6 @@ def RSAM_finder_multithread(parameters):
                                                                                                                    fact_lookup_table,
                                                                                                                    red_HT_vertices_in_G,
                                                                                                                    black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
-            H = hypergraph.remove_prob_zero(H, deleted_nodes)
 
             max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
@@ -394,10 +390,11 @@ def extract_and_tarce_a_solution(parameters):
     S = parameters[12]
     G = parameters[13]
     TH_edges_in_subtree = parameters[14]
+    TH_compare_subtrees = parameters[15]
 
     print('\n                                               *** ' + str(iter + 1) + 'th iteration ***\n')
 
-    TH_pattern_in_subtree = 2 / (max_dis * k)
+    TH_pattern_in_subtree = 0
     new_G[iter] = nx.DiGraph()
     deleted_nodes = []
     G_internal_colors = {}
@@ -436,9 +433,10 @@ def extract_and_tarce_a_solution(parameters):
 ##********  MAIN ***********
 
 def main():
-    global S, G, iterations, sigma, alpha, gamma, colors, TH_compare_subtrees, TH_both,planted_vertices, TH_edges_in_subtree, number_of_planted_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+    global S, G, iterations, sigma, alpha, gamma, colors,planted_vertices, number_of_planted_vertices,TH_pattern_in_subtree, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
     starting_time = datetime.now()
 
+    all_vertices_with_index = {}
     all_RSAM_marked = {}
     all_RSAM_unmarked = {}
     list_of_scores_for_rand_num = {}
@@ -478,7 +476,10 @@ def main():
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
+    #TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
+    TH_pattern_in_subtree = 0
+    TH_both = 0.8
+    TH_compare_subtrees = 1
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
@@ -496,20 +497,26 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH = utiles.frange(0,2,1)        #TH_edges_in_subtree
-
+            list_of_TH_compare = utiles.frange(0,1,0.1)
+            list_of_TH_both = utiles.frange(0,1,0.1)
+            list_of_TH_edges_in_subtree = utiles.frange(0, 5, 1)
             parameters = []
             p = Pool(15)
-            for i in range(0, len(list_of_TH)):
+            combined = [(f, s, t) for f in list_of_TH_compare for s in list_of_TH_both for t in list_of_TH_edges_in_subtree]
+            for i in range(0, len(combined)):
+                TH_compare_subtrees = combined[i][0]
+                TH_both = combined[i][1]
+                TH_edges_in_subtree = combined[i][2]
                 parameters.append([noise_level_list[0], TH_both, check_diffreance_between_solutions, S, G, S_colors, colors, [], S_dis_matrix, {}, {},
-                                   [], [], sigma, nx.DiGraph(), {}, all_vertices, TH_pattern_in_subtree, list_of_TH[i],i, H])
+                                   [], [], sigma, nx.DiGraph(), {}, all_vertices, TH_pattern_in_subtree, TH_edges_in_subtree,i, H,TH_compare_subtrees])
             list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
             p.close()
             p.join()
             ind = 0
             for res in list_of_RSAM_results:
-                all_RSAM_marked.update({list_of_TH[ind]: res})
-                all_RSAM_unmarked.update({list_of_TH[ind]: utiles.find_unmarked(res,G,True)})
+                all_vertices_with_index.update({combined[ind]: [res]})
+                all_RSAM_marked.update({combined[ind]: res})
+                all_RSAM_unmarked.update({combined[ind]: utiles.find_unmarked(res,G,True)})
                 ind += 1
             file = open(path + '/saved_data/all_marked_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_RSAM_marked))
@@ -517,7 +524,8 @@ def main():
             file = open(path + '/saved_data/all_unmarked_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_RSAM_unmarked))
             file.close()
-            for TH in list_of_TH:
+            for (TH_compare_subtrees,TH_both,TH_edges_in_subtree) in combined:
+                TH = (TH_compare_subtrees,TH_both,TH_edges_in_subtree)
                 all_marked = []
                 new_G = {}
                 solutions = {}
@@ -528,12 +536,13 @@ def main():
                 S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
                 p1 = Pool(15)
                 parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,
-                                    black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH) for x in range(0,iterations)]
+                                    black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH_edges_in_subtree,TH_compare_subtrees) for x in range(0,iterations)]
                 list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
                 p1.close()
                 p1.join()
                 new_G_to_save = []
                 for res in list_of_results:
+                    all_vertices_with_index.update(res[0])
                     all_marked.append(res[1])
                     new_G_to_save.append(res[2])
                 all_marked_for_TH.update({TH:all_marked})

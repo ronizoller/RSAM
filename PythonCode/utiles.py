@@ -298,7 +298,7 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
 def frange(start,end,step):
     res = []
     i = start
-    while i<end:
+    while i<= end:
         res.append(i)
         i += step
     return res
