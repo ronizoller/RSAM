@@ -253,36 +253,40 @@ def find_unmarked(all_marked_for_TH,G,RSAM):
     return list_of_unmarked_TH
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
-
+    print('all_marked_list: '+str(all_marked_list))
     sensitivity = {}
     specifity = {}
     TN = {}
     for TH,unmarked_list in all_unmarked_list.items():
-        TN.update({TH:[]})
-        temp_TN = 0
-        for u in unmarked_list:
-            if u not in planted_vertex:
-                temp_TN += 1
-        TN[TH].append([temp_TN])
+        print(str(TH)[::-1][1:3])
+        if str(TH)[::-1][1:3] == '0 ' or str(TH)[::-1][1:3] == '0,':
+            TN.update({TH:[]})
+            temp_TN = 0
+            for u in unmarked_list:
+                if u not in planted_vertex:
+                    temp_TN += 1
+            TN[TH].append([temp_TN])
     for TH, list_for_TH_sol in all_marked_list.items():
-        sensitivity.update({TH: []})
-        specifity.update({TH: [] })
-        i = 0
-        planted_vertex_to_check = planted_vertex.copy()
-        temp_FP = 0
-        temp_TP = 0
-        for u in list_for_TH_sol:
-            if u not in planted_vertex:
-                temp_FP += 1
-            else:
-                temp_TP += 1
-                if u in planted_vertex_to_check:
-                    planted_vertex_to_check.remove(u)
-        temp_FN = len(planted_vertex_to_check)
-        sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
-        specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
-        i += 1
+        if str(TH)[::-1][1:3] == '0 ' or str(TH)[::-1][1:3] == '0,':
+            sensitivity.update({TH: []})
+            specifity.update({TH: [] })
+            i = 0
+            planted_vertex_to_check = planted_vertex.copy()
+            temp_FP = 0
+            temp_TP = 0
+            for u in list_for_TH_sol:
+                if u not in planted_vertex:
+                    temp_FP += 1
+                else:
+                    temp_TP += 1
+                    if u in planted_vertex_to_check:
+                        planted_vertex_to_check.remove(u)
+            temp_FN = len(planted_vertex_to_check)
+            sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
+            specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
+            i += 1
     res = {}
+    print('specifity: '+str(specifity))
     for TH, sen_list in sensitivity.items():
         sensitivity_sum = 0
         for score in sen_list:
@@ -292,7 +296,7 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
         specifity_sum = 0
         for score in spe_list:
             specifity_sum += score
-        res.update({TH: (1-round(specifity_sum / len(spe_list), 2),res[TH])})
+        res.update({TH: (1-specifity_sum / len(spe_list),res[TH])})
     return res
 
 def frange(start,end,step):

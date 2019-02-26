@@ -1,6 +1,6 @@
-on_lab = False
-check_diffreance_between_solutions = False
-real_data = True
+on_lab = True
+check_diffreance_between_solutions = True
+real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -493,9 +493,9 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH_compare = utiles.frange(0,1,0.1)
-            list_of_TH_both = utiles.frange(0,1,0.1)
-            list_of_TH_edges_in_subtree = utiles.frange(0, 10, 1)
+            list_of_TH_compare = utiles.frange(0,2,0.2)
+            list_of_TH_both = utiles.frange(0,1,0.2)
+            list_of_TH_edges_in_subtree = [0]
             parameters = []
             p = Pool(15)
             combined = [(f, s, t) for f in list_of_TH_compare for s in list_of_TH_both for t in list_of_TH_edges_in_subtree]

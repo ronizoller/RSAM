@@ -77,7 +77,7 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
             #       str(u['edges_in_subtree']),str(v['edges_in_subtree']),str(w['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree),str(TH_both)))
             if not compare_subtrees:
                 if not both:
-                    if v['edges_in_subtree'] > TH_edges_in_subtree and w['edges_in_subtree'] > TH_edges_in_subtree:
+                    if v['edges_in_subtree'] >= TH_edges_in_subtree and w['edges_in_subtree'] >= TH_edges_in_subtree:
                         if blacks_under_w / all_leafs_w >= TH_both:
                             if v_red_HT >= TH_compare_subtrees * v_black_HT:
                                 all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
