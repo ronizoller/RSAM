@@ -1,4 +1,4 @@
-with open('/Users/ronizoller/Dropbox/ComparativeOperonAnalysis/Proposal/Test/BetaLactamaseCOGs/COG4219(315 genes in 173 species)/tax_report.txt','r') as fp:
+with open('/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data/tax_report.txt','r') as fp:
     for line in fp:
         line = line.replace('	 ', "")
         line = ''.join(line.split())

@@ -1,6 +1,6 @@
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/real'
+path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data'
 
-input = open(path+'/colors.txt', 'r')
+input = open(path+'/0/colors0.0.txt', 'r')
 colors = []
 for line in input:
     colors.append(eval(line))

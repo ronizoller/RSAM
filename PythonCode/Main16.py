@@ -1,5 +1,6 @@
-on_lab = True
-check_diffreance_between_solutions = True
+on_lab = False
+check_diffreance_between_solutions = False
+real_data = True
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -11,6 +12,8 @@ else:
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/example'
+    if real_data:
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/real'
 
 import networkx as nx
 import dendropy as tr
@@ -31,7 +34,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k =100
+k = 100
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -41,12 +44,14 @@ D_cost = 1
 S_cost = 0
 save_data = False
 
-number_of_planted_vertices = 4
 planted_vertices = []
-input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
-for line in input:
-    planted_vertices.append(eval(line))
-planted_vertices = planted_vertices[0]
+number_of_planted_vertices = 1
+
+if not real_data:
+    input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
+    for line in input:
+        planted_vertices.append(eval(line))
+    planted_vertices = planted_vertices[0]
 random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
@@ -59,26 +64,18 @@ p = 0.05                                            #p_value
 if check_diffreance_between_solutions:
     iterations = 1                                  #will check for each i=0 to iteration the solution i*factor
     factor = 1
+    real_data = False
 
 ####FOR HT EVOLUTNARY EVENTS###
-if compare_subtrees and evolutinary_event=='HT':
-    pattern = "same_color"
 elif not compare_subtrees and evolutinary_event == 'HT':
-    #pattern = "any"
-    #pattern = "different_colors"
-    #pattern = "only_red"
     pattern = "same_color"
-    #pattern = "only_red_to_black"
-    #pattern = "only_black_to_red"
-
-###FOR DUPLICATIONS EVENTS###
 elif compare_subtrees and evolutinary_event == 'D':
     pattern = "any"
 elif not compare_subtrees and evolutinary_event == 'D':
     pattern = "any"
     TH_pattern_in_subtree = 0.0009
 
-big_size = 2000                                  #size of nodes
+big_size = 2000
 small_size = 7
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G, black_HT_vertices_in_G, pattern, evolutinary_event,S_colors):
@@ -266,9 +263,10 @@ def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
     return G_nodes_to_weight
 
 def RSAM_finder_multithread(parameters):
-    noise_level = parameters[0]
-    TH_both = parameters[1]
-    check_diffreance_between_solutions = parameters[2]
+    real_data = parameters[0]
+    noise_level = parameters[1]
+    TH_both = parameters[2]
+    check_diffreance_between_solutions = parameters[3]
 
     list_of_scores_for_rand_num = {}
     random_for_prec_curr = random_for_prec
@@ -326,25 +324,25 @@ def RSAM_finder_multithread(parameters):
 
             H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
         else:
-            S = parameters[3]
-            G = parameters[4]
-            S_colors = parameters[5]
-            colors = parameters[6]
-            deleted_nodes = parameters[7]
-            S_dis_matrix = parameters[8]
-            nCr_lookup_table = parameters[9]
-            fact_lookup_table = parameters[10]
-            red_HT_vertices_in_G = parameters[11]
-            black_HT_vertices_in_G = parameters[12]
-            sigma = parameters[13]
-            new_G = parameters[14]
-            G_internal_colors = parameters[15]
-            all_vertices = parameters[16]
-            TH_pattern_in_subtree = parameters[17]
-            TH_edges_in_subtree = parameters[18]
-            iter = parameters[19]
-            H = parameters[20]
-            TH_compare_subtrees = parameters[21]
+            S = parameters[4]
+            G = parameters[5]
+            S_colors = parameters[6]
+            colors = parameters[7]
+            deleted_nodes = parameters[8]
+            S_dis_matrix = parameters[9]
+            nCr_lookup_table = parameters[10]
+            fact_lookup_table = parameters[11]
+            red_HT_vertices_in_G = parameters[12]
+            black_HT_vertices_in_G = parameters[13]
+            sigma = parameters[14]
+            new_G = parameters[15]
+            G_internal_colors = parameters[16]
+            all_vertices = parameters[17]
+            TH_pattern_in_subtree = parameters[18]
+            TH_edges_in_subtree = parameters[19]
+            iter = parameters[20]
+            H = parameters[21]
+            TH_compare_subtrees = parameters[22]
         if H is None:
             list_of_scores_for_rand_num.update({rand_num: {}})
         else:
@@ -505,7 +503,7 @@ def main():
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]
                 TH_edges_in_subtree = combined[i][2]
-                parameters.append([noise_level_list[0], TH_both, check_diffreance_between_solutions, S, G, S_colors, colors, [], S_dis_matrix, {}, {},
+                parameters.append([real_data,noise_level_list[0], TH_both, check_diffreance_between_solutions, S, G, S_colors, colors, [], S_dis_matrix, {}, {},
                                    [], [], sigma, nx.DiGraph(), {}, all_vertices, TH_pattern_in_subtree, TH_edges_in_subtree,i, H,TH_compare_subtrees])
             list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
             p.close()
@@ -611,7 +609,7 @@ def main():
     parameters = []
     p = Pool(15)
     for i in range(0,len(noise_level_list)):
-        parameters.append([noise_level_list[i],TH_both,check_diffreance_between_solutions])
+        parameters.append([real_data,noise_level_list[i],TH_both,check_diffreance_between_solutions])
     list_of_results = p.map(RSAM_finder_multithread, parameters)
     p.close()
     p.join()
