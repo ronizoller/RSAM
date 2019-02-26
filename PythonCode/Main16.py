@@ -23,7 +23,7 @@ import pattern_identify_v4 as pattern_identify
 import EfficiantVersion as effi
 from multiprocessing import Pool
 from datetime import datetime
-
+import random
 
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
@@ -31,7 +31,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 110
+k =100
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -57,8 +57,8 @@ p = 0.05                                            #p_value
 
 #compare several optimal solutions
 if check_diffreance_between_solutions:
-    iterations = 5                                  #will check for each i=0 to iteration the solution i*factor
-    factor = 20
+    iterations = 1                                  #will check for each i=0 to iteration the solution i*factor
+    factor = 1
 
 ####FOR HT EVOLUTNARY EVENTS###
 if compare_subtrees and evolutinary_event=='HT':
@@ -273,7 +273,6 @@ def RSAM_finder_multithread(parameters):
     list_of_scores_for_rand_num = {}
     random_for_prec_curr = random_for_prec
     for rand_num in range (0, random_for_prec_curr):
-        print('                 ****     Iteration %s.%s/%s.%s (Multithread)    ***** \n' % (str(noise_level),str(rand_num),str(noise_level_list[len(noise_level_list)-1]),str(random_for_prec)))
         if not check_diffreance_between_solutions:
             S_dis_matrix = {}
             nodes_table = {}
@@ -391,8 +390,7 @@ def extract_and_tarce_a_solution(parameters):
     G = parameters[13]
     TH_edges_in_subtree = parameters[14]
     TH_compare_subtrees = parameters[15]
-
-    print('\n                                               *** ' + str(iter + 1) + 'th iteration ***\n')
+    k = parameters[16]
 
     TH_pattern_in_subtree = 0
     new_G[iter] = nx.DiGraph()
@@ -402,7 +400,7 @@ def extract_and_tarce_a_solution(parameters):
     solutions[iter] = nx.DiGraph()
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], iter * factor)
+    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], random.choice(range(0,k)))
     solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], test, k, gamma, path, alpha)
 
     red_HT_vertices_in_G, black_HT_vertices_in_G, nCr_lookup_table, fact_lookup_table = find_Pattern(
@@ -428,7 +426,7 @@ def extract_and_tarce_a_solution(parameters):
                                                                       TH_edges_in_subtree,
                                                                       check_diffreance_between_solutions)
 
-    return([{iter * factor: all_vertices},list(marked_nodes.items()),new_G[iter]])
+    return([{iter * factor: all_vertices},list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),str(TH_both),str(TH_edges_in_subtree))])
 
 ##********  MAIN ***********
 
@@ -499,7 +497,7 @@ def main():
                 quit()
             list_of_TH_compare = utiles.frange(0,1,0.1)
             list_of_TH_both = utiles.frange(0,1,0.1)
-            list_of_TH_edges_in_subtree = utiles.frange(0, 5, 1)
+            list_of_TH_edges_in_subtree = utiles.frange(0, 10, 1)
             parameters = []
             p = Pool(15)
             combined = [(f, s, t) for f in list_of_TH_compare for s in list_of_TH_both for t in list_of_TH_edges_in_subtree]
@@ -524,35 +522,35 @@ def main():
             file = open(path + '/saved_data/all_unmarked_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_RSAM_unmarked))
             file.close()
-            for (TH_compare_subtrees,TH_both,TH_edges_in_subtree) in combined:
-                TH = (TH_compare_subtrees,TH_both,TH_edges_in_subtree)
-                all_marked = []
-                new_G = {}
-                solutions = {}
-                red_HT_vertices_in_G = []
-                black_HT_vertices_in_G = []
-                nCr_lookup_table = {}
-                fact_lookup_table = {}
-                S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-                p1 = Pool(15)
-                parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,
-                                    black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH_edges_in_subtree,TH_compare_subtrees) for x in range(0,iterations)]
-                list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
-                p1.close()
-                p1.join()
-                new_G_to_save = []
-                for res in list_of_results:
-                    all_vertices_with_index.update(res[0])
-                    all_marked.append(res[1])
-                    new_G_to_save.append(res[2])
-                all_marked_for_TH.update({TH:all_marked})
-                all_unmarked_for_TH.update({TH:utiles.find_unmarked(all_marked_for_TH[TH],G,False)})
-                if (not on_lab) and (TH_both == 0):
-                    draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
-                                     TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
-                                     pattern,
-                                     big_size, evolutinary_event, compare_subtrees, 1)
-            all_marked_for_TH = utiles.average_of_list_check_diff(all_marked_for_TH)
+
+            all_marked = []
+            new_G = {}
+            solutions = {}
+            red_HT_vertices_in_G = []
+            black_HT_vertices_in_G = []
+            nCr_lookup_table = {}
+            fact_lookup_table = {}
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            p1 = Pool(15)
+            parameters_list = [(x,new_G,max_dis,solutions,S_dis_matrix,nCr_lookup_table,fact_lookup_table,red_HT_vertices_in_G,
+                                black_HT_vertices_in_G,S_colors,TH_both,H,S,G,TH_edges_in_subtree,TH_compare_subtrees, k)
+                               for x in range(0,iterations) for (TH_compare_subtrees,TH_both,TH_edges_in_subtree) in combined]
+            list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
+            p1.close()
+            p1.join()
+            new_G_to_save = []
+            print(list_of_results)
+            for res in list_of_results:
+                all_vertices_with_index.update(res[0])
+                new_G_to_save.append(res[2])
+                all_marked_for_TH.update({res[3]:res[1]})
+                all_unmarked_for_TH.update({res[3]:utiles.find_unmarked(all_marked_for_TH[res[3]],G,False)})
+            if (not on_lab) and (TH_both == 0):
+                draw.draw_new_G2({}, colors, sigma, new_G_to_save[0], G, old_sigma, k, TH_compare_subtrees, TH_both,
+                                 TH_pattern_in_subtree, path, both, alpha, True, glob, speciesTreespecification,
+                                 pattern,
+                                 big_size, evolutinary_event, compare_subtrees, 1)
+            all_marked_for_TH = dict((TH,[x[0] for x in list_of_marked]) for (TH,list_of_marked) in all_marked_for_TH.items())
             print('all_marked_for_TH: %s' % str(all_marked_for_TH))
             #print('all_unmarked_for_TH: %s' % str(all_unmarked_for_TH))
 

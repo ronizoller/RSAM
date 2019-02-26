@@ -36,7 +36,6 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
 
 def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both, G_internal_colors,index,spec,compare_subtrees, TH_edges_in_subtree,check_diff_sol):        #if both = True the pattern will be two sibs which are riched with same color HT
     marked_nodes = {}
-    print('Searching for significent diffrence...')
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
         outgoing_edges = [e for e in outgoing_edges]
@@ -110,7 +109,7 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
                     if u_black_HT > TH_pattern_in_subtree:
                         marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_black']})
 
-    print ('        marked nodes: %s' % str(marked_nodes))
+    #print ('        marked nodes: %s' % str(marked_nodes))
     #print('     Writing marked nodes...')
     #if check_diff_sol:
     #    file = open(path+'/saved_data/marked_nodes_for_TH_'+str(index)+'.txt', 'w')
@@ -120,7 +119,6 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
     #file.close()
     #print('     Finished writing marked nodes.\n')
 
-    print('Finished searching for significent diffrence.\n')
     return marked_nodes,all_vertices
 
 def find_avg_diff(G):

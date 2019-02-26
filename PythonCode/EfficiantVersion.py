@@ -432,8 +432,6 @@ def assign_weights_to_list(l, gamma):
         #assign_weights_to_list(nd[1]['l'])
 
 def track_a_solution(root, H, S, G, solution, list_place):
-    print('Tracking ' + str(list_place) +'th solution...')
-
     new_nodes_table = inits.init_nodes_table(S, G, {})
     root_numbers_in_H = [root[0][0]]
     root_numbers_in_solution = [0]

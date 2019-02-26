@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import utiles
 on_lab = True
 if on_lab:
-    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
 else:
     path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
     import sys
