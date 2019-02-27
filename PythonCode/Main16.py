@@ -67,6 +67,8 @@ if check_diffreance_between_solutions:
     real_data = False
 
 ####FOR HT EVOLUTNARY EVENTS###
+if compare_subtrees and evolutinary_event == 'HT':
+    pattern = "same_color"
 elif not compare_subtrees and evolutinary_event == 'HT':
     pattern = "same_color"
 elif compare_subtrees and evolutinary_event == 'D':
