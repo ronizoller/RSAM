@@ -1,7 +1,7 @@
 path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data'
 #first prtric then dina
 
-patric = False
+patric = True
 
 if patric:
     input = open(path+'/missing_tags.txt', 'r')
@@ -32,10 +32,10 @@ for line in input:
 res = ""
 not_anottated = []
 
-alive = ["Pagrus major","Bird","snail","tern","Bat","Pig","Danaus","Entylia carinata","butterfly","Chicken","Nilaparvata","Aleurodicus","Tick","Crab","Coleopteran","Human","Silk worm","Termite","Acanthamoeba sp","Duck","Goose", "Animal","clams","Caenorhabditis","Ark clam","Fish", "Mouse", "Bos taurus","bear", "Mus musculus", "Apis mellifera",
+alive = ["Pagrus major","Multiple","rumen microbiome","Bird","snail","tern","Bat","Pig","Danaus","Entylia carinata","butterfly","Chicken","Nilaparvata","Aleurodicus","Tick","Crab","Coleopteran","Human","Silk worm","Termite","Acanthamoeba sp","Duck","Goose", "Animal","clams","Caenorhabditis","Ark clam","Fish", "Mouse", "Bos taurus","bear", "Mus musculus", "Apis mellifera",
          "rabbit", "rabbit"," Sponge", "Seal", "Drosophila","Cows","insect","Litopenaeus vannamei","Danio rerio","Sheep","Salvelinus namaycush","Amblyomma","Amblyomma","booklouse","Ctenocephalides",
          "Cat","animals"]
-env = ["Soil","soil","sewage sludge","Plant","environmental","tomato","Tomato","Stylosanthes","Least snoutbean","Solanum","Mandevilla","grass","chilli","eggplant","Anthyllis","Maytenus","Astragalus","Lessertia","Prunus","Maytenus","Lessertia","Thale cress","Cherry","Indigofera","Willow","Montipora","Centrosema pubescens","Black mimosa","Chinese silvergrass", "vents","Skeletonema marinoi","Tachigali versicolor","Coral","Poa pratensis","Lotononis carinata","Mortierella elongata","Weeping fig","Cottonwood","groundwater","Date palm","Limoniastrum monopetalum","Cuminum cyminum","Otholobium candicans","lactate","Sponge","Peltigera didactyla","Lycium barbarum","Globobulimina","Lotus corniculatus","Lotus japonicus","Rice","rice","thermal vent","hydrothermal vent","sludge", "Prunus persica",
+env = ["Soil",",Terrestrial","Mud","soil","sewage sludge","Plant","environmental","tomato","Tomato","Stylosanthes","Least snoutbean","Solanum","Mandevilla","grass","chilli","eggplant","Anthyllis","Maytenus","Astragalus","Lessertia","Prunus","Maytenus","Lessertia","Thale cress","Cherry","Indigofera","Willow","Montipora","Centrosema pubescens","Black mimosa","Chinese silvergrass", "vents","Skeletonema marinoi","Tachigali versicolor","Coral","Poa pratensis","Lotononis carinata","Mortierella elongata","Weeping fig","Cottonwood","groundwater","Date palm","Limoniastrum monopetalum","Cuminum cyminum","Otholobium candicans","lactate","Sponge","Peltigera didactyla","Lycium barbarum","Globobulimina","Lotus corniculatus","Lotus japonicus","Rice","rice","thermal vent","hydrothermal vent","sludge", "Prunus persica",
        "Soybean", "clover", "water","Water", "Grape", "Sediment","sediment", "Marine", "Extreme Environments", 'offshore oil field', "Madracis decactis", "Oryza", "Acacia", "Algae", "algae", "Corn","nuts", "Sugarcane", "cotton", "Gossypium", "coccinea",
          "ambigua", "Robinia","Festuca rubra", "spring","Spring","Asterionella formosa BG1","Stereocaulon","Biserrula","Cicer arietinum","Biserrula pelecinus","chickpea","Bituminaria","pea","Piriformospora indica",
        "Mimosa pudica","rhizosphere","Aeschynomene","Acanthamoebae","peat bog","aquatic","cellulolytic culture","sanitary sewer","coral","Lake","Aquatic","sea","marine",]
