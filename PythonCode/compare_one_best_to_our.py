@@ -2,7 +2,8 @@ import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import matplotlib.pyplot as plt
 import utiles
-on_lab = True
+import draw
+on_lab = False
 if on_lab:
     path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
 else:
@@ -53,19 +54,32 @@ print(result_RSAM)
 
 xs = []
 ys = []
+to_connect_one_best = []
 xs_RSAM = []
 ys_RSAM = []
+to_connect_RSAM = []
+
 names = []
 for TH,tup in result_one_best.items():
     xs.append(tup[0])
     ys.append(tup[1])
     names.append(TH)
+    to_connect_one_best.append(tup)
 for TH,tup in result_RSAM.items():
     xs_RSAM.append(tup[0])
     ys_RSAM.append(tup[1])
-plt.xlabel('False Positive Rate (1-Specifity)', fontsize=10)
-plt.ylabel('True Positive Rate (Sensitivity)', fontsize=10)
+    to_connect_RSAM.append(tup)
+xs.sort()
+ys.sort()
+xs_RSAM.sort()
+ys_RSAM.sort()
 fig, ax = plt.subplots()
+ax.set_xlabel('False Positive Rate (1-Specifity)')
+ax.set_ylabel('True Positive Rate (Sensitivity)')
+for p in range(0, len(xs) - 1):
+    draw.connectpoints(xs, ys, p, p + 1)
+for p in range(0, len(xs_RSAM) - 1):
+    draw.connectpoints(xs_RSAM, ys_RSAM, p, p + 1)
 #for X, Y, Z in zip(xs, ys, names):
 #    # Annotate the points 5 _points_ above and to the left of the vertex
 #    ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
@@ -74,7 +88,8 @@ fig, ax = plt.subplots()
 #    # Annotate the points 5 _points_ above and to the left of the vertex
 #    ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
 #                textcoords='offset points')
-plt.plot(xs, ys, 'ro')
-plt.plot(xs_RSAM, ys_RSAM, 'g^')
+plt.plot(xs, ys, 'ko')
+plt.plot(xs_RSAM, ys_RSAM, 'go')
 plt.axis([0, 1, 0, 1])
-plt.show()
+fig = ax.get_figure()
+fig.savefig(path + '/plot_noise.png')

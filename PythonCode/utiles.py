@@ -253,12 +253,10 @@ def find_unmarked(all_marked_for_TH,G,RSAM):
     return list_of_unmarked_TH
 
 def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
-    print('all_marked_list: '+str(all_marked_list))
     sensitivity = {}
     specifity = {}
     TN = {}
     for TH,unmarked_list in all_unmarked_list.items():
-        print(str(TH)[::-1][1:3])
         if str(TH)[::-1][1:3] == '0 ' or str(TH)[::-1][1:3] == '0,':
             TN.update({TH:[]})
             temp_TN = 0

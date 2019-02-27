@@ -108,6 +108,42 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
                         marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_red']})
                     if u_black_HT > TH_pattern_in_subtree:
                         marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_black']})
+        else:
+            v_red_HT = 0
+            w_red_HT = 0
+            v_black_HT = 0
+            w_black_HT = 0
+
+            if not compare_subtrees:
+                if not both and TH_edges_in_subtree == 0:
+                    if blacks_under_w / all_leafs_w >= TH_both:
+                        if v_red_HT >= TH_compare_subtrees * v_black_HT:
+                            all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
+                            if v_red_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update(
+                                    {u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
+                                                  'v red HT and blacks under w']})
+                    if blacks_under_v / all_leafs_v >= TH_both:
+                        if w_red_HT >= TH_compare_subtrees * w_black_HT:
+                            all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
+                            if w_red_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update(
+                                    {u['label']: [(w_red_HT, w_black_HT), (reds_under_v, blacks_under_v),
+                                                  'w red HT and blacks under v']})
+                    if reds_under_w / all_leafs_w >= TH_both:
+                        if v_black_HT >= TH_compare_subtrees * v_red_HT:
+                            all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
+                            if v_black_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update(
+                                    {u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
+                                                  'v blacks HT and reds under w']})
+                    if reds_under_v / all_leafs_v >= TH_both:
+                        if w_black_HT >= TH_compare_subtrees * w_red_HT:
+                            all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
+                            if w_black_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update(
+                                    {u['label']: [(w_red_HT, w_black_HT), (reds_under_w, blacks_under_w),
+                                                  'w black HT and reds under v']})
 
     #print ('        marked nodes: %s' % str(marked_nodes))
     #print('     Writing marked nodes...')
