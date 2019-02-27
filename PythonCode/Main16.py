@@ -34,7 +34,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 100
+k = 10
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -495,8 +495,8 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH_compare = utiles.frange(0,2,0.2)
-            list_of_TH_both = utiles.frange(0,1,0.2)
+            list_of_TH_compare = utiles.frange(0,0.4,0.2)
+            list_of_TH_both = utiles.frange(0,0.4,0.2)
             list_of_TH_edges_in_subtree = [0]
             parameters = []
             p = Pool(15)

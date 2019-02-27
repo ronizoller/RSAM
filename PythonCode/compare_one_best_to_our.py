@@ -3,9 +3,9 @@ sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import matplotlib.pyplot as plt
 import utiles
 import draw
-on_lab = False
+on_lab = True
 if on_lab:
-    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
 else:
     path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
     import sys
@@ -91,5 +91,6 @@ for p in range(0, len(xs_RSAM) - 1):
 plt.plot(xs, ys, 'ko')
 plt.plot(xs_RSAM, ys_RSAM, 'go')
 plt.axis([0, 1, 0, 1])
-fig = ax.get_figure()
-fig.savefig(path + '/plot_noise.png')
+plt.show()
+#fig = ax.get_figure()
+#fig.savefig(path + '/plot_noise.png')
