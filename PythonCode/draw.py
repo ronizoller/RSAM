@@ -8,6 +8,7 @@ import inits_v1 as inits
 import math
 import utiles
 import seaborn as sns
+import numpy as np
 
 def draw_garph(H, S, G, deleted_nodes, big_size, small_size):
     print('Drawing hypergraph...')
@@ -428,10 +429,10 @@ def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, ne
     plt.savefig(path + '/figures/G_different_optimal. k=' + str(k) + '_TH_compare_subtrees = ' + str(TH_compare_subtrees) + '_TH_pattern_in_subtree = ' + str(TH_pattern_in_subtree) +"_pattern="+pattern+"_"+evolutinary_event+"compare_subtrees="+str(compare_subtrees)+'.png')
     print('Finished drawing new G.\n')
 
-def connectpoints(x,y,p1,p2):
+def connectpoints(x,y,p1,p2,color):
     x1, x2 = x[p1], x[p2]
     y1, y2 = y[p1], y[p2]
-    plt.plot([x1,x2],[y1,y2],'k-')
+    plt.plot([x1,x2],[y1,y2],color)
 
 def draw_plot(all_vertices_with_noise,path,marked_vertex):
     print('Drawing plot..')
@@ -504,3 +505,31 @@ def draw_compare_k_plot(all_vertices_with_k,path):
     plt.xticks(rotation=0)
     fig = ax.get_figure()
     fig.savefig(path + '/figures/plot_noise.png')
+
+def get_text_positions(text, x_data, y_data, txt_width, txt_height):
+    a = list(zip(y_data, x_data))
+    text_positions = list(y_data)
+    for index, (y, x) in enumerate(a):
+        local_text_positions = [i for i in a if i[0] > (y - txt_height)
+                            and (abs(i[1] - x) < txt_width * 2) and i != (y,x)]
+        if local_text_positions:
+            sorted_ltp = sorted(local_text_positions)
+            if abs(sorted_ltp[0][0] - y) < txt_height: #True == collision
+                differ = np.diff(sorted_ltp, axis=0)
+                a[index] = (sorted_ltp[-1][0] + txt_height, a[index][1])
+                text_positions[index] = sorted_ltp[-1][0] + txt_height*1.01
+                for k, (j, m) in enumerate(differ):
+                    #j is the vertical distance between words
+                    if j > txt_height * 2: #if True then room to fit a word in
+                        a[index] = (sorted_ltp[k][0] + txt_height, a[index][1])
+                        text_positions[index] = sorted_ltp[k][0] + txt_height
+                        break
+    return text_positions
+
+def text_plotter(text, x_data, y_data, text_positions, txt_width,txt_height):
+    for z,x,y,t in zip(text, x_data, y_data, text_positions):
+        plt.annotate(str(z), xy=(x-txt_width/2, t), size=12)
+        if y != t:
+            plt.arrow(x, t,0,y-t, color='red',alpha=0.3, width=txt_width*0.1,
+                head_width=txt_width, head_length=txt_height*0.5,
+                zorder=0,length_includes_head=True)
