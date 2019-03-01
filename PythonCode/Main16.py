@@ -496,7 +496,7 @@ def main():
             if H == None:
                 quit()
             list_of_TH_compare = utiles.frange(0,2,0.2)
-            list_of_TH_both = utiles.frange(0,1,0.2)
+            list_of_TH_both = utiles.frange(0,2,0.2)
             list_of_TH_edges_in_subtree = [0]
             parameters = []
             p = Pool(15)
@@ -506,7 +506,7 @@ def main():
                 TH_both = combined[i][1]
                 TH_edges_in_subtree = combined[i][2]
                 parameters.append([real_data,noise_level_list[0], TH_both, check_diffreance_between_solutions, S, G, S_colors, colors, [], S_dis_matrix, {}, {},
-                                   [], [], sigma, nx.DiGraph(), {}, all_vertices, TH_pattern_in_subtree, TH_edges_in_subtree,i, H,TH_compare_subtrees])
+                                   [], [], sigma, nx.DiGraph(), {}, all_vertices, 0, TH_edges_in_subtree,i, H,TH_compare_subtrees])
             list_of_RSAM_results = p.map(RSAM_finder_multithread, parameters)
             p.close()
             p.join()

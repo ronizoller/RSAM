@@ -236,10 +236,9 @@ def find_unmarked(all_marked_for_TH,G,RSAM):
     if not RSAM:
         for v in G.postorder_node_iter():
             flag = False
-            for list_for_one_best in all_marked_for_TH:
-                for u in list_for_one_best:
-                    if v.label == u[0]:
-                        flag = True
+            for u in all_marked_for_TH:
+                if v.label == u[0]:
+                    flag = True
             if not flag:
                 list_of_unmarked_TH.append(v.label)
     else:
@@ -257,32 +256,30 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
     specifity = {}
     TN = {}
     for TH,unmarked_list in all_unmarked_list.items():
-        if str(TH)[::-1][1:3] == '0 ' or str(TH)[::-1][1:3] == '0,':
-            TN.update({TH:[]})
-            temp_TN = 0
-            for u in unmarked_list:
-                if u not in planted_vertex:
-                    temp_TN += 1
-            TN[TH].append([temp_TN])
+        TN.update({TH:[]})
+        temp_TN = 0
+        for u in unmarked_list:
+            if u not in planted_vertex:
+                temp_TN += 1
+        TN[TH].append([temp_TN])
     for TH, list_for_TH_sol in all_marked_list.items():
-        if str(TH)[::-1][1:3] == '0 ' or str(TH)[::-1][1:3] == '0,':
-            sensitivity.update({TH: []})
-            specifity.update({TH: [] })
-            i = 0
-            planted_vertex_to_check = planted_vertex.copy()
-            temp_FP = 0
-            temp_TP = 0
-            for u in list_for_TH_sol:
-                if u not in planted_vertex:
-                    temp_FP += 1
-                else:
-                    temp_TP += 1
-                    if u in planted_vertex_to_check:
-                        planted_vertex_to_check.remove(u)
-            temp_FN = len(planted_vertex_to_check)
-            sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
-            specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
-            i += 1
+        sensitivity.update({TH: []})
+        specifity.update({TH: [] })
+        i = 0
+        planted_vertex_to_check = planted_vertex.copy()
+        temp_FP = 0
+        temp_TP = 0
+        for u in list_for_TH_sol:
+            if u not in planted_vertex:
+                temp_FP += 1
+            else:
+                temp_TP += 1
+                if u in planted_vertex_to_check:
+                    planted_vertex_to_check.remove(u)
+        temp_FN = len(planted_vertex_to_check)
+        sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
+        specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
+        i += 1
     res = {}
     print('specifity: '+str(specifity))
     for TH, sen_list in sensitivity.items():
