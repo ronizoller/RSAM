@@ -432,7 +432,7 @@ def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, ne
 def connectpoints(x,y,p1,p2,color):
     x1, x2 = x[p1], x[p2]
     y1, y2 = y[p1], y[p2]
-    plt.plot([x1,x2],[y1,y2],color)
+    plt.plot([x1,x2],[y1,y2],color,linewidth=4)
 
 def draw_plot(all_vertices_with_noise,path,marked_vertex):
     print('Drawing plot..')

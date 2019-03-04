@@ -19,21 +19,21 @@ from datetime import datetime
 on_lab = True
 compare = True
 running_time = False
-minimum_HT_under_planted = 3
-number_of_leaves = 150
+minimum_HT_under_planted = 5
+number_of_leaves = 500
 if on_lab:
     if compare:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_400_5HT'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_200'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 1
+number_of_planted_vertices = 5
 S = Tree()
 G = Tree()
-k = 100
+k = 200
 both = False
 TH_both = 0.8
 compare_subtrees = True
@@ -44,7 +44,8 @@ random_for_precentage = 1                              #number of different rand
 accur = 5
 p = 0.05                                                #p_value
 TH_edges_in_subtree = 5                                # smallest subtree that will be counted when not comparing subtrees
-TH_pattern_in_subtree = (TH_edges_in_subtree*0.5)/k
+#TH_pattern_in_subtree = (TH_edges_in_subtree*0.5)/k
+TH_pattern_in_subtree = 0.8
 if compare_subtrees and evolutinary_event=='HT':
     TH_compare_subtrees =  1
     pattern = "same_color"

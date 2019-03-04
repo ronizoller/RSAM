@@ -4,7 +4,7 @@ real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+        path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
     else:
         path = '/storage/DATA/users/ronizo/noise_data'
 else:
@@ -34,7 +34,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 500
+k = 10
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -495,12 +495,9 @@ def main():
 
             if H == None:
                 quit()
-            list_of_TH_compare = utiles.frange(0,2,0.2)
-            list_of_TH_both = utiles.frange(0,2,0.2)
-            list_of_TH_edges_in_subtree = [0]
             parameters = []
             p = Pool(15)
-            combined = [(f, s, t) for f in list_of_TH_compare for s in list_of_TH_both for t in list_of_TH_edges_in_subtree]
+            combined = [(f, f, 0) for f in utiles.frange(0,2,0.2)]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]

@@ -12,13 +12,13 @@ import numpy as np
 
 on_lab = True
 if on_lab:
-    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
+    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
 else:
     path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
 
-number_of_one_bests = 10
+number_of_one_bests = 1
 
 precentage = []                                             #{random_input_index:(false pos,false neg)}
 our_precentage = []
@@ -100,7 +100,6 @@ plt.axis([0, 1.2, 0, 1.2])
 RSAM_text = plot_eucs_covers(xs_RSAM,ys_RSAM,names,'g')
 one_best_text = plot_eucs_covers(xs,ys,one_best_names,'k')
 
-adjust_text(RSAM_text+one_best_text)
 #plt.show()
-fig = ax.get_figure()
+adjust_text(RSAM_text+one_best_text)
 fig.savefig(path + '/plot_noise.png')
