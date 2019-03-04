@@ -20,30 +20,30 @@ on_lab = True
 compare = True
 running_time = False
 minimum_HT_under_planted = 5
-number_of_leaves = 500
+number_of_leaves = 1000
 if on_lab:
     if compare:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_400_5HT'
+        path = '/storage/DATA/users/ronizo//comparsion_1000_k=500'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data_200'
+        path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 5
+number_of_planted_vertices = 10
 S = Tree()
 G = Tree()
-k = 200
+k = 500
 both = False
 TH_both = 0.8
 compare_subtrees = True
 evolutinary_event = 'HT'
 noise_level = [5]
 number_of_nodes = 0
-random_for_precentage = 1                              #number of different random noise for each noise %
+random_for_precentage = 1                             #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 5                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
 #TH_pattern_in_subtree = (TH_edges_in_subtree*0.5)/k
 TH_pattern_in_subtree = 0.8
 if compare_subtrees and evolutinary_event=='HT':
@@ -450,7 +450,6 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make,S_lab
         changed = 0
         for u in all_HT_leafs:
             if changed < number_of_HT_to_make:
-                #print('all_HT_leaf: %s\nall_leafs_HT_to: %s\nchanged: %s\nnumber_of_HT_to_make: %s' % (str(all_HT_leafs),str(all_leafs_HT_to),str(changed),str(number_of_HT_to_make)))
                 old_sigma.update({u:all_leafs_HT_to[changed]})
                 changed += 1
             else:
@@ -461,38 +460,32 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make,S_lab
 
 def save_data(sigma,colors,planted,noise,internal_index,compare,path):
     if not compare:
-        #print('     Writing sigma...')
         path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
         file.write(str(sigma))
         file.close()
-        #print('     Writing colors...')
         path_curr = path +'/'+ str(noise)+'/colors'+str(noise)+'.'+str(internal_index)+'.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
         file.write(str(colors))
         file.close()
-        #print('     Writing planted...')
         path_curr = path +'/'+ str(noise)+'/planted'+str(noise)+'.'+str(internal_index)+'.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
         file.write(str(planted))
         file.close()
     else:
-        #print('     Writing sigma...')
         path_curr = path + '/0/sigma0.0.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
         file.write(str(sigma))
         file.close()
-        #print('     Writing colors...')
         path_curr = path + '/0/colors0.0.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
         file.write(str(colors))
         file.close()
-        #print('     Writing planted...')
         path_curr = path + '/0/planted0.0.txt'
         os.makedirs(os.path.dirname(path_curr), exist_ok=True)
         file = open(path_curr, 'w')
@@ -566,7 +559,7 @@ def check_if_enriched(S,G,source, target,nCr_lookup_table,fact_lookup_table, acc
         return nCr_lookup_table,fact_lookup_table,'black-to-black'
     else: return nCr_lookup_table,fact_lookup_table,'nothing-to-nothing'
 
-def create_tree_for_noise(parameters):
+def create_tree_for_HT_noise(parameters):
     noise = parameters[0]
     number_of_HT_under_planted = parameters[1]
     G_internal_colors = parameters[2]
@@ -578,21 +571,17 @@ def create_tree_for_noise(parameters):
     number_of_random_changes = number_of_leaves * (noise / 100)
     random_for_prec = random_for_precentage
     for rand_num in range(0, random_for_prec):
-        #print("     Reading file " + path + "/sigma.txt'...")
         input = open(path + '/0/sigma0.0' + '.txt', 'r')
         sigma = []
         for line in input:
             sigma.append(eval(line))
         sigma = sigma[0]
-        #print("     Finished reading file  " + path + "/sigma.txt'")
 
-        #print("     Reading file " + path + "/colors.txt'...")
         input = open(path + '/0/colors0.0' + '.txt', 'r')
         colors = []
         for line in input:
             colors.append(eval(line))
         colors = colors[0]
-        #print("     Finished reading file  " + path + "/colors.txt'")
 
         S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
         G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
@@ -612,18 +601,77 @@ def create_tree_for_noise(parameters):
         all_random_sources_red_to_red = []
         all_random_sources_black_to_black = []
         all_random_nutral = []
-        #print('Number of random changes:' + str(int(number_of_random_changes)))
         while i < number_of_random_changes:
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
-            # number_of_HT_to_make = randint(1, number_of_random_changes)
+            number_of_nodes = tree_operations.number_of_leafs(G, 'G')
+            random_source = random_vertex_in_tree(number_of_nodes, G)
+            random_target = random_vertex_in_tree(number_of_nodes, G)
+            sigma, old_sigma, changed = change_sigma(sigma, old_sigma, S, G,
+                                                     [(random_source.label, random_target.label)],
+                                                     number_of_HT_under_planted,S_labels_table,G_labels_table)
+            nCr_lookup_table, fact_lookup_table, enriched = check_if_enriched(S,G,random_source, random_target,
+                                                                              nCr_lookup_table, fact_lookup_table,
+                                                                              accur, G_internal_colors,S_colors)
+            if enriched == 'red-to-red':
+                all_random_sources_red_to_red.append(random_source)
+            elif enriched == 'black_to_balck':
+                all_random_sources_black_to_black.append(random_source)
+            else:
+                all_random_nutral.append(random_source)
+            i += changed
+        old_colors = return_color_to_taxon(S, colors)
+        save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path+'/HT')
+
+def create_tree_for_HT_and_colors_noise(parameters):
+    noise = parameters[0]
+    number_of_HT_under_planted = parameters[1]
+    G_internal_colors = parameters[2]
+    S_colors = parameters[3]
+    nCr_lookup_table = parameters[4]
+    fact_lookup_table = parameters[5]
+    number_of_leaves = parameters[6]
+
+    number_of_random_changes = number_of_leaves * (noise / 100)
+    random_for_prec = random_for_precentage
+    for rand_num in range(0, random_for_prec):
+        input = open(path + '/0/sigma0.0' + '.txt', 'r')
+        sigma = []
+        for line in input:
+            sigma.append(eval(line))
+        sigma = sigma[0]
+
+        input = open(path + '/0/colors0.0' + '.txt', 'r')
+        colors = []
+        for line in input:
+            colors.append(eval(line))
+        colors = colors[0]
+
+        S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
+        G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+
+        S = utiles.init_internal_labels(S, 'x', sigma, path)
+        G = utiles.init_internal_labels(G, 'u', sigma, path)
+
+        G = tree_operations.collapse_edges(G)
+        S = tree_operations.collapse_edges(S)
+
+        S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S, G, sigma)
+
+        sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
+        colors, old_colors = inits.update_colors(S, colors, True)
+
+        i = 0
+        all_random_sources_red_to_red = []
+        all_random_sources_black_to_black = []
+        all_random_nutral = []
+        while i < number_of_random_changes:
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
             number_of_nodes = tree_operations.number_of_leafs(G, 'G')
             random_source = random_vertex_in_tree(number_of_nodes, G)
             random_target = random_vertex_in_tree(number_of_nodes, G)
             random_vertex_to_change_color = randome_leave_from_tree(G, number_of_nodes, True)
-            #print('%s/%s\nrandom_source: %s, random_target: %s, random_vertex_to_change_color: %s' % (
-            #str(i), str(number_of_random_changes), str(random_source), str(random_target),
-            #str(random_vertex_to_change_color)))
             sigma, old_sigma, changed = change_sigma(sigma, old_sigma, S, G,
                                                      [(random_source.label, random_target.label)],
                                                      number_of_HT_under_planted,S_labels_table,G_labels_table)
@@ -639,20 +687,63 @@ def create_tree_for_noise(parameters):
                 all_random_nutral.append(random_source)
             i += changed
         old_colors = return_color_to_taxon(S, colors)
-        save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path)
+        save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path+"/colors_and_HT")
+
+def create_tree_for_color_noise(parameters):
+    noise = parameters[0]
+    G_internal_colors = parameters[2]
+    S_colors = parameters[3]
+    number_of_leaves = parameters[6]
+
+    number_of_random_changes = number_of_leaves * (noise / 100)
+    random_for_prec = random_for_precentage
+    for rand_num in range(0, random_for_prec):
+        input = open(path + '/0/sigma0.0' + '.txt', 'r')
+        sigma = []
+        for line in input:
+            sigma.append(eval(line))
+        sigma = sigma[0]
+        input = open(path + '/0/colors0.0' + '.txt', 'r')
+        colors = []
+        for line in input:
+            colors.append(eval(line))
+        colors = colors[0]
+
+        S = tr.Tree.get_from_path(path + "/phyliptree(binary,all).phy", schema="newick")
+        G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+
+        S = utiles.init_internal_labels(S, 'x', sigma, path)
+        G = utiles.init_internal_labels(G, 'u', sigma, path)
+
+        G = tree_operations.collapse_edges(G)
+        S = tree_operations.collapse_edges(S)
+
+        S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S, G, sigma)
+
+        sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
+        colors, old_colors = inits.update_colors(S, colors, True)
+
+        i = 0
+        while i < number_of_random_changes:
+            G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            number_of_nodes = tree_operations.number_of_leafs(G, 'G')
+            random_vertex_to_change_color = randome_leave_from_tree(G, number_of_nodes, True)
+            colors = change_color_of_vertex(random_vertex_to_change_color, colors, None, sigma, True)
+            i += 1
+        old_colors = return_color_to_taxon(S, colors)
+        save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path+'/color')
 
 def return_planted_nodes_new_name(list_of_planted,prev_G,path):
     list_of_planted_nodes = []
     for k, l in list_of_planted.items():
         list_of_planted_nodes.append(l['Marked'])
     main_G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
-    #print("     Reading file " + path + "/sigma.txt'...")
     input = open(path + '/0/sigma0.0.txt', 'r')
     main_sigma = []
     for line in input:
         main_sigma.append(eval(line))
     main_sigma = main_sigma[0]
-    #print("     Finished reading file  " + path + "/sigma.txt'")
     main_G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(main_G, main_sigma, True))
     main_G = utiles.init_internal_labels(main_G, 'u', main_sigma, path)
     res = []
@@ -781,7 +872,10 @@ def main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices):
             return_planted_nodes_new_name(sol,G,path)
         p = Pool(15)
         parameters = [(noise_level[i],number_of_HT_under_planted,G_internal_colors,S_colors,nCr_lookup_table,fact_lookup_table,number_of_leaves) for i in range(0,len(noise_level))]
-        p.map(create_tree_for_noise, parameters)
+        p.map(create_tree_for_HT_and_colors_noise, parameters)
+        p.map(create_tree_for_color_noise, parameters)
+        p.map(create_tree_for_HT_noise, parameters)
+
 
     else:
         save_data(old_sigma, old_colors, sol, noise, 0, compare, path)

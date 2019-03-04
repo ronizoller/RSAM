@@ -1,12 +1,12 @@
 on_lab = True
-check_diffreance_between_solutions = True
+check_diffreance_between_solutions = False
 real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
+        path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data'
+        path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
@@ -27,6 +27,7 @@ import EfficiantVersion as effi
 from multiprocessing import Pool
 from datetime import datetime
 import random
+import os
 
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
@@ -34,7 +35,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 10
+k = 50
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -45,19 +46,19 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 1
+number_of_planted_vertices = 5
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:
         planted_vertices.append(eval(line))
     planted_vertices = planted_vertices[0]
-random_for_prec = 1
+random_for_prec = 20
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = utiles.frange(0,10,0.1)
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -265,6 +266,7 @@ def weight_HT_in_G(H, G, G_edges_to_weight, S_dis_matrix):       #
     return G_nodes_to_weight
 
 def RSAM_finder_multithread(parameters):
+    noise_in = ''
     real_data = parameters[0]
     noise_level = parameters[1]
     TH_both = parameters[2]
@@ -274,6 +276,10 @@ def RSAM_finder_multithread(parameters):
     random_for_prec_curr = random_for_prec
     for rand_num in range (0, random_for_prec_curr):
         if not check_diffreance_between_solutions:
+            noise_in = parameters[4]
+            path_change_in = path + '/' + noise_in +'/saved_dava'
+            os.makedirs(os.path.dirname(path_change_in), exist_ok=True)
+            path_change_in = path +  '/' + noise_in
             S_dis_matrix = {}
             nodes_table = {}
             S_colors = {}
@@ -282,49 +288,48 @@ def RSAM_finder_multithread(parameters):
             new_G = nx.DiGraph()
             red_HT_vertices_in_G = []
             black_HT_vertices_in_G = []
-            deleted_nodes = []
             nCr_lookup_table = {}
             fact_lookup_table = {}
             G_internal_colors = {}
 
-            G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
-            S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
+            G = tr.Tree.get_from_path(path  + "/GeneTree(binary)_local.txt", schema="newick")
+            S = tr.Tree.get_from_path(path  +"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
 
-            input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+            input = open(path_change_in +'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
             sigma = []
             for line in input:
                 sigma.append(eval(line))
             sigma = sigma[0]
 
-            input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
+            input = open(path_change_in + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
             colors = []
             for line in input:
                 colors.append(eval(line))
             colors = colors[0]
             G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
-            S = utiles.init_internal_labels(S, 'x', sigma, path)
-            G = utiles.init_internal_labels(G, 'u', sigma, path)
+            S = utiles.init_internal_labels(S, 'x', sigma, path_change_in)
+            G = utiles.init_internal_labels(G, 'u', sigma, path_change_in)
 
             G = tree_operations.collapse_edges(G)
             S = tree_operations.collapse_edges(S)
 
             S_labels_table, G_labels_table, sigma = inits.init_taxon_to_label_table(S,G,sigma)
-            sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
+            sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path_change_in,exact_names,S_labels_table,G_labels_table)
             G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
             colors,old_colors = inits.update_colors(S, colors,exact_names)
             TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
             TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
             TH_compare_subtrees = 1
 
-            S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
+            S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path_change_in,speciesTreespecification)
             nodes_table = inits.init_nodes_table(S, G, nodes_table)
 
             H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
-                                                                             nodes_table, D_cost, S_cost, HT_cost, path, alpha,
+                                                                             nodes_table, D_cost, S_cost, HT_cost, path_change_in, alpha,
                                                                              sigma, save_data)
 
-            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path, alpha)
+            H, max_prob = hypergraph.assign_probabilities(S, G, H, test, k, gamma, path_change_in, alpha)
         else:
             S = parameters[4]
             G = parameters[5]
@@ -370,8 +375,7 @@ def RSAM_finder_multithread(parameters):
                                                                 G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
-    #print('         List for noise_level %s: %s' % (str(noise_level),str(list_of_scores_for_rand_num)))
-    return (utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr))
+    return (utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr),noise_in)
 
 def extract_and_tarce_a_solution(parameters):
     iter = parameters[0]
@@ -473,9 +477,8 @@ def main():
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
-    TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-    #TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
-    TH_pattern_in_subtree = 0
+    TH_edges_in_subtree = 10                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
     TH_both = 0.8
     TH_compare_subtrees = 1
 
@@ -509,9 +512,9 @@ def main():
             p.join()
             ind = 0
             for res in list_of_RSAM_results:
-                all_vertices_with_index.update({combined[ind]: [res]})
-                all_RSAM_marked.update({combined[ind]: res})
-                all_RSAM_unmarked.update({combined[ind]: utiles.find_unmarked(res,G,True)})
+                all_vertices_with_index.update({combined[ind]: [res[0]]})
+                all_RSAM_marked.update({combined[ind]: res[0]})
+                all_RSAM_unmarked.update({combined[ind]: utiles.find_unmarked(res[0],G,True)})
                 ind += 1
             file = open(path + '/saved_data/all_marked_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_RSAM_marked))
@@ -568,7 +571,6 @@ def main():
         new_G = nx.DiGraph()
         red_HT_vertices_in_G = []
         black_HT_vertices_in_G = []
-        deleted_nodes = []
         nCr_lookup_table = {}
         fact_lookup_table = {}
         G_internal_colors = {}
@@ -586,17 +588,13 @@ def main():
                                                                                                                    fact_lookup_table,
                                                                                                                    red_HT_vertices_in_G,
                                                                                                                    black_HT_vertices_in_G, pattern,evolutinary_event,S_colors)
-            H = hypergraph.remove_prob_zero(H, deleted_nodes)
             max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
-
             new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
                                                                           black_HT_vertices_in_G, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
             new_G = tree_operations.number_of_edges_in_subtree(new_G)
-
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
                                                                 G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
-
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
             if not on_lab:
                 draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
@@ -606,23 +604,23 @@ def main():
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
     parameters = []
+    for noise_in in ['colors_and_HT','colors','HT']:
+        for i in range(0,len(noise_level_list)):
+            parameters.append([real_data,noise_level_list[i],TH_both,check_diffreance_between_solutions,noise_in])
     p = Pool(15)
-    for i in range(0,len(noise_level_list)):
-        parameters.append([real_data,noise_level_list[i],TH_both,check_diffreance_between_solutions])
     list_of_results = p.map(RSAM_finder_multithread, parameters)
     p.close()
     p.join()
     ind = 0
-    for res in list_of_results:
-        all_vertices_with_index.update({noise_level_list[ind]:res})
-        ind += 1
-    print('all_vertices_with_index: %s' % str(all_vertices_with_index))
-    file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
-    file.write(str(all_vertices_with_index))
-    file.close()
-
-    #if not on_lab:
-        #draw.draw_plot(all_vertices_with_index,path,marked_vertex)
+    temp_j = 0
+    for noise_in in ['colors_and_HT', 'colors', 'HT']:
+        for j in range(temp_j,len(noise_level_list)+temp_j):
+            all_vertices_with_index.update({noise_level_list[ind]:list_of_results[j][0]})
+            ind += 1
+        file = open(path + '/saved_data/all_vertices_RSAM_finder_'+noise_in+'.txt', 'w')
+        file.write(str(all_vertices_with_index))
+        file.close()
+        temp_j = len(noise_level_list)+temp_j
     print('Running time: '+str(datetime.now()-starting_time))
 
 if __name__ == "__main__":

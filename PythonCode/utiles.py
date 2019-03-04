@@ -298,7 +298,7 @@ def frange(start,end,step):
     res = []
     i = start
     while i<= end:
-        res.append(i)
+        res.append(round(i,1))
         i += step
     return res
 
