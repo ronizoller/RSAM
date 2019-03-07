@@ -1,6 +1,6 @@
-on_lab = True
-check_diffreance_between_solutions = True
-real_data = False
+on_lab = False
+check_diffreance_between_solutions = False
+real_data = True
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -13,7 +13,7 @@ else:
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/example'
     if real_data:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/real'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data'
 
 import networkx as nx
 import dendropy as tr
@@ -28,6 +28,7 @@ from multiprocessing import Pool
 from datetime import datetime
 import random
 import os
+import draw
 
 speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
@@ -35,7 +36,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 500
+k = 50
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -58,7 +59,7 @@ gamma = 1                                           # factor for probability ass
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = [0]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -276,12 +277,15 @@ def RSAM_finder_multithread(parameters):
     random_for_prec_curr = random_for_prec
     for rand_num in range (0, random_for_prec_curr):
         if not check_diffreance_between_solutions:
-            noise_in = parameters[4]
-            path_change_in = path + '/' + noise_in
-            os.makedirs(os.path.dirname(path_change_in), exist_ok=True)
-            path_change_in = path_change_in + '/saved_data'
-            os.makedirs(os.path.dirname(path_change_in), exist_ok=True)
-            path_change_in = path +  '/' + noise_in
+            if not real_data:
+                noise_in = parameters[4]
+                path_change_in = path + '/' + noise_in
+                os.makedirs(os.path.dirname(path_change_in), exist_ok=True)
+                path_change_in = path_change_in + '/saved_data'
+                os.makedirs(os.path.dirname(path_change_in), exist_ok=True)
+                path_change_in = path +  '/' + noise_in
+            else:
+                path_change_in = path
             S_dis_matrix = {}
             nodes_table = {}
             S_colors = {}
@@ -601,25 +605,32 @@ def main():
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
     parameters = []
-    for noise_in in ['colors_and_HT','color','HT']:
-        for i in range(0,len(noise_level_list)):
-            parameters.append([real_data,noise_level_list[i],TH_both,check_diffreance_between_solutions,noise_in])
-    p = Pool(15)
-    list_of_results = p.map(RSAM_finder_multithread, parameters)
-    p.close()
-    p.join()
-    temp_j = 0
-    print('list_of_results: '+str(list_of_results))
-    for noise_in in ['colors_and_HT', 'color', 'HT']:
-        ind = 0
-        for j in range(temp_j,len(noise_level_list)+temp_j):
-            all_vertices_with_index.update({noise_level_list[ind]:list_of_results[j][0]})
-            ind += 1
-        file = open(path + '/saved_data/all_vertices_RSAM_finder_'+noise_in+'.txt', 'w')
-        file.write(str(all_vertices_with_index))
+    if real_data:
+        res = RSAM_finder_multithread([real_data, [5], TH_both, check_diffreance_between_solutions, ''])
+        file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
+        file.write(str(res[0]))
         file.close()
-        temp_j = len(noise_level_list)+temp_j
-    print('Running time: '+str(datetime.now()-starting_time))
+        print('Running time: ' + str(datetime.now() - starting_time))
+    else:
+        for noise_in in ['colors_and_HT','color','HT']:
+            for i in range(0,len(noise_level_list)):
+                parameters.append([real_data,noise_level_list[i],TH_both,check_diffreance_between_solutions,noise_in])
+        p = Pool(15)
+        list_of_results = p.map(RSAM_finder_multithread, parameters)
+        p.close()
+        p.join()
+        temp_j = 0
+        print('list_of_results: '+str(list_of_results))
+        for noise_in in ['colors_and_HT', 'color', 'HT']:
+            ind = 0
+            for j in range(temp_j,len(noise_level_list)+temp_j):
+                all_vertices_with_index.update({noise_level_list[ind]:list_of_results[j][0]})
+                ind += 1
+            file = open(path + '/saved_data/all_vertices_RSAM_finder_'+noise_in+'.txt', 'w')
+            file.write(str(all_vertices_with_index))
+            file.close()
+            temp_j = len(noise_level_list)+temp_j
+        print('Running time: '+str(datetime.now()-starting_time))
 
 if __name__ == "__main__":
     main()
