@@ -19,13 +19,13 @@ from datetime import datetime
 on_lab = True
 compare = True
 running_time = False
-minimum_HT_under_planted = 5
+minimum_HT_under_planted = 10
 number_of_leaves = 1000
 if on_lab:
     if compare:
-        path = '/storage/DATA/users/ronizo//comparsion_1000_k=500'
+        path = '/storage/DATA/users/ronizo/comparsion_1000_k=500'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
+        path = '/storage/DATA/users/ronizo/noise_data_test'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
