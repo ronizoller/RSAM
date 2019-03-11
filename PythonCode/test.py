@@ -4,70 +4,24 @@ import matplotlib.pyplot as plt
 import draw
 import seaborn as sns
 
-path = '/storage/DATA/users/ronizo/noise_data_test'
+times_effi ={400: 0.2293, 450: 0.2757, 500: 0.328, 350: 0.1812,600: 0.5669, 550: 0.4321,650: 0.6606, 700: 0.7542}
+times_naive ={400: 0.5899, 450: 0.8389, 500: 1.1318, 350: 0.3938,600: 2.0923, 550: 1.571,650: 2.5381, 700: 3.2661}
 
-for noise_in in ['colors_and_HT','color','HT']:
-    planted_vertices = []
-    input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
-    for line in input:
-        planted_vertices.append(eval(line))
-    planted_vertices = planted_vertices[0]
+xs = []
+effi = []
+naive = []
+names = []
+for number_of_leafs,time in times_effi.items():
+    xs.append(number_of_leafs)
+    effi.append(time)
+for number_of_leafs,time in times_naive.items():
+    naive.append(time)
+plt.xlabel('Number of Leafs', fontsize=10)
+plt.ylabel('Running Time', fontsize=10)
+fig, ax = plt.subplots()
+plt.plot(xs, effi, 'ro')
+plt.plot(xs, naive, 'g^')
+plt.axis([300, max(xs)+50, 0, max(effi+naive)+0.5])
+plt.show()
 
-    input = open(path + '/saved_data/all_vertices_RSAM_finder_'+noise_in+'.txt', 'r')
-    all_vertices_with_noise = []
-    for line in input:
-        all_vertices_with_noise.append(eval(line))
-    all_vertices_with_noise = all_vertices_with_noise[0]
-
-    plt.clf()
-    plt.figure(12, figsize=(20, 20))  # size of fig
-    list_to_draw_reds = []
-    list_to_draw_blacks = []
-    length = []
-    names = []
-    names_marked = []
-    to_connect = []
-    length_to_connect = []
-    maxi = 0
-    max_noise_level = 0
-    for noise_level, all_vertices in all_vertices_with_noise.items():
-        if noise_level <= 20:
-            for u, couple in all_vertices.items():
-                if u in planted_vertices:
-                    to_connect.append(max(couple[1],couple[0]))
-                    length_to_connect.append(noise_level)
-                    names_marked.append(u)
-                else:
-                    length.append(noise_level)
-                    names.append(u)
-                    list_to_draw_reds.append(couple[0])
-                    list_to_draw_blacks.append(couple[1])
-                if maxi < couple[0]:
-                    maxi = couple[0]
-                if maxi < couple[1]:
-                    maxi = couple[1]
-                if max_noise_level < noise_level:
-                    max_noise_level = noise_level
-    fig, ax = plt.subplots()
-    ax.plot(length, list_to_draw_reds, 'ko', length, list_to_draw_blacks, 'ko')
-    ax.plot(length_to_connect, to_connect, color = 'pink')
-
-    for X, Y, Z in zip(length, list_to_draw_reds, names):
-        # Annotate the points 5 _points_ above and to the left of the vertex
-        ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
-                    textcoords='offset points')
-    for X, Y, Z in zip(length, list_to_draw_blacks, names):
-        # Annotate the points 5 _points_ above and to the left of the vertex
-        ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
-                    textcoords='offset points')
-    for X, Y, Z in zip(length_to_connect, to_connect, names_marked):
-        # Annotate the points 5 _points_ above and to the left of the vertex
-        ax.annotate('{}'.format(Z), xy=(X, Y), xytext=(5, -5), ha='left',
-                    textcoords='offset points')
-    sns.set(font_scale=1.4)
-    plt.xlabel('Noise', fontsize=10)
-    plt.ylabel('Score', fontsize=10)
-    for p in range(0, len(length_to_connect) - 1):
-        draw.connectpoints(length_to_connect, to_connect, p, p + 1,'pink')
-    plt.axis([0, max_noise_level + 0.2, 0, maxi + 0.00001])
-    plt.savefig('/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise_plots/'+noise_in+'.png')
+{{400, 0.2293}, {450, 0.2757}, {500, 0.328}, {350, 0.1812},{600, 0.5669}, {550,0.4321}}

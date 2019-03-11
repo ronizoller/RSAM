@@ -7,7 +7,7 @@ HT_cost = 1
 D_cost = 1
 S_cost = 0
 on_lab = True
-number_of_iter_per_size = 10
+number_of_iter_per_size = 3
 
 if on_lab:
     path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/running_time'
@@ -28,7 +28,7 @@ import hypergraph_v1 as hypergraph
 import matplotlib.pyplot as plt
 from ete3 import Tree
 
-for number_of_leafs in utiles.frange(550,1000,50):
+for number_of_leafs in utiles.frange(650,1000,50):
     temp_time_effi = {}
     temp_time_naive = {}
     path_curr = path + '/number_of_leaves:' + str(number_of_leafs) + '/'
