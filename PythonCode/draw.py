@@ -1,7 +1,7 @@
 import sys
-sys.path.append('/anaconda3/lib/python3.6/site-packages')
+sys.path.append('/anaconda3/lib/python3.7/site-packages')
 import networkx as nx
-import tree_operations_v1 as tree_operation
+import tree_operations_v1 as tree_operations
 from networkx.drawing.nx_agraph import graphviz_layout
 import matplotlib.pyplot as plt
 import inits_v1 as inits
@@ -156,7 +156,7 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(80, 40))
+    plt.figure(figsize=(40, 40))
 
     nodes_color = []
     nodes_size = []
@@ -186,7 +186,6 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
                         l = l+'\n'+str(old_sigma[x.taxon.label])
                         labels1.update({r: l})
 
-    print('nodes_sizes = '+str(nodes_size))
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
     nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
@@ -251,7 +250,6 @@ def draw_tree(tree, name, old_sigma, colors, sigma):
     print('Drawing'+name)
 
 def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
-    print('Sigma: %s\n old_sigma: %s\n' % (str(sigma),str(old_sigma)))
     plt.clf()
     S_to_draw = nx.DiGraph()
     G_to_draw = nx.DiGraph()

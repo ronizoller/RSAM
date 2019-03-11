@@ -17,16 +17,15 @@ with open(path+'/FASTA.txt','r') as fp:
             while start < end :
                 gene = gene + line[start]
                 start += 1
-            if (G_text.find(gene) != -1):
-                gene = gene.replace("_"," ")
-                start  = line.find('[')+1
-                end  = line.find(']')
-                specie = ''
-                while start < end :
-                    if(line[start] != ' '):
-                        specie = specie + line[start]
-                    start += 1
-                if (S_text.find(specie) != -1):
-                    print("'"+gene+"' : '"+specie+"',\n")
+            gene = gene.replace("_"," ")
+            start  = line.find('[')+1
+            end  = line.find(']')
+            specie = ''
+            while start < end :
+                if(line[start] != ' '):
+                    specie = specie + line[start]
+                start += 1
+            if (S_text.find(specie) != -1):
+                print("'"+gene+"' : '"+specie+"',\n")
 
 print('}',end=' ')

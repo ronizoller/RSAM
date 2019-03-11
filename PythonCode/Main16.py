@@ -9,11 +9,11 @@ if on_lab:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
     import sys
-    sys.path.append('/anaconda3/lib/python3.6/site-packages')
+    sys.path.append('/anaconda3/lib/python3.7/site-packages')
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/example'
     if real_data:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
 
 import networkx as nx
 import dendropy as tr
@@ -36,7 +36,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 50
+k = 10
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -77,7 +77,7 @@ elif compare_subtrees and evolutinary_event == 'D':
     pattern = "any"
 elif not compare_subtrees and evolutinary_event == 'D':
     pattern = "any"
-    TH_pattern_in_subtree = 0.0009
+    TH_pattern_in_subtree = 0
 
 big_size = 2000
 small_size = 7
@@ -325,7 +325,7 @@ def RSAM_finder_multithread(parameters):
             G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
             colors,old_colors = inits.update_colors(S, colors,exact_names)
             TH_edges_in_subtree = 5                                                    # smallest subtree that will be counted when not comparing subtrees
-            TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
+            TH_pattern_in_subtree = 0
             TH_compare_subtrees = 1
 
             S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
@@ -489,9 +489,10 @@ def main():
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     TH_edges_in_subtree = 10                                                    # smallest subtree that will be counted when not comparing subtrees
-    TH_pattern_in_subtree = (TH_edges_in_subtree * 0.005)/(2*k*number_of_planted_vertices)
+    TH_pattern_in_subtree = 0
     TH_both = 0.8
     TH_compare_subtrees = 1
+    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
@@ -597,6 +598,7 @@ def main():
             G_internal_colors = tree_operations.color_tree(G, 'G', G_internal_colors, colors, sigma)
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both,
                                                                 G_internal_colors, iter,speciesTreespecification,compare_subtrees,TH_edges_in_subtree,check_diffreance_between_solutions)
+            print('marked nodes: '+str(marked_nodes))
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
             if not on_lab:
                 draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees, TH_both,
@@ -606,9 +608,11 @@ def main():
 
     parameters = []
     if real_data:
-        res = RSAM_finder_multithread([real_data, [5], TH_both, check_diffreance_between_solutions, ''])
+        file = open(path + '/saved_data/marked_RSAM_finder.txt', 'w')
+        file.write(str(marked_nodes))
+        file.close()
         file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
-        file.write(str(res[0]))
+        file.write(str(all_vertices_with_index))
         file.close()
         print('Running time: ' + str(datetime.now() - starting_time))
     else:
