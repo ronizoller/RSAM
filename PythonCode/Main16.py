@@ -1,10 +1,10 @@
-on_lab = True
-check_diffreance_between_solutions = True
-real_data = False
+on_lab = False
+check_diffreance_between_solutions = False
+real_data = True
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_700_k=400'
+        path  = '/storage/DATA/users/ronizo/comparsion_1000_k=500'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -37,6 +37,7 @@ compare_subtrees = False                             # if true the algorithm wil
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
 k = 400
+k = 50
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -47,7 +48,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 10
+number_of_planted_vertices = 1
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -59,7 +60,7 @@ gamma = 1                                           # factor for probability ass
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = [0]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -614,6 +615,10 @@ def main():
         file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
         file.write(str(all_vertices_with_index))
         file.close()
+        for nd,x in marked_nodes.items():
+            r,l = tree_operations.leaf_in_subtrees(G,'G',nd, old_sigma,False)
+            print('For %s:\nlist_r = %s \nlist_l = %s\n' % (str(nd),str(r),str(l)))
+
         print('Running time: ' + str(datetime.now() - starting_time))
     else:
         for noise_in in ['colors_and_HT','color','HT']:

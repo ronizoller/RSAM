@@ -1,8 +1,8 @@
 path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/real/'
-list1 = ['Sulfurimonasdenitrificans', 'Synechococcussp.RS9917', 'Synechococcussp.CB0101', 'Synechococcussp.CB0101', 'Methylobacillusflagellatus', 'Methylococcuscapsulatus', 'Pseudomonasaeruginosa', 'Ruegeriapomeroyi', 'Ralstoniapickettii', 'VariovoraxparadoxusEPS', 'Parvibaculumlavamentivorans', 'Nocardiopsisdassonvillei', 'Thermomonosporacurvata', 'Streptosporangiumroseum', 'Succinatimonashippei', 'Brachyspirapilosicoli', 'Campylobacterlari', 'Campylobacterlari']
-list2 = ['Acinetobacterbaumannii', 'Acinetobacterbaumannii', 'Acinetobacteroleivorans', 'Acinetobactercalcoaceticus', 'Acinetobacterradioresistens', 'Acinetobacterlwoffii']
+list1 = ['Flexithrixdorotheae', 'VariovoraxparadoxusEPS', 'Nostocpunctiforme', 'Fischerellamuscicola', 'Spirulinasubsalsa', 'Oscillatoriaacuminata', 'Nodosilineanodulosa', 'Sediminibacteriumsp.C3', 'Actinomaduraflavalba', 'Microcoleusvaginatus', 'Nostocsp.PCC7120', 'Anabaenacylindrica', 'VerrucomicrobiaebacteriumDG1235', 'Nocardiopsiskunsanensis', 'Nocardiopsisxinjiangensis', 'Anabaenasp.PCC7108', 'Emticiciaoligotrophica', 'Arenimonasoryziterrae', 'Mesorhizobiummetallidurans', 'Myxococcusstipitatus', 'Actinomaduraatramentaria']
+list2 = ['Bacillusokhensis', 'Parvibaculumlavamentivorans', 'Bacillussp.J33', 'Acinetobacterradioresistens', 'Acinetobacterbaumannii', 'Acinetobacterbaumannii', 'Sulfurimonasdenitrificans', 'Pseudomonasaeruginosa', 'Pseudomonastaeanensis', 'Nocardiopsisvalliformis', 'Nocardiopsisprasina', 'Nocardiopsisalba', 'Nocardiopsisganjiahuensis', 'Methylococcuscapsulatus', 'Porticoccushydrocarbonoclasticus', 'Methylobacillusflagellatus', 'Hahellaganghwensis', 'Nocardiopsisdassonvillei', 'Cetobacteriumsomerae', 'Thermomonosporacurvata', 'Synechococcussp.CB0101', 'Synechococcussp.RS9917', 'Synechococcussp.CB0101', 'Massiliatimonae', 'Haloferulasp.BvORR071', 'Cetobacteriumsomerae', 'Cupriavidustaiwanensis', 'RalstoniapickettiiDTP0602', 'Shewanellapiezotolerans', 'Enterococcuspallens', 'Brachyspirapilosicoli', 'Chondromycesapiculatus', 'Cupriavidussp.amp6', 'Shewanellamarina', 'Succinatimonashippei']
 
-lists = [(list1,'u62'),(list2,'u97')]
+lists = [(list1,'u409'),(list2,'u450')]
 res = []
 i = 0
 
