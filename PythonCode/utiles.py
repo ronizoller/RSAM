@@ -81,11 +81,11 @@ def init_internal_labels (tree, char, old_sigma, path):
     #       print('     '+str(child[0])+' was deleted')
     tree_operations.collapse_edges(tree)
     if char == 'u':
-        file = open(path + '/saved_data/G_keys' + '.txt', 'w')
+        file = open(path + '/saved_data/G_keys.txt', 'w')
         file.write(str(dic))
         file.close()
     if char == 'x':
-        file = open(path + '/saved_data/S_keys' + '.txt', 'w')
+        file = open(path + '/saved_data/S_keys.txt', 'w')
         file.write(str(dic))
         file.close()
     #print('Finished inisilasing internal leafs.\n')

@@ -36,7 +36,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 10
+k = 50
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -488,11 +488,11 @@ def main():
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
-    TH_edges_in_subtree = 10                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_edges_in_subtree = 20                                                    # smallest subtree that will be counted when not comparing subtrees
     TH_pattern_in_subtree = 0
-    TH_both = 0.8
+    TH_both = 0.9
     TH_compare_subtrees = 1
-    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
+    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
@@ -614,6 +614,10 @@ def main():
         file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
         file.write(str(all_vertices_with_index))
         file.close()
+        for nd,x in marked_nodes.items():
+            r,l = tree_operations.leaf_in_subtrees(G,'G',nd, old_sigma,False)
+            print('For %s:\nlist_r = %s \nlist_l = %s\n' % (str(nd),str(r),str(l)))
+
         print('Running time: ' + str(datetime.now() - starting_time))
     else:
         for noise_in in ['colors_and_HT','color','HT']:

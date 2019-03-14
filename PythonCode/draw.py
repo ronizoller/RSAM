@@ -156,7 +156,7 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(40, 40))
+    plt.figure(figsize=(120, 40))
 
     nodes_color = []
     nodes_size = []
