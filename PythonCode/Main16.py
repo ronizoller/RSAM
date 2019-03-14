@@ -1,10 +1,10 @@
-on_lab = False
-check_diffreance_between_solutions = False
-real_data = True
+on_lab = True
+check_diffreance_between_solutions = True
+real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_1000_k=500'
+        path  = '/storage/DATA/users/ronizo/comparsion_700_k=400'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -36,7 +36,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 10
+k = 400
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -47,7 +47,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 1
+number_of_planted_vertices = 10
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -59,7 +59,7 @@ gamma = 1                                           # factor for probability ass
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [0]
+noise_level_list = [5]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions

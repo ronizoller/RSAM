@@ -7,14 +7,15 @@ HT_cost = 1
 D_cost = 1
 S_cost = 0
 on_lab = True
-number_of_iter_per_size = 3
+number_of_iter_per_size = 5
+naive = False
 
 if on_lab:
-    path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/running_time'
+    path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/running_times_only_effi'
 else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
-    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/running_times'
+    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/running_times_only_effi'
 
 import utiles
 import Tree_Grnarator
@@ -28,7 +29,7 @@ import hypergraph_v1 as hypergraph
 import matplotlib.pyplot as plt
 from ete3 import Tree
 
-for number_of_leafs in utiles.frange(650,1000,50):
+for number_of_leafs in utiles.frange(700,1000,50):
     temp_time_effi = {}
     temp_time_naive = {}
     path_curr = path + '/number_of_leaves:' + str(number_of_leafs) + '/'
@@ -66,27 +67,30 @@ for number_of_leafs in utiles.frange(650,1000,50):
         effi.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma, False)
         temp_time_effi.update({d:datetime.now()-start})
 
-        start = datetime.now()
-        hypergraph.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma, False)
-        temp_time_naive.update({d:datetime.now()-start})
+        if naive:
+            start = datetime.now()
+            hypergraph.build_hyper_garph(S, G, False, k,nodes_table, D_cost, S_cost, HT_cost, path_curr, 1, sigma, False)
+            temp_time_naive.update({d:datetime.now()-start})
 
     times_effi.update({number_of_leafs:utiles.avg_dict_datetime(temp_time_effi)})
-    times_naive.update({number_of_leafs:utiles.avg_dict_datetime(temp_time_naive)})
+    if naive:
+        times_naive.update({number_of_leafs:utiles.avg_dict_datetime(temp_time_naive)})
     file = open(path_curr + 'results_times_effi.txt', 'w')
     file.write(str(times_effi))
     file.close()
-    file = open(path_curr + 'results_times_naive.txt', 'w')
-    file.write(str(times_naive))
-    file.close()
+    if naive:
+        file = open(path_curr + 'results_times_naive.txt', 'w')
+        file.write(str(times_naive))
+        file.close()
 
 
-print('Effi times: %s\nNaive Times: %s' % (str(times_effi),str(times_naive)))
 file = open(path + 'results_times_effi.txt', 'w')
 file.write(str(times_effi))
 file.close()
-file = open(path + 'results_times_naive.txt', 'w')
-file.write(str(times_naive))
-file.close()
+if naive:
+    file = open(path + 'results_times_naive.txt', 'w')
+    file.write(str(times_naive))
+    file.close()
 
 xs = []
 effi = []
