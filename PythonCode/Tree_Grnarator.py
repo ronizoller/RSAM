@@ -19,7 +19,7 @@ from datetime import datetime
 on_lab = True
 compare = True
 running_time = False
-minimum_HT_under_planted = 8
+minimum_HT_under_planted = 5
 number_of_leaves = 800
 if on_lab:
     if compare:
@@ -30,10 +30,10 @@ else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 6
+number_of_planted_vertices = 5
 S = Tree()
 G = Tree()
-k = 200
+k = 100
 both = False
 TH_both = 0.8
 compare_subtrees = True
@@ -278,7 +278,7 @@ def choose_planted_vertex (S_dis_matrix,new_G,S,G,G_internal_colors,TH_edges_in_
                             nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'black',
                                                                                      max_dis, S_dis_matrix,new_G,G_internal_colors)
                         else:
-                            #print('     Changing color in order to create a good pattern')
+                            print('     Changing color in order to create a good pattern')
                             number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'all')
                             colors, father_to_change, color, G_internal_colors, old_colors, old_internal_G_colors, S, S_colors, old_S, old_S_colors = change_colors(v, w, colors,
                                                                                                G_internal_colors,S_colors,

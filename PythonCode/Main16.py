@@ -1,10 +1,10 @@
-on_lab = False
-check_diffreance_between_solutions = False
-real_data = True
+on_lab = True
+check_diffreance_between_solutions = True
+real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_1000_k=500'
+        path  = '/storage/DATA/users/ronizo/comparsion_600_k=500'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -36,9 +36,8 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 400
-k = 50
-k = 100
+k = 300
+
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -61,7 +60,7 @@ gamma = 1                                           # factor for probability ass
 alpha = 1                                           # factor for HT counting in the coloring stage
 both = False
 accur = 5                                           # calculations acuuracy
-noise_level_list = [0]
+noise_level_list = [5]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -490,16 +489,11 @@ def main():
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
-    TH_edges_in_subtree = 10                                                    # smallest subtree that will be counted when not comparing subtrees
-    TH_edges_in_subtree = 52                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_edges_in_subtree = 10
     TH_pattern_in_subtree = 0
     TH_both = 0.8
     TH_compare_subtrees = 1
     #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
-    TH_both = 0.7
-    TH_compare_subtrees = 1.5
-    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
-
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
