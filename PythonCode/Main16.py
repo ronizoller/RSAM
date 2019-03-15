@@ -36,7 +36,7 @@ glob = False                                        # if True global alignment i
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
 one_enriched_on_not = False
-k = 50
+k = 100
 exact_names = True
 
 evolutinary_event = 'HT'
@@ -488,10 +488,10 @@ def main():
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
-    TH_edges_in_subtree = 20                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_edges_in_subtree = 52                                                    # smallest subtree that will be counted when not comparing subtrees
     TH_pattern_in_subtree = 0
-    TH_both = 0.9
-    TH_compare_subtrees = 1
+    TH_both = 0.7
+    TH_compare_subtrees = 1.5
     draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
