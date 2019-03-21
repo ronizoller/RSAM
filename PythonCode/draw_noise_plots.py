@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import draw
 import seaborn as sns
 
-path = '/storage/DATA/users/ronizo/noise_data_test'
+path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/noise_final_data'
 
-for noise_in in ['colors_and_HT','color','HT']:
+for noise_in in ['HT']:
     planted_vertices = []
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:
@@ -20,7 +20,6 @@ for noise_in in ['colors_and_HT','color','HT']:
     all_vertices_with_noise = all_vertices_with_noise[0]
 
     plt.clf()
-    plt.figure(12, figsize=(20, 20))  # size of fig
     list_to_draw_reds = []
     list_to_draw_blacks = []
     length = []
@@ -48,9 +47,9 @@ for noise_in in ['colors_and_HT','color','HT']:
                     maxi = couple[1]
                 if max_noise_level < noise_level:
                     max_noise_level = noise_level
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(8,12))
     ax.plot(length, list_to_draw_reds, 'ko', length, list_to_draw_blacks, 'ko')
-    ax.plot(length_to_connect, to_connect, color = 'pink')
+    ax.plot(length_to_connect, to_connect, marker='o', color='fuchsia',linestyle = 'None')
 
     for X, Y, Z in zip(length, list_to_draw_reds, names):
         # Annotate the points 5 _points_ above and to the left of the vertex
@@ -67,7 +66,6 @@ for noise_in in ['colors_and_HT','color','HT']:
     sns.set(font_scale=1.4)
     plt.xlabel('Noise', fontsize=10)
     plt.ylabel('Score', fontsize=10)
-    for p in range(0, len(length_to_connect) - 1):
-        draw.connectpoints(length_to_connect, to_connect, p, p + 1,'pink')
-    plt.axis([0, max_noise_level + 0.2, 0, maxi + 0.00001])
+    plt.axis([0, max_noise_level + 0.5, 0, maxi + 0.0001])
+
     plt.savefig('/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise_plots/'+noise_in+'.png')
