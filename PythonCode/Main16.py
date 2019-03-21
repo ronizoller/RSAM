@@ -290,13 +290,11 @@ def RSAM_finder_multithread(parameters):
             nodes_table = {}
             S_colors = {}
             all_vertices = {}
-            iter = -1
             new_G = nx.DiGraph()
             red_HT_vertices_in_G = []
             black_HT_vertices_in_G = []
             nCr_lookup_table = {}
             fact_lookup_table = {}
-            G_internal_colors = {}
 
             G = tr.Tree.get_from_path(path  + "/GeneTree(binary)_local.txt", schema="newick")
             S = tr.Tree.get_from_path(path  +"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
