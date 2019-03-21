@@ -29,7 +29,7 @@ import hypergraph_v1 as hypergraph
 import matplotlib.pyplot as plt
 from ete3 import Tree
 
-for number_of_leafs in utiles.frange(700,1000,50):
+for number_of_leafs in utiles.frange(100,650,50):
     temp_time_effi = {}
     temp_time_naive = {}
     path_curr = path + '/number_of_leaves:' + str(number_of_leafs) + '/'
