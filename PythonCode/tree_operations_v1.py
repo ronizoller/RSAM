@@ -74,54 +74,48 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
     #print('Finished coloring internal vertices of S...')
     return tree_internal_colors
 
-def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,max_distance,distance_flag,evol,compare_solutions,k):
-    #print('Weighting G...')
-    #print ('red_HT_vertices_in_G = %s\nblack_HT_vertices_in_G = %s' % (str(red_HT_vertices_in_G),str(black_HT_vertices_in_G)))
+def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,max_distance,distance_flag,evol,compare_solutions,k):
     index = 1
     for u in G.postorder_node_iter():
-        new_G.add_node(index, label=u.label,same_HT_score = [0,0],ind = index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
+        new_G.add_node(index, label=u.label,same_HT_score = [0,0],same_doup_score = [0,0],ind = index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
         if not is_a_leaf(u):
             child = u.child_nodes()
             if has_left_child(u) and has_right_child(u):
                 right_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[1]) + 1]
                 left_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[0]) + 1]
-                #print('     u = %s, right_child_in_new_G = %s, left_child_in_new_G = %s' % (str(u), str(right_child_in_new_G), str(left_child_in_new_G)))
-
-                new_weight= edge_weight_based_on_same_color_HT(u,right_child_in_new_G,left_child_in_new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,max_distance,distance_flag,evol,compare_solutions,k)
-
-                i = 0
+                new_weight_HT,new_weight_doup = edge_weight_based_on_same_color_HT(u,right_child_in_new_G,left_child_in_new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,max_distance,distance_flag,evol,compare_solutions,k)
                 for i in [0,1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight[i]
+                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
+                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
 
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1, weight = left_child_in_new_G['same_HT_score'])
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1, weight = right_child_in_new_G['same_HT_score'])
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1, weight_HT = left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1, weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
 
             elif has_right_child(u):
                 right_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[1]) + 1]
-                new_weight = edge_weight_based_on_same_color_HT(u, right_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,distance_flag,evol,compare_solutions,k)
-
-                i = 0
+                new_weight_HT, new_weight_doup = edge_weight_based_on_same_color_HT(u, right_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,distance_flag,evol,compare_solutions,k)
                 for i in [0,1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight[i]
+                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
+                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
 
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1,weight = right_child_in_new_G['same_HT_score'])
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1,weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = right_child_in_new_G['same_doup_score'])
 
             else :
                 left_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[0]) + 1]
-                new_weight = edge_weight_based_on_same_color_HT(u, left_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,distance_flag,evol,compare_solutions,k)
-
+                new_weight_HT, new_weight_doup = edge_weight_based_on_same_color_HT(u, left_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,distance_flag,evol,compare_solutions,k)
                 for i in [0, 1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight[i]
+                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
+                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
 
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1,
-                               weight = left_child_in_new_G['same_HT_score'])
+                               weight_HT=left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
         index += 1
-    #print('Finished weighting G.\n')
     return new_G
 
-def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_vertices_in_G,max_distance, distance_flag,evol,compare_solutions,k):
-    res = [0,0]         #res[0] = reds score, res[1] = blacks score
-    if evol == 'HT':
+def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_vertices_in_G,red_doup,black_doup,max_distance, distance_flag,evol,compare_solutions,k):
+    res_HT = [0,0]         #res[0] = reds score, res[1] = blacks score
+    res_doup = [0, 0]
+    if 'HT' in evol:
         for nd in red_HT_vertices_in_G:
             if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
                 if distance_flag:
@@ -129,9 +123,9 @@ def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_v
                 else :
                     dis_factor = 1
                 if not compare_solutions:
-                    res[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
+                    res_HT[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
                 else:
-                    res[0] += dis_factor
+                    res_HT[0] += dis_factor
         for nd in black_HT_vertices_in_G:
             if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
                 if distance_flag:
@@ -139,29 +133,33 @@ def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_v
                 else :
                     dis_factor = 1
                 if not compare_solutions:
-                    res[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
+                    res_HT[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
                 else:
-                    res[1] += dis_factor
-    elif evol == 'D':
-        for nd in red_HT_vertices_in_G:
+                    res_HT[1] += dis_factor
+    if 'D' in evol:
+        for nd in red_doup:
             if nd['curr']['s'] == x.label:
                 if not compare_solutions:
-                    res[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability']
+                    res_doup[0] += red_doup[red_doup.index(nd)]['probability']
                 else :
-                    res[0] += 1
-        for nd in black_HT_vertices_in_G:
+                    res_doup[0] += 1
+        for nd in black_doup:
             if nd['curr']['s'] == x.label:
                 if not compare_solutions:
-                    res[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability']
+                    res_doup[1] += black_doup[black_doup.index(nd)]['probability']
                 else:
-                    res[1] += 1
+                    res_doup[1] += 1
     if z != None:
-        res[0] += z['same_HT_score'][0]
-        res[1] += z['same_HT_score'][1]
+        res_HT[0] += z['same_HT_score'][0]
+        res_HT[1] += z['same_HT_score'][1]
+        res_doup[0] += z['same_doup_score'][0]
+        res_doup[1] += z['same_doup_score'][1]
     if y != None :
-        res[0] += y['same_HT_score'][0]
-        res[1] += y['same_HT_score'][1]
-    return res
+        res_HT[0] += y['same_HT_score'][0]
+        res_HT[1] += y['same_HT_score'][1]
+        res_doup[0] += y['same_doup_score'][0]
+        res_doup[1] += y['same_doup_score'][1]
+    return res_HT,res_doup
 
 def random_son(t,u):
     out = t.out_edges(u[1]['ind'], data=True)
@@ -185,7 +183,7 @@ def number_of_edges_in_subtree(G):
     return G
 
 def find_max_d_of_HT(dis, red_list, black_list,evolutanry_event):
-    if evolutanry_event == 'HT':
+    if 'HT' in evolutanry_event:
         max_red = 0
         max_black = 0
         for HT in red_list:

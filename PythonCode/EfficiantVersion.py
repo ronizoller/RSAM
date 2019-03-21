@@ -8,8 +8,7 @@ import math
 import networkx as nx
 import inits_v1 as inits
 import random
-from numpy import inf
-
+from networkx.algorithms.traversal.depth_first_search import dfs_tree
 
 def build_hyper_garph(S, G, test, k,nodes_table, D_cost, S_cost, HT_cost, path, alpha, sigma, save_data):
     print('Building hypergraph...')
@@ -309,7 +308,7 @@ def calculate_color_diffrence(H, G, S, colors, k, nodes_table, test, real):
                 #print('             and it changed the relations between the colors.')
             #print('\n')
 
-def color_hypergraph(H, G, S, colors, k, alpha, nodes_table, S_colors):
+def color_hypergraph(H, S, colors, alpha, S_colors):
     for nd in (list(nx.topological_sort(H))):
         incoming_edges = H.in_edges([nd], data=True)
         nd = H.nodes(data=True)[nd]
@@ -352,7 +351,7 @@ def remove_prob_zero(H, deleted_nodes):
     #print('Finished removing prob. 0.\n')
     return H
 
-def assign_probabilities(S, G, H, test, k, gamma, path, alpha):
+def assign_probabilities(S, G, H, gamma):
     #print('Assigning probs to hypergraph....')
     flag = False
     to_try = G.seed_node.label
@@ -425,12 +424,6 @@ def assign_weights_to_list(l, gamma):
             l[j].update({'weight': 0})
     return l
 
-##### def assign_weights():
-    #print('Assigning weights to hypergraph....')
-    #global gamma
-    #for nd in H.nodes(data=True):
-        #assign_weights_to_list(nd[1]['l'])
-
 def track_a_solution(root, H, S, G, solution, list_place):
     new_nodes_table = inits.init_nodes_table(S, G, {})
     root_numbers_in_H = [root[0][0]]
@@ -480,3 +473,14 @@ def find_number_of_cooptimal(H,G,S,k):
                 else:
                     quit()
             quit()
+
+def mostly_speciation_event_in_subtree(H, curr, TH_mostly_speciations):
+    spe_event = 0
+    total_events = 0
+    for nd in list(nx.topological_sort(dfs_tree(H, curr))):
+        nd = H.nodes(data=True)[nd]
+        if nd['event'] == 'S':
+            spe_event += 1
+        total_events += 1
+    print('     curr:%s, ratio spe_events in subtree:%s, TH_mostly_spe: %s' % (str(curr),str(spe_event/total_events),str(TH_mostly_speciations)))
+    return spe_event/total_events >= TH_mostly_speciations

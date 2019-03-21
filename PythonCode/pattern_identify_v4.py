@@ -34,7 +34,7 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
     print('Finished dentifing patterns...\n')
     return G_nodes_identified
 
-def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pattern_in_subtree, path, k, alpha, both, G_internal_colors,index,spec,compare_subtrees, TH_edges_in_subtree,check_diff_sol):        #if both = True the pattern will be two sibs which are riched with same color HT
+def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_pattern_in_subtree, k, doup, G_internal_colors,compare_subtrees, TH_edges_in_subtree):
     marked_nodes = {}
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
@@ -44,73 +44,45 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_both, TH_pa
             v = new_G.nodes(data=True)[outgoing_edges[0][1]]
             w = new_G.nodes(data=True)[outgoing_edges[1][1]]
 
-            v_red_HT = 0
-            w_red_HT = 0
             u_red_HT = 0
-
-            v_black_HT = 0
-            w_black_HT = 0
             u_black_HT = 0
+            u_red_doup = 0
+            u_black_doup = 0
 
-            if not v['edges_in_subtree'] == 0:
-                v_red_HT = v['same_HT_score'][0] / (v['edges_in_subtree'] * k)
-                v_black_HT = v['same_HT_score'][1] / (v['edges_in_subtree'] * k)
-            if not w['edges_in_subtree'] == 0:
-                w_red_HT = w['same_HT_score'][0] / (w['edges_in_subtree'] * k)
-                w_black_HT = w['same_HT_score'][1] / (w['edges_in_subtree'] * k)
             if not u['edges_in_subtree'] == 0:
                 u_red_HT = u['same_HT_score'][0] / (u['edges_in_subtree'] * k)
                 u_black_HT = u['same_HT_score'][1] / (u['edges_in_subtree'] * k)
+                u_red_doup = u['same_doup_score'][0] / (u['edges_in_subtree'] * k)
+                u_black_doup = u['same_doup_score'][1] / (u['edges_in_subtree'] * k)
 
 
-            reds_under_w = G_internal_colors[w['label']][0]
-            blacks_under_w = G_internal_colors[w['label']][1]
-            reds_under_v = G_internal_colors[v['label']][0]
-            blacks_under_v = G_internal_colors[v['label']][1]
-            all_leafs_v = reds_under_v + blacks_under_v
-            all_leafs_w = reds_under_w + blacks_under_w
-
-            print('       %s (v = %s, w = %s)\n     all_leafs_v: %s, all_leafs_w: %s' % (u['label'] ,str(v['label']),str(w['label']),str(all_leafs_v), str(all_leafs_w)))
-            print('     %s (v = %s, w = %s) :\n        [red HT v: %s ,black HT v: %s], [red HT w: %s ,black HT w: %s]\n      [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n       edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n       TH_both: %s\n' %
-                 (u['label'] ,str(v['label']),str(w['label']),str(v_red_HT),str(v_black_HT),str(w_red_HT),str(w_black_HT),
-                   str(reds_under_v/all_leafs_v),str(blacks_under_v/all_leafs_v),str(reds_under_w/all_leafs_w),str(blacks_under_w/all_leafs_w),
-                   str(u['edges_in_subtree']),str(v['edges_in_subtree']),str(w['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree),str(TH_both)))
+            print('     %s (v = %s, w = %s) :\n        [red HT: %s ,black HT: %s], edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
+                 (u['label'] ,str(v['label']),str(w['label']),str(u_red_HT),str(u_black_HT),
+                   str(u['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree),str(TH_compare_subtrees)))
             if not compare_subtrees:
-                if not both:
+                if not doup:
                     if v['edges_in_subtree'] >= TH_edges_in_subtree and w['edges_in_subtree'] >= TH_edges_in_subtree:
-                        if blacks_under_w / all_leafs_w >= TH_both:
-                            if v_red_HT >= TH_compare_subtrees * v_black_HT:
-                                all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
-                                if v_red_HT >= TH_pattern_in_subtree:
-                                    marked_nodes.update({u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
-                                                                'v red HT and blacks under w']})
-                        if blacks_under_v / all_leafs_v >= TH_both:
-                            if w_red_HT >= TH_compare_subtrees * w_black_HT:
-                                all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
-                                if w_red_HT >= TH_pattern_in_subtree:
-                                    marked_nodes.update({u['label']: [(w_red_HT, w_black_HT), (reds_under_v, blacks_under_v),
-                                                                  'w red HT and blacks under v']})
-                        if reds_under_w / all_leafs_w >= TH_both:
-                            if v_black_HT >= TH_compare_subtrees * v_red_HT:
-                                all_vertices.update({u['label']: (v_red_HT, v_black_HT)})
-                                if v_black_HT >= TH_pattern_in_subtree:
-                                    marked_nodes.update({u['label']: [(v_red_HT, v_black_HT), (reds_under_w, blacks_under_w),
-                                                              'v blacks HT and reds under w']})
-                        if reds_under_v / all_leafs_v >= TH_both:
-                            if w_black_HT >= TH_compare_subtrees * w_red_HT:
-                                all_vertices.update({u['label']: (w_red_HT, w_black_HT)})
-                                if w_black_HT >= TH_pattern_in_subtree:
-                                    marked_nodes.update({u['label']: [(w_red_HT, w_black_HT), (reds_under_w, blacks_under_w),
-                                                                  'w black HT and reds under v']})
-            elif  compare_subtrees:
-                if u['edges_in_subtree'] > TH_edges_in_subtree:
-                    if u_red_HT > TH_pattern_in_subtree:
-                        marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_red']})
-                    if u_black_HT > TH_pattern_in_subtree:
-                        marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),(0,0),'u_black']})
+                        if u_black_HT >= TH_compare_subtrees * u_red_HT:
+                            all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                            if u_black_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
+                                                              'black HT']})
+                        if u_red_HT >= TH_compare_subtrees * u_black_HT:
+                            all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                            if u_red_HT >= TH_pattern_in_subtree:
+                                marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
+                                                                  'red HT']})
+                else:
+                    if v['edges_in_subtree'] >= TH_edges_in_subtree and w['edges_in_subtree'] >= TH_edges_in_subtree:
+                        if u_black_doup >= TH_compare_subtrees * u_red_doup:
+                            marked_nodes.update({u['label']: [(u_red_doup, u_black_doup), (0, 0),
+                                                                'red doup']})
+                        if u_red_doup >= TH_compare_subtrees * u_black_doup:
+                            marked_nodes.update({u['label']: [(u_red_doup, u_black_doup), (0, 0),
+                                                                'black doup']})
         else:
             if not compare_subtrees:
-                if (not both) and (TH_edges_in_subtree == 0) and (TH_both == 0) and (TH_compare_subtrees == 0) and (TH_pattern_in_subtree == 0):
+                if (not doup) and (TH_edges_in_subtree == 0) and (TH_compare_subtrees == 0) and (TH_pattern_in_subtree == 0):
                     all_vertices.update({u['label']: (0, 0)})
                     marked_nodes.update(
                         {u['label']: [(0, 0), (0, 0), 'leaf node']})

@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/new_real_data'
+path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2165'
 
 input = open(path+'/0/colors0.0.txt', 'r')
 colors = []
