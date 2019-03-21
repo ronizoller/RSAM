@@ -1,4 +1,5 @@
-
+import sys
+sys.path.append('/anaconda3/lib/python3.7/site-packages')
 import networkx as nx
 import tree_operations_v1 as tree_operations
 from networkx.drawing.nx_agraph import graphviz_layout
@@ -8,7 +9,6 @@ import math
 import utiles
 import seaborn as sns
 import numpy as np
-import random
 
 def draw_garph(H, S, G, deleted_nodes, big_size, small_size):
     print('Drawing hypergraph...')
@@ -54,7 +54,7 @@ def draw_garph(H, S, G, deleted_nodes, big_size, small_size):
         else:
             sizes = sizes+[small_size]
 
-    pos = hierarchy_pos(H)
+    pos = graphviz_layout(H, prog='dot', args="-Grankdir=BT")
     plt.figure(12,figsize=(20,20))                              #size of fig
     nx.draw(H, pos, arrows=True,node_size=sizes)
     nx.draw_networkx_labels(H, pos,nodes_labels, font_size=7)
@@ -79,7 +79,7 @@ def draw_new_G(G,G_nodes_identified,colors,sigma,new_G):
                 i = i + 1
         index += 1
     labels1 = nx.get_node_attributes(new_G, 'label')
-    pos1 = hierarchy_pos(tree_to_draw,next(iter(nx.topological_sort(tree_to_draw))))
+    pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
     plt.figure(12, figsize=(40, 40))  # size of fig
 
@@ -154,7 +154,7 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
                 i = i + 1
         index += 1
     labels1 = nx.get_node_attributes(new_G, 'label')
-    pos1 = hierarchy_pos(tree_to_draw,next(iter(nx.topological_sort(tree_to_draw))))
+    pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
     plt.figure(figsize=(150, 40))
 
@@ -239,7 +239,7 @@ def draw_tree(tree, name, old_sigma, colors, sigma):
             else:
                 nodes_color.append('white')
 
-    postree = hierarchy_pos(tree_to_draw,next(iter(nx.topological_sort(tree_to_draw))))
+    postree = graphviz_layout(tree_to_draw, prog='dot')
 
     plt.figure(12, figsize=(80, 40))  # size of fig
 
@@ -339,7 +339,6 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
     ax[0].set_title('Species tree',fontsize=50)
     ax[1].set_title('Gene tree',fontsize=50)
 
-
     nx.draw(S_to_draw, postree_S, arrows=True,node_color=nodes_color_S,ax=ax[0])
     nx.draw(G_to_draw, postree_G, arrows=True,node_color=nodes_color_G,ax=ax[1])
 
@@ -368,7 +367,7 @@ def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, ne
                 i = i + 1
         index += 1
     labels1 = nx.get_node_attributes(new_G[0], 'label')
-    pos1 = hierarchy_pos(tree_to_draw,next(iter(nx.topological_sort(tree_to_draw))))
+    pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
 
     marked_counter = inits.init_dic(G.nodes(),0)
@@ -532,44 +531,3 @@ def text_plotter(text, x_data, y_data, text_positions, txt_width,txt_height):
             plt.arrow(x, t,0,y-t, color='red',alpha=0.3, width=txt_width*0.1,
                 head_width=txt_width, head_length=txt_height*0.5,
                 zorder=0,length_includes_head=True)
-
-
-def hierarchy_pos(G, root, levels=None, width=1., height=1.):
-    '''If there is a cycle that is reachable from root, then this will see infinite recursion.
-       G: the graph
-       root: the root node
-       levels: a dictionary
-               key: level number (starting from 0)
-               value: number of nodes in this level
-       width: horizontal space allocated for drawing
-       height: vertical space allocated for drawing'''
-    TOTAL = "total"
-    CURRENT = "current"
-    def make_levels(levels, node=root, currentLevel=0, parent=None):
-        """Compute the number of nodes for each level
-        """
-        if not currentLevel in levels:
-            levels[currentLevel] = {TOTAL : 0, CURRENT : 0}
-        levels[currentLevel][TOTAL] += 1
-        neighbors = G.neighbors(node)
-        for neighbor in neighbors:
-            if not neighbor == parent:
-                levels =  make_levels(levels, neighbor, currentLevel + 1, node)
-        return levels
-
-    def make_pos(pos, node=root, currentLevel=0, parent=None, vert_loc=0):
-        dx = 1/levels[currentLevel][TOTAL]
-        left = dx/2
-        pos[node] = ((left + dx*levels[currentLevel][CURRENT])*width, vert_loc)
-        levels[currentLevel][CURRENT] += 1
-        neighbors = G.neighbors(node)
-        for neighbor in neighbors:
-            if not neighbor == parent:
-                pos = make_pos(pos, neighbor, currentLevel + 1, node, vert_loc-vert_gap)
-        return pos
-    if levels is None:
-        levels = make_levels({})
-    else:
-        levels = {l:{TOTAL: levels[l], CURRENT:0} for l in levels}
-    vert_gap = height / (max([l for l in levels])+1)
-    return make_pos({})

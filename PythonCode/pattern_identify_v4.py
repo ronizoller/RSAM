@@ -34,7 +34,7 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
     print('Finished dentifing patterns...\n')
     return G_nodes_identified
 
-def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_pattern_in_subtree, k, doup, G_internal_colors,compare_subtrees, TH_edges_in_subtree):
+def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_pattern_in_subtree, k, doup,compare_subtrees, TH_edges_in_subtree):
     marked_nodes = {}
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
