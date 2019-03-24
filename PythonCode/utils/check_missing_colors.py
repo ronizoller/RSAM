@@ -6,7 +6,7 @@ for line in input:
     colors.append(eval(line))
 colors = colors[0]
 
-input = open(path+'/taxa_names.txt', 'r')
+input = open(path+'/taxa_names(Gamma).txt', 'r')
 names = []
 names_with_space = {}
 for line in input:

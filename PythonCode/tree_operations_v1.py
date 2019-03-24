@@ -1,6 +1,6 @@
 import networkx as nx
 import random
-
+import utiles
 
 def isolated(x):
     return x.taxon is None
@@ -76,6 +76,7 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
 
 def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,max_distance,distance_flag,evol,compare_solutions,k):
     index = 1
+
     for u in G.postorder_node_iter():
         new_G.add_node(index, label=u.label,same_HT_score = [0,0],same_doup_score = [0,0],ind = index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
         if not is_a_leaf(u):
@@ -90,14 +91,12 @@ def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_ver
 
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1, weight_HT = left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1, weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
-
             elif has_right_child(u):
                 right_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[1]) + 1]
                 new_weight_HT, new_weight_doup = edge_weight_based_on_same_color_HT(u, right_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,distance_flag,evol,compare_solutions,k)
                 for i in [0,1]:
                     new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
                     new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
-
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1,weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = right_child_in_new_G['same_doup_score'])
 
             else :
@@ -106,7 +105,6 @@ def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_ver
                 for i in [0, 1]:
                     new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
                     new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
-
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1,
                                weight_HT=left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
         index += 1
@@ -269,3 +267,20 @@ def find_node_in_networkx_tree(tree,label):
         if u['label'] == label:
             return u
     return None
+
+def normlize_weights(G, k):
+    for nd in (reversed(list(nx.topological_sort(G)))):
+        for i in [0, 1]:
+            if (G.nodes(data = True)[nd]['edges_in_subtree']*k) > 0:
+                G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i]/(G.nodes(data = True)[nd]['edges_in_subtree']*k)
+    return G
+
+def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree):
+    max_score_HT = [0]*number_of_planted_vertices
+    max_score_doup = [0]*number_of_planted_vertices
+    for nd in (reversed(list(nx.topological_sort(G)))):
+        if G.nodes(data=True)[nd]['edges_in_subtree'] >= TH_edges_in_subtree:
+            for i in [0,1]:
+                max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
+                max_score_doup = utiles.update_top_ranking_list(G.nodes[nd]['same_doup_score'][i],max_score_doup)
+    return max_score_HT,max_score_doup

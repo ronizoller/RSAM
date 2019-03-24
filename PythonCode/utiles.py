@@ -350,3 +350,17 @@ def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
         #res = res +[None]*(k-end)
     #print('min form l: '+str(res)+'\n')
     return res
+
+def update_top_ranking_list(new_score,list):
+    j = 0
+    if new_score > list[0]:
+        while new_score > list[j] and j < len(list)-1:
+            j += 1
+        if new_score < list[j]:
+            j -= 1
+        temp = list[:j+1]
+        list[j] = new_score
+        while j > 0:
+            list[j-1] = temp[j]
+            j -= 1
+    return list

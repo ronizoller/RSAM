@@ -16,11 +16,11 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = True
+on_lab = False
 compare = False
 running_time = False
-minimum_HT_under_planted = 5
-number_of_leaves = 500
+minimum_HT_under_planted = 2
+number_of_leaves = 100
 if on_lab:
     if compare:
         path = '/storage/DATA/users/ronizo/comparsion_600_k=500'
@@ -29,24 +29,27 @@ if on_lab:
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
+    else:
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/noise_test'
+
 add_noise = False
 number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
-k = 100
+k = 10
 both = False
 TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = utiles.frange(0,15,0.1)
+noise_level = [0]
 number_of_nodes = 0
-random_for_precentage = 20                             #number of different random noise for each noise %
+random_for_precentage = 1                             #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 30                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 3                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = 0
 if compare_subtrees and evolutinary_event=='HT':
-    TH_compare_subtrees =  2
+    TH_compare_subtrees =  1
     pattern = "same_color"
 sym = 'Specie'
 
@@ -114,7 +117,7 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
     HT_targets_for_subtree = {}
     list_of_answers = []               #to return
     for i in range(0, number_of_HT):
-        #print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
+        print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
         nCr_lookup_table, fact_lookup_table,HT = find_enriched_subtree_rec(G,S, new_G, child_to_fhind_HT_in, nCr_lookup_table, fact_lookup_table,
                                        accur, Pr_red, Pr_black, p, color,
                                        G_internal_colors,HT_sources_for_subtree)
@@ -143,12 +146,12 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
                                                           Pr_black, p, color, G_internal_colors,[])
                         #print('Dis between %s and %s is %s, max: %s' % (str(HT_source_in_S.label), str(x), str(dis),str(max_dis)))
             if HT_to[0]:
-                #print('HT_to: '+str(HT_to[1])+' HT_targets_for_subtree: '+str(HT_targets_for_subtree))
+                print('HT_to: '+str(HT_to[1])+' HT_targets_for_subtree: '+str(HT_targets_for_subtree))
                 if HT_to[1]['label'] in HT_targets_for_subtree:                  ## it is possible to map only 2 verices to 1 species
                     if HT_targets_for_subtree[HT_to[1]['label']] == 1:
                         print('     Found HT target')
-                        #print('     HT: %s' % str(HT))
-                        #print('     HT_to: %s\n' % str(HT_to))
+                        print('     HT: %s' % str(HT))
+                        print('     HT_to: %s\n' % str(HT_to))
                         list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
                         HT_targets_for_subtree[HT_to[1]['label']] = 2
                 else:
@@ -158,7 +161,7 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
                 return nCr_lookup_table, fact_lookup_table, (False, list_of_answers)
         else:
             return nCr_lookup_table,fact_lookup_table,(False,list_of_answers)
-    #print('     list of HT:'+str(list_of_answers))
+    print('     list of HT:'+str(list_of_answers))
     return nCr_lookup_table,fact_lookup_table,(child_to_fhind_HT_in['label'],list_of_answers)
 
 def change_color_of_vertex(u,colors,color,sigma,switch_colors):
@@ -234,14 +237,7 @@ def choose_planted_vertex (S_dis_matrix,new_G,S,G,G_internal_colors,TH_edges_in_
         if len(outgoing_edges) == 2:
             if compare_subtrees:
                 if u['edges_in_subtree'] > TH_edges_in_subtree and not check_if_vertex_was_chosen(vertex_number,sol,u['label']):
-                    #print('\n***\nVertex ' + str(u) + ' was chosen to be marked.')
-                    #print(
-                    #    '   %s (v = %s, w = %s) :\n [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n    edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n' %
-                    #    (u['label'], str(v['label']), str(w['label']),
-                    #     str(reds_under_v / all_leafs_v), str(blacks_under_v / all_leafs_v),
-                    #     str(reds_under_w / all_leafs_w), str(blacks_under_w / all_leafs_w),
-                    #     str(u['edges_in_subtree']), str(v['edges_in_subtree']), str(w['edges_in_subtree']),
-                    #     str(TH_edges_in_subtree), str(TH_pattern_in_subtree)))
+                    print('\n***\nVertex ' + str(u) + ' was chosen to be marked.')
                     if not both:
                         number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
                         nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, u, Pr_red, Pr_black, 'red',
@@ -304,9 +300,9 @@ def find_enriched_subtree_rec(G,S,new_G,u,nCr_lookup_table,fact_lookup_table,acc
     if len(outgoing_edges) > 0:
         ans_u, nCr_lookup_table, fact_lookup_table,p_value = find_enriched_subtree(G,u, color, reds_under_u, blacks_under_u,all_leafs_u, nCr_lookup_table, fact_lookup_table,accur, Pr_red,Pr_black, p)
         if ans_u == 1 and u not in bad_vertices:
-            #print('     FOUND!')
-            #print('     curr = %s\n     curr_red = %s, curr_black = %s, p_value_curr = %s\n        Pr_red = %s, Pr_black = %s' % (
-            #    str(u), str(reds_under_u), str(blacks_under_u), str(p_value),str(Pr_red),str(Pr_black)))
+            print('     FOUND!')
+            print('     curr = %s\n     curr_red = %s, curr_black = %s, p_value_curr = %s\n        Pr_red = %s, Pr_black = %s' % (
+                str(u), str(reds_under_u), str(blacks_under_u), str(p_value),str(Pr_red),str(Pr_black)))
 
             return nCr_lookup_table,fact_lookup_table,(True, u)
         elif len(outgoing_edges) == 2:

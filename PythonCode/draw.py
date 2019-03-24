@@ -133,7 +133,7 @@ def draw_new_G(G,G_nodes_identified,colors,sigma,new_G):
     plt.savefig('new_G.png')
     print('Finished drawing new G.\n')
 
-def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, TH_pattern_in_subtree, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields):
+def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields):
     print('Drawing new G...')
     plt.clf()
     if glob:
@@ -189,7 +189,7 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
     nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
-    plt.savefig(path+'/figures/new_G_k='+str(k)+'_TH_compare_subtrees='+str(TH_compare_subtrees)+'_TH_pattern_in_subtree='+str(TH_pattern_in_subtree)+'_species='+spec+'_pattern='+pattern+"_"+str(evol)+"_comapre="+str(compare)+'.png')
+    plt.savefig(path+'/figures/new_G_k='+str(k)+'_TH_compare_subtrees='+str(TH_compare_subtrees)+'_species='+spec+'_pattern='+pattern+"_"+str(evol)+"_comapre="+str(compare)+'.png')
     print('Finished drawing new G.\n')
 
 def draw_tree(tree, name, old_sigma, colors, sigma):

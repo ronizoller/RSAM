@@ -1,6 +1,7 @@
 import math
 import networkx as nx
 import utiles
+import tree_operations_v1 as tree_operations
 
 start = '*'
 end = '*'
@@ -34,7 +35,7 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
     print('Finished dentifing patterns...\n')
     return G_nodes_identified
 
-def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_pattern_in_subtree, k, doup,compare_subtrees, TH_edges_in_subtree):
+def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compare_subtrees, TH_edges_in_subtree,max_score_TH,max_score_doup):
     marked_nodes = {}
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
@@ -50,39 +51,48 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, TH_pattern_in_
             u_black_doup = 0
 
             if not u['edges_in_subtree'] == 0:
-                u_red_HT = u['same_HT_score'][0] / (u['edges_in_subtree'] * k)
-                u_black_HT = u['same_HT_score'][1] / (u['edges_in_subtree'] * k)
-                u_red_doup = u['same_doup_score'][0] / (u['edges_in_subtree'] * k)
-                u_black_doup = u['same_doup_score'][1] / (u['edges_in_subtree'] * k)
+                u_red_HT = u['same_HT_score'][0]
+                u_black_HT = u['same_HT_score'][1]
+                u_red_doup = u['same_doup_score'][0]
+                u_black_doup = u['same_doup_score'][1]
 
 
-            print('     %s (v = %s, w = %s) :\n        [red HT: %s ,black HT: %s] (unnormlized: [red HT: %s ,black HT: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
-                 (u['label'] ,str(v['label']),str(w['label']),str(u_red_HT),str(u_black_HT),str(u['same_HT_score'][0]),str(u['same_HT_score'][1]),
-                   str(u['edges_in_subtree']),str(TH_edges_in_subtree),str(TH_pattern_in_subtree),str(TH_compare_subtrees)))
             if not compare_subtrees:
                 if not doup:
-                    if v['edges_in_subtree'] >= TH_edges_in_subtree and w['edges_in_subtree'] >= TH_edges_in_subtree:
+                    print(
+                        '     %s (v = %s, w = %s) :\n        [red HT: %s ,black HT: %s] (unnormlized: [red HT: %s ,black HT: %s]), edges in subtree u: %s\n         TH_edges: %s, max_scours_HT: %s,TH_compare_subtrees: %s\n' %
+                        (u['label'], str(v['label']), str(w['label']), str(u_red_HT), str(u_black_HT),
+                         str(u['same_HT_score'][0]), str(u['same_HT_score'][1]),
+                         str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(max_score_TH),
+                         str(TH_compare_subtrees)))
+                    if u['edges_in_subtree'] >= TH_edges_in_subtree:
                         if u_black_HT >= TH_compare_subtrees * u_red_HT:
                             all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
-                            if u_black_HT >= TH_pattern_in_subtree:
+                            if u_black_HT in max_score_TH:
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                               'black HT']})
                         if u_red_HT >= TH_compare_subtrees * u_black_HT:
                             all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
-                            if u_red_HT >= TH_pattern_in_subtree:
+                            if u_red_HT in max_score_TH:
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                                   'red HT']})
                 else:
-                    if v['edges_in_subtree'] >= TH_edges_in_subtree and w['edges_in_subtree'] >= TH_edges_in_subtree:
-                        if u_black_doup >= TH_compare_subtrees * u_red_doup:
+                    #print(
+                    #    '     %s (v = %s, w = %s) :\n        [red doup: %s ,black doup: %s] (unnormlized: [red doup: %s ,black doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
+                    #    (u['label'], str(v['label']), str(w['label']), str(u_red_doup), str(u_black_doup),
+                    #     str(u['same_doup_score'][0]), str(u['same_doup_score'][1]),
+                    #     str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(TH_pattern_in_subtree),
+                    #     str(TH_compare_subtrees)))
+                    if u['edges_in_subtree'] >= TH_edges_in_subtree:
+                        if u_black_doup > TH_compare_subtrees * u_red_doup and u_black_doup in max_score_doup:
                             marked_nodes.update({u['label']: [(u_red_doup, u_black_doup), (0, 0),
                                                                 'red doup']})
-                        if u_red_doup >= TH_compare_subtrees * u_black_doup:
+                        if u_red_doup > TH_compare_subtrees * u_black_doup and u_red_doup in max_score_doup:
                             marked_nodes.update({u['label']: [(u_red_doup, u_black_doup), (0, 0),
                                                                 'black doup']})
         else:
             if not compare_subtrees:
-                if (not doup) and (TH_edges_in_subtree == 0) and (TH_compare_subtrees == 0) and (TH_pattern_in_subtree == 0):
+                if (not doup) and (TH_edges_in_subtree == 0) and (TH_compare_subtrees == 0):
                     all_vertices.update({u['label']: (0, 0)})
                     marked_nodes.update(
                         {u['label']: [(0, 0), (0, 0), 'leaf node']})

@@ -474,13 +474,19 @@ def find_number_of_cooptimal(H,G,S,k):
                     quit()
             quit()
 
-def mostly_speciation_event_in_subtree(H, curr, TH_mostly_speciations):
-    spe_event = 0
-    total_events = 0
-    for nd in list(nx.topological_sort(dfs_tree(H, curr))):
+def mostly_speciation_event_in_subtree(H, nd, i):
+    incoming_edges = H.in_edges([nd], data=True)
+    incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
+    if incoming_edges_curr == []:
+        return 0,0
+    else:
+        i0 = incoming_edges_curr[0][2]['source']
+        i1 = incoming_edges_curr[1][2]['source']
+        child0 = incoming_edges_curr[0][0]
+        child1 = incoming_edges_curr[1][0]
+        spe_res_child0,total_res_child0 = mostly_speciation_event_in_subtree(H, child0, i0)
+        spe_res_child1, total_res_child1 = mostly_speciation_event_in_subtree(H, child1, i1)
         nd = H.nodes(data=True)[nd]
-        if nd['event'] == 'S':
-            spe_event += 1
-        total_events += 1
-    print('     curr:%s, ratio spe_events in subtree:%s, TH_mostly_spe: %s' % (str(curr),str(spe_event/total_events),str(TH_mostly_speciations)))
-    return spe_event/total_events >= TH_mostly_speciations
+        if nd['l'][i]['event'] == 'S':
+            return 1 + spe_res_child0 + spe_res_child1,1 + total_res_child0 + total_res_child1
+        return spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
