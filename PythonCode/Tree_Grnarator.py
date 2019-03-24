@@ -17,36 +17,36 @@ from multiprocessing import Pool
 from datetime import datetime
 
 on_lab = True
-compare = True
+compare = False
 running_time = False
 minimum_HT_under_planted = 5
-number_of_leaves = 800
+number_of_leaves = 500
 if on_lab:
     if compare:
         path = '/storage/DATA/users/ronizo/comparsion_600_k=500'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data_test'
+        path = '/storage/DATA/users/ronizo/noise_data_500_k=100_new'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
 add_noise = False
-number_of_planted_vertices = 5
+number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
 k = 100
 both = False
-TH_both = 0.8
+TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [5]
+noise_level = utiles.frange(0,15,0.1)
 number_of_nodes = 0
-random_for_precentage = 1                             #number of different random noise for each noise %
+random_for_precentage = 20                             #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 30                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = 0
 if compare_subtrees and evolutinary_event=='HT':
-    TH_compare_subtrees =  1
+    TH_compare_subtrees =  2
     pattern = "same_color"
 sym = 'Specie'
 
@@ -91,7 +91,6 @@ def random_again(t,iter):
 
 def number_of_HT_needed(G,u,all_random_sources,TH,color):
     print('     Calculating number of HT under %s' % str(u))
-    #print('all_random_sources: '+str(all_random_sources))
     if color == 'red':
         to_chack_in = all_random_sources[0]
     if color == 'black':
@@ -103,16 +102,11 @@ def number_of_HT_needed(G,u,all_random_sources,TH,color):
     for leaf in u_in_G.leaf_nodes():
         if leaf in to_chack_in:
             bad_HT += 1
-
-    #if TH*bad_HT < num_of_edges*0.05:
-    #    print('     number of HT needed under %s is %s' % (str(u), str(int(num_of_edges*0.05))))
-    #    return int(num_of_edges*0.05)
-    #else:
     if int(TH*bad_HT) > 0:
-        #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str((TH * bad_HT)+3), str(bad_HT)))
+        print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str((TH * bad_HT)+minimum_HT_under_planted), str(bad_HT)))
         return int(TH*bad_HT)+minimum_HT_under_planted
     else:
-        #print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(3), str(bad_HT)))
+        print('     number of HT needed under %s is %s bad HT: %s' % (str(u), str(minimum_HT_under_planted), str(bad_HT)))
         return minimum_HT_under_planted
 
 def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_to_fhind_HT_in,Pr_red,Pr_black,color,max_dis,S_dis_matrix,new_G,G_internal_colors):
@@ -132,8 +126,8 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
                                                                   G_internal_colors,HT_sources_for_subtree)
             i += 1
         if HT[0]:
-            #print('     Found HT source')
-            #print('     Start looking for HT traget')
+            print('     Found HT source')
+            print('     Start looking for HT traget')
             HT_random_son = tree_operations.random_son(new_G, HT)
             HT_sources_for_subtree.append(HT[1])
             HT_source_in_S = S.find_node(lambda n: (n.label == 'x' + HT[1]['label'][1:]))
@@ -152,7 +146,7 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
                 #print('HT_to: '+str(HT_to[1])+' HT_targets_for_subtree: '+str(HT_targets_for_subtree))
                 if HT_to[1]['label'] in HT_targets_for_subtree:                  ## it is possible to map only 2 verices to 1 species
                     if HT_targets_for_subtree[HT_to[1]['label']] == 1:
-                        #print('     Found HT target')
+                        print('     Found HT target')
                         #print('     HT: %s' % str(HT))
                         #print('     HT_to: %s\n' % str(HT_to))
                         list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
@@ -165,7 +159,7 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
         else:
             return nCr_lookup_table,fact_lookup_table,(False,list_of_answers)
     #print('     list of HT:'+str(list_of_answers))
-    return nCr_lookup_table,fact_lookup_table,(u['label'],list_of_answers)
+    return nCr_lookup_table,fact_lookup_table,(child_to_fhind_HT_in['label'],list_of_answers)
 
 def change_color_of_vertex(u,colors,color,sigma,switch_colors):
     if switch_colors:
@@ -238,16 +232,8 @@ def choose_planted_vertex (S_dis_matrix,new_G,S,G,G_internal_colors,TH_edges_in_
         outgoing_edges = [e for e in outgoing_edges]
         u = new_G.nodes(data=True)[u]
         if len(outgoing_edges) == 2:
-            v = new_G.nodes(data=True)[outgoing_edges[0][1]]
-            w = new_G.nodes(data=True)[outgoing_edges[1][1]]
-            reds_under_w = G_internal_colors[w['label']][0]
-            blacks_under_w = G_internal_colors[w['label']][1]
-            reds_under_v = G_internal_colors[v['label']][0]
-            blacks_under_v = G_internal_colors[v['label']][1]
-            all_leafs_v = reds_under_v + blacks_under_v
-            all_leafs_w = reds_under_w + blacks_under_w
             if compare_subtrees:
-                if v['edges_in_subtree'] > TH_edges_in_subtree and w['edges_in_subtree'] > TH_edges_in_subtree and not check_if_vertex_was_chosen(vertex_number,sol,u['label']):
+                if u['edges_in_subtree'] > TH_edges_in_subtree and not check_if_vertex_was_chosen(vertex_number,sol,u['label']):
                     #print('\n***\nVertex ' + str(u) + ' was chosen to be marked.')
                     #print(
                     #    '   %s (v = %s, w = %s) :\n [red under v: %s ,black under v: %s], [red under w: %s ,black under w: %s]\n    edges in subtree u: %s, edges in subtree v: %s, edges in subtree w: %s, TH_edges: %s, TH_pattern_in_subtree: %s\n' %
@@ -257,51 +243,19 @@ def choose_planted_vertex (S_dis_matrix,new_G,S,G,G_internal_colors,TH_edges_in_
                     #     str(u['edges_in_subtree']), str(v['edges_in_subtree']), str(w['edges_in_subtree']),
                     #     str(TH_edges_in_subtree), str(TH_pattern_in_subtree)))
                     if not both:
-                        if blacks_under_w / all_leafs_w > TH_both:
-                            #print('     %s is black' % str(w))
-                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
-                            nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'red',
-                                          max_dis,S_dis_matrix,new_G,G_internal_colors)
-                        elif blacks_under_v / all_leafs_v > TH_both:
-                            #print('     %s is black' % str(v))
-                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
-                            nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'red',
-                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
-                        elif reds_under_w / all_leafs_w > TH_both:
-                            #print('     %s is red' % str(w))
-                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'black')
-                            nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, v, Pr_red, Pr_black, 'black',
-                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
-                        elif reds_under_v / all_leafs_v > TH_both:
-                            #print('     %s is red' % str(v))
-                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'black')
-                            nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, w, Pr_red, Pr_black, 'black',
-                                                                                     max_dis, S_dis_matrix,new_G,G_internal_colors)
-                        else:
-                            print('     Changing color in order to create a good pattern')
-                            number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'all')
-                            colors, father_to_change, color, G_internal_colors, old_colors, old_internal_G_colors, S, S_colors, old_S, old_S_colors = change_colors(v, w, colors,
-                                                                                               G_internal_colors,S_colors,
-                                                                                               G,S, sigma)
-
-                            reds_under_w = G_internal_colors[w['label']][0]
-                            blacks_under_w = G_internal_colors[w['label']][1]
-                            reds_under_v = G_internal_colors[v['label']][0]
-                            blacks_under_v = G_internal_colors[v['label']][1]
-                            total_red = S_colors[S.seed_node.label][0]
-                            total_black = S_colors[S.seed_node.label][1]
-                            num_of_leafs = tree_operations.number_of_leafs(S, 'S')
-                            Pr_red = total_red / num_of_leafs
-                            Pr_black = total_black / num_of_leafs
-                            nCr_lookup_table, fact_lookup_table, ans = create_good_HT(G, S, nCr_lookup_table,
-                                                                                      fact_lookup_table,
-                                                                                      number_of_HT, u,
-                                                                                      father_to_change,
-                                                                                      Pr_red, Pr_black, color,
-                                                                                      max_dis, S_dis_matrix,new_G,G_internal_colors)
+                        number_of_HT = number_of_HT_needed(G,u, all_random_sources, TH_compare_subtrees, 'red')
+                        nCr_lookup_table, fact_lookup_table,ans = create_good_HT(G, S, nCr_lookup_table,fact_lookup_table,number_of_HT, u, u, Pr_red, Pr_black, 'red',
+                                      max_dis,S_dis_matrix,new_G,G_internal_colors)
 
                         if ans[0] == u['label']:
                             return nCr_lookup_table,fact_lookup_table,ans,colors
+                        else:
+                            number_of_HT = number_of_HT_needed(G, u, all_random_sources, TH_compare_subtrees, 'black')
+                            nCr_lookup_table, fact_lookup_table, ans = create_good_HT(G, S, nCr_lookup_table,
+                                                                                      fact_lookup_table, number_of_HT,
+                                                                                      u, u, Pr_red, Pr_black, 'black',
+                                                                                      max_dis, S_dis_matrix, new_G,
+                                                                                      G_internal_colors)
                         colors = old_colors
                         G_internal_colors = old_internal_G_colors
                         S = old_S
@@ -818,7 +772,7 @@ def main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices):
     all_random_nutral = []
     all_random_sources = (all_random_sources_red_to_red, all_random_sources_black_to_black, all_random_nutral)
     new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, [],
-                                                            [], 0, False,
+                                                            [],[],[], 0, False,
                                                             'HT', False, k)
     new_G = tree_operations.number_of_edges_in_subtree(new_G)
 

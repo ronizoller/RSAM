@@ -6,7 +6,7 @@ import seaborn as sns
 
 path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/noise_final_data'
 
-for noise_in in ['HT']:
+for noise_in in ['color']:
     planted_vertices = []
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:
@@ -68,4 +68,4 @@ for noise_in in ['HT']:
     plt.ylabel('Score', fontsize=10)
     plt.axis([0, max_noise_level + 0.5, 0, maxi + 0.0001])
 
-    plt.savefig('/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/noise_plots/'+noise_in+'.png')
+    plt.savefig('/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/noise_final_data/plots/'+noise_in+'.png')
