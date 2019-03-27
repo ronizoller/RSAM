@@ -67,22 +67,22 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compar
                          str(TH_compare_subtrees)))
                     if u['edges_in_subtree'] >= TH_edges_in_subtree:
                         if u_black_HT >= TH_compare_subtrees * u_red_HT:
-                            all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                             if u_black_HT in max_score_TH:
+                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                               'black HT']})
                         if u_red_HT >= TH_compare_subtrees * u_black_HT:
-                            all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                             if u_red_HT in max_score_TH:
+                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                                   'red HT']})
                 else:
-                    #print(
-                    #    '     %s (v = %s, w = %s) :\n        [red doup: %s ,black doup: %s] (unnormlized: [red doup: %s ,black doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
-                    #    (u['label'], str(v['label']), str(w['label']), str(u_red_doup), str(u_black_doup),
-                    #     str(u['same_doup_score'][0]), str(u['same_doup_score'][1]),
-                    #     str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(TH_pattern_in_subtree),
-                    #     str(TH_compare_subtrees)))
+                    print(
+                        '     %s (v = %s, w = %s) :\n        [red doup: %s ,black doup: %s] (unnormlized: [red doup: %s ,black doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
+                        (u['label'], str(v['label']), str(w['label']), str(u_red_doup), str(u_black_doup),
+                         str(u['same_doup_score'][0]), str(u['same_doup_score'][1]),
+                         str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(max_score_doup),
+                         str(TH_compare_subtrees)))
                     if u['edges_in_subtree'] >= TH_edges_in_subtree:
                         if u_black_doup > TH_compare_subtrees * u_red_doup and u_black_doup in max_score_doup:
                             marked_nodes.update({u['label']: [(u_red_doup, u_black_doup), (0, 0),

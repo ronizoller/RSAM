@@ -487,6 +487,6 @@ def mostly_speciation_event_in_subtree(H, nd, i):
         spe_res_child0,total_res_child0 = mostly_speciation_event_in_subtree(H, child0, i0)
         spe_res_child1, total_res_child1 = mostly_speciation_event_in_subtree(H, child1, i1)
         nd = H.nodes(data=True)[nd]
-        if nd['l'][i]['event'] == 'S':
+        if nd['l'][i]['event'] == 'S' or nd['l'][i]['event'] == 'D':
             return 1 + spe_res_child0 + spe_res_child1,1 + total_res_child0 + total_res_child1
         return spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
