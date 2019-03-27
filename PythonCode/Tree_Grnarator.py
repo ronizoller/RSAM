@@ -16,16 +16,16 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = False
+on_lab = True
 compare = False
 running_time = False
-minimum_HT_under_planted = 2
-number_of_leaves = 100
+minimum_HT_under_planted = 6
+number_of_leaves = 500
 if on_lab:
     if compare:
         path = '/storage/DATA/users/ronizo/comparsion_600_k=500'
     else:
-        path = '/storage/DATA/users/ronizo/noise_data_500_k=100_new'
+        path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
     if compare:
         path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
@@ -36,20 +36,20 @@ add_noise = False
 number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
-k = 10
+k = 100
 both = False
 TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [0]
+noise_level = utiles.frange(0,20,0.1)
 number_of_nodes = 0
-random_for_precentage = 1                             #number of different random noise for each noise %
+random_for_precentage = 30                             #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 3                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 50                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = 0
 if compare_subtrees and evolutinary_event=='HT':
-    TH_compare_subtrees =  1
+    TH_compare_subtrees =  2
     pattern = "same_color"
 sym = 'Specie'
 
@@ -116,18 +116,19 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
     HT_sources_for_subtree = [None]     #to chack if HT has already been choose
     HT_targets_for_subtree = {}
     list_of_answers = []               #to return
-    for i in range(0, number_of_HT):
+    i = 0
+    while i < number_of_HT and i < u['edges_in_subtree']:
         print('     Start looking for HT source under %s (%sth HT)' % (str(child_to_fhind_HT_in),str(i)))
         nCr_lookup_table, fact_lookup_table,HT = find_enriched_subtree_rec(G,S, new_G, child_to_fhind_HT_in, nCr_lookup_table, fact_lookup_table,
                                        accur, Pr_red, Pr_black, p, color,
                                        G_internal_colors,HT_sources_for_subtree)
-        i = 0
-        while HT[1] in HT_sources_for_subtree and i<u['edges_in_subtree']:
+        j = 0
+        while HT[1] in HT_sources_for_subtree and j < u['edges_in_subtree']:
             print('     Looking for %sth HT in %s' % (str(i),str(child_to_fhind_HT_in)))
             nCr_lookup_table, fact_lookup_table,HT = find_enriched_subtree_rec(G, S,new_G, child_to_fhind_HT_in, nCr_lookup_table, fact_lookup_table,
                                                                   accur, Pr_red, Pr_black, p, color,
                                                                   G_internal_colors,HT_sources_for_subtree)
-            i += 1
+            j += 1
         if HT[0]:
             print('     Found HT source')
             print('     Start looking for HT traget')
@@ -154,9 +155,11 @@ def create_good_HT(G,S,nCr_lookup_table,fact_lookup_table,number_of_HT,u,child_t
                         print('     HT_to: %s\n' % str(HT_to))
                         list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
                         HT_targets_for_subtree[HT_to[1]['label']] = 2
+                        i += 1
                 else:
                     list_of_answers.append((HT_random_son['label'], HT_to[1]['label']))
                     HT_targets_for_subtree.update({HT_to[1]['label']:1})
+                    i += 1
             else:
                 return nCr_lookup_table, fact_lookup_table, (False, list_of_answers)
         else:
