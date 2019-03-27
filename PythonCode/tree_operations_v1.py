@@ -273,14 +273,22 @@ def normlize_weights(G, k):
         for i in [0, 1]:
             if (G.nodes(data = True)[nd]['edges_in_subtree']*k) > 0:
                 G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i]/(G.nodes(data = True)[nd]['edges_in_subtree']*k)
+                G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
     return G
 
-def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree):
+def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees):
     max_score_HT = [0]*number_of_planted_vertices
     max_score_doup = [0]*number_of_planted_vertices
     for nd in (reversed(list(nx.topological_sort(G)))):
-        if G.nodes(data=True)[nd]['edges_in_subtree'] >= TH_edges_in_subtree:
-            for i in [0,1]:
-                max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
-                max_score_doup = utiles.update_top_ranking_list(G.nodes[nd]['same_doup_score'][i],max_score_doup)
+        red_HT = G.nodes[nd]['same_HT_score'][0]
+        black_HT = G.nodes[nd]['same_HT_score'][1]
+        red_doup = G.nodes[nd]['same_doup_score'][0]
+        black_doup = G.nodes[nd]['same_doup_score'][1]
+        if G.nodes(data=True)[nd]['edges__subtree'] >= TH_edges_in_subtree:
+            if black_HT >= TH_compare_subtrees * red_HT or red_HT >= TH_compare_subtrees * black_HT:
+                for i in [0,1]:
+                    max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
+            if black_doup >= TH_compare_subtrees * red_doup or red_doup >= TH_compare_subtrees * black_doup:
+                for i in [0,1]:
+                    max_score_doup = utiles.update_top_ranking_list(G.nodes[nd]['same_doup_score'][i],max_score_doup)
     return max_score_HT,max_score_doup

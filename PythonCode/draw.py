@@ -133,7 +133,7 @@ def draw_new_G(G,G_nodes_identified,colors,sigma,new_G):
     plt.savefig('new_G.png')
     print('Finished drawing new G.\n')
 
-def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields):
+def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields,S_labels_table):
     print('Drawing new G...')
     plt.clf()
     if glob:
@@ -165,7 +165,10 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
 
     for nd in new_G.nodes(data=True):
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0:
-            if colors[sigma[nd[1]['label']]] == 'red':
+            temp_name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
+            if temp_name.find('Vibrio') != -1:
+                nodes_color.append('green')
+            elif colors[sigma[nd[1]['label']]] == 'red':
                 nodes_color.append('red')
             else:
                 nodes_color.append('grey')
