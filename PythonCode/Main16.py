@@ -1,6 +1,6 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
-real_data = True
+real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -58,11 +58,11 @@ if not real_data:
     for line in input:
         planted_vertices.append(eval(line))
     planted_vertices = planted_vertices[0]
-random_for_prec = 1
+random_for_prec = 5
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = utiles.frange(0,10,0.5)
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
