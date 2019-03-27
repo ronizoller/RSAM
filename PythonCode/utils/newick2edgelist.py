@@ -23,7 +23,7 @@ def init_internal_labels (tree,char):
     return tree
 
 def main(path):
-    exte = 'all'
+    exte = 'Vibrio'
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
     path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
@@ -33,4 +33,4 @@ def main(path):
     file.close()
 
 if __name__ == "__main__":
-    main('/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG4969/')
+    main('/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Vibrio/')

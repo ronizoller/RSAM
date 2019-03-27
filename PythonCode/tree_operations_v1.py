@@ -283,12 +283,9 @@ def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree,TH_compare_
         red_HT = G.nodes[nd]['same_HT_score'][0]
         black_HT = G.nodes[nd]['same_HT_score'][1]
         red_doup = G.nodes[nd]['same_doup_score'][0]
-        black_doup = G.nodes[nd]['same_doup_score'][1]
-        if G.nodes(data=True)[nd]['edges__subtree'] >= TH_edges_in_subtree:
+        if G.nodes(data=True)[nd]['edges_in_subtree'] >= TH_edges_in_subtree:
             if black_HT >= TH_compare_subtrees * red_HT or red_HT >= TH_compare_subtrees * black_HT:
                 for i in [0,1]:
                     max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
-            if black_doup >= TH_compare_subtrees * red_doup or red_doup >= TH_compare_subtrees * black_doup:
-                for i in [0,1]:
-                    max_score_doup = utiles.update_top_ranking_list(G.nodes[nd]['same_doup_score'][i],max_score_doup)
+            max_score_doup = utiles.update_top_ranking_list(red_doup,max_score_doup)
     return max_score_HT,max_score_doup
