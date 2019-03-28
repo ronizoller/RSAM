@@ -1,6 +1,6 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
-real_data = True
+real_data = False
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -31,15 +31,15 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'Vibrio'
+speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 1
+k = 50
 exact_names = True
 
-evolutinary_event = ['D']
+evolutinary_event = ['HT']
 pattern = "same_color"
 
 TH_mostly_speciations = 0
@@ -51,18 +51,18 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 15
+number_of_planted_vertices = 7
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:
         planted_vertices.append(eval(line))
     planted_vertices = planted_vertices[0]
-random_for_prec = 1
+random_for_prec = 20
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = utiles.frange(0,20,0.5)
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -467,7 +467,7 @@ def main():
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     TH_edges_in_subtree = 30                                                    # smallest subtree that will be counted when not comparing subtrees
-    TH_compare_subtrees = 0
+    TH_compare_subtrees = 2
     #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
