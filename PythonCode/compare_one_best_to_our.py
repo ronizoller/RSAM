@@ -2,19 +2,15 @@ import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import matplotlib.pyplot as plt
 from adjustText import adjust_text
-from scipy import interpolate
 import utiles
-import draw
 import operator
 import ast
-import math
-import numpy as np
 
-on_lab = True
+on_lab = False
 if on_lab:
     path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
 else:
-    path = '/Users/ronizoller/Documents/school/Master/מחקר/DATA/comparsion'
+    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
 
@@ -74,32 +70,32 @@ ys_RSAM = []
 names = []
 one_best_names = []
 for TH,tup in result_RSAM.items():
-    if TH[0] == TH[1]:
-        xs_RSAM.append(tup[0])
-        ys_RSAM.append(tup[1])
+    xs_RSAM.append(tup[0])
+    ys_RSAM.append(tup[1])
+    if TH in [(f,0,g) for f in [0,1,2] for g in [0,100,200]]:
         names.append(TH)
 for TH,tup in result_one_best.items():
     index0 = TH.find('(')
     index1 = TH.find(',')
     index2 = TH[index1+1:].find(',')+index1+1
-    temp_name = (ast.literal_eval(TH[index0+1:index1]),ast.literal_eval(TH[index1+1:index2]),0)
+    to_eval1 = TH[index0+1:index1]
+    to_eval2 = TH[index2+1:-1]
+    temp_name = (ast.literal_eval(to_eval1),0,ast.literal_eval(to_eval2))
     if temp_name in names:
         xs.append(tup[0])
         ys.append(tup[1])
-        one_best_names.append((round(temp_name[0],2),round(temp_name[1],2)))
+        one_best_names.append((round(temp_name[0],2),round(temp_name[2],2)))
 
-names = [(round(name[0],2),round(name[1],2)) for name in names]
+names = [(round(name[0],2),round(name[2],2)) for name in names]
 fig, ax = plt.subplots()
 ax.set_xlabel('False Positive Rate (1-Specifity)')
 ax.set_ylabel('True Positive Rate (Sensitivity)')
 
-plt.plot(xs, ys, 'ko')
-plt.plot(xs_RSAM, ys_RSAM, 'go')
+#plt.plot(xs, ys, 'ko')
+#plt.plot(xs_RSAM, ys_RSAM, 'go')
 
-plt.axis([0, 1.2, 0, 1.2])
+plt.axis([0, 1.5, 0, 1.5])
 RSAM_text = plot_eucs_covers(xs_RSAM,ys_RSAM,names,'g')
 one_best_text = plot_eucs_covers(xs,ys,one_best_names,'k')
-
-#plt.show()
-adjust_text(RSAM_text+one_best_text)
-fig.savefig(path + '/plot_noise.png')
+adjust_text(one_best_text+RSAM_text)
+fig.savefig(path + '/plot_noise1.png')

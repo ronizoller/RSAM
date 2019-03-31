@@ -1,6 +1,6 @@
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = False
-real_data = False
+real_data = True
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -11,11 +11,11 @@ else:
     import sys
     sys.path.append('/PycharmProjects/RSAM_venv/lib/python3.6/site-packages/graphviz/')
     if check_diffreance_between_solutions:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/noise_test'
-    if real_data:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/Vibrio'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
+    elif real_data:
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
     else:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/noise_test'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
 import networkx as nx
 import dendropy as tr
@@ -31,7 +31,7 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'all'
+speciesTreespecification = 'pro'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -39,7 +39,7 @@ dis_flag = True                                     #count the patterns and take
 k = 50
 exact_names = True
 
-evolutinary_event = ['HT']
+evolutinary_event = ['D']
 pattern = "same_color"
 
 TH_mostly_speciations = 0
@@ -51,18 +51,18 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 7
+number_of_planted_vertices = 4
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:
         planted_vertices.append(eval(line))
     planted_vertices = planted_vertices[0]
-random_for_prec = 20
+random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = utiles.frange(0,20,0.5)
+noise_level_list = [5]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -407,14 +407,14 @@ def extract_and_tarce_a_solution(parameters):
                                                                   k)
     new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
     new_G[iter] = tree_operations.normlize_weights(new_G[iter], k)
-    max_score_TH, max_score_doup = tree_operations.find_max_scores(new_G, number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
+    max_score_TH, max_score_doup = tree_operations.find_max_scores(new_G[iter], number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
     all_vertices = {}
     marked_nodes, all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees,
                                                                       k, 'D' in evolutinary_event,
                                                                       compare_subtrees,
                                                                       TH_edges_in_subtree,max_score_TH,max_score_doup)
 
-    return([{iter * factor: all_vertices},list(marked_nodes.items()),new_G[iter],'(%s,%s)' % (str(TH_compare_subtrees),str(TH_edges_in_subtree))])
+    return([{iter * factor: all_vertices},list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),0,str(TH_edges_in_subtree))])
 
 ##********  MAIN ***********
 
@@ -438,7 +438,7 @@ def main():
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
     S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
     if check_diffreance_between_solutions:
-        input = open(path + '/HT/' + str(noise_level) + '/sigma' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
+        input = open(path + '/colors_and_HT/' + str(noise_level) + '/sigma' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
     else:
         input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
     sigma = []
@@ -447,7 +447,7 @@ def main():
     sigma = sigma[0]
 
     if check_diffreance_between_solutions:
-        input = open(path + '/HT/' + str(noise_level) + '/colors' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
+        input = open(path + '/colors_and_HT/' + str(noise_level) + '/colors' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
     else:
         input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
     colors = []
@@ -466,9 +466,9 @@ def main():
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
-    TH_edges_in_subtree = 30                                                    # smallest subtree that will be counted when not comparing subtrees
+    TH_edges_in_subtree = 100                                                    # smallest subtree that will be counted when not comparing subtrees
     TH_compare_subtrees = 2
-    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
+    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '')
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
@@ -484,7 +484,7 @@ def main():
                 quit()
             parameters = []
             p = Pool(15)
-            combined = [(f, 0, 0) for f in utiles.frange(0,2,0.2)]
+            combined = [(f, 0, g) for f in [0,0.5,1,1.25,1.5,2,2.5] for g in [0,50,75,100,200]]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]
@@ -590,10 +590,10 @@ def main():
         file.write(str(all_vertices_with_index))
         file.close()
         for nd,x in marked_nodes.items():
-            r,l = tree_operations.leaf_in_subtrees(G,'G',nd, old_sigma,False)
-            print('For %s:\nlist_r = %s \nlist_l = %s\n' % (str(nd),str(r),str(l)))
+            r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
+            print('For %s:\nlist = %s\n' % (str(nd),str(r+l)))
 
-        print('Running time: ' + str(datetime.now() - starting_time))
+        print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (str(datetime.now()-starting_time),str(TH_compare_subtrees),str(k),str(TH_edges_in_subtree)))
     else:
         for noise_in in ['colors_and_HT','color','HT']:
             for i in range(0,len(noise_level_list)):
@@ -613,7 +613,7 @@ def main():
             file.write(str(all_vertices_with_index))
             file.close()
             temp_j = len(noise_level_list)+temp_j
-        print('Running time: '+str(datetime.now()-starting_time))
+        print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (str(datetime.now()-starting_time),str(TH_compare_subtrees),str(k),str(TH_edges_in_subtree)))
 
 if __name__ == "__main__":
     main()

@@ -281,7 +281,6 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
         specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
         i += 1
     res = {}
-    print('specifity: '+str(specifity))
     for TH, sen_list in sensitivity.items():
         sensitivity_sum = 0
         for score in sen_list:

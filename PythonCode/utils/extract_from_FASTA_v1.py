@@ -9,9 +9,10 @@ for list,vertex_name in lists:
         for line in fp:
             if line[0] == '>':
                 flag = False
-                name = line[line.find('[')+1:line.find(']')].replace(' ','')
+                name = line[line.find('[') + 1:line.find(']')].replace(' ', '')
+                gene_name = line[1:line.find('[')].replace('_', '')
                 for leaf in list:
-                    if leaf == name:
+                    if leaf == gene_name:
                         flag = True
             if flag:
                 res = res + line
