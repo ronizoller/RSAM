@@ -35,7 +35,7 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
     print('Finished dentifing patterns...\n')
     return G_nodes_identified
 
-def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compare_subtrees, TH_edges_in_subtree,max_score_TH,max_score_doup):
+def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compare_subtrees, TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffrence_between_solutions):
     marked_nodes = {}
     for u in (list(nx.topological_sort(new_G))):
         outgoing_edges = new_G.out_edges([u], data=True)
@@ -67,12 +67,16 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compar
                          str(TH_compare_subtrees)))
                     if u['edges_in_subtree'] >= TH_edges_in_subtree:
                         if u_black_HT >= TH_compare_subtrees * u_red_HT:
-                            if u_black_HT in max_score_TH:
+                            if check_diffrence_between_solutions:
+                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                            elif u_black_HT in max_score_TH:
                                 all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                               'black HT']})
                         if u_red_HT >= TH_compare_subtrees * u_black_HT:
-                            if u_red_HT in max_score_TH:
+                            if check_diffrence_between_solutions:
+                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                            elif u_red_HT in max_score_TH:
                                 all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
                                 marked_nodes.update({u['label']: [(u_red_HT, u_black_HT), (0, 0),
                                                                   'red HT']})

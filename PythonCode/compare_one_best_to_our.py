@@ -6,9 +6,9 @@ import utiles
 import operator
 import ast
 
-on_lab = False
+on_lab = True
 if on_lab:
-    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/simulator_data/comparsion_test'
+    path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
 else:
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
     import sys
@@ -70,10 +70,9 @@ ys_RSAM = []
 names = []
 one_best_names = []
 for TH,tup in result_RSAM.items():
+    names.append(TH)
     xs_RSAM.append(tup[0])
     ys_RSAM.append(tup[1])
-    if TH in [(f,0,g) for f in [0,1,2] for g in [0,100,200]]:
-        names.append(TH)
 for TH,tup in result_one_best.items():
     index0 = TH.find('(')
     index1 = TH.find(',')
@@ -87,15 +86,18 @@ for TH,tup in result_one_best.items():
         one_best_names.append((round(temp_name[0],2),round(temp_name[2],2)))
 
 names = [(round(name[0],2),round(name[2],2)) for name in names]
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(8,8))
 ax.set_xlabel('False Positive Rate (1-Specifity)')
 ax.set_ylabel('True Positive Rate (Sensitivity)')
 
 #plt.plot(xs, ys, 'ko')
 #plt.plot(xs_RSAM, ys_RSAM, 'go')
 
-plt.axis([0, 1.5, 0, 1.5])
+plt.axis([0, 1.1, 0, 1.1])
 RSAM_text = plot_eucs_covers(xs_RSAM,ys_RSAM,names,'g')
 one_best_text = plot_eucs_covers(xs,ys,one_best_names,'k')
 adjust_text(one_best_text+RSAM_text)
-fig.savefig(path + '/plot_noise1.png')
+
+print('One_best:\n    xs:%s\n     ys:%s' % (str(xs),str(ys)))
+print('RSAM:\n    xs:%s\n     ys:%s' % (str(xs_RSAM),str(ys_RSAM)))
+fig.savefig('PycharmProjects/RSAM/plot_noise1.png')
