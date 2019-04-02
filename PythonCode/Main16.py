@@ -6,7 +6,7 @@ if on_lab:
     if check_diffreance_between_solutions:
         path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
     elif real_data:
-        path = 'PycharmProjects/RSAM/COG3550'
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG3550'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -33,12 +33,12 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'pro'
+speciesTreespecification = 'epsilondelta'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 100
+k = 150
 exact_names = True
 
 evolutinary_event = ['D']
