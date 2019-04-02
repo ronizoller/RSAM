@@ -289,3 +289,19 @@ def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree,TH_compare_
                     max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
             max_score_doup = utiles.update_top_ranking_list(red_doup,max_score_doup)
     return max_score_HT,max_score_doup
+
+def copy_G(G,new_G):
+    index = 1
+    for u in G.postorder_node_iter():
+        new_G.add_node(index, label=u.label,ind = index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
+        if not is_a_leaf(u):
+            child = u.child_nodes()
+            if has_left_child(u) and has_right_child(u):
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1)
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1)
+            elif has_right_child(u):
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1)
+            else :
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1)
+        index += 1
+    return new_G

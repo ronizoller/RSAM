@@ -1,7 +1,6 @@
 import sys
 sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import matplotlib.pyplot as plt
-import draw
 import seaborn as sns
 
 path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/noise_final_data'
