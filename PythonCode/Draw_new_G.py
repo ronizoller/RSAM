@@ -8,21 +8,16 @@ import math
 import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
-from random import random
 
-
+ext = 'epsilon_delta'
 S_colors = {}
 big_size = 2000
 small_size = 7
-should_be_found = ['Geobacter','Geopsychrobacter']
+should_be_found = ['Geopsychrobacterelectrodiphilus','Desulforegulaconservatrix','Arcobactercibarius','Desulfobacteriumautotrophicum','Geobacterlovleyi','Geobacterdaltonii','Desulforegulaconservatrix','Sulfurimonasdenitrificans','Geobactersp.M18','Desulfobaculasp.TS','Helicobacterbizzozeronii']
 path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
 def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields,S_labels_table,special_colors):
     print('Drawing new G...')
     plt.clf()
-    if glob:
-        glob_text = '_global'
-    else:
-        glob_text = '_local'
 
     tree_to_draw = nx.DiGraph()
     index = 1
@@ -39,7 +34,7 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(200, 40))
+    plt.figure(figsize=(70, 10))
 
     nodes_color = []
     nodes_size = []
@@ -47,26 +42,19 @@ def draw_new_G2(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
+        flag = False
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0:
             temp_name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
-            flag = False
-            if not flag :
-                for should in should_be_found:
-                    if temp_name.find(should) != -1:
-                        nodes_color.append(special_colors[should_be_found.index(should)])
-                        nodes_size.append(max_size)
-                        flag = True
-            if not flag and colors[sigma[nd[1]['label']]] == 'red':
-                nodes_color.append('red')
-                nodes_size.append(150)
-            elif not flag:
-                nodes_color.append('grey')
-                nodes_size.append(150)
-        elif nd[1]['label'] in marked_nodes:
+            for should in should_be_found:
+                if temp_name.find(should) != -1 and (not flag):
+                    nodes_color.append(special_colors[should_be_found.index(should)])
+                    nodes_size.append(400)
+                    flag = True
+        if nd[1]['label'] in marked_nodes and (not flag):
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0][0],marked_nodes[nd[1]['label']][0][1])
             nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
-        else:
+        elif not flag:
             nodes_color.append('white')
             nodes_size.append(50)
     if lables:
@@ -90,11 +78,11 @@ for line in input:
     marked_nodes.append(eval(line))
 marked_nodes = marked_nodes[0]
 
-special_colors = [(random(), random(), random()) for _i in range(0,len(marked_nodes))]
+special_colors = ['violet','darkorange','crimson','purple','lightskyblue','yellow','gold','navy','black','green','silver']
 
 
 G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
-S = tr.Tree.get_from_path(path + "/phyliptree(binary,pro).phy", schema="newick")
+S = tr.Tree.get_from_path(path + "/phyliptree(binary,"+ext+").phy", schema="newick")
 input = open(path + '/0/sigma0.0.txt', 'r')
 sigma = []
 for line in input:
@@ -122,5 +110,5 @@ colors, old_colors = inits.update_colors(S, colors, True)
 new_G = nx.DiGraph()
 new_G = tree_operations.copy_G(G,new_G)
 draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
-                            path, True, False, 'pro', 'same_color',
+                            path, True, False, ext, 'same_color',
                              big_size, ['D'], True, 1,S_labels_table,special_colors)
