@@ -5,7 +5,7 @@ import seaborn as sns
 
 path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/noise_final_data'
 
-for noise_in in ['color']:
+for noise_in in ['colors_and_HT']:
     planted_vertices = []
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
     for line in input:

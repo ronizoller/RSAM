@@ -1,11 +1,14 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
+evolutinary_event = ['D']
 
 if on_lab:
     if check_diffreance_between_solutions:
         path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
-    elif real_data:
+    elif real_data and 'HT' in evolutinary_event:
+        path = 'PycharmProjects/RSAM/COG2602'
+    elif real_data and 'D' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG3550'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
@@ -33,7 +36,7 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'all'
+speciesTreespecification = 'epsilon_delta'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -41,7 +44,6 @@ dis_flag = True                                     #count the patterns and take
 k = 150
 exact_names = True
 
-evolutinary_event = ['HT']
 pattern = "same_color"
 
 TH_mostly_speciations = 0
@@ -481,7 +483,7 @@ def main():
     else:
         TH_compare_subtrees = 2.5
         TH_edges_in_subtree = 50
-    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, 'after_rerooting')
+    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, 'after_rerooting')
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
