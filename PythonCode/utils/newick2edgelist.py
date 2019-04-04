@@ -23,7 +23,7 @@ def init_internal_labels (tree,char):
     return tree
 
 def main(path):
-    exte = 'epsilondelta'
+    exte = 'epsilon_delta'
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
     path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
@@ -33,4 +33,4 @@ def main(path):
     file.close()
 
 if __name__ == "__main__":
-    main('/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG3550')
+    main('/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550')
