@@ -271,8 +271,8 @@ def find_node_in_networkx_tree(tree,label):
 def normlize_weights(G, k):
     for nd in (reversed(list(nx.topological_sort(G)))):
         for i in [0, 1]:
-            if (G.nodes(data = True)[nd]['edges_in_subtree']*k) > 0:
-                G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i]/(G.nodes(data = True)[nd]['edges_in_subtree']*k)
+            if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
+                G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k)
                 G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
     return G
 

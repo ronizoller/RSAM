@@ -478,15 +478,19 @@ def mostly_speciation_event_in_subtree(H, nd, i):
     incoming_edges = H.in_edges([nd], data=True)
     incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
     if incoming_edges_curr == []:
-        return 0,0
+        return 0,0,0,0
     else:
         i0 = incoming_edges_curr[0][2]['source']
         i1 = incoming_edges_curr[1][2]['source']
         child0 = incoming_edges_curr[0][0]
         child1 = incoming_edges_curr[1][0]
-        spe_res_child0,total_res_child0 = mostly_speciation_event_in_subtree(H, child0, i0)
-        spe_res_child1, total_res_child1 = mostly_speciation_event_in_subtree(H, child1, i1)
+        dou_res_child0,HT_res_child0,spe_res_child0,total_res_child0 = mostly_speciation_event_in_subtree(H, child0, i0)
+        dou_res_child1,HT_res_child1,spe_res_child1, total_res_child1 = mostly_speciation_event_in_subtree(H, child1, i1)
         nd = H.nodes(data=True)[nd]
-        if nd['l'][i]['event'] == 'S' or nd['l'][i]['event'] == 'D':
-            return 1 + spe_res_child0 + spe_res_child1,1 + total_res_child0 + total_res_child1
-        return spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
+        if nd['l'][i]['event'] == 'S':
+            return dou_res_child1 + dou_res_child0,HT_res_child0 + HT_res_child1,1 + spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
+        elif nd['l'][i]['event'] == 'HT':
+            return dou_res_child1 + dou_res_child0,1 + HT_res_child0 + HT_res_child1,spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
+        else:
+            return 1+dou_res_child1 + dou_res_child0,HT_res_child0 + HT_res_child1, spe_res_child0 + spe_res_child1, 1 + total_res_child0 + total_res_child1
+

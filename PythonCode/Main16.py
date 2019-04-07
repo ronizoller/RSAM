@@ -1,4 +1,4 @@
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 evolutinary_event = ['D']
@@ -17,8 +17,10 @@ else:
     sys.path.append('/PycharmProjects/RSAM_venv/lib/python3.6/site-packages/graphviz/')
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
-    elif real_data:
+    elif real_data and 'HT' in evolutinary_event:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
+    elif real_data and 'D' in evolutinary_event:
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
     else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
@@ -35,13 +37,26 @@ from datetime import datetime
 import random
 import os
 import draw
+import networkx as nx
+import dendropy as tr
+import math
+import utiles
+import tree_operations_v1 as tree_operations
+import inits_v1 as inits
+import EfficiantVersion as hypergraph
+import pattern_identify_v4 as pattern_identify
+from multiprocessing import Pool
+from datetime import datetime
+import random
+import os
+import draw
 
-speciesTreespecification = 'epsilon_delta'
+speciesTreespecification = 'caulobacteraceae'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 150
+k = 50
 exact_names = True
 
 pattern = "same_color"
@@ -55,7 +70,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 10
+number_of_planted_vertices = 5
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -172,47 +187,15 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                                                  'probability': curr['probability'],
                                                  'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
             if 'D' in evolutinary_event and curr['event'] == 'D' and curr['probability'] > 0:
-                x = S.find_node(lambda n: (n.label == curr['t']))
-                curr_red = S_colors[x.label][0]
-                curr_blacks = S_colors[x.label][1]
-                total_curr = curr_red + curr_blacks
-                #p_value_curr_red, nCr_lookup_table, fact_lookup_table = utiles.p_value_calculation(curr_red, total_curr,
-                #                                                                                   nCr_lookup_table,
-                #                                                                                   fact_lookup_table,
-                #                                                                                   accur, Pr_red,
-                #                                                                                   Pr_black, x.label)
-                #p_value_curr_black, nCr_lookup_table, fact_lookup_table = utiles.p_value_calculation(curr_blacks,
-                #                                                                                     total_curr,
-                #                                                                                     nCr_lookup_table,
-                #                                                                                     fact_lookup_table,
-                #                                                                                     accur, Pr_black,
-                #                                                                                     Pr_red,
-                #                                                                                      x.label)
-                p_value_curr_red = 0
-                p_value_curr_black = 0
-                if p_value_curr_red < p:
-                    spe,total = hypergraph.mostly_speciation_event_in_subtree(H,nd_index,i)
-                    total = total -1 #minus the first duplication
-                    if total > 0:
-                        if spe/total >= TH_mostly_speciations and total > min_spesiction_events:
-                            red_doup.append({'curr': curr,'probability': curr['probability']})
-                            print('     this is a good pattern (red duplication): \n       curr = %s\n       p value red = %s, spe/total ratio:%s ' %
-                                        (str(curr), str(p_value_curr_red),str(spe/total)))
-                        if p_value_curr_black < p:
-                            if spe/total >= TH_mostly_speciations and total > min_spesiction_events:
-                                black_doup.append({'curr': curr,'probability': curr['probability']})
-                                print('     this is a good pattern (black duplication): \n       curr = %s,\n       p value black = %s, spe/total ratio:%s ' %
-                                            (str(curr), str(p_value_curr_black),str(spe/total)))
-                #elif p_value_curr_black < p:
-                #    spe,total = hypergraph.mostly_speciation_event_in_subtree(H,nd_index,i)
-                #    total = total - 1
-                #    if total > 0:
-                #        if spe / total >= TH_mostly_speciations and total > min_spesiction_events:
-                #            black_doup.append({'curr': curr, 'probability': curr['probability']})
-                #            print(
-                #                '     this is a good pattern (black duplication): \n       curr = %s,\n       p value black = %s, spe/total ratio:%s ' %
-                #                (str(curr),str(p_value_curr_black),str(spe/total)))
-    return red_HT_vertices_in_G, black_HT_vertices_in_G,red_doup,black_doup, nCr_lookup_table, fact_lookup_table
+                doupli,HT,spe,total = hypergraph.mostly_speciation_event_in_subtree(H,nd_index,i)
+                print('curr = %s\n       spe: %s, HT: %s, doupli:%s,total: %s\n' %
+                      (str(curr), str(spe), str(HT), str(doupli),str(total)))
+                total = total -1
+                if total > 0:
+                    if (spe+doupli)/total >= TH_mostly_speciations and total > min_spesiction_events:
+                        red_doup.append({'curr': curr,'probability': curr['probability']})
+
+    return red_HT_vertices_in_G, black_HT_vertices_in_G,red_doup,[], nCr_lookup_table, fact_lookup_table
 
 def init_G_nodes_to_weight(G, G_nodes_to_weight):
     for u in G.postorder_node_iter():
@@ -483,7 +466,8 @@ def main():
     else:
         TH_compare_subtrees = 2.5
         TH_edges_in_subtree = 50
-    #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, 'after_rerooting')
+    if not on_lab:
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
@@ -595,10 +579,10 @@ def main():
 
             print('marked nodes: '+str(marked_nodes))
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
-            if not on_lab:
-                draw.draw_new_G2(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees,
-                            path, True, glob, speciesTreespecification, pattern,
-                             big_size, evolutinary_event, compare_subtrees, 1,S_labels_table)
+            #if not on_lab:
+                #draw.draw_new_G(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees,
+                            #path, True, glob, speciesTreespecification, pattern,
+                             #big_size, evolutinary_event, compare_subtrees, 1,S_labels_table)
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
     parameters = []

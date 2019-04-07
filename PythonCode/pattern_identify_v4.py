@@ -82,9 +82,9 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compar
                                                                   'red HT']})
                 else:
                     print(
-                        '     %s (v = %s, w = %s) :\n        [red doup: %s ,black doup: %s] (unnormlized: [red doup: %s ,black doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
-                        (u['label'], str(v['label']), str(w['label']), str(u_red_doup), str(u_black_doup),
-                         str(u['same_doup_score'][0]), str(u['same_doup_score'][1]),
+                        '     %s (v = %s, w = %s) :\n        [doup: %s] (unnormlized: [doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
+                        (u['label'], str(v['label']), str(w['label']), str(u_red_doup),
+                         str(u['same_doup_score'][0]*k*u['edges_in_subtree']),
                          str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(max_score_doup),
                          str(TH_compare_subtrees)))
                     if u['edges_in_subtree'] >= TH_edges_in_subtree:
