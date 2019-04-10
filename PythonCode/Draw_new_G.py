@@ -8,24 +8,42 @@ import math
 import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
-doup = True
+import random
+doup = False
 if doup:
     ext = 'delta'
-    should_be_found = ['Geopsychrobacterelectrodiphilus', 'Desulforegulaconservatrix', 'Arcobactercibarius',
-                       'Desulfobacteriumautotrophicum', 'Geobacterlovleyi', 'Geobacterdaltonii',
-                       'Desulforegulaconservatrix', 'Sulfurimonasdenitrificans', 'Geobactersp.M18',
-                       'Desulfobaculasp.TS', 'Helicobacterbizzozeronii']
-    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
+    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3620'
 else:
     ext = 'all'
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
 S_colors = {}
 big_size = 2000
 small_size = 7
-def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields,S_labels_table,special_colors):
+number_of_douplications = 3
+
+def number_of_scpecies_doup(G,old_sigma):
+    leafs_names = {}
+    should_be_found = []
+    for u in G.postorder_node_iter():
+        if tree_operations.is_a_leaf(u):
+            specie = old_sigma[u.taxon.label]
+            if specie in leafs_names:
+                leafs_names[specie] += 1
+            else:
+                leafs_names.update({specie:1})
+    for name,score in leafs_names.items():
+        if score > number_of_douplications:
+            should_be_found.append(name)
+    return should_be_found
+
+def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables, glob,spec,pattern,size,evol,compare,number_of_fields,S_labels_table):
     print('Drawing new G...')
     plt.clf()
-
+    special_colors = []
+    should_be_found = number_of_scpecies_doup(G,old_sigma)
+    print()
+    for i in range(0, len(should_be_found)):
+        special_colors.append(hex_code_colors())
     tree_to_draw = nx.DiGraph()
     index = 1
     for u in G.postorder_node_iter():
@@ -62,7 +80,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
             temp_size = max(marked_nodes[nd[1]['label']][0][0],marked_nodes[nd[1]['label']][0][1])
             nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
         elif not flag:
-            nodes_color.append('white')
+            nodes_color.append('#FFFFFF')
             nodes_size.append(50)
     if lables:
         for r, l in labels1.items():
@@ -138,14 +156,27 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     print('Finished drawing new G.\n')
 
 
-input = open(path + '/saved_data/marked_RSAM_finder.txt', 'r')
+input = open(path + '/saved_data/marked_RSAM_finder_'+ext+'.txt', 'r')
 marked_nodes = []
 for line in input:
     marked_nodes.append(eval(line))
 marked_nodes = marked_nodes[0]
 
-special_colors = ['violet','darkorange','crimson','purple','lightskyblue','yellow','gold','navy','black','green','silver']
-
+def hex_code_colors():
+    a = hex(random.randrange(0,256))
+    b = hex(random.randrange(0,256))
+    c = hex(random.randrange(0,256))
+    a = a[2:]
+    b = b[2:]
+    c = c[2:]
+    if len(a)<2:
+        a = "0" + a
+    if len(b)<2:
+        b = "0" + b
+    if len(c)<2:
+        c = "0" + c
+    z = a + b + c
+    return "#" + z.upper()
 
 G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
 S = tr.Tree.get_from_path(path + "/phyliptree(binary,"+ext+").phy", schema="newick")
@@ -178,7 +209,7 @@ new_G = tree_operations.copy_G(G,new_G)
 if doup:
     draw_new_doup(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
                             path, True, False, ext, 'same_color',
-                             big_size, ['D'], True, 1,S_labels_table,special_colors)
+                             big_size, ['D'], True, 1,S_labels_table)
 else:
     draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
                             path, True, False, ext, 'same_color',

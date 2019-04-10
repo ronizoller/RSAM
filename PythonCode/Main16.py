@@ -9,7 +9,7 @@ if on_lab:
     elif real_data and 'HT' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
-        path = 'PycharmProjects/RSAM/COG3550'
+        path = 'PycharmProjects/RSAM/COG3620'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -20,7 +20,7 @@ else:
     elif real_data and 'HT' in evolutinary_event:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
     elif real_data and 'D' in evolutinary_event:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3620'
     else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
@@ -51,7 +51,7 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'caulobacteraceae'
+speciesTreespecification = 'delta'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -466,8 +466,8 @@ def main():
     else:
         TH_compare_subtrees = 2.5
         TH_edges_in_subtree = 50
-    if not on_lab:
-        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
+    #if not on_lab:
+        #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
@@ -587,10 +587,10 @@ def main():
 
     parameters = []
     if real_data:
-        file = open(path + '/saved_data/marked_RSAM_finder.txt', 'w')
+        file = open(path + '/saved_data/marked_RSAM_finder_'+speciesTreespecification+'.txt', 'w')
         file.write(str(marked_nodes))
         file.close()
-        file = open(path + '/saved_data/all_vertices_RSAM_finder.txt', 'w')
+        file = open(path + '/saved_data/all_vertices_RSAM_finder_'+speciesTreespecification+'.txt', 'w')
         file.write(str(all_vertices_with_index))
         file.close()
         for nd,x in marked_nodes.items():

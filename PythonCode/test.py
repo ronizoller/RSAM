@@ -1,1 +1,1 @@
-print(('ddroisjklhgdf').find('roni'))
+print('     1121918.ARWE01000001 gene3339'.replace(' ',''))
