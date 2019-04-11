@@ -16,14 +16,14 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = False
+on_lab = True
 compare = True
 running_time = False
 minimum_HT_under_planted = 3
-number_of_leaves = 100
+number_of_leaves = 600
 if on_lab:
     if compare:
-        path = '/storage/DATA/users/ronizo/comparsion_600_k=100'
+        path = '/storage/DATA/users/ronizo/comparsion_600_k=400'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -33,7 +33,7 @@ else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
 add_noise = False
-number_of_planted_vertices = 1
+number_of_planted_vertices = 10
 S = Tree()
 G = Tree()
 k = 50
@@ -41,7 +41,7 @@ both = False
 TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [0]
+noise_level = [20]
 number_of_nodes = 0
 random_for_precentage = 1                             #number of different random noise for each noise %
 accur = 5
@@ -411,38 +411,21 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make,S_lab
     return sigma,old_sigma, number_of_HT_to_make
 
 def save_data(sigma,colors,planted,noise,internal_index,compare,path):
-    if not compare:
-        path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(sigma))
-        file.close()
-        path_curr = path +'/'+ str(noise)+'/colors'+str(noise)+'.'+str(internal_index)+'.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(colors))
-        file.close()
-        path_curr = path +'/'+ str(noise)+'/planted'+str(noise)+'.'+str(internal_index)+'.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(planted))
-        file.close()
-    else:
-        path_curr = path + '/0/sigma0.0.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(sigma))
-        file.close()
-        path_curr = path + '/0/colors0.0.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(colors))
-        file.close()
-        path_curr = path + '/0/planted0.0.txt'
-        os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-        file = open(path_curr, 'w')
-        file.write(str(planted))
-        file.close()
+    path_curr = path +'/'+ str(noise)+'/sigma'+str(noise)+'.'+str(internal_index)+'.txt'
+    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+    file = open(path_curr, 'w')
+    file.write(str(sigma))
+    file.close()
+    path_curr = path +'/'+ str(noise)+'/colors'+str(noise)+'.'+str(internal_index)+'.txt'
+    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+    file = open(path_curr, 'w')
+    file.write(str(colors))
+    file.close()
+    path_curr = path +'/'+ str(noise)+'/planted'+str(noise)+'.'+str(internal_index)+'.txt'
+    os.makedirs(os.path.dirname(path_curr), exist_ok=True)
+    file = open(path_curr, 'w')
+    file.write(str(planted))
+    file.close()
 
 def check_if_vertex_was_chosen(j,sol,curr_sol):
     for p in range(0, j):  # check if this solution was already chosen
@@ -512,6 +495,7 @@ def check_if_enriched(S,G,source, target,nCr_lookup_table,fact_lookup_table, acc
     else: return nCr_lookup_table,fact_lookup_table,'nothing-to-nothing'
 
 def create_tree_for_HT_noise(parameters):
+    print('Creating noise in HT')
     noise = parameters[0]
     number_of_HT_under_planted = parameters[1]
     G_internal_colors = parameters[2]
@@ -576,6 +560,7 @@ def create_tree_for_HT_noise(parameters):
         save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path+'/HT')
 
 def create_tree_for_HT_and_colors_noise(parameters):
+    print('Creating noise in HT and colors')
     noise = parameters[0]
     number_of_HT_under_planted = parameters[1]
     G_internal_colors = parameters[2]
@@ -642,6 +627,7 @@ def create_tree_for_HT_and_colors_noise(parameters):
         save_data(old_sigma, old_colors, {}, noise, rand_num,compare,path+"/colors_and_HT")
 
 def create_tree_for_color_noise(parameters):
+    print('Creating noise in colors')
     noise = parameters[0]
     G_internal_colors = parameters[2]
     S_colors = parameters[3]

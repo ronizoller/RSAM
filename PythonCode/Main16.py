@@ -1,11 +1,11 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = True
 real_data = False
 evolutinary_event = ['HT']
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/compare_test'
+        path  = '/storage/DATA/users/ronizo/comparsion_600_k=400'
     elif real_data and 'HT' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
@@ -68,7 +68,7 @@ random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = [20]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -142,14 +142,14 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                         if (pattern == "same_color" or pattern == "only_red") and (p_value_HT_to_red < p): #HT to red
                             red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                               (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                            #   (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                     elif p_value_curr_black < p: #HT from black
                         if (pattern == "same_color") and (p_value_HT_to_black < p): #HT to black
                             black_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                                (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            #print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                            #    (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                 elif pattern == "any":               #mark HT (in the red list, just for convi)
                     red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                  'probability': curr['probability'],
@@ -351,13 +351,7 @@ def extract_and_tarce_a_solution(parameters):
     solutions[iter] = nx.DiGraph()
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], random.choice(0,k))
-
-    print('     Writing nodes...')
-    file = open(path + '/saved_data/H_nodes_effi.txt', 'w')
-    file.write(str(solutions[iter].nodes(data=True)))
-    file.close()
-    print('     Finished writing nodes.\n')
+    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], random.choice(range(0,k)))
 
     solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], gamma)
 
@@ -405,6 +399,7 @@ def main():
     G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
     S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
     if check_diffreance_between_solutions:
+        noise_level = noise_level_list[0]
         input = open(path + '/colors_and_HT/' + str(noise_level) + '/sigma' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
     else:
         input = open(path+'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
@@ -414,6 +409,7 @@ def main():
     sigma = sigma[0]
 
     if check_diffreance_between_solutions:
+        noise_level = noise_level_list[0]
         input = open(path + '/colors_and_HT/' + str(noise_level) + '/colors' + str(noise_level) + '.' + str(rand_num) + '.txt', 'r')
     else:
         input = open(path + '/'+ str(noise_level)+'/colors'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
@@ -456,7 +452,7 @@ def main():
                 quit()
             parameters = []
             p = Pool(15)
-            combined = [(1,0,0)]
+            combined = [(1,0,10),(1.5,0,15),(0,0,0),(2,0,20),(3,0,30),(2.5,0,25),(3.5,0,35),(4,0,40),(0.5,0,5),(5,0,50)]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]
@@ -509,6 +505,8 @@ def main():
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
             file.close()
+            print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
+            str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
             quit()
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
@@ -546,7 +544,7 @@ def main():
                                                                 compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,real_data)
 
 
-            list_of_scores_for_rand_num.update({rand_num:marked_nodes})
+            list_of_scores_for_rand_num.update({rand_num:all_vertices})
             #if not on_lab:
                 #draw.draw_new_G(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees,
                             #path, True, glob, speciesTreespecification, pattern,

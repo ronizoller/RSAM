@@ -6,9 +6,9 @@ import utiles
 import operator
 import ast
 
-on_lab = False
+on_lab = True
 if on_lab:
-    path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
+    path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/compare_final_data'
 else:
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
     import sys
@@ -76,9 +76,10 @@ ys_RSAM = []
 names = []
 one_best_names = []
 for TH,tup in result_RSAM.items():
-    names.append(TH)
-    xs_RSAM.append(tup[0])
-    ys_RSAM.append(tup[1])
+    if TH in [(1,0,10),(1.5,0,15),(0,0,0),(2,0,20),(3,0,30),(2.5,0,25),(3.5,0,35),(4,0,40),(0.5,0,5),(5,0,50)]:
+        names.append(TH)
+        xs_RSAM.append(tup[0])
+        ys_RSAM.append(tup[1])
 for TH,tup in result_one_best.items():
     index0 = TH.find('(')
     index1 = TH.find(',')
@@ -92,7 +93,7 @@ for TH,tup in result_one_best.items():
         one_best_names.append((round(temp_name[0],2),round(temp_name[2],2)))
 
 names = [(round(name[0],2),round(name[2],2)) for name in names]
-fig, ax = plt.subplots(figsize=(8,8))
+fig, ax = plt.subplots(figsize=(12,8))
 ax.set_xlabel('False Positive Rate (1-Specifity)')
 ax.set_ylabel('True Positive Rate (Sensitivity)')
 
@@ -106,4 +107,4 @@ adjust_text(one_best_text+RSAM_text)
 
 print('One_best:\n    xs:%s\n     ys:%s' % (str(xs),str(ys)))
 print('RSAM:\n    xs:%s\n     ys:%s' % (str(xs_RSAM),str(ys_RSAM)))
-fig.savefig(path+'/figures/plot.png')
+fig.savefig(path+'/plots/plot.png')

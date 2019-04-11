@@ -66,16 +66,19 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compar
                     #     str(u['edges_in_subtree']), str(TH_edges_in_subtree), str(max_score_TH),
                     #     str(TH_compare_subtrees)))
                     if u['edges_in_subtree'] >= TH_edges_in_subtree:
-                        if u_black_HT >= TH_compare_subtrees * u_red_HT and not real_data:
-                            if check_diffrence_between_solutions:
-                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
-                            elif u_black_HT in max_score_TH:
-                                marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),'black HT']})
-                        if u_red_HT >= TH_compare_subtrees * u_black_HT:
-                            if check_diffrence_between_solutions:
-                                all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
-                            elif u_red_HT in max_score_TH:
-                                marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),'red HT']})
+                        if TH_compare_subtrees == 0 and check_diffrence_between_solutions:
+                            all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                        else:
+                            if u_black_HT > TH_compare_subtrees * u_red_HT and not real_data:
+                                if check_diffrence_between_solutions:
+                                    all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                                elif u_black_HT in max_score_TH:
+                                    marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),'black HT']})
+                            if u_red_HT > TH_compare_subtrees * u_black_HT:
+                                if check_diffrence_between_solutions:
+                                    all_vertices.update({u['label']: (u_red_HT, u_black_HT)})
+                                elif u_red_HT in max_score_TH:
+                                    marked_nodes.update({u['label']: [(u_red_HT, u_black_HT),'red HT']})
                 else:
                     print(
                         '     %s (v = %s, w = %s) :\n        [doup: %s] (unnormlized: [doup: %s]), edges in subtree u: %s\n         TH_edges: %s, TH_pattern_in_subtree: %s,TH_compare_subtrees: %s\n' %
@@ -92,7 +95,7 @@ def find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, doup,compar
                                                                 'black doup']})
         else:
             if not compare_subtrees:
-                if (not doup) and (TH_edges_in_subtree == 0) and (TH_compare_subtrees == 0) and check_diffrence_between_solutions:
+                if (not doup) and (TH_edges_in_subtree == 0) and (TH_compare_subtrees == 0):
                     all_vertices.update({u['label']: (0, 0)})
     return marked_nodes,all_vertices
 
