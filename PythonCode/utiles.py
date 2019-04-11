@@ -251,7 +251,7 @@ def find_unmarked(all_marked_for_TH,G,RSAM):
                 list_of_unmarked_TH.append(v.label)
     return list_of_unmarked_TH
 
-def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
+def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex,one_best):
     sensitivity = {}
     specifity = {}
     TN = {}
@@ -270,6 +270,8 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
         temp_FP = 0
         temp_TP = 0
         for u in list_for_TH_sol:
+            if one_best:
+                u = u[0]
             if u not in planted_vertex:
                 temp_FP += 1
             else:
@@ -286,6 +288,7 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
         for score in sen_list:
             sensitivity_sum += score
         res.update({TH:round(sensitivity_sum/len(sen_list),2)})
+    print(res)
     for TH, spe_list in specifity.items():
         specifity_sum = 0
         for score in spe_list:

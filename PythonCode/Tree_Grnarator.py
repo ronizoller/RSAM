@@ -20,10 +20,10 @@ on_lab = True
 compare = True
 running_time = False
 minimum_HT_under_planted = 3
-number_of_leaves = 600
+number_of_leaves = 300
 if on_lab:
     if compare:
-        path = '/storage/DATA/users/ronizo/comparsion_600_k=100'
+        path = '/storage/DATA/users/ronizo/comparsion_300_k=100'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -33,7 +33,7 @@ else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
 add_noise = False
-number_of_planted_vertices = 10
+number_of_planted_vertices = 5
 S = Tree()
 G = Tree()
 k = 100
@@ -41,12 +41,12 @@ both = False
 TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [5]
+noise_level = [10]
 number_of_nodes = 0
 random_for_precentage = 1                             #number of different random noise for each noise %
 accur = 5
 p = 0.05                                                #p_value
-TH_edges_in_subtree = 30                                # smallest subtree that will be counted when not comparing subtrees
+TH_edges_in_subtree = 10                                # smallest subtree that will be counted when not comparing subtrees
 TH_pattern_in_subtree = 0
 if compare_subtrees and evolutinary_event=='HT':
     TH_compare_subtrees =  2

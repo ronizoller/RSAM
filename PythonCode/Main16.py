@@ -1,11 +1,11 @@
-on_lab = False
-check_diffreance_between_solutions = False
-real_data = True
-evolutinary_event = ['D']
+on_lab = True
+check_diffreance_between_solutions = True
+real_data = False
+evolutinary_event = ['HT']
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
+        path  = '/storage/DATA/users/ronizo/comparsion_300_k=400'
     elif real_data and 'HT' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
@@ -24,39 +24,26 @@ else:
     else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
-import networkx as nx
-import dendropy as tr
-import math
-import utiles
-import tree_operations_v1 as tree_operations
-import inits_v1 as inits
-import EfficiantVersion as hypergraph
-import pattern_identify_v4 as pattern_identify
-from multiprocessing import Pool
-from datetime import datetime
-import random
-import os
-import draw
-import networkx as nx
-import dendropy as tr
-import math
-import utiles
-import tree_operations_v1 as tree_operations
-import inits_v1 as inits
-import EfficiantVersion as hypergraph
-import pattern_identify_v4 as pattern_identify
-from multiprocessing import Pool
-from datetime import datetime
-import random
-import os
-import draw
 
-speciesTreespecification = 'delta'
+import networkx as nx
+import dendropy as tr
+import math
+import utiles
+import tree_operations_v1 as tree_operations
+import inits_v1 as inits
+import EfficiantVersion as hypergraph
+import pattern_identify_v4 as pattern_identify
+from multiprocessing import Pool
+from datetime import datetime
+import random
+import os
+
+speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 50
+k = 100
 exact_names = True
 
 pattern = "same_color"
@@ -363,8 +350,8 @@ def extract_and_tarce_a_solution(parameters):
     S_dis_matrix = parameters[4]
     nCr_lookup_table = parameters[5]
     fact_lookup_table = parameters[6]
-    red_HT_vertices_in_G = parameters[7]
-    black_HT_vertices_in_G = parameters[8]
+    red_HT_vertices_in_G = []
+    black_HT_vertices_in_G = []
     S_colors = parameters[9]
     H = parameters[11]
     S = parameters[12]
@@ -483,7 +470,7 @@ def main():
                 quit()
             parameters = []
             p = Pool(15)
-            combined = [(f, 0, g) for f in utiles.frange(0,3,0.2) for g in utiles.frange(0,300,50)]
+            combined = [(0,0,20)]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]
@@ -525,7 +512,6 @@ def main():
             p1.close()
             p1.join()
             new_G_to_save = []
-            print(list_of_results)
             for res in list_of_results:
                 all_vertices_with_index.update({res[3]:res[0]})
                 new_G_to_save.append(res[2])
@@ -540,6 +526,8 @@ def main():
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
             file.close()
+            print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
+            str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
             quit()
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
