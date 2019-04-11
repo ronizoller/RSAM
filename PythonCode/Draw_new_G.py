@@ -116,7 +116,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(150, 40))
+    plt.figure(figsize=(40, 20))
 
     nodes_color = []
     nodes_size = []

@@ -16,14 +16,14 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = True
+on_lab = False
 compare = True
 running_time = False
 minimum_HT_under_planted = 3
-number_of_leaves = 300
+number_of_leaves = 100
 if on_lab:
     if compare:
-        path = '/storage/DATA/users/ronizo/comparsion_300_k=100'
+        path = '/storage/DATA/users/ronizo/comparsion_600_k=100'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -33,15 +33,15 @@ else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
 add_noise = False
-number_of_planted_vertices = 5
+number_of_planted_vertices = 1
 S = Tree()
 G = Tree()
-k = 100
+k = 50
 both = False
 TH_both = 0
 compare_subtrees = True
 evolutinary_event = 'HT'
-noise_level = [10]
+noise_level = [0]
 number_of_nodes = 0
 random_for_precentage = 1                             #number of different random noise for each noise %
 accur = 5

@@ -1,11 +1,11 @@
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = True
 real_data = False
 evolutinary_event = ['HT']
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_300_k=400'
+        path  = '/storage/DATA/users/ronizo/compare_test'
     elif real_data and 'HT' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
@@ -139,36 +139,17 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                     #str(HT_to), str(S_colors[HT_to.label][0]), str(S_colors[HT_to.label][1]),str(p_value_HT_to_red),str(p_value_HT_to_black)))
 
                     if p_value_curr_red < p: #HT from red
-                        if (pattern == "different_colors" or pattern == "only_red_to_black") and (p_value_HT_to_black < p): #HT to black
-                            red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
-                                                         'probability': curr['probability'],
-                                                         'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
-                            #print('     this is a good pattern (red to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s,  p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
-                            #    (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
-                            #     str(total_HT_to), str(curr['t']), str(p_value_curr_red), str(p_value_curr_black), str(Pr_red), str(Pr_black),
-                            #     str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
-
-                        elif (pattern == "same_color" or pattern == "only_red") and (p_value_HT_to_red < p): #HT to red
+                        if (pattern == "same_color" or pattern == "only_red") and (p_value_HT_to_red < p): #HT to red
                             red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            #print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                             #   (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            print('     this is a good pattern (red to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s,  p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                               (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red) ,str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                     elif p_value_curr_black < p: #HT from black
-                        if (pattern == "different_colors" or pattern == "only_black_to_red") and (p_value_HT_to_red < p):  # HT to red
-                            black_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
-                                                           'probability': curr['probability'],
-                                                           'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
-                            #print(
-                            #    '     this is a good pattern (black to red): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n' %
-                            #    (str(curr['s']), curr['t'], str(HT_to.label), str(curr['t']), str(total_curr),
-                            #     str(total_HT_to), str(curr['t']), str(p_value_curr_red),str(p_value_curr_black), str(Pr_red), str(Pr_black),
-                            #     str(p_value_HT_to_red),str(p_value_HT_to_black), str(S_dis_matrix[(curr['t'], HT_to.label)])))
-
-                        elif (pattern == "same_color") and (p_value_HT_to_black < p): #HT to black
+                        if (pattern == "same_color") and (p_value_HT_to_black < p): #HT to black
                             black_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                        'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                            #print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
-                            #    (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
+                            print('     this is a good pattern (black to black): \n       from %s to %s (HT to %s), Total vertices in S below %s: %s, below HT to: %s\n       p value red of %s = %s, p value black = %s (Pr red = %s, Pr black = %s)\n       p value red of HT to = %s, p value black of HT to = %s.\n       Distance = %s \n**\n'%
+                                (str(curr['s']),curr['t'],str(HT_to.label),str(curr['t']),str(total_curr),str(total_HT_to),str(curr['t']),str(p_value_curr_red),str(p_value_curr_black) ,str(Pr_red),str(Pr_black),str(p_value_HT_to_red),str(p_value_HT_to_black),str(S_dis_matrix[(curr['t'], HT_to.label)])))
                 elif pattern == "any":               #mark HT (in the red list, just for convi)
                     red_HT_vertices_in_G.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                  'probability': curr['probability'],
@@ -331,7 +312,7 @@ def RSAM_finder_multithread(parameters):
             max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,evolutinary_event)
 
             new_G= tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
-                                                                    black_HT_vertices_in_G,red_doup,black_doup, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
+                                                                    black_HT_vertices_in_G,red_doup,black_doup, max_S_d_of_HT,dis_flag,evolutinary_event,False,k)
             new_G = tree_operations.number_of_edges_in_subtree(new_G)
             new_G = tree_operations.normlize_weights(new_G,k)
             if not check_diffreance_between_solutions:
@@ -350,8 +331,8 @@ def extract_and_tarce_a_solution(parameters):
     S_dis_matrix = parameters[4]
     nCr_lookup_table = parameters[5]
     fact_lookup_table = parameters[6]
-    red_HT_vertices_in_G = []
-    black_HT_vertices_in_G = []
+    red_HT_vertices_in_G = parameters[7]
+    black_HT_vertices_in_G = parameters[8]
     S_colors = parameters[9]
     H = parameters[11]
     S = parameters[12]
@@ -370,14 +351,19 @@ def extract_and_tarce_a_solution(parameters):
     solutions[iter] = nx.DiGraph()
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], random.choice(range(0,k)))
+    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], k-1)
+
+    print('     Writing nodes...')
+    file = open(path + '/saved_data/H_nodes_effi.txt', 'w')
+    file.write(str(solutions[iter].nodes(data=True)))
+    file.close()
+    print('     Finished writing nodes.\n')
+
     solutions[iter], max_prob = hypergraph.assign_probabilities(S, G, solutions[iter], gamma)
 
     red_HT_vertices_in_G, black_HT_vertices_in_G,red_doup,black_doup, nCr_lookup_table, fact_lookup_table = find_Pattern(
         solutions[iter], S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_vertices_in_G,
         black_HT_vertices_in_G,red_doup,black_doup, pattern, evolutinary_event, S_colors)
-
-    solutions[iter] = hypergraph.remove_prob_zero(solutions[iter], deleted_nodes)
     max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, red_HT_vertices_in_G, black_HT_vertices_in_G,
                                                      evolutinary_event)
 
@@ -386,7 +372,7 @@ def extract_and_tarce_a_solution(parameters):
                                                                   evolutinary_event, check_diffreance_between_solutions,
                                                                   k)
     new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
-    new_G[iter] = tree_operations.normlize_weights(new_G[iter], k)
+    new_G[iter] = tree_operations.normlize_weights(new_G[iter], 1)
     if not check_diffreance_between_solutions:
         max_score_TH, max_score_doup = tree_operations.find_max_scores(new_G[iter], number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
     all_vertices = {}
@@ -470,7 +456,7 @@ def main():
                 quit()
             parameters = []
             p = Pool(15)
-            combined = [(0,0,20)]
+            combined = [(1,0,0)]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]
@@ -483,11 +469,10 @@ def main():
             ind = 0
             for res in list_of_RSAM_results:
                 all_vertices_with_index.update({combined[ind]: [res[0]]})
-                all_RSAM_marked.update({combined[ind]: res[0]})
                 all_RSAM_unmarked.update({combined[ind]: utiles.find_unmarked(res[0],G,True)})
                 ind += 1
             file = open(path + '/saved_data/all_marked_vertices_RSAM_finder.txt', 'w')
-            file.write(str(all_RSAM_marked))
+            file.write(str(all_vertices_with_index))
             file.close()
             file = open(path + '/saved_data/all_unmarked_vertices_RSAM_finder.txt', 'w')
             file.write(str(all_RSAM_unmarked))
@@ -509,6 +494,7 @@ def main():
                                 black_HT_vertices_in_G,S_colors,None,H,S,G,TH_edges_in_subtree,TH_compare_subtrees, k,red_doup,black_doup,None)
                                for x in range(0,iterations) for (TH_compare_subtrees,TH_both,TH_edges_in_subtree) in combined]
             list_of_results = p1.map(extract_and_tarce_a_solution, parameters_list)
+
             p1.close()
             p1.join()
             new_G_to_save = []
@@ -517,17 +503,12 @@ def main():
                 new_G_to_save.append(res[2])
                 all_marked_for_TH.update({res[3]:res[1]})
                 all_unmarked_for_TH.update({res[3]:utiles.find_unmarked(all_vertices_with_index[res[3]],G,False)})
-            all_marked_for_TH = dict((TH,[x[0] for x in list_of_marked]) for (TH,list_of_marked) in all_marked_for_TH.items())
-            file = open(path + '/saved_data/all_marked_nodes_for_TH.txt', 'w')
-            file.write(str(all_marked_for_TH))
-            file = open(path + '/saved_data/all_marked_true_nodes_for_TH.txt', 'w')
+            file = open(path + '/saved_data/all_vertices_TH.txt', 'w')
             file.write(str(all_vertices_with_index))
             file.close()
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
             file.close()
-            print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
-            str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
             quit()
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
@@ -565,8 +546,7 @@ def main():
                                                                 compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,real_data)
 
 
-            print('marked nodes: '+str(marked_nodes))
-            list_of_scores_for_rand_num.update({rand_num:all_vertices})
+            list_of_scores_for_rand_num.update({rand_num:marked_nodes})
             #if not on_lab:
                 #draw.draw_new_G(marked_nodes, colors, sigma, new_G, G, old_sigma, k, TH_compare_subtrees,
                             #path, True, glob, speciesTreespecification, pattern,
@@ -577,9 +557,6 @@ def main():
     if real_data:
         file = open(path + '/saved_data/marked_RSAM_finder_'+speciesTreespecification+'.txt', 'w')
         file.write(str(marked_nodes))
-        file.close()
-        file = open(path + '/saved_data/all_vertices_RSAM_finder_'+speciesTreespecification+'.txt', 'w')
-        file.write(str(all_vertices_with_index))
         file.close()
         for nd,x in marked_nodes.items():
             r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
@@ -595,7 +572,6 @@ def main():
         p.close()
         p.join()
         temp_j = 0
-        print('list_of_results: '+str(list_of_results))
         for noise_in in ['colors_and_HT', 'color', 'HT']:
             ind = 0
             for j in range(temp_j,len(noise_level_list)+temp_j):

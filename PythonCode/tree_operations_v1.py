@@ -120,20 +120,16 @@ def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_v
                     dis_factor = red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['distance']/max_distance[0]
                 else :
                     dis_factor = 1
-                if not compare_solutions:
-                    res_HT[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
-                else:
-                    res_HT[0] += dis_factor
+                res_HT[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
+
         for nd in black_HT_vertices_in_G:
             if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
                 if distance_flag:
                     dis_factor = black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['distance']/max_distance[1]
                 else :
                     dis_factor = 1
-                if not compare_solutions:
-                    res_HT[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
-                else:
-                    res_HT[1] += dis_factor
+                res_HT[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
+
     if 'D' in evol:
         for nd in red_doup:
             if nd['curr']['s'] == x.label:

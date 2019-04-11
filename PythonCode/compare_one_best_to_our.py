@@ -6,9 +6,9 @@ import utiles
 import operator
 import ast
 
-on_lab = True
+on_lab = False
 if on_lab:
-    path  =  '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/compare_final_data'
+    path  = '/storage/DATA/users/ronizo/comparsion_600_k=100'
 else:
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
     import sys
@@ -26,7 +26,7 @@ for line in planted_vertex_input:
 planted_vertex = planted_vertex[0]
 
 all_marked = []
-marked_input = open(path + '/saved_data/all_marked_true_nodes_for_TH.txt', 'r')
+marked_input = open(path + '/saved_data/all_vertices_TH.txt', 'r')
 for line in marked_input:
     all_marked.append(eval(line))
 all_marked = all_marked[0]
@@ -48,12 +48,17 @@ unmarked_RSAM_input = open(path + '/saved_data/all_unmarked_vertices_RSAM_finder
 for line in unmarked_RSAM_input:
     all_RSAM_unmarked.append(eval(line))
 all_RSAM_unmarked = all_RSAM_unmarked[0]
+all_RSAM_marked_fixed = {}
+for TH,x in all_RSAM_marked.items():
+    all_RSAM_marked_fixed.update({TH:[]})
+    for u,scores in x[0].items():
+        all_RSAM_marked_fixed[TH].append((u,scores))
+print('all_RSAM_marked_fixed: '+str(all_RSAM_marked_fixed))
 
-all_RSAM_marked = dict((u,list(x)) for (u,x) in all_RSAM_marked.items())
+print('all_unmarked: '+str(all_unmarked))
 
-result_one_best = utiles.calculate_presentage(all_marked,all_unmarked,planted_vertex,True)
-result_RSAM = utiles.calculate_presentage(all_RSAM_marked,all_RSAM_unmarked,planted_vertex,False)
-
+result_one_best = utiles.calculate_presentage(all_marked,all_unmarked,planted_vertex)
+result_RSAM = utiles.calculate_presentage(all_RSAM_marked_fixed,all_RSAM_unmarked,planted_vertex)
 
 def plot_eucs_covers(eucs,covers,text,color):
     to_draw = sorted(zip(eucs, covers), key=operator.itemgetter(0))
@@ -87,7 +92,7 @@ for TH,tup in result_one_best.items():
         one_best_names.append((round(temp_name[0],2),round(temp_name[2],2)))
 
 names = [(round(name[0],2),round(name[2],2)) for name in names]
-fig, ax = plt.subplots(figsize=(10,10))
+fig, ax = plt.subplots(figsize=(8,8))
 ax.set_xlabel('False Positive Rate (1-Specifity)')
 ax.set_ylabel('True Positive Rate (Sensitivity)')
 
@@ -101,4 +106,4 @@ adjust_text(one_best_text+RSAM_text)
 
 print('One_best:\n    xs:%s\n     ys:%s' % (str(xs),str(ys)))
 print('RSAM:\n    xs:%s\n     ys:%s' % (str(xs_RSAM),str(ys_RSAM)))
-fig.savefig( '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/compare_final_data/plots/plot.png')
+fig.savefig(path+'/figures/plot.png')

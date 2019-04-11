@@ -1,1 +1,3 @@
-print('     1121918.ARWE01000001 gene3339'.replace(' ',''))
+import random
+for i in range(1,10):
+    print(random.choice(range(0,10)))
