@@ -351,7 +351,7 @@ def extract_and_tarce_a_solution(parameters):
     solutions[iter] = nx.DiGraph()
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], k-1)
+    solutions[iter], nodes_table = hypergraph.track_a_solution(H_root, H, S, G, solutions[iter], random.choice(0,k))
 
     print('     Writing nodes...')
     file = open(path + '/saved_data/H_nodes_effi.txt', 'w')
