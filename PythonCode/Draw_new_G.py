@@ -9,10 +9,10 @@ import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
 import random
-doup = False
+doup = True
 if doup:
-    ext = 'delta'
-    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3620'
+    ext = 'alpha'
+    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
 else:
     ext = 'all'
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
@@ -59,7 +59,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(40, 10))
+    plt.figure(figsize=(100, 30))
 
     nodes_color = []
     nodes_size = []

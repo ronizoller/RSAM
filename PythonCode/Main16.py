@@ -1,11 +1,11 @@
-on_lab = True
-check_diffreance_between_solutions = True
-real_data = False
-evolutinary_event = ['HT']
+on_lab = False
+check_diffreance_between_solutions = False
+real_data = True
+evolutinary_event = ['D']
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/comparsion_600_k=400'
+        path  = '/storage/DATA/users/ronizo/compare_test'
     elif real_data and 'HT' in evolutinary_event:
         path = 'PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
@@ -20,7 +20,7 @@ else:
     elif real_data and 'HT' in evolutinary_event:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
     elif real_data and 'D' in evolutinary_event:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3620'
+        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
     else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
@@ -37,13 +37,14 @@ from multiprocessing import Pool
 from datetime import datetime
 import random
 import os
+import draw
 
-speciesTreespecification = 'all'
+speciesTreespecification = 'epsilon'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 100
+k = 50
 exact_names = True
 
 pattern = "same_color"
@@ -68,7 +69,7 @@ random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = [20]
+noise_level_list = [5]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -431,12 +432,12 @@ def main():
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     if 'D' in evolutinary_event:
         TH_compare_subtrees = 0
-        TH_edges_in_subtree = 30
+        TH_edges_in_subtree = 0
     else:
         TH_compare_subtrees = 2.5
         TH_edges_in_subtree = 50
-    #if not on_lab:
-        #draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
+    if not on_lab:
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
