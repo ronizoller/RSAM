@@ -11,7 +11,7 @@ import inits_v1 as inits
 import random
 doup = True
 if doup:
-    ext = 'alpha'
+    ext = 'epsilon'
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
 else:
     ext = 'all'
@@ -19,7 +19,7 @@ else:
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 3
+number_of_douplications = 4
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
@@ -59,7 +59,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(100, 30))
+    plt.figure(figsize=(40, 10))
 
     nodes_color = []
     nodes_size = []

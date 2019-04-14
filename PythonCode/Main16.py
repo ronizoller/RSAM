@@ -1,7 +1,8 @@
-on_lab = True
-check_diffreance_between_solutions = True
-real_data = False
-evolutinary_event = ['HT']
+on_lab = False
+check_diffreance_between_solutions = False
+real_data = True
+evolutinary_event = ['D']
+pattern = "any"
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -39,15 +40,14 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'all'
+speciesTreespecification = 'delta'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 50
+k = 200
 exact_names = True
 
-pattern = "same_color"
 
 TH_mostly_speciations = 0
 min_spesiction_events = 0
@@ -378,6 +378,12 @@ def extract_and_tarce_a_solution(parameters):
 
     return([list(all_vertices.items()),list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),0,str(TH_edges_in_subtree))])
 
+def end_function(H,S,G,k,starting_time,TH_compare_subtrees,TH_edges_in_subtree):
+    print('Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
+    print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
+        str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
+    quit()
+
 ##********  MAIN ***********
 
 def main():
@@ -432,7 +438,7 @@ def main():
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     if 'D' in evolutinary_event:
         TH_compare_subtrees = 0
-        TH_edges_in_subtree = 0
+        TH_edges_in_subtree = 5
     else:
         TH_compare_subtrees = 2.5
         TH_edges_in_subtree = 50
@@ -506,9 +512,7 @@ def main():
             file = open(path + '/saved_data/all_unmarked_nodes_for_TH.txt', 'w')
             file.write(str(all_unmarked_for_TH))
             file.close()
-            print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
-            str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
-            quit()
+            end_function(H,S,G,k)
         else:
             print('**   not enough solutions were calculated in order to track solution number %s   **' % str(iterations * factor))
         quit()
@@ -561,7 +565,7 @@ def main():
             r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
             print('For %s:\nlist = %s\n' % (str(nd),str(r+l)))
 
-        print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (str(datetime.now()-starting_time),str(TH_compare_subtrees),str(k),str(TH_edges_in_subtree)))
+        end_function(H, S, G, k, starting_time, TH_compare_subtrees, TH_edges_in_subtree)
     else:
         for noise_in in ['colors_and_HT','color','HT']:
             for i in range(0,len(noise_level_list)):
@@ -580,7 +584,7 @@ def main():
             file.write(str(all_vertices_with_index))
             file.close()
             temp_j = len(noise_level_list)+temp_j
-        print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (str(datetime.now()-starting_time),str(TH_compare_subtrees),str(k),str(TH_edges_in_subtree)))
+        end_function(H, S, G, k, starting_time, TH_compare_subtrees, TH_edges_in_subtree)
 
 if __name__ == "__main__":
     main()

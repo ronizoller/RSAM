@@ -461,7 +461,7 @@ def track_a_solution(root, H, S, G, solution, list_place):
     #print('Finished tracking ' + str(list_place) + 'th solution...\n')
     return solution, new_nodes_table
 
-def find_number_of_cooptimal(H,G,S,k):
+def find_number_of_cooptimal(H,G,S):
     counter = 1
     for nd in list(reversed(list(nx.topological_sort(H)))):
         nd = H.nodes(data=True)[nd]
@@ -471,8 +471,8 @@ def find_number_of_cooptimal(H,G,S,k):
                 if nd['l'][j]['cost'] == optimal_cost:
                     counter += 1
                 else:
-                    quit()
-            quit()
+                    return counter,optimal_cost
+            return counter,optimal_cost
 
 def mostly_speciation_event_in_subtree(H, nd, i):
     incoming_edges = H.in_edges([nd], data=True)
