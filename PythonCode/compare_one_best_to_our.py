@@ -6,6 +6,7 @@ import utiles
 import operator
 import ast
 
+with_labels = True
 on_lab = True
 if on_lab:
     path  = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/compare_final_data'
@@ -53,9 +54,7 @@ for TH,x in all_RSAM_marked.items():
     all_RSAM_marked_fixed.update({TH:[]})
     for u,scores in x[0].items():
         all_RSAM_marked_fixed[TH].append((u,scores))
-print('all_RSAM_marked_fixed: '+str(all_RSAM_marked_fixed))
 
-print('all_unmarked: '+str(all_unmarked))
 
 result_one_best = utiles.calculate_presentage(all_marked,all_unmarked,planted_vertex)
 result_RSAM = utiles.calculate_presentage(all_RSAM_marked_fixed,all_RSAM_unmarked,planted_vertex)
@@ -64,8 +63,9 @@ def plot_eucs_covers(eucs,covers,text,color):
     to_draw = sorted(zip(eucs, covers), key=operator.itemgetter(0))
     plt.plot(list(zip(*to_draw))[0],list(zip(*to_draw))[1],color=color, alpha=0.5,linewidth=4)
     texts = []
-    for xt, yt, s in zip(eucs, covers, text):
-        texts.append(plt.text(xt, yt, s,bbox=dict(facecolor=color, alpha=0.5)))
+    if with_labels:
+        for xt, yt, s in zip(eucs, covers, text):
+            texts.append(plt.text(xt, yt, s,bbox=dict(facecolor=color, alpha=0.5)))
     return texts
 
 xs = []
@@ -75,8 +75,9 @@ ys_RSAM = []
 
 names = []
 one_best_names = []
+THs = [(f,0,f*10) for f in [0,0.5,1,2,2.5,3,3.1,3.2,3.3,3.5,3.6,3.7,3.8,3.9,4,4.1,4.2,4.3,4.4,4.5,5.2,7,8,9,10,20]]
 for TH,tup in result_RSAM.items():
-    if TH in [(1,0,10),(1.5,0,15),(0,0,0),(2,0,20),(3,0,30),(2.5,0,25),(3.5,0,35),(4,0,40),(0.5,0,5),(5,0,50)]:
+    if TH in THs:
         names.append(TH)
         xs_RSAM.append(tup[0])
         ys_RSAM.append(tup[1])
@@ -93,18 +94,22 @@ for TH,tup in result_one_best.items():
         one_best_names.append((round(temp_name[0],2),round(temp_name[2],2)))
 
 names = [(round(name[0],2),round(name[2],2)) for name in names]
-fig, ax = plt.subplots(figsize=(12,8))
+fig, ax = plt.subplots(figsize=(16,10))
 ax.set_xlabel('False Positive Rate (1-Specifity)')
 ax.set_ylabel('True Positive Rate (Sensitivity)')
 
 #plt.plot(xs, ys, 'ko')
 #plt.plot(xs_RSAM, ys_RSAM, 'go')
 
-plt.axis([0, 1.1, 0, 1.1])
+plt.axis([0, 0.06, 0, 1.1])
 RSAM_text = plot_eucs_covers(xs_RSAM,ys_RSAM,names,'g')
 one_best_text = plot_eucs_covers(xs,ys,one_best_names,'k')
-adjust_text(one_best_text+RSAM_text)
+if with_labels:
+    adjust_text(one_best_text+RSAM_text)
 
 print('One_best:\n    xs:%s\n     ys:%s' % (str(xs),str(ys)))
 print('RSAM:\n    xs:%s\n     ys:%s' % (str(xs_RSAM),str(ys_RSAM)))
-fig.savefig(path+'/plots/plot.png')
+if with_labels:
+    fig.savefig(path+'/plots/plot.png')
+else:
+    fig.savefig(path+'/plots/plot_no_labels.png')

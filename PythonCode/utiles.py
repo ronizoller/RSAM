@@ -281,8 +281,6 @@ def calculate_presentage(all_marked_list,all_unmarked_list,planted_vertex):
                     planted_vertex_to_check.remove(u)
         temp_FN = len(planted_vertex_to_check)
         sensitivity[TH].append(temp_TP / (temp_TP + temp_FN))
-        print('TH: '+str(TH))
-        print('TN: '+str(TN))
 
         specifity[TH].append(TN[TH][i][0] / (TN[TH][i][0] + temp_FP))
         i += 1

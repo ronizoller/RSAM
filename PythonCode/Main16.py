@@ -1,15 +1,15 @@
-on_lab = False
-check_diffreance_between_solutions = False
-real_data = True
-evolutinary_event = ['D']
+on_lab = True
+check_diffreance_between_solutions = True
+real_data = False
+evolutinary_event = ['HT']
 
 if on_lab:
     if check_diffreance_between_solutions:
-        path  = '/storage/DATA/users/ronizo/compare_test'
+        path  = '/storage/DATA/users/ronizo/comparsion_600_20_planted'
     elif real_data and 'HT' in evolutinary_event:
-        path = 'PycharmProjects/RSAM/COG2602'
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG2602'
     elif real_data and 'D' in evolutinary_event:
-        path = 'PycharmProjects/RSAM/COG3620'
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG3550'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -39,7 +39,7 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'epsilon'
+speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -69,7 +69,7 @@ random_for_prec = 1
 gamma = 1                                           # factor for probability assignment
 alpha = 1                                           # factor for HT counting in the coloring stage
 accur = 5                                           # calculations acuuracy
-noise_level_list = [5]
+noise_level_list = [20]
 p = 0.05                                            #p_value
 
 #compare several optimal solutions
@@ -453,7 +453,7 @@ def main():
                 quit()
             parameters = []
             p = Pool(15)
-            combined = [(1,0,10),(1.5,0,15),(0,0,0),(2,0,20),(3,0,30),(2.5,0,25),(3.5,0,35),(4,0,40),(0.5,0,5),(5,0,50)]
+            combined = [(f,0,f*10) for f in utiles.frange(7,9,0.1)+[(40,0,400)]]
             for i in range(0, len(combined)):
                 TH_compare_subtrees = combined[i][0]
                 TH_both = combined[i][1]

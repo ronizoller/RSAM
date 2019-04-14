@@ -23,7 +23,7 @@ minimum_HT_under_planted = 3
 number_of_leaves = 600
 if on_lab:
     if compare:
-        path = '/storage/DATA/users/ronizo/comparsion_600_k=400'
+        path = '/storage/DATA/users/ronizo/comparsion_600_20_planted'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -33,7 +33,7 @@ else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
 add_noise = False
-number_of_planted_vertices = 10
+number_of_planted_vertices = 20
 S = Tree()
 G = Tree()
 k = 50
