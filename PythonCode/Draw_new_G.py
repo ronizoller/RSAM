@@ -11,7 +11,7 @@ import inits_v1 as inits
 import random
 doup = True
 if doup:
-    ext = 'epsilon'
+    ext = 'bacteria'
     path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
 else:
     ext = 'all'
@@ -19,7 +19,9 @@ else:
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 4
+number_of_douplications = 2
+x_axis = 250
+y_axis = 60
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
@@ -59,7 +61,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(40, 10))
+    plt.figure(figsize=(x_axis, y_axis))
 
     nodes_color = []
     nodes_size = []
@@ -78,7 +80,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
         if nd[1]['label'] in marked_nodes and (not flag):
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0][0],marked_nodes[nd[1]['label']][0][1])
-            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
+            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
         elif not flag:
             nodes_color.append('#FFFFFF')
             nodes_size.append(50)
@@ -116,7 +118,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(figsize=(40, 20))
+    plt.figure(figsize=(x_axis, y_axis))
 
     nodes_color = []
     nodes_size = []
@@ -214,3 +216,5 @@ else:
     draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
                             path, True, False, ext, 'same_color',
                              big_size, ['HT'], True, 1,S_labels_table)
+print('Number of leafs of S: '+str(tree_operations.number_of_leafs(S,'S')))
+print('Number of leafs of G: '+str(tree_operations.number_of_leafs(G,'G')))

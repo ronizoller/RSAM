@@ -6,7 +6,7 @@ path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG2856(the_awso
 
 
 G_text = open(path+'/GeneTree(binary)_local.txt', 'r').read()
-S_text = open(path+'/phyliptree(binary,delta).phy', 'r').read()
+S_text = open(path+'/phyliptree(binary,proteobacteria).phy', 'r').read()
 
 with open(path+'/FASTA.txt','r') as fp:
     for line in fp:
