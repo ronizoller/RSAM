@@ -20,9 +20,9 @@ else:
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 4
-x_axis = 120
-y_axis = 30
+number_of_douplications = 1
+x_axis = 200
+y_axis = 40
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
