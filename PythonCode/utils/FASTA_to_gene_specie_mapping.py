@@ -7,6 +7,11 @@ path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG2856(the_awso
 
 G_text = open(path+'/GeneTree(binary)_local.txt', 'r').read()
 S_text = open(path+'/phyliptree(binary,proteobacteria).phy', 'r').read()
+input = open(path+"/old_new_names.txt", 'r')
+old_new_names = []
+for line in input:
+    old_new_names.append(eval(line))
+old_new_names = old_new_names[0]
 
 with open(path+'/FASTA.txt','r') as fp:
     for line in fp:
@@ -22,10 +27,9 @@ with open(path+'/FASTA.txt','r') as fp:
             end  = line.find(']')
             specie = ''
             while start < end :
-                if(line[start] != ' '):
-                    specie = specie + line[start]
+                specie = specie + line[start]
                 start += 1
-            if (S_text.find(specie) != -1):
-                print("'"+gene+"' : '"+specie+"',\n")
+            if (S_text.find(specie.replace(' ','')) != -1):
+                print("'"+gene+"' : '"+old_new_names[specie].replace(' ','')+"',\n")
 
 print('}',end=' ')

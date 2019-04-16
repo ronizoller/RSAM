@@ -10,18 +10,19 @@ import tree_operations_v1 as tree_operations
 import inits_v1 as inits
 import random
 doup = True
+color = False
 if doup:
-    ext = 'bacteria'
-    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
+    ext = 'proteobacteria'
+    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG3550'
 else:
-    ext = 'all'
-    path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
+    ext = 'proteobacteria'
+    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG2856(the_awsome)/'
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 2
-x_axis = 250
-y_axis = 60
+number_of_douplications = 4
+x_axis = 120
+y_axis = 30
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
@@ -126,7 +127,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
-        if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0:
+        if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0 and color:
             temp_name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
             if temp_name.find('Vibrio') != -1:
                 nodes_color.append('green')
