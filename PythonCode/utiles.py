@@ -201,7 +201,6 @@ def number_of_different_vertex_in_dict(dict):
 
 
 def average_of_list(dict,num):
-    print(dict)
     res = {}
     if dict == {}:
         return {}

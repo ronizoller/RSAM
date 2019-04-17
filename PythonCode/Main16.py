@@ -1,16 +1,19 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
-evolutinary_event = ['D']
-pattern = "any"
+evolutinary_event = ['HT']
+pattern = "same_color"
+name = 'COG2602'
 
 if on_lab:
     if check_diffreance_between_solutions:
         path  = '/storage/DATA/users/ronizo/comparsion_600_20_planted'
-    elif real_data and 'HT' in evolutinary_event:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG2602'
+    elif real_data and 'HT' in evolutinary_event and not pattern == 'any':
+        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/'
+    elif real_data and 'HT' in evolutinary_event and pattern == 'any':
+        path = '/storage/DATA/users/ronizo/COGS/'
     elif real_data and 'D' in evolutinary_event:
-        path = '/users/studs/bsc/2016/ronizo/PycharmProjects/RSAM/COG3550'
+        path = '/storage/DATA/users/ronizo/COGS/'
     else:
         path = '/storage/DATA/users/ronizo/noise_data_500_k=100'
 else:
@@ -18,7 +21,7 @@ else:
     sys.path.append('/PycharmProjects/RSAM_venv/lib/python3.6/site-packages/graphviz/')
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
-    elif real_data and 'HT' in evolutinary_event:
+    elif real_data and 'HT' in evolutinary_event and not (pattern == 'any'):
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
     elif real_data and 'D' in evolutinary_event:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
@@ -40,14 +43,13 @@ import random
 import os
 import draw
 
-speciesTreespecification = 'delta'
+speciesTreespecification = 'all'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 200
+k = 10
 exact_names = True
-
 
 TH_mostly_speciations = 0
 min_spesiction_events = 0
@@ -58,7 +60,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 5
+number_of_planted_vertices = 10
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -157,7 +159,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                                                  'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
             if 'D' in evolutinary_event and curr['event'] == 'D' and curr['probability'] > 0:
                 doupli,HT,spe,total = hypergraph.mostly_speciation_event_in_subtree(H,nd_index,i)
-                print('curr = %s\n       spe: %s, HT: %s, doupli:%s,total: %s\n' %
+                print('curr = %s\n       spe: %s, HT: %s, doupli:%s, total: %s\n' %
                       (str(curr), str(spe), str(HT), str(doupli),str(total)))
                 total = total -1
                 if total > 0:
@@ -315,11 +317,12 @@ def RSAM_finder_multithread(parameters):
             new_G= tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
                                                                     black_HT_vertices_in_G,red_doup,black_doup, max_S_d_of_HT,dis_flag,evolutinary_event,False,k)
             new_G = tree_operations.number_of_edges_in_subtree(new_G)
-            new_G = tree_operations.normlize_weights(new_G,k)
+            new_G = tree_operations.normlize_weights(new_G,G,colors,sigma,k,pattern == "same_color")
             if not check_diffreance_between_solutions:
                 max_score_TH,max_score_doup = tree_operations.find_max_scores(new_G, number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, 'D' in evolutinary_event,
-                                                                compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,real_data)
+                                                                compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,
+                                                                             real_data)
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
     return (utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr),noise_in)
@@ -367,14 +370,16 @@ def extract_and_tarce_a_solution(parameters):
                                                                   evolutinary_event, check_diffreance_between_solutions,
                                                                   k)
     new_G[iter] = tree_operations.number_of_edges_in_subtree(new_G[iter])
-    new_G[iter] = tree_operations.normlize_weights(new_G[iter], 1)
+    new_G[iter] = tree_operations.normlize_weights(new_G[iter],G,
+                                                   colors,sigma,1,pattern == "same_color")
     if not check_diffreance_between_solutions:
         max_score_TH, max_score_doup = tree_operations.find_max_scores(new_G[iter], number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
     all_vertices = {}
     marked_nodes, all_vertices = pattern_identify.find_signi_distance(new_G[iter], all_vertices, TH_compare_subtrees,
                                                                       k, 'D' in evolutinary_event,
                                                                       compare_subtrees,
-                                                                      TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,real_data)
+                                                                      TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,
+                                                                      real_data)
 
     return([list(all_vertices.items()),list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),0,str(TH_edges_in_subtree))])
 
@@ -388,6 +393,7 @@ def end_function(H,S,G,k,starting_time,TH_compare_subtrees,TH_edges_in_subtree):
 
 def main():
     global S, G, iterations, sigma, alpha, gamma, colors,planted_vertices, number_of_planted_vertices, both, path, speciesTreespecification, evolutinary_event,exact_names,noise_level_list,random_for_prec
+    path = path + name +'/'
     starting_time = datetime.now()
 
     all_vertices_with_index = {}
@@ -438,9 +444,9 @@ def main():
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     if 'D' in evolutinary_event:
         TH_compare_subtrees = 0
-        TH_edges_in_subtree = 5
+        TH_edges_in_subtree = 0
     else:
-        TH_compare_subtrees = 2.5
+        TH_compare_subtrees = 2
         TH_edges_in_subtree = 50
     if not on_lab:
         draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
@@ -542,11 +548,12 @@ def main():
             new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, red_HT_vertices_in_G,
                                                                           black_HT_vertices_in_G,red_doup,black_doup, max_S_d_of_HT,dis_flag,evolutinary_event,check_diffreance_between_solutions,k)
             new_G = tree_operations.number_of_edges_in_subtree(new_G)
-            new_G = tree_operations.normlize_weights(new_G, k)
+            new_G = tree_operations.normlize_weights(new_G,G,colors,sigma,k,pattern == "same_color")
             if not check_diffreance_between_solutions:
                 max_score_TH,max_score_doup = tree_operations.find_max_scores(new_G, number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees)
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices, TH_compare_subtrees, k, 'D' in evolutinary_event,
-                                                                compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,check_diffreance_between_solutions,real_data)
+                                                                compare_subtrees,TH_edges_in_subtree,max_score_TH,max_score_doup,
+                                                                             check_diffreance_between_solutions,real_data)
 
 
             list_of_scores_for_rand_num.update({rand_num:all_vertices})
@@ -558,12 +565,17 @@ def main():
 
     parameters = []
     if real_data:
-        file = open(path + '/saved_data/marked_RSAM_finder_'+speciesTreespecification+'.txt', 'w')
+        file = open(path + '/saved_data/marked_RSAM_finder_'+speciesTreespecification+'_pattern=('+evolutinary_event[0]+').txt', 'w')
         file.write(str(marked_nodes))
         file.close()
+
+        lists = ''
         for nd,x in marked_nodes.items():
             r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
-            print('For %s:\nlist = %s\n' % (str(nd),str(r+l)))
+            lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
+        file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern=('+evolutinary_event[0]+').txt', 'w')
+        file.write(str(lists))
+        file.close()
 
         end_function(H, S, G, k, starting_time, TH_compare_subtrees, TH_edges_in_subtree)
     else:

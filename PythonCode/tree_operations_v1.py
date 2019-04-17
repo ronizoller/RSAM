@@ -1,6 +1,7 @@
 import networkx as nx
 import random
 import utiles
+import math
 
 def isolated(x):
     return x.taxon is None
@@ -264,12 +265,35 @@ def find_node_in_networkx_tree(tree,label):
             return u
     return None
 
-def normlize_weights(G, k):
+def normlize_weights(G,old_G, colors,sigma,k,color_flag):
+    if color_flag:
+        G_internal_colors = color_tree(old_G, 'G', {}, colors, sigma)
+
     for nd in (reversed(list(nx.topological_sort(G)))):
-        for i in [0, 1]:
-            if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k)
-                G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
+        if color_flag:
+            u = G.nodes(data=True)[nd]
+            reds_under_u = G_internal_colors[u['label']][0]
+            blacks_under_u = G_internal_colors[u['label']][1]
+            total_under_u = reds_under_u + blacks_under_u
+            pr_red_u = reds_under_u / total_under_u
+            pr_black_u = blacks_under_u / total_under_u
+
+            pr = [pr_red_u,pr_black_u]
+
+            for i in [0, 1]:
+                if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
+                    if pr[i] == 0:
+                        G.nodes(data=True)[nd]['same_HT_score'][i] = math.inf
+                    elif pr[i] == 1:
+                        G.nodes(data=True)[nd]['same_HT_score'][i] = 0
+                    else:
+                        G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k * pr[i])
+                    G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
+        else:
+            for i in [0, 1]:
+                if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
+                    G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k)
+                    G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
     return G
 
 def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees):
