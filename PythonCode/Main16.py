@@ -1,9 +1,9 @@
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 evolutinary_event = ['HT']
-pattern = "same_color"
-name = 'COG2602'
+pattern = "any"
+name = 'COG2856'
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -22,9 +22,11 @@ else:
     if check_diffreance_between_solutions:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/compare_test'
     elif real_data and 'HT' in evolutinary_event and not (pattern == 'any'):
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2602'
+        path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/'
+    elif real_data and 'HT' in evolutinary_event and pattern == 'any':
+        path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
     elif real_data and 'D' in evolutinary_event:
-        path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG3550'
+        path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
     else:
         path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/duplications_test'
 
@@ -42,13 +44,15 @@ from datetime import datetime
 import random
 import os
 import draw
+from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'all'
+speciesTreespecification = 'beta'
+geneExt = 'beta'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
 dis_flag = True                                     #count the patterns and take in count the distance of the HT
-k = 10
+k = 50
 exact_names = True
 
 TH_mostly_speciations = 0
@@ -60,7 +64,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 10
+number_of_planted_vertices = 5
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -159,8 +163,8 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, red_HT_
                                                  'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
             if 'D' in evolutinary_event and curr['event'] == 'D' and curr['probability'] > 0:
                 doupli,HT,spe,total = hypergraph.mostly_speciation_event_in_subtree(H,nd_index,i)
-                print('curr = %s\n       spe: %s, HT: %s, doupli:%s, total: %s\n' %
-                      (str(curr), str(spe), str(HT), str(doupli),str(total)))
+                #print('curr = %s\n       spe: %s, HT: %s, doupli:%s, total: %s\n' %
+                #      (str(curr), str(spe), str(HT), str(doupli),str(total)))
                 total = total -1
                 if total > 0:
                     if (spe+doupli)/total >= TH_mostly_speciations and total > min_spesiction_events:
@@ -242,7 +246,7 @@ def RSAM_finder_multithread(parameters):
             nCr_lookup_table = {}
             fact_lookup_table = {}
 
-            G = tr.Tree.get_from_path(path  + "/GeneTree(binary)_local.txt", schema="newick")
+            G = tr.Tree.get_from_path(path  + "/GeneTree(binary,"+geneExt+")_local.txt", schema="newick")
             S = tr.Tree.get_from_path(path  +"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
 
             input = open(path_change_in +'/'+ str(noise_level)+'/sigma'+str(noise_level)+'.'+str(rand_num)+'.txt', 'r')
@@ -384,7 +388,7 @@ def extract_and_tarce_a_solution(parameters):
     return([list(all_vertices.items()),list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),0,str(TH_edges_in_subtree))])
 
 def end_function(H,S,G,k,starting_time,TH_compare_subtrees,TH_edges_in_subtree):
-    print('Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
+    print('COG: %s Class: %s\n Number of co-optimal out of %s solutions: %s with cost %s' % (str(name),str(speciesTreespecification),str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
     print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
         str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
     quit()
@@ -409,7 +413,7 @@ def main():
     S_colors = {}
     all_vertices = {}
 
-    G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+    G = tr.Tree.get_from_path(path + "/GeneTree(binary,"+geneExt+")_local.txt", schema="newick")
     S = tr.Tree.get_from_path(path+"/phyliptree(binary,"+speciesTreespecification+").phy", schema="newick")
     if check_diffreance_between_solutions:
         noise_level = noise_level_list[0]
@@ -440,16 +444,17 @@ def main():
 
     S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S,G,sigma)
     sigma, old_sigma = inits.update_sigma(S, G, k, sigma, test, path,exact_names,S_labels_table,G_labels_table)
-    G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
+    if tree_operations.remove_unsigma_genes(G, sigma, False) is not []:
+        G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     if 'D' in evolutinary_event:
         TH_compare_subtrees = 0
         TH_edges_in_subtree = 0
     else:
         TH_compare_subtrees = 2
-        TH_edges_in_subtree = 50
-    if not on_lab:
-        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
+        TH_edges_in_subtree = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.25
+    #if not on_lab:
+    #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
@@ -570,12 +575,20 @@ def main():
         file.close()
 
         lists = ''
+        list_of_returns = [0]*number_of_planted_vertices
         for nd,x in marked_nodes.items():
             r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
             lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
+            if 'HT' in evolutinary_event:
+                ind, list_of_returns = utiles.index_with_repeting(max_score_TH, max(x[0][0], x[0][1]), list_of_returns)
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]))
+            elif 'D' in evolutinary_event:
+                ind, list_of_returns = utiles.index_with_repeting(max_score_doup, max(x[0][0], x[0][1]), list_of_returns)
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]))
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern=('+evolutinary_event[0]+').txt', 'w')
         file.write(str(lists))
         file.close()
+
 
         end_function(H, S, G, k, starting_time, TH_compare_subtrees, TH_edges_in_subtree)
     else:

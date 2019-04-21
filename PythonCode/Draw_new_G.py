@@ -9,20 +9,26 @@ import utiles
 import tree_operations_v1 as tree_operations
 import inits_v1 as inits
 import random
-doup = True
+from numpy import inf
+
+doup = False
 color = False
 if doup:
     ext = 'proteobacteria'
-    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG3550'
+    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
 else:
-    ext = 'proteobacteria'
-    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COG2856(the_awsome)/'
+    ext = 'beta'
+    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2856/'
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 1
-x_axis = 200
-y_axis = 40
+number_of_douplications = 4
+x_axis = 50
+y_axis = 10
+if doup:
+    pattern = 'D'
+else:
+    pattern = 'HT'
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
@@ -128,10 +134,8 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
 
     for nd in new_G.nodes(data=True):
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0 and color:
-            temp_name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
-            if temp_name.find('Vibrio') != -1:
-                nodes_color.append('green')
-            elif colors[sigma[nd[1]['label']]] == 'red':
+            name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
+            if colors[sigma[nd[1]['label']]] == 'red':
                 nodes_color.append('red')
             else:
                 nodes_color.append('grey')
@@ -155,11 +159,11 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
     nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
-    plt.savefig(path+'/figures/test.png')
+    plt.savefig(path+'/figures/new_G_pattern='+pattern+'_'+ext+'.png')
     print('Finished drawing new G.\n')
 
 
-input = open(path + '/saved_data/marked_RSAM_finder_'+ext+'.txt', 'r')
+input = open(path + '/saved_data/marked_RSAM_finder_'+ext+'_pattern=('+pattern+').txt', 'r')
 marked_nodes = []
 for line in input:
     marked_nodes.append(eval(line))
@@ -181,7 +185,7 @@ def hex_code_colors():
     z = a + b + c
     return "#" + z.upper()
 
-G = tr.Tree.get_from_path(path + "/GeneTree(binary)_local.txt", schema="newick")
+G = tr.Tree.get_from_path(path + "/GeneTree(binary,"+ext+")_local.txt", schema="newick")
 S = tr.Tree.get_from_path(path + "/phyliptree(binary,"+ext+").phy", schema="newick")
 input = open(path + '/0/sigma0.0.txt', 'r')
 sigma = []
@@ -211,11 +215,12 @@ new_G = nx.DiGraph()
 new_G = tree_operations.copy_G(G,new_G)
 if doup:
     draw_new_doup(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
-                            path, True, False, ext, 'same_color',
+                            path, True, False, ext, pattern,
                              big_size, ['D'], True, 1,S_labels_table)
 else:
     draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
-                            path, True, False, ext, 'same_color',
+                            path, True, False, ext, pattern,
                              big_size, ['HT'], True, 1,S_labels_table)
+
 print('Number of leafs of S: '+str(tree_operations.number_of_leafs(S,'S')))
 print('Number of leafs of G: '+str(tree_operations.number_of_leafs(G,'G')))
