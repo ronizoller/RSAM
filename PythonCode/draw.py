@@ -191,7 +191,7 @@ def draw_tree(tree, name, old_sigma, colors, sigma):
     plt.savefig(name+'.png')
     print('Drawing'+name)
 
-def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
+def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext, to_color):
     plt.clf()
     S_to_draw = nx.DiGraph()
     G_to_draw = nx.DiGraph()
@@ -219,7 +219,7 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
                     labels_S.update({k: l})
 
     for u in S.postorder_node_iter():
-            if u.label != None and u.label in colors:
+            if u.label != None and u.label in colors and to_color:
                 if colors[u.label] == 'red':
                     nodes_color_S.append('red')
                 elif colors[u.label] == 'black':
@@ -257,7 +257,7 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
                     if (u.label == temp_sol['Marked'] or u.label == temp_sol['list_of_couples'][p][0] or u.label == temp_sol['list_of_couples'][p][1]) and not degel:
                         nodes_color_G.append('blue')
                         degel = True
-        if not degel and tree_operations.is_a_leaf(u) and not tree_operations.isolated(u) and sigma[u.label] in colors:
+        if not degel and tree_operations.is_a_leaf(u) and not tree_operations.isolated(u) and sigma[u.label] in colors and to_color:
             if colors[sigma[u.label]] == 'red':
                 nodes_color_G.append('red')
             elif colors[sigma[u.label]] == 'black':
@@ -275,22 +275,27 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext):
         lst[0] = lst[0] + 100
         postree_G.update({k:tuple(lst)})
 
-    fig, axes = plt.subplots(1,2,figsize=(70, 10))
+    fig, axes = plt.subplots(1,2,figsize=(30, 30))
     ax = axes.flatten()
 
-    ax[0].set_title('Species tree',fontsize=50)
-    ax[1].set_title('Gene tree',fontsize=50)
+    ax[0].set_title('Species tree',fontsize=50,rotation='vertical',x=-0.1,y=0.5)
+    ax[1].set_title('Gene tree',fontsize=50,rotation='vertical',x=-0.1,y=0.5)
 
     nx.draw(S_to_draw, postree_S, arrows=True,node_color=nodes_color_S,ax=ax[0])
     nx.draw(G_to_draw, postree_G, arrows=True,node_color=nodes_color_G,ax=ax[1])
 
-    nx.draw_networkx_labels(S_to_draw, postree_S, labels_S, font_size=7,ax=ax[0])
-    nx.draw_networkx_labels(G_to_draw, postree_G, labels_G, font_size=7,ax=ax[1])
+    t1 = nx.draw_networkx_labels(S_to_draw, postree_S, labels_S, font_size=7,ax=ax[0])
+    t2 = nx.draw_networkx_labels(G_to_draw, postree_G, labels_G, font_size=7,ax=ax[1])
+    for _, t in t1.items():
+        t.set_rotation('vertical')
+    for _, t in t2.items():
+        t.set_rotation('vertical')
 
     nx.draw_networkx_edges(S_to_draw, postree_S,ax=ax[0])
     nx.draw_networkx_edges(G_to_draw, postree_G,ax=ax[1])
     plt.savefig(path + '/figures/S+G'+ext+'.png')
     print('Drawing S and G')
+    quit()
 
 def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, labels, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,compare_subtrees,evolutinary_event,pattern,iterations, factor,size):
     print('Drawing new G...')

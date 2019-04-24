@@ -2,6 +2,7 @@ import networkx as nx
 import random
 import utiles
 import math
+import dendropy as tr
 
 def isolated(x):
     return x.taxon is None
@@ -325,3 +326,9 @@ def copy_G(G,new_G):
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1)
         index += 1
     return new_G
+
+def reroot_and_save(tree,nd,path,ext):
+    new_root = find_node_in_tree(tree,nd)
+    tree.reroot_at_node(new_root)
+    tr.write(tree,path+'/rerooted_tree_'+ext, schema="newick")
+    quit()

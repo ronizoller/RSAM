@@ -369,10 +369,9 @@ def update_top_ranking_list(new_score,list):
     return list
 
 def index_with_repeting(lst,item,list_of_returned):
-
     index = lst.index(item)
     if list_of_returned[index] == 1:
-        while list_of_returned[index] == 1 and index < len(list_of_returned):
+        while index < len(list_of_returned) and list_of_returned[index] == 1:
             index += 1
     list_of_returned[index] = 1
     return index,list_of_returned

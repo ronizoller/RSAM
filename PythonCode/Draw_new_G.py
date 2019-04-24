@@ -14,17 +14,17 @@ from numpy import inf
 doup = False
 color = False
 if doup:
-    ext = 'proteobacteria'
+    ext = 'deltaepsilon'
     path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
 else:
-    ext = 'beta'
+    ext = 'deltaepsilon'
     path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2856/'
 S_colors = {}
 big_size = 2000
 small_size = 7
-number_of_douplications = 4
-x_axis = 50
-y_axis = 10
+number_of_douplications = 3
+x_axis = 15
+y_axis = 30
 if doup:
     pattern = 'D'
 else:
@@ -102,8 +102,10 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
 
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
-    nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
-    plt.savefig(path+'/figures/new_G_for_'+ext+'.png')
+    text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
+    for _, t in text.items():
+        t.set_rotation('vertical')
+    plt.savefig(path + '/figures/new_G_pattern=' + pattern + '_' + ext + '.png')
     print('Finished drawing new G.\n')
 
 def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_subtrees, path, lables,glob,spec,pattern,size,evol,compare,number_of_fields,S_labels_table):
@@ -158,7 +160,9 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
 
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
-    nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
+    text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
+    for _, t in text.items():
+        t.set_rotation('vertical')
     plt.savefig(path+'/figures/new_G_pattern='+pattern+'_'+ext+'.png')
     print('Finished drawing new G.\n')
 

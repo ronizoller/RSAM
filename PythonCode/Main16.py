@@ -1,9 +1,14 @@
 on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
-evolutinary_event = ['HT']
-pattern = "any"
-name = 'COG2856'
+
+p1 = (['D'],'any',False)
+
+name = 'COG3550'
+
+evolutinary_event = p1[0]
+pattern = p1[1]
+dis_flag = p1[2]
 
 if on_lab:
     if check_diffreance_between_solutions:
@@ -46,12 +51,11 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'beta'
-geneExt = 'beta'
+speciesTreespecification = 'deltaepsilon'
+geneExt = 'deltaepsilon'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
-dis_flag = True                                     #count the patterns and take in count the distance of the HT
 k = 50
 exact_names = True
 
@@ -388,7 +392,7 @@ def extract_and_tarce_a_solution(parameters):
     return([list(all_vertices.items()),list(marked_nodes.items()),new_G[iter],'(%s,%s,%s)' % (str(TH_compare_subtrees),0,str(TH_edges_in_subtree))])
 
 def end_function(H,S,G,k,starting_time,TH_compare_subtrees,TH_edges_in_subtree):
-    print('COG: %s Class: %s\n Number of co-optimal out of %s solutions: %s with cost %s' % (str(name),str(speciesTreespecification),str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
+    print('COG: %s Class: %s Pattern: %s\nNumber of co-optimal out of %s solutions: %s with cost %s' % (str(name),str(speciesTreespecification),'('+str(evolutinary_event[0])+')',str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
     print('Running time: %s\nTH_compare: %s\nk: %s\nTH_edges: %s' % (
         str(datetime.now() - starting_time), str(TH_compare_subtrees), str(k), str(TH_edges_in_subtree)))
     quit()
@@ -452,9 +456,10 @@ def main():
         TH_edges_in_subtree = 0
     else:
         TH_compare_subtrees = 2
-        TH_edges_in_subtree = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.25
-    #if not on_lab:
-    #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification)
+        TH_edges_in_subtree = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.2
+    if not on_lab:
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
+    #tree_operations.reroot_and_save(S,'x227',path,speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
@@ -575,16 +580,16 @@ def main():
         file.close()
 
         lists = ''
-        list_of_returns = [0]*number_of_planted_vertices
+        list_of_returns = [0]*len(marked_nodes)
         for nd,x in marked_nodes.items():
             r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
             lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
             if 'HT' in evolutinary_event:
                 ind, list_of_returns = utiles.index_with_repeting(max_score_TH, max(x[0][0], x[0][1]), list_of_returns)
-                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]))
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]),True)
             elif 'D' in evolutinary_event:
                 ind, list_of_returns = utiles.index_with_repeting(max_score_doup, max(x[0][0], x[0][1]), list_of_returns)
-                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]))
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(number_of_planted_vertices-ind)+'th_solution',str(evolutinary_event[0]),True)
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern=('+evolutinary_event[0]+').txt', 'w')
         file.write(str(lists))
         file.close()

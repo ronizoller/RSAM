@@ -4,8 +4,8 @@ from utils import extract_from_FASTA_v1 as extr
 
 path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 
-COGS = ['COG2856']
-classes = ['alpha','beta','gamma','delta','epsilon']
+COGS = ['COG3549']
+classes = ['alpha','beta','gamma','deltaepsilon']
 for COG in COGS:
     for clas in classes:
         S = tr.Tree.get_from_path(path + '/' + COG + "/phyliptree(binary," + clas + ").phy", schema="newick")
@@ -19,4 +19,4 @@ for COG in COGS:
 
         print('COG: %s, class: %s, \n%s\n' % (str(COG),str(clas),str(list1)))
 
-        extr.main([(list1,'_'+clas)],path+'/'+COG)
+        extr.main([(list1,'_'+clas)],path+'/'+COG,clas,'','',False)

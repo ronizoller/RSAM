@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/PycharmProjects/TreeReconciliation/trees/COG2165'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602'
 #first prtric then dina
 
 patric = True
@@ -43,6 +43,12 @@ env = ["PLANT","Bivalve","Mosquito","Eucalyptus","Taxus cuspidata","Elysia ornat
 
 list_not_to_dis = ["Missing","Specialized","Host-Associated","Host-associated","HostAssociated","Host","Unknown","Host Associated"]
 
+input1 = open(path + "/old_new_names.txt", 'r')
+old_new_names = []
+for line in input1:
+    old_new_names.append(eval(line))
+old_new_names = old_new_names[0]
+
 for name in missing_tags:
     i = 0
     flag = False
@@ -50,11 +56,11 @@ for name in missing_tags:
         if tag_name.find(name) != -1:
             for tag in alive:
                 if tags_habitat[i] != "" and (tag.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag) != -1) and not flag :
-                    res = res + ", '" + name.replace('_','')+"':'red' "
+                    res = res + ", '" + old_new_names[name.replace('_',' ')].replace(' ','')+"':'red' "
                     flag = True
             for tag_env in env:
                 if tags_habitat[i] != "" and (tag_env.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag_env) != -1) and not flag:
-                    res = res + ", '" + name.replace('_', '') + "':'black' "
+                    res = res + ", '" + old_new_names[name.replace('_', ' ')].replace(' ','') + "':'black' "
                     flag = True
         i = i+1
     if flag == False:
