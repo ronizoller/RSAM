@@ -11,24 +11,20 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-doup = False
-color = False
-if doup:
-    ext = 'deltaepsilon'
-    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
-else:
-    ext = 'deltaepsilon'
-    path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2856/'
+p1 = (['HT'], 'red', True)
+p2 = (['S', 'D', 'HT'], 'black', None)
+color = True
+
+ext = 'bacteria'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602/'
+
 S_colors = {}
-big_size = 2000
+big_size = 3000
 small_size = 7
 number_of_douplications = 3
-x_axis = 15
-y_axis = 30
-if doup:
-    pattern = 'D'
-else:
-    pattern = 'HT'
+x_axis = 100
+y_axis = 50
+
 
 def number_of_scpecies_doup(G,old_sigma):
     leafs_names = {}
@@ -72,7 +68,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
 
     nodes_color = []
     nodes_size = []
-    max_size = utiles.map_max(marked_nodes,number_of_fields)
+    max_size = max([x[0] for u,x in marked_nodes.items()])
     exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
@@ -86,7 +82,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
                     flag = True
         if nd[1]['label'] in marked_nodes and (not flag):
             nodes_color.append('blue')
-            temp_size = max(marked_nodes[nd[1]['label']][0][0],marked_nodes[nd[1]['label']][0][1])
+            temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
             nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
         elif not flag:
             nodes_color.append('#FFFFFF')
@@ -131,8 +127,10 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
 
     nodes_color = []
     nodes_size = []
-    max_size = utiles.map_max(marked_nodes,number_of_fields)
-    exp_facor = math.log(size)
+    max_size = max([x[0] for u, x in marked_nodes.items()])
+    if pattern_name[len(pattern_name) - 11:] == 'Double-Mode':
+        max_size = max([x[0]+x[1] for u,x in marked_nodes.items()])
+    exp_facor = math.log(size)+18
 
     for nd in new_G.nodes(data=True):
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0 and color:
@@ -144,8 +142,10 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
             nodes_size.append(200)
         elif nd[1]['label'] in marked_nodes:
             nodes_color.append('blue')
-            temp_size = max(marked_nodes[nd[1]['label']][0][0],marked_nodes[nd[1]['label']][0][1])
-            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
+            temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
+            if pattern_name[len(pattern_name)-11:] == 'Double-Mode':
+                temp_size = marked_nodes[nd[1]['label']][0] + marked_nodes[nd[1]['label']][0]
+            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
         else:
             nodes_color.append('white')
             nodes_size.append(200)
@@ -167,7 +167,11 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     print('Finished drawing new G.\n')
 
 
-input = open(path + '/saved_data/marked_RSAM_finder_'+ext+'_pattern=('+pattern+').txt', 'r')
+if p2[0] is not None:
+    pattern_name = '(' + str(p1) + '_' + str(p2) + ')_Double-Mode'
+else:
+    pattern_name = str(p1) + '_Single-Mode'
+input = open(path + '/saved_data/marked_RSAM_finder_'+ext+'_pattern='+pattern_name+'.txt', 'r')
 marked_nodes = []
 for line in input:
     marked_nodes.append(eval(line))
@@ -217,13 +221,13 @@ colors, old_colors = inits.update_colors(S, colors, True)
 
 new_G = nx.DiGraph()
 new_G = tree_operations.copy_G(G,new_G)
-if doup:
+if 'D' in p1[0]:
     draw_new_doup(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
-                            path, True, False, ext, pattern,
+                            path, True, False, ext, pattern_name,
                              big_size, ['D'], True, 1,S_labels_table)
 else:
     draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma, 0, 0,
-                            path, True, False, ext, pattern,
+                            path, True, False, ext, pattern_name,
                              big_size, ['HT'], True, 1,S_labels_table)
 
 print('Number of leafs of S: '+str(tree_operations.number_of_leafs(S,'S')))

@@ -76,86 +76,78 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
     #print('Finished coloring internal vertices of S...')
     return tree_internal_colors
 
-def weight_G_based_on_same_color_HT (G, new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,max_distance,distance_flag,evol,compare_solutions,k):
+def weight_G_based_on_same_color_HT (G, new_G, interesting_vertices_p1,interesting_vertices_p2,max_distance,p1,p2,copmare_solutions):
     index = 1
 
     for u in G.postorder_node_iter():
-        new_G.add_node(index, label=u.label,same_HT_score = [0,0],same_doup_score = [0,0],ind = index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
+        new_G.add_node(index, label=u.label, p1=0, p2=0, ind=index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
         if not is_a_leaf(u):
             child = u.child_nodes()
             if has_left_child(u) and has_right_child(u):
                 right_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[1]) + 1]
                 left_child_in_new_G = new_G.nodes()[list(G.postorder_node_iter()).index(child[0]) + 1]
-                new_weight_HT,new_weight_doup = edge_weight_based_on_same_color_HT(u,right_child_in_new_G,left_child_in_new_G, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,max_distance,distance_flag,evol,compare_solutions,k)
-                for i in [0,1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
-                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
+                new_weight_p1 = edge_weight_based_on_interesting_vertices(u,right_child_in_new_G,left_child_in_new_G, interesting_vertices_p1,max_distance,p1,copmare_solutions,'p1')
+                new_weight_p2 = edge_weight_based_on_interesting_vertices(u,right_child_in_new_G,left_child_in_new_G, interesting_vertices_p2,max_distance,p2,copmare_solutions,'p2')
 
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1, weight_HT = left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1, weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
+                new_G.nodes[index]['p1'] += new_weight_p1
+                new_G.nodes[index]['p2'] += new_weight_p2
+
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1, weight_p1 = left_child_in_new_G['p1'],weight_p2 = left_child_in_new_G['p2'])
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1]) + 1, weight_p1 = right_child_in_new_G['p1'],weight_p2 = right_child_in_new_G['p2'])
             elif has_right_child(u):
                 right_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[1]) + 1]
-                new_weight_HT, new_weight_doup = edge_weight_based_on_same_color_HT(u, right_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,distance_flag,evol,compare_solutions,k)
-                for i in [0,1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
-                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
-                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1,weight_HT = right_child_in_new_G['same_HT_score'],weight_doup = right_child_in_new_G['same_doup_score'])
+                new_weight_p1 = edge_weight_based_on_interesting_vertices(u, right_child_in_new_G, None, interesting_vertices_p1,max_distance,p1,copmare_solutions,'p1')
+                new_weight_p2 = edge_weight_based_on_interesting_vertices(u, right_child_in_new_G, None, interesting_vertices_p2,max_distance,p2,copmare_solutions,'p2')
 
-            else :
+                new_G.nodes[index]['p1'] += new_weight_p1
+                new_G.nodes[index]['p2'] += new_weight_p2
+                new_G.add_edge(index, list(G.postorder_node_iter()).index(child[1])+1,weight_p1 = right_child_in_new_G['p1'],weight_p2 = right_child_in_new_G['p2'])
+
+            else:
                 left_child_in_new_G = new_G.nodes[list(G.postorder_node_iter()).index(child[0]) + 1]
-                new_weight_HT, new_weight_doup = edge_weight_based_on_same_color_HT(u, left_child_in_new_G, None, red_HT_vertices_in_G,black_HT_vertices_in_G,red_doup,black_doup,distance_flag,evol,compare_solutions,k)
-                for i in [0, 1]:
-                    new_G.nodes[index]['same_HT_score'][i] += new_weight_HT[i]
-                    new_G.nodes[index]['same_doup_score'][i] += new_weight_doup[i]
+                new_weight_p1 = edge_weight_based_on_interesting_vertices(u, left_child_in_new_G, None, interesting_vertices_p1,max_distance,p1,copmare_solutions,'p1')
+                new_weight_p2 = edge_weight_based_on_interesting_vertices(u, left_child_in_new_G, None, interesting_vertices_p2,max_distance,p2,copmare_solutions,'p2')
+
+                new_G.nodes[index]['p1'] += new_weight_p1
+                new_G.nodes[index]['p2'] += new_weight_p2
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1,
-                               weight_HT=left_child_in_new_G['same_HT_score'],weight_doup = left_child_in_new_G['same_doup_score'])
+                               weight_p1=left_child_in_new_G['p1'],weight_p2 = left_child_in_new_G['p2'])
         index += 1
     return new_G
 
-def edge_weight_based_on_same_color_HT(x, y, z, red_HT_vertices_in_G, black_HT_vertices_in_G,red_doup,black_doup,max_distance, distance_flag,evol,compare_solutions,k):
-    res_HT = [0,0]         #res[0] = reds score, res[1] = blacks score
-    res_doup = [0, 0]
-    if 'HT' in evol:
-        for nd in red_HT_vertices_in_G:
-            if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
-                if distance_flag:
-                    dis_factor = red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['distance']/max_distance[0]
-                else :
-                    dis_factor = 1
-                res_HT[0] += red_HT_vertices_in_G[red_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
-
-        for nd in black_HT_vertices_in_G:
-            if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
-                if distance_flag:
-                    dis_factor = black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['distance']/max_distance[1]
-                else :
-                    dis_factor = 1
-                res_HT[1] += black_HT_vertices_in_G[black_HT_vertices_in_G.index(nd)]['probability'] * dis_factor
-
-    if 'D' in evol:
-        for nd in red_doup:
-            if nd['curr']['s'] == x.label:
-                if not compare_solutions:
-                    res_doup[0] += red_doup[red_doup.index(nd)]['probability']
-                else :
-                    res_doup[0] += 1
-        for nd in black_doup:
-            if nd['curr']['s'] == x.label:
-                if not compare_solutions:
-                    res_doup[1] += black_doup[black_doup.index(nd)]['probability']
-                else:
-                    res_doup[1] += 1
-    if z != None:
-        res_HT[0] += z['same_HT_score'][0]
-        res_HT[1] += z['same_HT_score'][1]
-        res_doup[0] += z['same_doup_score'][0]
-        res_doup[1] += z['same_doup_score'][1]
-    if y != None :
-        res_HT[0] += y['same_HT_score'][0]
-        res_HT[1] += y['same_HT_score'][1]
-        res_doup[0] += y['same_doup_score'][0]
-        res_doup[1] += y['same_doup_score'][1]
-    return res_HT,res_doup
+def edge_weight_based_on_interesting_vertices(x, y, z, interesting_vertices_p,max_distance, p,compare_solutions,name):
+    res_p = 0
+    if p[0] is not None:
+        if 'HT' in p[0]:
+            for nd in interesting_vertices_p:
+                if nd['curr']['event'] == 'HT':
+                    if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
+                        if p[2]:
+                            dis_factor = interesting_vertices_p[interesting_vertices_p.index(nd)]['distance']/max_distance
+                        else :
+                            dis_factor = 1
+                        res_p += interesting_vertices_p[interesting_vertices_p.index(nd)]['probability'] * dis_factor
+        if 'D' in p[0]:
+            for nd in interesting_vertices_p:
+                if nd['curr']['event'] == 'D':
+                    if nd['curr']['s'] == x.label:
+                        if not compare_solutions:
+                            res_p += interesting_vertices_p[interesting_vertices_p.index(nd)]['probability']
+                        else :
+                            res_p += 1
+        if 'S' in p[0]:
+            for nd in interesting_vertices_p:
+                if nd['curr']['event'] == 'S':
+                    if nd['curr']['s'] == x.label:
+                        if not compare_solutions:
+                            res_p += interesting_vertices_p[interesting_vertices_p.index(nd)]['probability']
+                        else :
+                            res_p += 1
+        if z != None:
+            res_p += z[name]
+        if y != None :
+            res_p += y[name]
+    return res_p
 
 def random_son(t,u):
     out = t.out_edges(u[1]['ind'], data=True)
@@ -178,19 +170,14 @@ def number_of_edges_in_subtree(G):
     #print ('Finished counting edges in G')
     return G
 
-def find_max_d_of_HT(dis, red_list, black_list,evolutanry_event):
-    if 'HT' in evolutanry_event:
-        max_red = 0
-        max_black = 0
-        for HT in red_list:
+def find_max_d_of_HT(dis, interesting_vertices,pattern):
+    if 'HT' in pattern[0]:
+        maxi = 0
+        for HT in interesting_vertices:
             HT_curr_dis = dis[(HT['curr']['t'],HT['HT_to_in_G']['t'])]
-            if HT_curr_dis > max_red:
-                max_red = HT_curr_dis
-        for HT in black_list:
-            HT_curr_dis = dis[(HT['curr']['t'],HT['HT_to_in_G']['t'])]
-            if HT_curr_dis > max_black:
-                max_black = HT_curr_dis
-        return [max_red,max_black]
+            if HT_curr_dis > maxi:
+                maxi = HT_curr_dis
+        return maxi
     else :
         return
 
@@ -266,50 +253,31 @@ def find_node_in_networkx_tree(tree,label):
             return u
     return None
 
-def normlize_weights(G,old_G, colors,sigma,k,color_flag):
-    if color_flag:
-        G_internal_colors = color_tree(old_G, 'G', {}, colors, sigma)
-
+def normlize_weights(G,k,p,name):
     for nd in (reversed(list(nx.topological_sort(G)))):
-        if color_flag:
-            u = G.nodes(data=True)[nd]
-            reds_under_u = G_internal_colors[u['label']][0]
-            blacks_under_u = G_internal_colors[u['label']][1]
-            total_under_u = reds_under_u + blacks_under_u
-            pr_red_u = reds_under_u / total_under_u
-            pr_black_u = blacks_under_u / total_under_u
-
-            pr = [pr_red_u,pr_black_u]
-
-            for i in [0, 1]:
-                if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                    if pr[i] == 0:
-                        G.nodes(data=True)[nd]['same_HT_score'][i] = math.inf
-                    elif pr[i] == 1:
-                        G.nodes(data=True)[nd]['same_HT_score'][i] = 0
-                    else:
-                        G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k * pr[i])
-                    G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
-        else:
-            for i in [0, 1]:
-                if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                    G.nodes(data = True)[nd]['same_HT_score'][i] = G.nodes(data = True)[nd]['same_HT_score'][i] / (G.nodes(data = True)[nd]['edges_in_subtree'] * k)
-                    G.nodes(data=True)[nd]['same_doup_score'][i] = G.nodes(data=True)[nd]['same_doup_score'][i] / (G.nodes(data=True)[nd]['edges_in_subtree'] * k)
+        if p[0] is not None:
+            if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
+                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (G.nodes(data = True)[nd]['edges_in_subtree'] * k )
     return G
 
-def find_max_scores(G,number_of_planted_vertices,TH_edges_in_subtree,TH_compare_subtrees):
-    max_score_HT = [0]*number_of_planted_vertices
-    max_score_doup = [0]*number_of_planted_vertices
-    for nd in (reversed(list(nx.topological_sort(G)))):
-        red_HT = G.nodes[nd]['same_HT_score'][0]
-        black_HT = G.nodes[nd]['same_HT_score'][1]
-        red_doup = G.nodes[nd]['same_doup_score'][0]
-        if G.nodes(data=True)[nd]['edges_in_subtree'] >= TH_edges_in_subtree:
-            if black_HT >= TH_compare_subtrees * red_HT or red_HT >= TH_compare_subtrees * black_HT:
-                for i in [0,1]:
-                    max_score_HT = utiles.update_top_ranking_list(G.nodes[nd]['same_HT_score'][i],max_score_HT)
-            max_score_doup = utiles.update_top_ranking_list(red_doup,max_score_doup)
-    return max_score_HT,max_score_doup
+def find_max_scores(G,number_of_planted_vertices,name,TH):
+    max_score_p = [0]*number_of_planted_vertices
+    max_score = max_score_p
+    if name == 'p1':
+        for nd in (reversed(list(nx.topological_sort(G)))):
+            if G.nodes(data=True)[nd]['edges_in_subtree'] >= TH:
+                max_score = utiles.update_top_ranking_list(G.nodes[nd][name],max_score_p)
+    else:
+        for nd in (reversed(list(nx.topological_sort(G)))):
+            out_going = G.out_edges([nd], data=True)
+            out_going = [e for e in out_going]
+            if out_going != []:
+                child1 = G.nodes(data=True)[out_going[0][1]]
+                child2 = G.nodes(data=True)[out_going[1][1]]
+                if child1['edges_in_subtree'] >= TH and child2['edges_in_subtree'] >= TH:
+                    max_score = utiles.update_top_ranking_list(child1['p1']+child2['p2'], max_score_p)
+                    max_score = utiles.update_top_ranking_list(child1['p2']+child2['p1'], max_score)
+    return max_score
 
 def copy_G(G,new_G):
     index = 1

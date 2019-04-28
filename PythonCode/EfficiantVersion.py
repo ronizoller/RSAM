@@ -351,7 +351,7 @@ def remove_prob_zero(H, deleted_nodes):
     #print('Finished removing prob. 0.\n')
     return H
 
-def assign_probabilities(S, G, H, gamma):
+def assign_probabilities(S, G, H, gamma,path):
     #print('Assigning probs to hypergraph....')
     flag = False
     to_try = G.seed_node.label
@@ -365,7 +365,7 @@ def assign_probabilities(S, G, H, gamma):
             outgoing_edges_v = [e for e in outgoing_edges if e[2]['source'] == i]
             incoming_edges_v = [e for e in incoming_edges if e[2]['target'] == i]
             if (nd['s'] != to_try or nd['t'] != to_try_sp):
-                if outgoing_edges_v==[]:
+                if outgoing_edges_v == []:
                     s = 0
                 else:
                     s = 0
@@ -376,8 +376,6 @@ def assign_probabilities(S, G, H, gamma):
                 nd['l'][i].update({'probability':new_prob})
                 for e in incoming_edges_v:
                     e[2]['probability'] = new_prob
-                #if new_prob > 1:
-                    #print ('This is bad: nd = '+str(nd)+' with prob: '+str(new_prob)+'\n')
             else:
                 flag = True
                 nd['l'] = assign_weights_to_list(nd['l'], gamma)
@@ -387,11 +385,6 @@ def assign_probabilities(S, G, H, gamma):
     if flag == False:
         print('     ** No reconciliation of '+to_try+' exists. **')
         return None, 0
-    #print('     Writing nodes...')
-    #file = open(path+'/saved_data/H_nodes_effi.txt', 'w')
-    #file.write(str(H.nodes(data=True)))
-    #file.close()
-    #print('     Finished writing nodes.\n')
     for nd in H.nodes(data = True):
         for g in range(0,len(nd[1]['l'])):
             if nd[1]['l'][g]['probability'] > max_prob:

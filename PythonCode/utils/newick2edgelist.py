@@ -23,7 +23,7 @@ def init_internal_labels (tree,char):
     return tree
 
 def main(path):
-    exte = 'deltaepsilon'
+    exte = 'bacteria'
     t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
     t = init_internal_labels(t,'x')
     path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
@@ -33,6 +33,6 @@ def main(path):
     file.close()
 
 if __name__ == "__main__":
-    cogs_names = [ 'COG3549']
+    cogs_names = [ 'COG2602']
     for name in cogs_names:
         main('//Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name)
