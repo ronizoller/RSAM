@@ -2,7 +2,7 @@ on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 
-name = 'COG2602'
+name = 'COG3550'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/COGS/'
@@ -377,8 +377,8 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['HT'], 'red', True)
-    p2 = (['S','D','HT'], 'black', None)
+    p1 = (['D'], None, False)
+    p2 = (None,None, None)
 
     if p2[0] is not None:
         pattern_name = '('+str(p1)+'_'+str(p2)+')_Double-Mode'
@@ -439,8 +439,8 @@ def main():
     else:
         p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
 
-    #if not on_lab:
-    #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
+    if not on_lab:
+        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
     #tree_operations.reroot_and_save(S,'x227',path,speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)

@@ -1,7 +1,7 @@
-cogs_names = ['COG2602']
+cogs_names = ['COG3550']
 path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 for name in cogs_names:
-    with open('/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name+'/FASTA.txt','r') as fp:
+    with open('/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name+'/FASTA_bacteria.txt','r') as fp:
         res = ''
         for line in fp:
             if line[0] == '>':

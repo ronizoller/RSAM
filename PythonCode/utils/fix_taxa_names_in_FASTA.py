@@ -1,5 +1,5 @@
 path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
-COGS_names = ['COG2602']
+COGS_names = ['COG3550']
 for name in COGS_names:
     ids = ''
     names_map = {}

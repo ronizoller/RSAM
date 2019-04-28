@@ -4,7 +4,7 @@
 
 path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 
-COGS_names = ['COG2602']
+COGS_names = ['COG3550']
 for name in COGS_names:
     res = '{ '
     G_text = open(path+name+'/GeneTree(binary)_local.txt', 'r').read()
