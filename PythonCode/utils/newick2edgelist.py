@@ -33,6 +33,6 @@ def main(path):
     file.close()
 
 if __name__ == "__main__":
-    cogs_names = [ 'COG2602']
+    cogs_names = ['COG3550']
     for name in cogs_names:
-        main('//Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name)
+        main('/storage/DATA/users/ronizo/'+name)

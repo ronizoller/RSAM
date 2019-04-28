@@ -1,11 +1,11 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
 
 name = 'COG3550'
 
 if on_lab:
-        path = '/storage/DATA/users/ronizo/COGS/'
+        path = '/storage/DATA/users/ronizo/'
 else:
     import sys
     sys.path.append('/PycharmProjects/RSAM_venv/lib/python3.6/site-packages/graphviz/')
@@ -439,8 +439,8 @@ def main():
     else:
         p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
 
-    if not on_lab:
-        draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
+    #if not on_lab:
+    #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
     #tree_operations.reroot_and_save(S,'x227',path,speciesTreespecification)
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
