@@ -1,8 +1,8 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
 
-name = 'COG2602'
+name = 'COG3549'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -26,12 +26,12 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'bacteria'
-geneExt = 'bacteria'
+speciesTreespecification = 'proteobacteria'
+geneExt = 'proteobacteria'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
-k = 10
+k = 50
 exact_names = True
 
 TH_mostly_speciations = 0
@@ -377,8 +377,8 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['HT'], 'red', True)
-    p2 = (['D','S','HT'],'black', False)
+    p1 = (['D'], None, False)
+    p2 = (['HT'],None, True)
 
     if p2[0] is not None:
         pattern_name = '('+str(p1)+'_'+str(p2)+')_Double-Mode'
