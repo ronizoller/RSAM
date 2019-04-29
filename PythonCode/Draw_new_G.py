@@ -11,19 +11,19 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-p1 = (['HT'], 'red', True)
-p2 = (['S', 'D', 'HT'], 'black', None)
-color = True
+p1 = (['D'], None, False)
+p2 = (['HT'], None, False)
+color = False
 
-ext = 'bacteria'
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602/'
+ext = 'deltaepsilon'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
 
 S_colors = {}
 big_size = 3000
 small_size = 7
 number_of_douplications = 3
-x_axis = 100
-y_axis = 50
+x_axis = 20
+y_axis = 30
 
 
 def number_of_scpecies_doup(G,old_sigma):

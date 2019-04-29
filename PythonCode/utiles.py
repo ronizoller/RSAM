@@ -373,6 +373,10 @@ def index_with_repeting(lst,item,list_of_returned):
     if list_of_returned[index] == 1:
         while index < len(list_of_returned) and list_of_returned[index] == 1:
             index += 1
+    print(index)
+    print(list_of_returned)
+    print(lst)
+    print('\n')
     list_of_returned[index] = 1
     lst.reverse()
     return index,list_of_returned

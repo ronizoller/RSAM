@@ -257,7 +257,7 @@ def normlize_weights(G,k,p,name):
     for nd in (reversed(list(nx.topological_sort(G)))):
         if p[0] is not None:
             if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (G.nodes(data = True)[nd]['edges_in_subtree'] * k )
+                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0])*G.nodes(data = True)[nd]['edges_in_subtree'] * k )
     return G
 
 def find_max_scores(G,number_of_planted_vertices,name,TH):
