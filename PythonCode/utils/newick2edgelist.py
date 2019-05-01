@@ -35,4 +35,4 @@ def main(path):
 if __name__ == "__main__":
     cogs_names = ['COG3549']
     for name in cogs_names:
-        main('/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name)
+        main('/storage/DATA/users/ronizo/'+name)

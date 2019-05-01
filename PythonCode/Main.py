@@ -2,7 +2,7 @@ on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
 
-name = 'COG3549'
+name = 'COG2856'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -26,8 +26,8 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'proteobacteria'
-geneExt = 'proteobacteria'
+speciesTreespecification = 'deltaepsilon'
+geneExt = 'deltaepsilon'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -358,7 +358,7 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
         file.write(str(lists))
         file.close()
-    print('max_list: ' + str(max_list))
+    print('marked vertices: ' + str(marked_nodes))
 
     print('COG: %s Class: %s Pattern: %s\nNumber of co-optimal out of %s solutions: %s with cost %s' % (str(name),str(speciesTreespecification),pattern_name
                                                                                                         ,str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
@@ -378,7 +378,7 @@ def main():
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
     p1 = (['D'], None, False)
-    p2 = (['HT'],None, True)
+    p2 = (['HT'],None, False)
 
     if p2[0] is not None:
         pattern_name = '('+str(p1)+'_'+str(p2)+')_Double-Mode'
@@ -435,7 +435,7 @@ def main():
         G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
     if 'D' in p1[0]:
-        p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.15)
+        p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
     else:
         p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
 
