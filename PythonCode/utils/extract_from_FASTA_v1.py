@@ -9,7 +9,7 @@ save_aligned = False
 def main(lists,path,ext,nd,pattern,gene_list):
     if pattern == '':
         for list, vertex_name in lists:
-            with open(path + '/FASTA.txt', 'r') as fp:
+            with open(path + '/FASTA_bacteria.txt', 'r') as fp:
                 input = open(path + "/old_new_names.txt", 'r')
                 old_new_names = []
                 for line in input:

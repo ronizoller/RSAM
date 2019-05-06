@@ -76,16 +76,16 @@ def find_signi_distance(new_G, all_vertices, p1,p2,max_score_p1_list,max_score_p
                                 marked_nodes.update({u['label']: [u_p1_score,'Single-mode']})
             else:
                 print(
-                    '(Douple-mode)     %s (v = %s, w = %s) :\n        v p1 score:  %s, w p2 score: %s, edges in subtree u: %s\n     TH_edges p1: %s\n      max_scores p1+p2: %s\n' %
-                    (u['label'], str(v['label']), str(w['label']), str(v_p1_score), str(w_p2_score),
+                    '(Douple-mode)     %s (v = %s, w = %s) :\n        v p1 score:  %s, w p2 score: %s,w p1 score:  %s, v p2 score: %s , edges in subtree u: %s\n     TH_edges p1: %s\n      max_scores p1+p2: %s\n' %
+                    (u['label'], str(v['label']), str(w['label']), str(v_p1_score), str(w_p2_score),str(w_p1_score), str(v_p2_score),
                      str(u['edges_in_subtree']),str(p1[3]), str(max_score_p1_and_p2_list)))
 
-                if v['edges_in_subtree'] >= p1[3] and w['edges_in_subtree']:
+                if v['edges_in_subtree'] >= p1[3] and w['edges_in_subtree'] >= p1[3]:
                         if check_diffrence_between_solutions:
                             all_vertices.update({u['label']: u_p1_score})
-                        elif v_p1_score + w_p2_score in max_score_p1_and_p2_list:
+                        elif v_p1_score + w_p2_score in max_score_p1_and_p2_list and v['edges_in_subtree'] > w['edges_in_subtree']:
                                 marked_nodes.update({u['label']: [v_p1_score,w_p2_score, 'Double-mode,'+str(v['label']+'_p1')]})
-                        elif w_p1_score + v_p2_score in max_score_p1_and_p2_list:
+                        elif w_p1_score + v_p2_score in max_score_p1_and_p2_list and w['edges_in_subtree'] > v['edges_in_subtree']:
                                 marked_nodes.update({u['label']: [w_p1_score,v_p2_score, 'Double-mode,'+str(w['label']+'_p1')]})
         else:
             if check_diffrence_between_solutions and p1[3] == 0:

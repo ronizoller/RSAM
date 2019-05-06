@@ -4,8 +4,8 @@ from utils import extract_from_FASTA_v1 as extr
 
 path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 
-COGS = ['COG3549']
-classes = ['alpha','beta','gamma','deltaepsilon']
+COGS = ['COG1396']
+classes = ['deltaepsilon']
 for COG in COGS:
     for clas in classes:
         S = tr.Tree.get_from_path(path + '/' + COG + "/phyliptree(binary," + clas + ").phy", schema="newick")
@@ -14,7 +14,6 @@ for COG in COGS:
         for line in input:
             sigma.append(eval(line))
         sigma = sigma[0]
-        print(S.seed_node.label)
         list1 = tree_operations.leaf_in_subtrees(S, 'S', S.seed_node.label , sigma, False)[0]+tree_operations.leaf_in_subtrees(S, 'S', S.seed_node.label , sigma, False)[1]
 
         print('COG: %s, class: %s, \n%s\n' % (str(COG),str(clas),str(list1)))

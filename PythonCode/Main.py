@@ -1,8 +1,8 @@
-on_lab = True
+on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 
-name = 'COG2856'
+name = 'COG1396'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -34,8 +34,6 @@ compare_subtrees = False                             # if true the algorithm wil
 k = 50
 exact_names = True
 
-TH_mostly_speciations = 0
-min_spesiction_events = 0
 
 HT_cost = 1
 D_cost = 1
@@ -377,8 +375,8 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['D'], None, False)
-    p2 = (['HT'],None, False)
+    p1 = (['HT'], None, True)
+    p2 = (None, None, False)
 
     if p2[0] is not None:
         pattern_name = '('+str(p1)+'_'+str(p2)+')_Double-Mode'
@@ -437,7 +435,7 @@ def main():
     if 'D' in p1[0]:
         p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
     else:
-        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
+        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.2)
 
     #if not on_lab:
     #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)

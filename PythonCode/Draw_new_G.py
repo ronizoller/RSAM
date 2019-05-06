@@ -11,19 +11,20 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-p1 = (['D'], None, False)
-p2 = (['HT'], None, False)
+p1 = (['HT'], None, True)
+p2 = (None, None, False)
+double_mode = False
 color = False
 
 ext = 'deltaepsilon'
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG1396/'
 
 S_colors = {}
 big_size = 3000
 small_size = 7
-number_of_douplications = 3
-x_axis = 20
-y_axis = 30
+number_of_douplications = 6
+x_axis = 80
+y_axis = 40
 
 
 def number_of_scpecies_doup(G,old_sigma):
@@ -69,6 +70,8 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
     nodes_color = []
     nodes_size = []
     max_size = max([x[0] for u,x in marked_nodes.items()])
+    if double_mode:
+       max_size = max([x[1]+x[0] for u,x in marked_nodes.items()])
     exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
@@ -83,6 +86,8 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
         if nd[1]['label'] in marked_nodes and (not flag):
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
+            if double_mode:
+                temp_size = marked_nodes[nd[1]['label']][0]+marked_nodes[nd[1]['label']][1]
             nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
         elif not flag:
             nodes_color.append('#FFFFFF')
@@ -128,9 +133,9 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
     nodes_color = []
     nodes_size = []
     max_size = max([x[0] for u, x in marked_nodes.items()])
-    if pattern_name[len(pattern_name) - 11:] == 'Double-Mode':
+    if double_mode:
         max_size = max([x[0]+x[1] for u,x in marked_nodes.items()])
-    exp_facor = math.log(size)+18
+    exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0 and color:
@@ -143,9 +148,9 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_sub
         elif nd[1]['label'] in marked_nodes:
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
-            if pattern_name[len(pattern_name)-11:] == 'Double-Mode':
-                temp_size = marked_nodes[nd[1]['label']][0] + marked_nodes[nd[1]['label']][0]
-            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
+            if double_mode:
+                temp_size = marked_nodes[nd[1]['label']][0] + marked_nodes[nd[1]['label']][1]
+            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
         else:
             nodes_color.append('white')
             nodes_size.append(200)

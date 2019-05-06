@@ -1,9 +1,29 @@
-path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3093/'
-old_genes  = ['1265502.KB905931 gene1593', '1265502.KB906002 gene3329', '1223521.BBJX01000010 gene79', '535289.Dtpsy 3235', '1223521.BBJX01000010 gene148', '596153.Alide 0472', '94624.Bpet4638', '216591.BCAL1127', '375286.mma 2741', '795666.MW7 1022', '228410.NE2538', '426114.THI 1922', '269482.Bcep1808 3274', '640512.BC1003 6099', '864073.HFRIS 020045', '522306.CAP2UW1 3865', '420662.Mpe A2374']
+import extract_from_FASTA_v1 as extr
 
-import os
 
+
+path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
+path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3505/'
+pattern = "(['D'], None, False)_Single-Mode"
+range_to_search = range(0,20)
+old_genes  = []
+file_to_examine = 'FASTA_result_1th_solution_u119.txt'
+all = True
+
+if all:
+    path = path_source + 'FASTA_deltaepsilon.txt'
+else:
+    path = path_source + "/saved_data/results/"+pattern+'/'+file_to_examine
+
+with open(path , 'r') as fp:
+    for line in fp:
+        if line[0] == '>':
+            flag = False
+            name = line[line.find('[') + 1:line.find(']')]
+            gene_name = line[1:line.find('[')]
+            if gene_name[len(gene_name)-1] == ' ':
+                gene_name = gene_name [:len(gene_name)-1]
+            old_genes.append(gene_name)
 input = open(path_source+'/0/sigma0.0.txt', 'r')
 sigma = []
 for line in input:
@@ -14,36 +34,69 @@ old_new_names = []
 for line in input:
     old_new_names.append(eval(line))
 old_new_names = old_new_names[0]
+old_new_names_no_spaces = {}
 
+for name,new_name in old_new_names.items():
+    old_new_names_no_spaces.update({name.replace(' ',''):new_name})
 species_genes = {}
 species = []
-res = {}
+res = []
 found = {}
 
 def find_gene_number (gene):
     gene_number = ''
     i = len(gene) - 1
+    if gene[i] == ' ':
+        i = i-1
     while gene[i].isdigit():
         gene_number += gene[i]
-    return int(gene_number)
+        i -= 1
+    pref = ''
+    while i >= 0:
+        pref += gene[i]
+        i -= 1
+    gene_number = gene_number[::-1]
+    if gene_number != '':
+        return int(gene_number),pref[::-1]
+    else:
+        return -1,pref[::-1]
 
 for gene in old_genes:
-    species_genes.update({gene:sigma[gene]})
-    species.append(sigma[gene])
+    if gene.replace('_',' ') in sigma:
+        species_genes.update({gene:sigma[gene.replace('_',' ')]})
+        species.append(sigma[gene.replace('_',' ')])
 
-with open(path_target + '/FASTA.txt', 'r') as fp:
+with open(path_target + '/FASTA_bacteria.txt', 'r') as fp:
     flag = False
     for line in fp:
         if line[0] == '>':
-            flag = False
-            name = line[line.find('[') + 1:line.find(']')]
+            name = line[line.find('[') + 1:line.find(']')].replace(' ','')
             gene_name = line[1:line.find('[')].replace('_', ' ')
-            if name in species:
-                for gene,spec in species_genes:
-                    old_gene_number = find_gene_number(gene)
-                    new_gene_number = find_gene_number(gene_name)
-                    if old_gene_number + 1 == new_gene_number or old_gene_number -1 == new_gene_number:
-                        res.update({spec:gene_name})
-                        found.update({gene_name:gene})
-print(res)
+            new_gene_number, pref_new = find_gene_number(gene_name)
+            if name in old_new_names_no_spaces:
+                if old_new_names_no_spaces[name].replace(' ','') in species:
+                    for gene,spec in species_genes.items():
+                        old_gene_number,pref_old = find_gene_number(gene)
+                        if pref_old == pref_new.replace(' ','_'):
+                            for j in range_to_search:
+                                if old_gene_number + j == new_gene_number or old_gene_number - j == new_gene_number:
+                                    res.append(gene_name.replace('_',' '))
+                                    found.update({gene:gene_name})
+extr.main([(res, '_bacteria')], path_target, 'bacteria', '', pattern, True)
 print(found)
+number_of_found = 0
+for old_gene in old_genes:
+    if old_gene.replace('_',' ') in sigma:
+        flag = False
+        for old,new in found.items():
+            if old == old_gene:
+                number_of_found += 1
+                flag = True
+        #if not flag:
+        #    print('gene %s for specie %s was not found' % (str(old_gene),str(species_genes[old_gene])))
+        if flag:
+            print('gene %s in COG3550 for specie %s was found (%s)' % (str(old_gene),str(species_genes[old_gene]),found[old_gene]))
+    else:
+        print(old_gene+' is not in sigma')
+
+print('\nfound %s/%s' % (str(number_of_found),str(len(old_genes))))

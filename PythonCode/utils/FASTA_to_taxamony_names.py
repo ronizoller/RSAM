@@ -1,4 +1,4 @@
-cogs_names = ['COG3550']
+cogs_names = ['COG1396']
 path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 for name in cogs_names:
     with open('/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name+'/FASTA_bacteria.txt','r') as fp:

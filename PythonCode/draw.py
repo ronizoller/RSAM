@@ -275,7 +275,7 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext, to_color):
         lst[0] = lst[0] + 100
         postree_G.update({k:tuple(lst)})
 
-    fig, axes = plt.subplots(1,2,figsize=(30, 30))
+    fig, axes = plt.subplots(1,2,figsize=(90, 50))
     ax = axes.flatten()
 
     ax[0].set_title('Species tree',fontsize=50,rotation='vertical',x=-0.1,y=0.5)

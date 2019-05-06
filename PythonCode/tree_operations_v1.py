@@ -174,9 +174,10 @@ def find_max_d_of_HT(dis, interesting_vertices,pattern):
     if 'HT' in pattern[0]:
         maxi = 0
         for HT in interesting_vertices:
-            HT_curr_dis = dis[(HT['curr']['t'],HT['HT_to_in_G']['t'])]
-            if HT_curr_dis > maxi:
-                maxi = HT_curr_dis
+            if 'HT_to_in_G' in HT:
+                HT_curr_dis = dis[(HT['curr']['t'],HT['HT_to_in_G']['t'])]
+                if HT_curr_dis > maxi:
+                    maxi = HT_curr_dis
         return maxi
     else :
         return
@@ -257,7 +258,7 @@ def normlize_weights(G,k,p,name):
     for nd in (reversed(list(nx.topological_sort(G)))):
         if p[0] is not None:
             if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0])*G.nodes(data = True)[nd]['edges_in_subtree'] * k )
+                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0]) * G.nodes(data = True)[nd]['edges_in_subtree'] * k )
     return G
 
 def find_max_scores(G,number_of_planted_vertices,name,TH):
@@ -275,8 +276,10 @@ def find_max_scores(G,number_of_planted_vertices,name,TH):
                 child1 = G.nodes(data=True)[out_going[0][1]]
                 child2 = G.nodes(data=True)[out_going[1][1]]
                 if child1['edges_in_subtree'] >= TH and child2['edges_in_subtree'] >= TH:
-                    max_score = utiles.update_top_ranking_list(child1['p1']+child2['p2'], max_score_p)
-                    max_score = utiles.update_top_ranking_list(child1['p2']+child2['p1'], max_score)
+                    if child1['edges_in_subtree'] > child2['edges_in_subtree']:
+                        max_score = utiles.update_top_ranking_list(child1['p1']+child2['p2'], max_score_p)
+                    if child2['edges_in_subtree'] > child1['edges_in_subtree']:
+                        max_score = utiles.update_top_ranking_list(child1['p2']+child2['p1'], max_score)
     return max_score
 
 def copy_G(G,new_G):
