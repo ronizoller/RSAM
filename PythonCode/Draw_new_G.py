@@ -11,19 +11,19 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-p1 = (['HT'], None, True)
-p2 = (None, None, False)
-double_mode = False
+p1 = (['D'], None, False)
+p2 = (['HT'], None, False)
 color = False
+double_mode = p2[0] is not None
 
-ext = 'deltaepsilon'
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG1396/'
+ext = 'proteobacteria'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
 
 S_colors = {}
 big_size = 3000
 small_size = 7
-number_of_douplications = 6
-x_axis = 80
+number_of_douplications = 4
+x_axis = 100
 y_axis = 40
 
 

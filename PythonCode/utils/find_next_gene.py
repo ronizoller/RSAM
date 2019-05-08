@@ -2,16 +2,16 @@ import extract_from_FASTA_v1 as extr
 
 
 
-path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3505/'
-pattern = "(['D'], None, False)_Single-Mode"
-range_to_search = range(0,20)
+path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
+path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3093/'
+pattern = "((['D'], None, False)_(['HT'], None, False))_Double-Mode"
+range_to_search = range(1,2)
 old_genes  = []
-file_to_examine = 'FASTA_result_1th_solution_u119.txt'
-all = True
+file_to_examine = 'FASTA_result_2_node_u641_p1.txt'
+all = False
 
 if all:
-    path = path_source + 'FASTA_deltaepsilon.txt'
+    path = path_source + 'FASTA_proteobacteria.txt'
 else:
     path = path_source + "/saved_data/results/"+pattern+'/'+file_to_examine
 
