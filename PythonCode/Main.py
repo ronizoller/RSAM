@@ -1,4 +1,4 @@
-on_lab = False
+on_lab = True
 check_diffreance_between_solutions = False
 real_data = True
 
@@ -26,8 +26,8 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'deltaepsilon'
-geneExt = 'deltaepsilon'
+speciesTreespecification = 'proteobacteria'
+geneExt = 'proteobacteria'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -65,6 +65,7 @@ big_size = 2000
 small_size = 7
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors):
+    print('Finding pattern '+str(pattern))
     if pattern[0] is not None:
         total_red = S_colors[S.seed_node.label][0]
         total_black = S_colors[S.seed_node.label][1]
@@ -146,7 +147,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
                     elif pattern[1] == None:
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
-
+        print('Finished finding pattern\n')
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return (None,None,None)
 
@@ -345,12 +346,12 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                 itm = x[0]+x[1]
             ind, list_of_returns = utiles.index_with_repeting(max_list, itm, list_of_returns)
             if p2[0] is None:
-                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution',pattern_name,True)
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'_node_'+str(nd),pattern_name,True)
             else:
                 extr.main([(r, '_' + speciesTreespecification)], path, speciesTreespecification,
-                          str(ind) + 'th_solution_right'+x[2], pattern_name, True)
+                          str(ind) + '_node_' + str(nd) + '_'+x[2]+'_right', pattern_name, True)
                 extr.main([(l, '_' + speciesTreespecification)], path, speciesTreespecification,
-                          str(ind) + 'th_solution_left'+ x[2], pattern_name, True)
+                          str(ind) + '_node_'  +str(nd) + '_'+x[2]+'_left', pattern_name, True)
             index += 1
 
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
@@ -375,7 +376,7 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['HT'], None, True)
+    p1 = (['HT','S'], None, True)
     p2 = (None, None, False)
 
     if p2[0] is not None:
@@ -435,7 +436,7 @@ def main():
     if 'D' in p1[0]:
         p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
     else:
-        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
+        p1 = (p1[0], p1[1], p1[2],30)
 
     #if not on_lab:
     #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)

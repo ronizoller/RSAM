@@ -61,7 +61,7 @@ def main(lists,path,ext,nd,pattern,gene_list):
                                     flag = True
                     if flag:
                         res = res + line
-                path_curr_to_save = path + '/saved_data/results/' + pattern + '/FASTA_result_for_pattern_' + pattern + '_' + ext + '_' + nd + '.txt'
+                path_curr_to_save = path + '/saved_data/results/' + pattern + '/FASTA_result_' + nd + '.txt'
                 os.makedirs(os.path.dirname(path_curr_to_save), exist_ok=True)
                 file = open(path_curr_to_save, 'w')
                 file.write(str(res))
