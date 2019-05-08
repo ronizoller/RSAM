@@ -11,8 +11,8 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-p1 = (['D'], None, False)
-p2 = (['HT'], None, False)
+p1 = (['HT'], None, True)
+p2 = (None, None, False)
 color = False
 double_mode = p2[0] is not None
 

@@ -3,11 +3,11 @@ import extract_from_FASTA_v1 as extr
 
 
 path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3093/'
+path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/archive/COG2856/'
 pattern = "((['D'], None, False)_(['HT'], None, False))_Double-Mode"
 range_to_search = range(1,2)
 old_genes  = []
-file_to_examine = 'FASTA_result_2_node_u641_p1.txt'
+file_to_examine = 'FASTA_result_0_node_u1106_Double-mode,u800_p1_left.txt'
 all = False
 
 if all:
