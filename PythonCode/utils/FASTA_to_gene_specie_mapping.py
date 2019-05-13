@@ -1,10 +1,10 @@
 
 path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 
-COGS_names = ['COG1396']
+COGS_names = ['COG2602']
 for name in COGS_names:
     res = '{ '
-    S_text = open(path+name+'/phyliptree(binary,deltaepsilon).phy', 'r').read()
+    S_text = open(path+name+'/phyliptree(binary,bacteria).phy', 'r').read()
     input = open(path+name+"/old_new_names.txt", 'r')
     old_new_names = []
     for line in input:

@@ -301,5 +301,5 @@ def copy_G(G,new_G):
 def reroot_and_save(tree,nd,path,ext):
     new_root = find_node_in_tree(tree,nd)
     tree.reroot_at_node(new_root)
-    tr.write(tree,path+'/rerooted_tree_'+ext, schema="newick")
+    tree.write_to_path(path+'/rerooted_tree_'+ext, schema="newick")
     quit()

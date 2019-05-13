@@ -3,12 +3,12 @@ import extract_from_FASTA_v1 as extr
 
 
 path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/archive/COG2856/'
+path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/archive/COG2856'
 pattern = "((['D'], None, False)_(['HT'], None, False))_Double-Mode"
 range_to_search = range(1,2)
 old_genes  = []
-file_to_examine = 'FASTA_result_0_node_u1106_Double-mode,u800_p1_left.txt'
-all = False
+file_to_examine = "FASTA_result_0_p1.txt"
+all = True
 
 if all:
     path = path_source + 'FASTA_proteobacteria.txt'
@@ -83,7 +83,7 @@ with open(path_target + '/FASTA_bacteria.txt', 'r') as fp:
                                     res.append(gene_name.replace('_',' '))
                                     found.update({gene:gene_name})
 extr.main([(res, '_bacteria')], path_target, 'bacteria', '', pattern, True)
-print(found)
+list_of_found_species = []
 number_of_found = 0
 for old_gene in old_genes:
     if old_gene.replace('_',' ') in sigma:
@@ -95,8 +95,10 @@ for old_gene in old_genes:
         #if not flag:
         #    print('gene %s for specie %s was not found' % (str(old_gene),str(species_genes[old_gene])))
         if flag:
-            print('gene %s in COG3550 for specie %s was found (%s)' % (str(old_gene),str(species_genes[old_gene]),found[old_gene]))
+            print('gene %s for specie %s was found (%s)' % (str(old_gene),str(species_genes[old_gene]),found[old_gene]))
+            list_of_found_species.append(old_gene)
     else:
         print(old_gene+' is not in sigma')
+print(list_of_found_species)
 
 print('\nfound %s/%s' % (str(number_of_found),str(len(old_genes))))

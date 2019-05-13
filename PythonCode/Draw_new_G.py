@@ -11,19 +11,19 @@ import inits_v1 as inits
 import random
 from numpy import inf
 
-p1 = (['HT'], None, True)
+p1 = (['D'], None, False)
 p2 = (None, None, False)
 color = False
 double_mode = p2[0] is not None
 
 ext = 'proteobacteria'
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
 
 S_colors = {}
 big_size = 3000
 small_size = 7
 number_of_douplications = 4
-x_axis = 100
+x_axis = 200
 y_axis = 40
 
 
@@ -83,12 +83,12 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
                     nodes_color.append(special_colors[should_be_found.index(should)])
                     nodes_size.append(400)
                     flag = True
-        if nd[1]['label'] in marked_nodes and (not flag):
+        if nd[1]['label'] in marked_nodes and (not flag) and nd[1]['label'] == 'u1811':
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
             if double_mode:
                 temp_size = marked_nodes[nd[1]['label']][0]+marked_nodes[nd[1]['label']][1]
-            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+1000)
+            nodes_size.append(math.exp((temp_size/max_size)*exp_facor)+500)
         elif not flag:
             nodes_color.append('#FFFFFF')
             nodes_size.append(50)

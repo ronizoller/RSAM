@@ -2,7 +2,7 @@ on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 
-name = 'COG3549'
+name = 'COG2602'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -26,8 +26,8 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'deltaepsilon'
-geneExt = 'deltaepsilon'
+speciesTreespecification = 'bacteria'
+geneExt = 'bacteria'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
@@ -345,7 +345,7 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                 itm = x[0]+x[1]
             ind, list_of_returns = utiles.index_with_repeting(max_list, itm, list_of_returns)
             if p2[0] is None:
-                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution',pattern_name,True)
+                extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
             else:
                 extr.main([(r, '_' + speciesTreespecification)], path, speciesTreespecification,
                           str(ind) + 'th_solution_right'+x[2], pattern_name, True)
@@ -375,7 +375,7 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['HT'], None, True)
+    p1 = ([], None, False)
     p2 = (None, None, False)
 
     if p2[0] is not None:
@@ -432,14 +432,46 @@ def main():
     if tree_operations.remove_unsigma_genes(G, sigma, False) is not []:
         G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,exact_names)
+
     if 'D' in p1[0]:
         p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
     else:
-        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
+        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.05)
+
+
+    if p1[0] == [] and p2[0] == None:
+        G_colors = tree_operations.color_tree(G, 'G', S_colors, colors, sigma)
+        new_G = nx.DiGraph()
+        new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G, [],
+                                                                [], 0, p1, p2,
+                                                                check_diffreance_between_solutions)
+        new_G = tree_operations.number_of_edges_in_subtree(new_G)
+        max_score = [0]*len(G_colors.keys())
+        list_of_scores = []
+        final_scores = []
+        for u,scores in G_colors.items():
+            if tree_operations.find_node_in_networkx_tree(new_G,u)['edges_in_subtree'] > p1[3]:
+                max_score = utiles.update_top_ranking_list(scores[0]/(scores[0]+scores[1]), max_score)
+                list_of_scores.append({u:scores[0]/(scores[0]+scores[1])})
+        for score in max_score:
+            if score != 0:
+                final_scores.append(score)
+        print(max_score)
+        print(list_of_scores)
+        quit()
+
+    if 'D' in p1[0]:
+        p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
+    else:
+        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.05)
 
     #if not on_lab:
     #    draw.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, speciesTreespecification,False)
-    #tree_operations.reroot_and_save(S,'x227',path,speciesTreespecification)
+    #tree_operations.reroot_and_save(S,'x487',path,speciesTreespecification)
+    #r, l = tree_operations.leaf_in_subtrees(G, 'S', 'u595', old_sigma, False)
+    #print('u595: '+str(r+l)+'\n')
+    #quit()
+
     S_dis_matrix = inits.init_distance_S(S_dis_matrix, k, test, path,speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, test, k,
