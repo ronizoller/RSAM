@@ -83,9 +83,9 @@ def find_signi_distance(new_G, all_vertices, p1,p2,max_score_p1_list,max_score_p
                 if v['edges_in_subtree'] >= p1[3] and w['edges_in_subtree'] >= p1[3]:
                         if check_diffrence_between_solutions:
                             all_vertices.update({u['label']: u_p1_score})
-                        elif v_p1_score + w_p2_score in max_score_p1_and_p2_list and v['edges_in_subtree'] > w['edges_in_subtree']:
+                        elif v_p1_score + w_p2_score in max_score_p1_and_p2_list:
                                 marked_nodes.update({u['label']: [v_p1_score,w_p2_score, 'Double-mode,'+str(v['label']+'_p1')]})
-                        elif w_p1_score + v_p2_score in max_score_p1_and_p2_list and w['edges_in_subtree'] > v['edges_in_subtree']:
+                        elif w_p1_score + v_p2_score in max_score_p1_and_p2_list:
                                 marked_nodes.update({u['label']: [w_p1_score,v_p2_score, 'Double-mode,'+str(w['label']+'_p1')]})
         else:
             if check_diffrence_between_solutions and p1[3] == 0:

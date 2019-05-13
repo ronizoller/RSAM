@@ -65,6 +65,7 @@ big_size = 2000
 small_size = 7
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors):
+    print('Finding pattern '+str(pattern))
     if pattern[0] is not None:
         total_red = S_colors[S.seed_node.label][0]
         total_black = S_colors[S.seed_node.label][1]
@@ -146,7 +147,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
                     elif pattern[1] == None:
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
-
+        print('Finished finding pattern\n')
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return (None,None,None)
 
@@ -348,9 +349,9 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                 extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
             else:
                 extr.main([(r, '_' + speciesTreespecification)], path, speciesTreespecification,
-                          str(ind) + 'th_solution_right'+x[2], pattern_name, True)
+                          str(ind) + '_node_' + str(nd) + '_'+x[2]+'_right', pattern_name, True)
                 extr.main([(l, '_' + speciesTreespecification)], path, speciesTreespecification,
-                          str(ind) + 'th_solution_left'+ x[2], pattern_name, True)
+                          str(ind) + '_node_'  +str(nd) + '_'+x[2]+'_left', pattern_name, True)
             index += 1
 
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
