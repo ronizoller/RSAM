@@ -1,8 +1,8 @@
 on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
-
-name = 'COG2602'
+ranking = True
+name = 'COG3550'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -26,12 +26,12 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'bacteria'
-geneExt = 'bacteria'
+speciesTreespecification = 'deltaepsilon'
+geneExt = 'deltaepsilon'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
-k = 50
+k = 2
 exact_names = True
 
 
@@ -41,7 +41,7 @@ S_cost = 0
 save_data = False
 
 planted_vertices = []
-number_of_planted_vertices = 5
+number_of_planted_vertices = 651
 
 if not real_data:
     input = open(path + '/saved_data/planted_nodes_correct_names.txt', 'r')
@@ -357,6 +357,27 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
         file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
         file.write(str(lists))
         file.close()
+        if ranking:
+            final_scores = []
+            for score in max_list:
+                if score != 0:
+                    final_scores.append(score)
+            final_scores.reverse()
+            res = []
+            for u,score in marked_nodes.items():
+                if p2[0] is None:
+                    score = score[0]
+                else:
+                    score = score[0]+score[1]
+                if score > 0:
+                    res.append([final_scores.index(score),u,score])
+            res.sort(key=lambda x: x[0])
+            to_save = ''
+            for u in res:
+                to_save += str(u[0])+' -> vertex '+str(u[1])+' (score: '+str(u[2])+')\n'
+            file = open(path + '/saved_data/ranking.' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
+            file.write(str(to_save))
+            file.close()
     print('marked vertices: ' + str(marked_nodes))
 
     print('COG: %s Class: %s Pattern: %s\nNumber of co-optimal out of %s solutions: %s with cost %s' % (str(name),str(speciesTreespecification),pattern_name
@@ -376,7 +397,7 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = ([], None, False)
+    p1 = (['D'], None, False)
     p2 = (None, None, False)
 
     if p2[0] is not None:
@@ -439,7 +460,6 @@ def main():
     else:
         p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.05)
 
-
     if p1[0] == [] and p2[0] == None:
         G_colors = tree_operations.color_tree(G, 'G', S_colors, colors, sigma)
         new_G = nx.DiGraph()
@@ -457,8 +477,23 @@ def main():
         for score in max_score:
             if score != 0:
                 final_scores.append(score)
-        print(max_score)
+        final_scores.reverse()
+        print(final_scores)
         print(list_of_scores)
+        res = []
+        for x in list_of_scores:
+            u = list(x.keys())[0]
+            score = x[u]
+            if score > 0:
+                res.append([final_scores.index(score),u,score])
+        res.sort(key=lambda x: x[0])
+        print(res)
+        to_save = ''
+        for u in res:
+            to_save += str(u[0])+' -> vertex '+str(u[1])+' (score: '+str(u[2])+')\n'
+        file = open(path + '/saved_data/colors_scoring', 'w')
+        file.write(str(to_save))
+        file.close()
         quit()
 
     if 'D' in p1[0]:

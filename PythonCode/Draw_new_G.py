@@ -17,14 +17,14 @@ color = False
 double_mode = p2[0] is not None
 
 ext = 'proteobacteria'
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
 
 S_colors = {}
 big_size = 3000
 small_size = 7
-number_of_douplications = 4
-x_axis = 200
-y_axis = 40
+number_of_douplications = 2
+x_axis = 150
+y_axis = 50
 
 
 def number_of_scpecies_doup(G,old_sigma):
@@ -83,7 +83,7 @@ def draw_new_doup(marked_nodes, colors, sigma, new_G, G,old_sigma,k,TH_compare_s
                     nodes_color.append(special_colors[should_be_found.index(should)])
                     nodes_size.append(400)
                     flag = True
-        if nd[1]['label'] in marked_nodes and (not flag) and nd[1]['label'] == 'u1811':
+        if nd[1]['label'] in marked_nodes and (not flag):
             nodes_color.append('blue')
             temp_size = max(marked_nodes[nd[1]['label']][0],marked_nodes[nd[1]['label']][0])
             if double_mode:
