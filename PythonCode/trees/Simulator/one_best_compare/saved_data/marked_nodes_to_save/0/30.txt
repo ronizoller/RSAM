@@ -1,1 +1,0 @@
-{'u211': [(0.0, 0.0054736709498614255), (70, 17), 'v blacks HT and reds under w'], 'u145': [(0.0, 0.022108843537414973), (7, 0), 'v blacks HT and reds under w']}

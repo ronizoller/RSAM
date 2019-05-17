@@ -1,1 +1,0 @@
-{'u208': [(0.0, 0.006552621048419367), (8, 10), 'w black HT and reds under v'], 'u146': [(0.0, 0.0007653061224489794), (18, 25), 'w black HT and reds under v'], 'u29': [(0.0, 0.005612244897959186), (3, 5), 'w black HT and reds under v']}

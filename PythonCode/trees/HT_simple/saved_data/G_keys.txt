@@ -1,6 +1,0 @@
-u1 : Ag (A) 
-u2 : Bg (B) 
-u4 : Bg1 (B) 
-u6 : Cg (C) 
-u7 : Dg (D) 
-u9 : Dg1 (D) 

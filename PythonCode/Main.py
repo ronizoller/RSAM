@@ -2,7 +2,7 @@ on_lab = False
 check_diffreance_between_solutions = False
 real_data = True
 ranking = True
-name = 'COG3550'
+name = 'COG2602'
 
 if on_lab:
         path = '/storage/DATA/users/ronizo/'
@@ -26,12 +26,12 @@ import os
 import draw
 from utils import extract_from_FASTA_v1 as extr
 
-speciesTreespecification = 'deltaepsilon'
-geneExt = 'deltaepsilon'
+speciesTreespecification = 'bacteria'
+geneExt = 'bacteria'
 test = False                                         # if True all data will be loaded from outter files, otherwise all data will be calculated and saved
 glob = False                                        # if True global alignment is used, otherwise local
 compare_subtrees = False                             # if true the algorithm will look for a signi different between two children of u in G, otherwise it will look for u in G s.t. in G(u) there are alot of same color HT
-k = 2
+k = 50
 exact_names = True
 
 
@@ -397,7 +397,7 @@ def main():
 
     ### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
     ### only p1 can have HT  in EV, TH_edges sould be the same
-    p1 = (['D'], None, False)
+    p1 = ([], None, False)
     p2 = (None, None, False)
 
     if p2[0] is not None:
@@ -458,7 +458,7 @@ def main():
     if 'D' in p1[0]:
         p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
     else:
-        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.05)
+        p1 = (p1[0], p1[1], p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*0.1)
 
     if p1[0] == [] and p2[0] == None:
         G_colors = tree_operations.color_tree(G, 'G', S_colors, colors, sigma)
@@ -470,10 +470,26 @@ def main():
         max_score = [0]*len(G_colors.keys())
         list_of_scores = []
         final_scores = []
-        for u,scores in G_colors.items():
-            if tree_operations.find_node_in_networkx_tree(new_G,u)['edges_in_subtree'] > p1[3]:
-                max_score = utiles.update_top_ranking_list(scores[0]/(scores[0]+scores[1]), max_score)
-                list_of_scores.append({u:scores[0]/(scores[0]+scores[1])})
+        for nd in (reversed(list(nx.topological_sort(new_G)))):
+            out = new_G.out_edges([nd], data=True)
+            out = [e for e in out]
+            if out != []:
+                nd = new_G.nodes(data=True)[nd]
+                child1 = new_G.nodes(data=True)[out[0][1]]
+                child2 = new_G.nodes(data=True)[out[1][1]]
+
+                if child1['edges_in_subtree'] >= p1[3] and child2['edges_in_subtree'] >= p1[3]:
+                    child1_colors = G_colors[child1['label']]
+                    child1_leafs = child1_colors[0] + child1_colors[1]
+                    child2_colors = G_colors[child2['label']]
+                    child2_leafs = child2_colors[0] + child2_colors[1]
+
+
+                    max_score = utiles.update_top_ranking_list(child1_colors[0]/child1_leafs + child2_colors[1]/child2_leafs, max_score)
+                    list_of_scores.append({nd['label']+'(1)': child1_colors[0]/child1_leafs + child2_colors[1]/child2_leafs})
+                    max_score = utiles.update_top_ranking_list(child1_colors[1]/child1_leafs + child2_colors[0]/child2_leafs, max_score)
+                    list_of_scores.append(
+                        {nd['label']+'(2)': child1_colors[1]/child1_leafs + child2_colors[0]/child2_leafs})
         for score in max_score:
             if score != 0:
                 final_scores.append(score)
@@ -491,7 +507,7 @@ def main():
         to_save = ''
         for u in res:
             to_save += str(u[0])+' -> vertex '+str(u[1])+' (score: '+str(u[2])+')\n'
-        file = open(path + '/saved_data/colors_scoring', 'w')
+        file = open(path + '/saved_data/colors_scoring.txt', 'w')
         file.write(str(to_save))
         file.close()
         quit()

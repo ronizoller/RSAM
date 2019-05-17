@@ -1,4 +1,0 @@
-u1 : Ag (A) 
-u2 : Ag1 (A) 
-u4 : Dg (D) 
-u5 : Dg1 (D) 

@@ -1,1 +1,0 @@
-['x7 x9 None', 'x3 x7 None', 'x1 x3 None', 'x2 x3 None', 'x6 x7 None', 'x4 x6 None', 'x5 x6 None', 'x8 x9 None']

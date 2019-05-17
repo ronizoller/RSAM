@@ -3,12 +3,12 @@ import extract_from_FASTA_v1 as extr
 
 
 path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/archive/COG2856'
-pattern = "((['D'], None, False)_(['HT'], None, False))_Double-Mode"
+path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3093'
+pattern = "([_HT_, _S_], None, True)_Single-Mode"
 range_to_search = range(1,2)
 old_genes  = []
-file_to_examine = "FASTA_result_0_p1.txt"
-all = True
+file_to_examine = "FASTA_result_proteobacteria_0th_solution_node_u125.txt"
+all = False
 
 if all:
     path = path_source + 'FASTA_proteobacteria.txt'
@@ -95,8 +95,10 @@ for old_gene in old_genes:
         #if not flag:
         #    print('gene %s for specie %s was not found' % (str(old_gene),str(species_genes[old_gene])))
         if flag:
-            print('gene %s for specie %s was found (%s)' % (str(old_gene),str(species_genes[old_gene]),found[old_gene]))
             list_of_found_species.append(old_gene)
+        else:
+            print('gene %s for specie %s was not found' % (str(old_gene),str(species_genes[old_gene])))
+
     else:
         print(old_gene+' is not in sigma')
 print(list_of_found_species)

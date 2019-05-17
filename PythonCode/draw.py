@@ -134,7 +134,7 @@ def draw_new_G(G,G_nodes_identified,colors,sigma,new_G):
     print('Finished drawing new G.\n')
 
 
-def draw_tree(tree, name, old_sigma, colors, sigma):
+def draw_tree(tree, name, old_sigma, colors, sigma,path,color_tree,x_axis,y_axis,label_flag):
     tree_to_draw = nx.DiGraph()
     index = 1
     nodes_color = []
@@ -162,13 +162,16 @@ def draw_tree(tree, name, old_sigma, colors, sigma):
 
     if name == 'S' :
         for u in tree.postorder_node_iter():
-            if u.label != None and u.label in colors:
-                if colors[u.label] == 'red':
-                    nodes_color.append('red')
-                elif colors[u.label] == 'black':
-                    nodes_color.append('grey')
-                else :
-                    nodes_color.append('pink')
+            if color_tree:
+                if u.label != None and u.label in colors:
+                    if colors[u.label] == 'red':
+                        nodes_color.append('red')
+                    elif colors[u.label] == 'black':
+                        nodes_color.append('grey')
+                    else :
+                        nodes_color.append('pink')
+                else:
+                    nodes_color.append('white')
             else:
                 nodes_color.append('white')
     else:
@@ -183,12 +186,15 @@ def draw_tree(tree, name, old_sigma, colors, sigma):
 
     postree = graphviz_layout(tree_to_draw, prog='dot')
 
-    plt.figure(12, figsize=(80, 40))  # size of fig
+    plt.figure(12, figsize=(x_axis, y_axis))  # size of fig
 
     nx.draw(tree_to_draw, postree, arrows=True,node_color=nodes_color)
-    nx.draw_networkx_labels(tree_to_draw, postree, labels, font_size=7,)
+    if label_flag:
+        text = nx.draw_networkx_labels(tree_to_draw, postree, labels, font_size=7)
+        for _, t in text.items():
+            t.set_rotation('vertical')
     nx.draw_networkx_edges(tree_to_draw, postree)
-    plt.savefig(name+'.png')
+    plt.savefig(path+name+'.png')
     print('Drawing'+name)
 
 def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext, to_color):

@@ -1,1 +1,0 @@
-{'A': 'red', 'B': 'red', 'C': 'black', 'D': 'black'}
