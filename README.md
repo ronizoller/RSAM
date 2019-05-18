@@ -1,5 +1,5 @@
 # RSAM
-RSAM-finder is a python application that identifies
+RSAM-finder is a python application that identifies predefined patterns within a DLT reconciliation.
 
 ## Workflow
 Stage 1 constructs a hypergraph H representing the k-best reconciliations of G
