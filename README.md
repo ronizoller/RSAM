@@ -27,5 +27,5 @@ This file should also be saved as colors.txt file, and in the same directory.
 Note that the colors are optional, and depends on the desired query.
 
 ## Sample Data Sets
-We provide two data sets we examined in order to demonstrate our tool. Each subfolder contains the Gene and Species trees for COG3549 and COG2602. In addition, we provide the corresponding Sigma function, which is a mapping between the leafs of the input trees, and the (optional) coloring function of the Specie tree leafs.
-We also give the results of the queries discussed in the paper, in a FASTA forma.
+We provide two sample data sets. The directory /data contains the Gene and Species trees for COG3549 and COG2602. In addition, we provide the corresponding Sigma function, which is a mapping between the leafs of the input trees, and the (optional) coloring function of the Specie tree leafs.
+We also give the results of the queries discussed in the paper, in a FASTA format.
