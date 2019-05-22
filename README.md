@@ -22,7 +22,7 @@ One can also provide a coloring function, in the following format:
 ```
 {gene_name1 : color1, gene_name2 :color2,…,gene_name_n : color_n}
 ```
-where ![](https://latex.codecogs.com/gif.latex?color_i\in&space;\left&space;\{&space;red,black&space;\right&space;\})
+where ![](https://latex.codecogs.com/gif.latex?color_i\in[red,black])
 This file should also be saved as colors.txt file, and in the same directory.
 Note that the colors are optional, and depends on the desired query.
 
