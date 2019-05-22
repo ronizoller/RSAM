@@ -1,4 +1,4 @@
-# RSAM
+# RSAM-finder
 RSAM-finder is a python application that identifies predefined patterns within a DLT reconciliation.
 
 ## Workflow
@@ -14,14 +14,14 @@ identified in G and subjected to biological interpretation.
 ## Input Format
 The input to the RSAM-finder consists of two trees, with in Newick format. The current version is supporting only binary trees.
 In addition, one should provide a mapping between the species and the genes of the input trees, in the following format: 
-‘’’
+```
 {gene_name1 : specie_name1, gene_name2 : specie_name2,…,gene_name_n : specie_name_n}
-‘’’
+```
 This file should be saved as a .txt file in the same directory as the trees.
 One can also provide a coloring function, in the following format:
-‘’’
+```
 {gene_name1 : color1, gene_name2 :color2,…,gene_name_n : color_n}
-‘’’
+```
 where ![](https://latex.codecogs.com/gif.latex?color_i\in&space;\{&space;red,black&space;\})
 This file should also be saved as .txt file, and in the same directory.
 
