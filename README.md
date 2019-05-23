@@ -19,6 +19,7 @@ To run the application, open commandline and run the following code:
 python3 /RSAM/PythonCode/RSAMfinder.py
 ```
 and follow the instructiosn to specify the desiered parameters.
+The results for the qeury will be saved inside /data/saved_data.
 
 ## Input Format
 The input to the RSAM-finder consists of two trees, both in Newick format. The current version is supporting only binary trees. The gene tree should be named "G.txt" and the Species tree should be named "S_class.txt", where class is the Species subclass, e.g. bacteria, proteobacteria etc.
