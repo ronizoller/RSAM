@@ -1,6 +1,6 @@
 path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 
-name = 'COG3093'
+name = 'COG2602'
 number_of_domains = 2
 
 if name == 'COG2602':

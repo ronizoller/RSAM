@@ -29,29 +29,23 @@ def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree)
     return H,H_number_of_nodes, nodes_table,subtree
 
 
-def init_distance_S(S_dis_matrix, k, test, path,spe):
+def init_distance_S(S_dis_matrix,path,spe):
     #print('Initing Distances...')
-    if test:
-        input = open(path+'/saved_data/S_dist_matrix'+'.txt', 'r')
-        S_disr_matrix = []
-        for line in input:
-            S_disr_matrix.append(eval(line))
-        S_dis_matrix = S_disr_matrix[0]
-    else:
-        input = open(path+'/saved_data/S_edgelist_'+spe+'.txt', 'r')
-        edgelist = []
-        for line in input:
-            edgelist.append(eval(line))
-        edgelist = edgelist[0]
-        networkx_S = nx.parse_edgelist(edgelist, nodetype = str, data=(('weight',any),))
-        for nd1 in networkx_S.nodes():
-            for nd2 in networkx_S.nodes():
-                #S_dis_matrix.update({(nd1,nd2):nx.shortest_path_length(networkx_S, source=nd1, target=nd2, weight='weight')})      #for weighted tree
-                S_dis_matrix.update(
-                    {(nd1, nd2): nx.shortest_path_length(networkx_S, source=nd1, target=nd2)})
-        file = open(path+'/saved_data/S_dist_matrix'+'.txt', 'w')
-        file.write(str(S_dis_matrix))
-        file.close()
+
+    input = open(path+'/saved_data/S_edgelist_'+spe+'.txt', 'r')
+    edgelist = []
+    for line in input:
+        edgelist.append(eval(line))
+    edgelist = edgelist[0]
+    networkx_S = nx.parse_edgelist(edgelist, nodetype = str, data=(('weight',any),))
+    for nd1 in networkx_S.nodes():
+        for nd2 in networkx_S.nodes():
+            #S_dis_matrix.update({(nd1,nd2):nx.shortest_path_length(networkx_S, source=nd1, target=nd2, weight='weight')})      #for weighted tree
+            S_dis_matrix.update(
+                {(nd1, nd2): nx.shortest_path_length(networkx_S, source=nd1, target=nd2)})
+    file = open(path+'/saved_data/S_dist_matrix'+'.txt', 'w')
+    file.write(str(S_dis_matrix))
+    file.close()
     return S_dis_matrix
 
 def init_nodes_table(S,G,nodes_table):
@@ -95,29 +89,23 @@ def init_taxon_to_label_table(S,G,sigma):
             sigma.update({leaf_G.label:'x'+leaf_G.label[1:]})
     return S_labels_table,G_labels_table,sigma
 
-def update_sigma(S, G, k, sigma, test, path,exect_names,S_labels_table,G_labels_table):
+def update_sigma(sigma,exect_names,S_labels_table,G_labels_table):
     #print('Updating sigma...')
     old_sigma = sigma
-    if test:
-        input = open(path+'/saved_data/sigma'+'.txt', 'r')
-        new_sigma = []
-        for line in input:
-            new_sigma.append(eval(line))
-        sigma = new_sigma[0]
-    else:
-        for u, x in sigma.items():
-            if (u in G_labels_table) and (x in S_labels_table):
-                if exect_names:
-                    sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (
-                    (S_labels_table[x]).replace("_", " ") == x1 and (G_labels_table[u]).replace("_"," ") == u1))  # if lables are strings
-                    sigma.update({G_labels_table[u]: S_labels_table[x]})
-                else:
-                    sigma = dict((u,x) for u,x in sigma.items() if not (((S_labels_table[x]).replace("_"," ").find(x) != -1 or x.find((S_labels_table[x]).replace("_"," ")) != -1) and (((G_labels_table[u]).replace("_"," ").find(u) != -1) or (u.find(G_labels_table[u]).replace("_"," ")) != 1)))      #if lables are strings
-                    sigma.update({G_labels_table[x]: S_labels_table[u]})
+
+    for u, x in sigma.items():
+        if (u in G_labels_table) and (x in S_labels_table):
+            if exect_names:
+                sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (
+                (S_labels_table[x]).replace("_", " ") == x1 and (G_labels_table[u]).replace("_"," ") == u1))  # if lables are strings
+                sigma.update({G_labels_table[u]: S_labels_table[x]})
             else:
-                #print ('        Couldnt find match for: '+u+' and '+x)
-                sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
-                old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
+                sigma = dict((u,x) for u,x in sigma.items() if not (((S_labels_table[x]).replace("_"," ").find(x) != -1 or x.find((S_labels_table[x]).replace("_"," ")) != -1) and (((G_labels_table[u]).replace("_"," ").find(u) != -1) or (u.find(G_labels_table[u]).replace("_"," ")) != 1)))      #if lables are strings
+                sigma.update({G_labels_table[x]: S_labels_table[u]})
+        else:
+            #print ('        Couldnt find match for: '+u+' and '+x)
+            sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
+            old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
         #print('     Writing sigma...')
         #file = open(path+'/saved_data/sigma.txt', 'w')
         #file.write(str(sigma))

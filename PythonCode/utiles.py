@@ -2,6 +2,7 @@ import math
 import tree_operations_v1 as tree_operations
 import utiles
 import EfficiantVersion as effi
+import os
 
 def check_precentage(num,k):
     num = num/k
@@ -79,6 +80,8 @@ def init_internal_labels (tree, char, old_sigma, path):
     #       child = nd.child_nodes()
     #       nd.remove_child(child[0])
     #       print('     '+str(child[0])+' was deleted')
+    to_create = path + '/saved_data/'
+    os.makedirs(os.path.dirname(to_create), exist_ok=True)
     tree_operations.collapse_edges(tree)
     if char == 'u':
         file = open(path + '/saved_data/G_keys.txt', 'w')

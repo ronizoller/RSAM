@@ -3,6 +3,10 @@ sys.path.append('/anaconda3/lib/python3.6/site-packages')
 import dendropy as tr
 import os
 
+exte = 'proteobacteria'
+name = 'COG3550'
+path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name
+
 
 def get_edgelist(tree):
     edgelist = []
@@ -22,9 +26,8 @@ def init_internal_labels (tree,char):
     print('Finished inisilasing internal leafs.\n')
     return tree
 
-def main(path):
-    exte = 'proteobacteria'
-    t = tr.Tree.get_from_path(path+"/phyliptree(binary,"+exte+").phy", schema="newick")
+def main(path,exte):
+    t = tr.Tree.get_from_path(path+"/S_"+exte+".txt", schema="newick")
     t = init_internal_labels(t,'x')
     path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
     os.makedirs(os.path.dirname(path_curr), exist_ok=True)
@@ -33,6 +36,4 @@ def main(path):
     file.close()
 
 if __name__ == "__main__":
-    cogs_names = ['COG3550']
-    for name in cogs_names:
-        main('/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'+name)
+    main(path,exte)

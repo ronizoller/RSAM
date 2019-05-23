@@ -1,87 +1,13 @@
-path  = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
+l1 = ['610130.Closa_3340', '904314.SEVCU012_1311', '1304866.K413DRAFT_5359', '665950.HMPREF1025_02605', '1158601.I585_02291', '411468.CLOSCI_02046', '176279.SERP2520', '397288.C806_02673', '665950.HMPREF1025_02736', '1158614.I592_03987', '1123252.ATZF01000005_gene4030', '586413.CCDL010000001_gene1111', '1200792.AKYF01000008_gene814', '1235799.C818_00531', '1232452.BAIB02000016_gene2604', '658088.HMPREF0987_01392', '1238184.CM001792_gene2919', '553973.CLOHYLEM_04847', '97139.C824_02286', '411474.COPEUT_01351', '411902.CLOBOL_04085', '1403313.AXBR01000024_gene4793', '1235790.C805_02381', '1279017.AQYJ01000029_gene3878', '649747.HMPREF0083_03011', '1121090.KB894686_gene2868', '883126.HMPREF9710_03981', '658655.HMPREF0988_03035', '1382305.AZUC01000063_gene3301', '33035.JPJF01000009_gene1562', '1158607.UAU_04038', '1348908.KI518607_gene3207', '411490.ANACAC_01104', '984892.SPSE_2388', '1449050.JNLE01000003_gene325', '1121085.AUCI01000006_gene1670', '536232.CLM_0800', '997346.HMPREF9374_3946', '1232666.JANE01000001_gene171', '279808.SH1763', '1232453.BAIF02000062_gene1822', '1226325.HMPREF1548_02372', '1235798.C817_03980', '935836.JAEL01000072_gene3163', '698737.SLGD_00887', '1235802.C823_04230', '903814.ELI_4241', '526218.Sterm_3351', '1280.SAXN108_0047', '66692.ABC0265', '1280.SAXN108_2840', '984892.SPSE_1775', '332101.JIBU02000047_gene3560', '1235793.C809_02173', '1460640.JCM19046_4802', '397290.C810_02462', '556261.HMPREF0240_00065', '484770.UFO1_3640', '1071073.KI530534_gene707', '537007.BLAHAN_04954', '1382305.AZUC01000046_gene402', '526218.Sterm_3353', '176280.SE_1607', '1499968.TCA2_3268', '1294265.JCM21738_3555', '1235800.C819_00708', '1196031.ALEG01000013_gene35', '1246626.BleG1_0472', '1169144.KB910978_gene715', '698737.SLGD_01660', '622312.ROSEINA2194_01800', '500632.CLONEX_02210', '981383.AEWH01000021_gene2585', '180332.JTGN01000011_gene487', '397291.C804_00318', '537007.BLAHAN_06649', '935837.JAEK01000015_gene5009', '1033734.CAET01000075_gene2752', '279010.BL01788', '176279.SERP1460', '457412.RSAG_00587', '558169.AGAV01000003_gene2692', '1298920.KI911353_gene3883', '562743.JH976439_gene154', '1235802.C823_01855', '1196028.ALEF01000035_gene1010', '1121929.KB898665_gene2908', '742765.HMPREF9457_03130', '665959.HMPREF1013_04537', '1232447.BAHW02000030_gene2344']
 
-name = 'COG3093'
-number_of_domains = 2
+l2 = [ '1163671.JAGI01000003_gene906', '610130.Closa_3340', '904314.SEVCU012_1311', '1304866.K413DRAFT_5359', '665950.HMPREF1025_02605', '1158601.I585_02291', '1220551.SCHR_11199', '411468.CLOSCI_02046', '176279.SERP2520', '397288.C806_02673', '665950.HMPREF1025_02736', '411460.RUMTOR_00886', '1158614.I592_03987', '1235798.C817_01562', '586413.CCDL010000001_gene1111', '1200792.AKYF01000008_gene814', '1235799.C818_00531', '1232452.BAIB02000016_gene2604', '658088.HMPREF0987_01392', '1134413.ANNK01000066_gene2801', '1238184.CM001792_gene2919', '1462527.CCDM010000002_gene886', '1123252.ATZF01000005_gene4031', '553973.CLOHYLEM_04847', '411470.RUMGNA_02849', '97139.C824_02286', '411474.COPEUT_01351', '411902.CLOBOL_04085', '411462.DORLON_01764', '1403313.AXBR01000024_gene4793', '1235790.C805_02381', '649747.HMPREF0083_03011', '1408254.T458_11155', '1121090.KB894686_gene2868', '883126.HMPREF9710_03981', '658655.HMPREF0988_03035', '1347369.CCAD010000078_gene3035', '33035.JPJF01000009_gene1562', '1158607.UAU_04038', '1348908.KI518607_gene3207', '411490.ANACAC_01104', '984892.SPSE_2388', '1449050.JNLE01000003_gene325', '1121085.AUCI01000006_gene1670', '1462526.BN990_00984', '536232.CLM_0800', '358681.BBR47_12020', '997346.HMPREF9374_3946', '1232666.JANE01000001_gene171', '279808.SH1763', '1232453.BAIF02000062_gene1822', '1226325.HMPREF1548_02372', '1235798.C817_03980', '935836.JAEL01000072_gene3163', '698737.SLGD_00887', '903814.ELI_4241', '526218.Sterm_3351', '333138.LQ50_02765', '1280.SAXN108_0047', '66692.ABC0265', '1235792.C808_00309', '1280.SAXN108_2840', '984892.SPSE_1775', '332101.JIBU02000047_gene3560', '1235793.C809_02173', '1460640.JCM19046_4802', '574376.BAMA_18515', '397290.C810_02462', '556261.HMPREF0240_00065', '484770.UFO1_3640', '1071073.KI530534_gene707', '1123288.SOV_1c13350', '537007.BLAHAN_04954', '272563.CD630_04700', '1382305.AZUC01000046_gene402', '176280.SE_1607', '1499968.TCA2_3268', '1294265.JCM21738_3555', '1235800.C819_00708', '642492.Clole_2896', '1196031.ALEG01000013_gene35', '525378.HMPREF0793_1693', '1246626.BleG1_0472', '1169144.KB910978_gene715', '698737.SLGD_01660', '622312.ROSEINA2194_01800', '1285586.H131_23057', '1229783.C273_11181', '743719.PaelaDRAFT_3840', '1051006.HMPREF1162_1146', '500632.CLONEX_02210', '981383.AEWH01000021_gene2585', '180332.JTGN01000011_gene487', '397291.C804_00318', '537007.BLAHAN_06649', '935837.JAEK01000015_gene5009', '585394.RHOM_15305', '1151292.QEW_0596', '411459.RUMOBE_00587', '1131730.BAVI_06554', '1033734.CAET01000075_gene2752', '279010.BL01788', '176279.SERP1460', '457412.RSAG_00587', '558169.AGAV01000003_gene2692', '1298920.KI911353_gene3883', '1298598.JCM21714_3876', '562743.JH976439_gene154', '1235802.C823_01855', '1256908.HMPREF0373_00319', '471875.RUMLAC_01237', '1196028.ALEF01000035_gene1010', '1121929.KB898665_gene2908', '742765.HMPREF9457_03130', '665959.HMPREF1013_04537', '1232447.BAHW02000030_gene2344', '1198452.Jab_2c23430', '411461.DORFOR_00187', '' ]
 
-if name == 'COG2602':
-    list_of_interesting_substrings = ['MecR1','cl28898','BlaR1','Peptidase_M56','BlaR']
-    pattern = "((['HT'], 'red', True)_(['S', 'D', 'HT'], 'black', False))_Double-Mode"
-    to_check = 'hitdata_all'
-elif name == 'COG3093':
-    pattern = "((['D'], None, False)_(['HT'], None, False))_Double-Mode"
-    list_of_interesting_substrings = ['COG3093','HTH_XRE','antidote_HigA']
-    to_check = 'hitdata_all'
-elif name == 'COG1396':
-    pattern = "(['HT'], None, True)_Single-Mode"
-    #list_of_interesting_substrings = ['cupin','Cupin_2']
-    list_of_interesting_substrings = ['Peptidase_M78','cl01076','ImmA']
-    to_check = 'hitdata_all'
-elif name == 'COG3550':
-    pattern = "(['D'], None, False)_Single-Mode"
-    list_of_interesting_substrings = []
-    to_check = 'hitdata_all'
-
-domain_presense = {}
-
-def check_counting (counter):
-    all = 0
-    all_Trues = 0
-    for gene,count in counter.items():
-        all += 1
-        if count < 2:
-            print('%s has < %s domains' % (str(gene), str(number_of_domains)))
-            all_Trues += 1
-    return all,all_Trues
-
-def extract_from_to (line,end):
-    while not line[end].isdigit():
-        end += 1
-    while not line[end] == '	':
-        end += 1
-    fro = ''
-    end += 1
-    while line[end].isdigit():
-        fro += line[end]
-        end += 1
-    end += 1
-    to = ''
-    while line[end].isdigit():
-        to += line[end]
-        end += 1
-    return fro,to
-
-with open(path + name + '/saved_data/results/'+pattern+'/'+to_check+'.txt', 'r') as fp:
-    for line in fp:
-        start = line.find('[') + 1
-        end = line.find(']')
-        gene_start = line.find('>') + 1
-        specie = ''
-        index = gene_start
-        gene = ''
-        while index < start - 2:
-            gene = gene + line[index]
-            index += 1
-        while start < end:
-            specie = specie + line[start]
-            start += 1
-        if gene != '':
-            if list_of_interesting_substrings != []:
-                found = False
-                for inter in list_of_interesting_substrings:
-                    if line.find(inter) != -1:
-                        found = True
-                if not found:
-                        domain_presense.update({gene:line})
-            else:
-                fro,to = extract_from_to(line,end)
-                if gene not in domain_presense:
-                    temp = []
-                    to_append = [int(fro), int(to)]
-                    domain_presense.update({gene: [(to_append)]})
-                else:
-                    temp = list(domain_presense[gene])
-                    to_add = temp.append([int(fro), int(to)])
-                    domain_presense.update({gene:temp})
-
-for gene,line in domain_presense.items():
-    print(line)
+counter = 0
+both = []
+for item in l2:
+    if item in l1:
+        counter += 1
+        both.append(item)
+    else: print(item)
+print(counter)
+print(both)
