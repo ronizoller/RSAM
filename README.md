@@ -11,20 +11,28 @@ accordingly to the vertices of G. Based on these scores, vertices representing p
 identified in G and subjected to biological interpretation.
 ![](https://user-images.githubusercontent.com/19167301/57970883-8dee4e00-798f-11e9-97fb-446883633860.jpg)
 
+## Running RSAM-finder
+In order to run the application, create a directory called /RSAM, and download the /PythonCode directory into it.
+Inside /RSAM, the user should create /data directory, in which the input will be provided. For more information about the input format, see next section.
+To run the application, open commandline and run the following code:
+```
+python3 /RSAM/PythonCode/RSAMfinder.py
+```
+and follow the instructiosn to specify the desiered parameters.
+
 ## Input Format
-The input to the RSAM-finder consists of two trees, with in Newick format. The current version is supporting only binary trees.
-In addition, one should provide a mapping between the species and the genes of the input trees, in the following format: 
-```
-{gene_name1 : specie_name1, gene_name2 : specie_name2,…,gene_name_n : specie_name_n}
-```
-This file should be saved as a sigma.txt file in the same directory as the trees.
+The input to the RSAM-finder consists of two trees, both in Newick format. The current version is supporting only binary trees. The gene tree should be named "G.txt" and the Species tree should be named "S_class.txt", where class is the Species subclass, e.g. bacteria, proteobacteria etc.
+In addition, one should provide a FASTA file of all genes. This will be used in order to create the sigma function.
+
 One can also provide a coloring function, in the following format:
 ```
 {gene_name1 : color1, gene_name2 :color2,…,gene_name_n : color_n}
 ```
 where ![](https://latex.codecogs.com/gif.latex?color_i\in[red,black])
-This file should also be saved as colors.txt file, and in the same directory.
-Note that the colors are optional, and depends on the desired query.
+This file should be saved as colors.txt file, and in the same directory. If the user does not want to use color, the file colors.txt should contain the following line:
+```
+{}
+```
 
 ## Sample Data Sets
 We provide two sample data sets. The directory /data contains the Gene and Species trees for COG3549 and COG2602. In addition, we provide the corresponding Sigma function, which is a mapping between the leafs of the input trees, and the (optional) coloring function of the Specie tree leafs.
