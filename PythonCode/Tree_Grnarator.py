@@ -16,7 +16,7 @@ from functools import reduce
 from multiprocessing import Pool
 from datetime import datetime
 
-on_lab = True
+on_lab = False
 compare = True
 running_time = False
 minimum_HT_under_planted = 3

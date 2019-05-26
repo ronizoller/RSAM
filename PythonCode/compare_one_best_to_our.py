@@ -15,7 +15,7 @@ else:
     import sys
     sys.path.append('/anaconda3/lib/python3.6/site-packages')
 
-number_of_one_bests = 1
+number_of_one_bests = 2
 
 precentage = []                                             #{random_input_index:(false pos,false neg)}
 our_precentage = []
