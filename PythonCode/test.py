@@ -1,13 +1,106 @@
-l1 = ['610130.Closa_3340', '904314.SEVCU012_1311', '1304866.K413DRAFT_5359', '665950.HMPREF1025_02605', '1158601.I585_02291', '411468.CLOSCI_02046', '176279.SERP2520', '397288.C806_02673', '665950.HMPREF1025_02736', '1158614.I592_03987', '1123252.ATZF01000005_gene4030', '586413.CCDL010000001_gene1111', '1200792.AKYF01000008_gene814', '1235799.C818_00531', '1232452.BAIB02000016_gene2604', '658088.HMPREF0987_01392', '1238184.CM001792_gene2919', '553973.CLOHYLEM_04847', '97139.C824_02286', '411474.COPEUT_01351', '411902.CLOBOL_04085', '1403313.AXBR01000024_gene4793', '1235790.C805_02381', '1279017.AQYJ01000029_gene3878', '649747.HMPREF0083_03011', '1121090.KB894686_gene2868', '883126.HMPREF9710_03981', '658655.HMPREF0988_03035', '1382305.AZUC01000063_gene3301', '33035.JPJF01000009_gene1562', '1158607.UAU_04038', '1348908.KI518607_gene3207', '411490.ANACAC_01104', '984892.SPSE_2388', '1449050.JNLE01000003_gene325', '1121085.AUCI01000006_gene1670', '536232.CLM_0800', '997346.HMPREF9374_3946', '1232666.JANE01000001_gene171', '279808.SH1763', '1232453.BAIF02000062_gene1822', '1226325.HMPREF1548_02372', '1235798.C817_03980', '935836.JAEL01000072_gene3163', '698737.SLGD_00887', '1235802.C823_04230', '903814.ELI_4241', '526218.Sterm_3351', '1280.SAXN108_0047', '66692.ABC0265', '1280.SAXN108_2840', '984892.SPSE_1775', '332101.JIBU02000047_gene3560', '1235793.C809_02173', '1460640.JCM19046_4802', '397290.C810_02462', '556261.HMPREF0240_00065', '484770.UFO1_3640', '1071073.KI530534_gene707', '537007.BLAHAN_04954', '1382305.AZUC01000046_gene402', '526218.Sterm_3353', '176280.SE_1607', '1499968.TCA2_3268', '1294265.JCM21738_3555', '1235800.C819_00708', '1196031.ALEG01000013_gene35', '1246626.BleG1_0472', '1169144.KB910978_gene715', '698737.SLGD_01660', '622312.ROSEINA2194_01800', '500632.CLONEX_02210', '981383.AEWH01000021_gene2585', '180332.JTGN01000011_gene487', '397291.C804_00318', '537007.BLAHAN_06649', '935837.JAEK01000015_gene5009', '1033734.CAET01000075_gene2752', '279010.BL01788', '176279.SERP1460', '457412.RSAG_00587', '558169.AGAV01000003_gene2692', '1298920.KI911353_gene3883', '562743.JH976439_gene154', '1235802.C823_01855', '1196028.ALEF01000035_gene1010', '1121929.KB898665_gene2908', '742765.HMPREF9457_03130', '665959.HMPREF1013_04537', '1232447.BAHW02000030_gene2344']
+import tkinter as tk
+import RSAMfinder
 
-l2 = [ '1163671.JAGI01000003_gene906', '610130.Closa_3340', '904314.SEVCU012_1311', '1304866.K413DRAFT_5359', '665950.HMPREF1025_02605', '1158601.I585_02291', '1220551.SCHR_11199', '411468.CLOSCI_02046', '176279.SERP2520', '397288.C806_02673', '665950.HMPREF1025_02736', '411460.RUMTOR_00886', '1158614.I592_03987', '1235798.C817_01562', '586413.CCDL010000001_gene1111', '1200792.AKYF01000008_gene814', '1235799.C818_00531', '1232452.BAIB02000016_gene2604', '658088.HMPREF0987_01392', '1134413.ANNK01000066_gene2801', '1238184.CM001792_gene2919', '1462527.CCDM010000002_gene886', '1123252.ATZF01000005_gene4031', '553973.CLOHYLEM_04847', '411470.RUMGNA_02849', '97139.C824_02286', '411474.COPEUT_01351', '411902.CLOBOL_04085', '411462.DORLON_01764', '1403313.AXBR01000024_gene4793', '1235790.C805_02381', '649747.HMPREF0083_03011', '1408254.T458_11155', '1121090.KB894686_gene2868', '883126.HMPREF9710_03981', '658655.HMPREF0988_03035', '1347369.CCAD010000078_gene3035', '33035.JPJF01000009_gene1562', '1158607.UAU_04038', '1348908.KI518607_gene3207', '411490.ANACAC_01104', '984892.SPSE_2388', '1449050.JNLE01000003_gene325', '1121085.AUCI01000006_gene1670', '1462526.BN990_00984', '536232.CLM_0800', '358681.BBR47_12020', '997346.HMPREF9374_3946', '1232666.JANE01000001_gene171', '279808.SH1763', '1232453.BAIF02000062_gene1822', '1226325.HMPREF1548_02372', '1235798.C817_03980', '935836.JAEL01000072_gene3163', '698737.SLGD_00887', '903814.ELI_4241', '526218.Sterm_3351', '333138.LQ50_02765', '1280.SAXN108_0047', '66692.ABC0265', '1235792.C808_00309', '1280.SAXN108_2840', '984892.SPSE_1775', '332101.JIBU02000047_gene3560', '1235793.C809_02173', '1460640.JCM19046_4802', '574376.BAMA_18515', '397290.C810_02462', '556261.HMPREF0240_00065', '484770.UFO1_3640', '1071073.KI530534_gene707', '1123288.SOV_1c13350', '537007.BLAHAN_04954', '272563.CD630_04700', '1382305.AZUC01000046_gene402', '176280.SE_1607', '1499968.TCA2_3268', '1294265.JCM21738_3555', '1235800.C819_00708', '642492.Clole_2896', '1196031.ALEG01000013_gene35', '525378.HMPREF0793_1693', '1246626.BleG1_0472', '1169144.KB910978_gene715', '698737.SLGD_01660', '622312.ROSEINA2194_01800', '1285586.H131_23057', '1229783.C273_11181', '743719.PaelaDRAFT_3840', '1051006.HMPREF1162_1146', '500632.CLONEX_02210', '981383.AEWH01000021_gene2585', '180332.JTGN01000011_gene487', '397291.C804_00318', '537007.BLAHAN_06649', '935837.JAEK01000015_gene5009', '585394.RHOM_15305', '1151292.QEW_0596', '411459.RUMOBE_00587', '1131730.BAVI_06554', '1033734.CAET01000075_gene2752', '279010.BL01788', '176279.SERP1460', '457412.RSAG_00587', '558169.AGAV01000003_gene2692', '1298920.KI911353_gene3883', '1298598.JCM21714_3876', '562743.JH976439_gene154', '1235802.C823_01855', '1256908.HMPREF0373_00319', '471875.RUMLAC_01237', '1196028.ALEF01000035_gene1010', '1121929.KB898665_gene2908', '742765.HMPREF9457_03130', '665959.HMPREF1013_04537', '1232447.BAHW02000030_gene2344', '1198452.Jab_2c23430', '411461.DORFOR_00187', '' ]
+patterns = ['Pattern 1: ', 'Pattern 2: ']
 
-counter = 0
-both = []
-for item in l2:
-    if item in l1:
-        counter += 1
-        both.append(item)
-    else: print(item)
-print(counter)
-print(both)
+def run(entries):
+    for e in entries:
+        print('%s %s' %(str(e[0]),str(e[1].get())))
+    quit()
+    vars = []
+    for entry in entries:
+        text  = entry[1].get()
+        vars.append(text)
+    speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, gamma, p, number_of_planted_vertices, p1, p2 = vars
+    RSAMfinder(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,gamma, p,number_of_planted_vertices,  p1, p2,True)
+
+def makeform(root, fields):
+    def intValidation(S):
+        flag = True
+        for s in S:
+            if s not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+                flag = False
+        if flag:
+            return True
+        t3.bell()  # .bell() plays that ding sound telling you there was invalid input
+        return False
+    def floatValidation(S):
+        flag = True
+        for s in S:
+            if s not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9','.']:
+                flag = False
+        if flag:
+            return True
+        t3.bell()  # .bell() plays that ding sound telling you there was invalid input
+        return False
+
+    entries = []
+    t3 = tk.Toplevel(root)
+    intVal = (t3.register(intValidation), '%S')
+    floatVal = (t3.register(floatValidation), '%S')
+    for field in fields:
+        row = tk.Frame(root)
+        lab = tk.Label(row, width=30, text=field[0])
+        if field[1] == 'float':
+            ent = tk.Entry(row, validate='key',vcmd=floatVal)
+        elif field[1] == 'int':
+            ent = tk.Entry(row, validate='key', vcmd=intVal)
+        else:
+            ent = tk.Entry(row, validate='key')
+        if field[2] != None:
+            ent.insert("end",field[2])
+        row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+        lab.pack(side=tk.LEFT)
+        ent.pack(side=tk.RIGHT, expand=tk.YES)
+        entries.append((field[0], ent))
+    for p in patterns:
+        ind = patterns.index(p)
+        row = tk.Frame(root)
+        names = ['Event1','Event2','Event3','Colors','Distance']
+        for name in names:
+            lab = tk.Label(row, text=name,width=10)
+            lab.grid(row=0, column=names.index(name)+1)
+        lab = tk.Label(row, width=10, text=p)
+        lab.grid(row=1,column=0)
+        number_of_events = 3
+        for i in range(0,number_of_events):
+            v = tk.StringVar(root)
+            EV = ['S','D','HT']
+            EV = tk.OptionMenu(row, v, *EV)
+            EV.grid(row=1, column=i+1)
+            entries.append((p+'_event'+str(i),v))
+        colors = ['red','black','None']
+        v = tk.StringVar(root)
+        entries.append((p + 'colors', v))
+        colors_op = tk.OptionMenu(row, v, *colors)
+        colors_op.config(width=10)
+        colors_op.grid(row=1, column=number_of_events+1)
+        v = tk.BooleanVar(root)
+        c = tk.Checkbutton(row,variable=v)
+        entries.append((p + '_dis', v))
+        c.grid(row=1,column=number_of_events+2)
+        row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+    return entries
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    labels = [['Specie tree extension\n(will be used also for the S_edgelist extenstion)','string',None],['k','int','50'],['Threshold Edges\nin Subtree','float','0.1'],
+              ['HT event cost','float','1'],['Duplication event Cost','float','1'],
+              ['Speciation event Cost','float','0'],['Gamma','float','1'],
+          ['p','float','0.05'],['Number of Vertices to find','int',None]]
+
+    ents = makeform(root, labels)
+    v = tk.BooleanVar()
+    MODES = [("Double-Mode", True),("Single-Mod", False)]
+    for text, mode in MODES:
+        b = tk.Radiobutton(root, indicatoron=0, text=text, variable=v, value=mode)
+        b.pack(side=tk.LEFT, padx=5, pady=5)
+
+    b1 = tk.Button(root, text='Run',
+                  command=(lambda e=ents: run(e)))
+    b1.pack(side=tk.LEFT, padx=5, pady=5)
+    b2 = tk.Button(root, text='Quit', command=root.quit)
+    b2.pack(side=tk.LEFT, padx=5, pady=5)
+
+
+    root.mainloop()

@@ -185,62 +185,62 @@ def valid_pattern(ev,col,dist):
 
                 ##********  MAIN ***********
 
-def main():
-    global S, G, iterations, sigma, gamma, colors, number_of_planted_vertices, speciesTreespecification,k,p1,p2,TH_edges
+def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,gamma, p,number_of_planted_vertices,  p1, p2,GUI):
     starting_time = datetime.now()
-    speciesTreespecification = input('Specie tree extension (will be used also for the S_edgelist extenstion)= ')
-    k = int(input('k= '))
-    TH_edges = int(input('Threshold Edges in Subtree= '))
-    HT_cost = int(input('HT event cost= '))
-    D_cost = int(input('Duplication event Cost= '))
-    S_cost = int(input('Speciation event Cost= '))
-    gamma = int(input('Gamma (1 recomended)= '))  # factor for probability assignment
-    p = Decimal(input('p (0.05 recomended)= '))  # p_value
-    number_of_planted_vertices = int(input('Number of Vertices to find= ')) # number of vertices that will be reported
-    #save_data = bool(input('Save hypergraph data? (False/True) '))  # save hypergraph data
-    single = input('Single mode pattern? (True/False) ') == 'True'  # save hypergraph data
-    p1 = None
-    p2 = None
-    if single:
-        while p1 == None:
-            print('p1= ')
-            ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
-            ev = ev.split()
-            col = input("   color=  (red/black/None) ")
-            dist = input("   distance=  (True/False) ") == 'True'
-            if valid_pattern(ev,col,dist):
-                if col == 'None':
-                    col = None
-                p1 = (ev,col,dist)
-                p2 = (None, None, False)
-            else:
-                print('pattern is not valid, please try again: ')
-    else:
-        while p1 == None or p2 == None:
-            print('p1= ')
-            ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ") # save hypergraph data
-            ev = ev.split()
-            col = input("   color=  (red/black/None) ")
-            dist = input("   distance=  (True/False) ") == 'True'
-            if valid_pattern(ev,col,dist):
-                if col == 'None':
-                    col = None
-                p1 = (ev,col,dist)
-            else:
-                print('pattern is not valid, please try again: ')
-            if p1 != None:
-                print('p2= ')
-                ev = input(
-                    "   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
+    if not GUI:
+        speciesTreespecification = input('Specie tree extension (will be used also for the S_edgelist extenstion)= ')
+        k = int(input('k= '))
+        TH_edges = int(input('Threshold Edges in Subtree= '))
+        HT_cost = int(input('HT event cost= '))
+        D_cost = int(input('Duplication event Cost= '))
+        S_cost = int(input('Speciation event Cost= '))
+        gamma = int(input('Gamma (1 recomended)= '))  # factor for probability assignment
+        p = Decimal(input('p (0.05 recomended)= '))  # p_value
+        number_of_planted_vertices = int(input('Number of Vertices to find= ')) # number of vertices that will be reported
+        #save_data = bool(input('Save hypergraph data? (False/True) '))  # save hypergraph data
+        single = input('Single mode pattern? (True/False) ') == 'True'  # save hypergraph data
+        p1 = None
+        p2 = None
+        if single:
+            while p1 == None:
+                print('p1= ')
+                ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
                 ev = ev.split()
                 col = input("   color=  (red/black/None) ")
                 dist = input("   distance=  (True/False) ") == 'True'
-                if valid_pattern(ev, col, dist):
+                if valid_pattern(ev,col,dist):
                     if col == 'None':
                         col = None
-                    p2 = (ev, col, dist)
+                    p1 = (ev,col,dist)
+                    p2 = (None, None, False)
                 else:
                     print('pattern is not valid, please try again: ')
+        else:
+            while p1 == None or p2 == None:
+                print('p1= ')
+                ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ") # save hypergraph data
+                ev = ev.split()
+                col = input("   color=  (red/black/None) ")
+                dist = input("   distance=  (True/False) ") == 'True'
+                if valid_pattern(ev,col,dist):
+                    if col == 'None':
+                        col = None
+                    p1 = (ev,col,dist)
+                else:
+                    print('pattern is not valid, please try again: ')
+                if p1 != None:
+                    print('p2= ')
+                    ev = input(
+                        "   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
+                    ev = ev.split()
+                    col = input("   color=  (red/black/None) ")
+                    dist = input("   distance=  (True/False) ") == 'True'
+                    if valid_pattern(ev, col, dist):
+                        if col == 'None':
+                            col = None
+                        p2 = (ev, col, dist)
+                    else:
+                        print('pattern is not valid, please try again: ')
 
     all_vertices_with_index = {}
     list_of_scores_for_rand_num = {}
