@@ -15,7 +15,7 @@ from numpy import inf
 p1 = (['D'], None, False)
 p2 = (None,False,False)
 
-color = False
+color = True
 double_mode = p2[0] is not None
 lables_flag = False
 draw_marked = False
@@ -28,7 +28,7 @@ path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/'
 S_colors = {}
 big_size = 3000
 small_size = 7
-number_of_douplications = 3
+number_of_douplications = 1
 x_axis = 100
 y_axis = 30
 
@@ -235,7 +235,7 @@ S = tree_operations.collapse_edges(S)
 
 
 S_labels_table, G_labels_table, sigma = inits.init_taxon_to_label_table(S, G, sigma)
-sigma, old_sigma = inits.update_sigma(S, G, 0, sigma, False, path, True, S_labels_table, G_labels_table)
+sigma, old_sigma = inits.update_sigma(sigma, True, S_labels_table, G_labels_table)
 G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
 colors, old_colors = inits.update_colors(S, colors, True)
 

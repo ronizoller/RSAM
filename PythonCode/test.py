@@ -1,18 +1,105 @@
 import tkinter as tk
+from decimal import *
 import RSAMfinder
+from tkinter import ttk
+import threading
 
-patterns = ['Pattern 1: ', 'Pattern 2: ']
+patterns = ['p1', 'p2']
 
-def run(entries):
-    for e in entries:
-        print('%s %s' %(str(e[0]),str(e[1].get())))
-    quit()
-    vars = []
-    for entry in entries:
-        text  = entry[1].get()
-        vars.append(text)
-    speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, gamma, p, number_of_planted_vertices, p1, p2 = vars
-    RSAMfinder(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,gamma, p,number_of_planted_vertices,  p1, p2,True)
+class Main_Frame(object):
+    def __init__(self, top=None):
+        # save root reference
+        self.top = top
+        # set title bar
+        self.top.title("RSAM-finder")
+
+        # start button calls the "initialization" function bar_init, you can pass a variable in here if desired
+        labels = [['Specie tree extension', 'string', None], ['k', 'int', '50'],
+                  ['Threshold Edges\nin Subtree', 'float', '0.1'],
+                  ['HT event cost', 'float', '1'], ['Duplication event Cost', 'float', '1'],
+                  ['Speciation event Cost', 'float', '0'], ['Gamma', 'float', '1'],
+                  ['p', 'float', '0.05'], ['Number of Vertices to find', 'int', None]]
+
+        entries = makeform(top, labels)
+        v = tk.BooleanVar()
+        MODES = [("Double-Mode", True), ("Single-Mod", False)]
+        for text, mode in MODES:
+            b = tk.Radiobutton(top, indicatoron=0, text=text, variable=v, value=mode)
+            b.pack(side=tk.LEFT, padx=5, pady=5)
+
+        self.b1 = tk.Button(top, text='Run',
+                            command=lambda: self.bar_init(2500,entries,top,v))
+        self.b1.pack(side=tk.LEFT, padx=5, pady=5)
+        b2 = tk.Button(top, text='Quit', command=top.quit)
+        b2.pack(side=tk.LEFT, padx=5, pady=5)
+
+        # run mainloop
+        self.top.mainloop()
+
+    def bar_init(self, var, ent,top,v):
+        self.window = tk.Toplevel(root)
+        top.title("RSAM-finder")
+
+        msg = tk.Message(self.window, text='RSAM-finder in progress...')
+        msg.grid(row=0,column=0)
+        self.load_bar = ttk.Progressbar(self.window)
+        self.load_bar.grid(row=1,column=0)
+        # first layer of isolation, note var being passed along to the self.start_bar function
+        # target is the function being started on a new thread, so the "bar handler" thread
+        self.start_bar_thread = threading.Thread(target=self.start_bar, args=(var,ent,v,))
+        # start the bar handling thread
+        self.start_bar_thread.start()
+
+    def start_bar(self, var, ent,v):
+        # the load_bar needs to be configured for indeterminate amount of bouncing
+        self.load_bar.config(mode='determinate', maximum=100, value=0)
+        # 8 here is for speed of bounce
+        self.load_bar.start(8)
+        # start the work-intensive thread, again a var can be passed in here too if desired
+        self.work_thread = threading.Thread(target=self.work_task, args=(var,ent,v,))
+        self.work_thread.start()
+        # close the work thread
+        self.work_thread.join()
+        # stop the indeterminate bouncing
+        self.load_bar.stop()
+        # reconfigure the bar so it appears reset
+        self.load_bar.config(value=0, maximum=0)
+        self.window.destroy()
+        msg = tk.Label(self.top, width=30,text='Results can be found in /data/results.')
+        msg.pack()
+        self.b1.destroy()
+
+
+    def work_task(self,var,entries,double):
+        p1_EV = []
+        p1_colors = None
+        p1_dis = False
+        p2_EV = []
+        p2_colors = None
+        p2_dis = False
+        for e in entries:
+            if e[1] != None:
+                for p in patterns:
+                    if e[0].find(p) != -1:
+                        if e[0][3:].find('event') != -1:
+                            eval(p + '_EV').append(e[1].get())
+                        if e[0][3:].find('colors') != -1:
+                            exec(p + '_colors = e[1].get()')
+                        if e[0][3:].find('dis') != -1:
+                            exec(p + '_dis = e[1].get()')
+        p1 = (p1_EV, p1_colors, p1_dis)
+        if not double:
+            p2 = (p2_EV, p2_colors, p2_dis)
+        else:
+            p2 = (None,None,False)
+        vars = []
+        for entry in entries:
+            if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
+                text = entry[1].get()
+                vars.append(text)
+        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, gamma, p, number_of_planted_vertices = vars
+        RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
+                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, True)
 
 def makeform(root, fields):
     def intValidation(S):
@@ -38,6 +125,9 @@ def makeform(root, fields):
     t3 = tk.Toplevel(root)
     intVal = (t3.register(intValidation), '%S')
     floatVal = (t3.register(floatValidation), '%S')
+    lab = tk.Label(root, text='RSAM-finder')
+    lab.config(width='50')
+    lab.pack()
     for field in fields:
         row = tk.Frame(root)
         lab = tk.Label(row, width=30, text=field[0])
@@ -84,23 +174,4 @@ def makeform(root, fields):
 
 if __name__ == '__main__':
     root = tk.Tk()
-    labels = [['Specie tree extension\n(will be used also for the S_edgelist extenstion)','string',None],['k','int','50'],['Threshold Edges\nin Subtree','float','0.1'],
-              ['HT event cost','float','1'],['Duplication event Cost','float','1'],
-              ['Speciation event Cost','float','0'],['Gamma','float','1'],
-          ['p','float','0.05'],['Number of Vertices to find','int',None]]
-
-    ents = makeform(root, labels)
-    v = tk.BooleanVar()
-    MODES = [("Double-Mode", True),("Single-Mod", False)]
-    for text, mode in MODES:
-        b = tk.Radiobutton(root, indicatoron=0, text=text, variable=v, value=mode)
-        b.pack(side=tk.LEFT, padx=5, pady=5)
-
-    b1 = tk.Button(root, text='Run',
-                  command=(lambda e=ents: run(e)))
-    b1.pack(side=tk.LEFT, padx=5, pady=5)
-    b2 = tk.Button(root, text='Quit', command=root.quit)
-    b2.pack(side=tk.LEFT, padx=5, pady=5)
-
-
-    root.mainloop()
+    Main_Frame(root)

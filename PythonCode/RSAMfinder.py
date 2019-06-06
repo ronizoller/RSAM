@@ -38,6 +38,7 @@ from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
 from decimal import *
 
+
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
     print('Finding pattern '+str(pattern))
     if pattern[0] is not None:
@@ -125,7 +126,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return (None,None,None)
 
-def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,max_list_p1_and_p2):
+def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,max_list_p1_and_p2,speciesTreespecification):
     if p2[0] is not None:
         pattern_name = '('+str(p1[0:3])+'_'+str(p2[0:3])+')_Double-Mode'
     else:
@@ -155,7 +156,7 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
             else:
                 extr.main([(r, '_' + speciesTreespecification)], os.getcwd()+'/data/', speciesTreespecification,
                           str(ind) + '_node_' + str(nd) + '_'+x[2]+'_right', pattern_name, True)
-                extr.main([(l, '_' + speciesTreespecification)],os.getcwd()+'data', speciesTreespecification,
+                extr.main([(l, '_' + speciesTreespecification)],os.getcwd()+'/data/', speciesTreespecification,
                           str(ind) + '_node_'  +str(nd) + '_'+x[2]+'_left', pattern_name, True)
             index += 1
 
@@ -169,6 +170,7 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                                                                                                         str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
     print('Running time: %s\nk: %s\nTH_edges: %s' % (
         str(datetime.now() - starting_time), str(k), str(p1[3])))
+    return
     quit()
 
 def valid_pattern(ev,col,dist):
@@ -324,9 +326,13 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,gamma, p,num
         list_of_scores_for_rand_num.update({rand_num:all_vertices})
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
-    end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_score_p1_list,max_score_p1_and_p2_list)
+    end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_score_p1_list,max_score_p1_and_p2_list,speciesTreespecification)
+    return
 
 if __name__ == "__main__":
     main()
+
+
+
 
 
