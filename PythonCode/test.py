@@ -17,8 +17,8 @@ class Main_Frame(object):
         labels = [['Specie tree extension', 'string', None], ['k', 'int', '50'],
                   ['Threshold Edges\nin Subtree', 'float', '0.1'],
                   ['HT event cost', 'float', '1'], ['Duplication event Cost', 'float', '1'],
-                  ['Speciation event Cost', 'float', '0'], ['Gamma', 'float', '1'],
-                  ['p', 'float', '0.05'], ['Number of Vertices to find', 'int', None]]
+                  ['Speciation event Cost', 'float', '0'],['Loss event Cost', 'float', '0'], ['Gamma', 'float', '1'],
+                  ['p', 'float', '0.05'], ['Number of Vertices to find', 'int', 1]]
 
         entries = makeform(top, labels)
         v = tk.BooleanVar()
@@ -97,9 +97,9 @@ class Main_Frame(object):
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
                 text = entry[1].get()
                 vars.append(text)
-        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, gamma, p, number_of_planted_vertices = vars
-        RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
-                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, True)
+        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost,loss_cost, gamma, p, number_of_planted_vertices,create_sigma = vars
+        RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),int(loss_cost),
+                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, True,create_sigma)
 
 def makeform(root, fields):
     def intValidation(S):
@@ -144,7 +144,6 @@ def makeform(root, fields):
         ent.pack(side=tk.RIGHT, expand=tk.YES)
         entries.append((field[0], ent))
     for p in patterns:
-        ind = patterns.index(p)
         row = tk.Frame(root)
         names = ['Event1','Event2','Event3','Colors','Distance']
         for name in names:
@@ -168,8 +167,16 @@ def makeform(root, fields):
         v = tk.BooleanVar(root)
         c = tk.Checkbutton(row,variable=v)
         entries.append((p + '_dis', v))
-        c.grid(row=1,column=number_of_events+2)
+        c.grid(row=1, column=number_of_events+2)
         row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+    row = tk.Frame(root)
+    lab = tk.Label(row, text='create sigma from FASTA file', width=40)
+    lab.grid(row=0, column=0)
+    create_sigma = tk.BooleanVar(root)
+    c = tk.Checkbutton(row, variable=create_sigma)
+    c.grid(row=0, column=1)
+    entries.append(('create_sigma', create_sigma))
+    row.pack(side=tk.TOP, fill=tk.X, padx=0, pady=5)
     return entries
 
 if __name__ == '__main__':

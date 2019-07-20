@@ -95,13 +95,13 @@ def init_internal_labels (tree, char, old_sigma, path):
     return tree
 
 class heap_items:
-    def __init__(self, cost,node1,node2):
-        self.val = (cost,node1,node2)
+    def __init__(self, cost_without_losses,cost_with_losses, node1,node2):
+        self.val = (cost_without_losses,cost_with_losses, node1,node2)
     def __lt__(self, other):
-        if (self.val[0]==other.val[0]):
+        if self.val[1] == other.val[1]:
             return True
         else:
-            return self.val[0]<other.val[0]
+            return self.val[1] < other.val[1]
 
 def nCr(n,r, nCr_lookup_table, fact_lookup_table):
     #print('     Calculating '+str(n)+' choose '+str(r)+'...\n')
@@ -307,13 +307,13 @@ def frange(start,end,step):
         i += step
     return res
 
-def kmin_positive (l,k,H,nodes_table):
+def kmin_positive (l,k,H,nodes_table,key):
     l_temp = l.copy()
     res = []
     for i in range(0,min([len(l_temp),k])):
-        min_ind = [x[1]['cost'] for x in l_temp].index(min([x[1]['cost'] for x in l_temp]))
+        min_ind = [x[1][key] for x in l_temp].index(min([x[1][key] for x in l_temp]))
         temp_item = l_temp[min_ind]
-        if temp_item[1]['cost'] == math.inf:
+        if temp_item[1][key] == math.inf:
             return res
         l_temp.remove(l_temp[min_ind])
         if type(temp_item) == tuple:
@@ -325,15 +325,16 @@ def kmin_positive (l,k,H,nodes_table):
         #res = res +[None]*(k-len(l))
     return res
 
-def kmin_list(l_input,subtree1,subtree2,k,H,nodes_table):
-    if l_input != []:
+
+def kmin_list(l_input, subtree1, subtree2, H, nodes_table, key):
+    if l_input:
         node_index = l_input[0][0]
         l_new = (l_input[0][1]['l']).copy()
         l = [(node_index,item) for item in l_new] + subtree1.copy() + subtree2.copy()
-        list_of_values = [nd[1]['cost'] for nd in l]
+        list_of_values = [nd[1][key] for nd in l]
     else:
         l = subtree1.copy() + subtree2.copy()
-        list_of_values = [x[1]['cost'] for x in subtree1 + subtree2]
+        list_of_values = [x[1][key] for x in subtree1 + subtree2]
     res = []
     #print('l: ' + str(l)+' k: '+str(k))
     end = len(list_of_values)
