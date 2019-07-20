@@ -12,7 +12,7 @@ import random
 import draw
 from numpy import inf
 
-p1 = (['D'], None, False)
+p1 = (['S'], None, False)
 p2 = (None,False,False)
 
 color = True

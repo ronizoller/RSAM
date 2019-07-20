@@ -3,6 +3,7 @@ import tree_operations_v1 as tree_operations
 import networkx as nx
 import random
 import EfficiantVersion as effi
+from copy import deepcopy
 
 def find_max_S_d(max_S_d, S_dis_matrix):
     for h, v in S_dis_matrix.items():
@@ -10,23 +11,24 @@ def find_max_S_d(max_S_d, S_dis_matrix):
             max_S_d = v
     return max_S_d
 
-def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table,subtree):
-    #print('Initialasing efficient hypergraph leafs...')
+
+def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table):
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
-            H.add_node(H_number_of_nodes,s=leaf.label,t=sigma[leaf.label],l=list())
+            H.add_node(H_number_of_nodes, s=leaf.label, t=sigma[leaf.label],l=list())
             big_node = H_number_of_nodes
             H_number_of_nodes += 1
             for i in range(0,k):
-                if i==0:
-                    cost=0
+                if i == 0:
+                    cost_no_losses = 0
+                    cost_with_losses = 0
                 else:
-                    cost=math.inf
-                new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
+                    cost_no_losses = math.inf
+                    cost_with_losses = math.inf
+                new_item = {'s':  leaf.label,  't':  sigma[leaf.label],'cost_without_losses': cost_no_losses, 'cost_with_losses': cost_with_losses, 'event':"leaf", 'list_place':  i}
                 H.nodes[big_node]['l'].insert(i,new_item)
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
-    #print('Finished initialasing hypergraph leafs.\n')
-    return H,H_number_of_nodes, nodes_table,subtree
+    return H,H_number_of_nodes, nodes_table
 
 
 def init_distance_S(S_dis_matrix,path,spe):
@@ -155,18 +157,27 @@ def init_H_field(H, field, init,in_list, for_edge):
                 e[2][field] = init
     return H
 
-def init_dict_inf(H,S,G,k,nodes_table,dict,sigma):
+
+def init_dict_inf(H,S,G,k,nodes_table,dict,sigma,S_dis_matrix,loss_cost):
     res = {}
     for u in G.postorder_node_iter():
         res.update({u.label:{}})
         for x in S.postorder_node_iter():
-            if dict == 'subtree':
-                if effi.find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table) != []:
+            if dict == 'subtree' or dict == 'subtreeLoss':
+                if effi.find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table):
                     res[u.label].update({x.label:[effi.find_nodes_in_hypergraph(H, u.label, x.label, i, nodes_table)[0] for i in range (0,k)]})
                     S.find_node(lambda n: (n.label == sigma[u.label]))
                 elif u.is_leaf() and (x in S.find_node(lambda n: (n.label == sigma[u.label])).ancestor_iter()):
-                    res[u.label].update({x.label: [effi.find_nodes_in_hypergraph(H, u.label, sigma[u.label], i, nodes_table)[0]
-                                                   for i in range(0, k)]})
+                    if dict == 'subtree':
+                        res[u.label].update({x.label: [effi.find_nodes_in_hypergraph(H, u.label, sigma[u.label], i, nodes_table)[0]
+                                                       for i in range(0, k)]})
+                    else:
+                        loss_cost_new = S_dis_matrix[(x.label, sigma[u.label])] * loss_cost
+                        list_of_values = [deepcopy(effi.find_nodes_in_hypergraph(H, u.label, sigma[u.label], i, nodes_table)[0])
+                                          for i in range(0, k)]
+                        for i in range(0, k):
+                            list_of_values[i][1]['cost_with_losses'] += loss_cost_new
+                        res[u.label].update({x.label: list_of_values})
                 else:
                     res[u.label].update({x.label: []})
             else:
