@@ -23,6 +23,7 @@ import networkx as nx
 import dendropy as tr
 import math
 import utiles
+import draw_for_users
 from utils import newick2edgelist as n2e
 from utils import fix_taxa_names_in_FASTA as fix
 import tree_operations_v1 as tree_operations
@@ -124,11 +125,14 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return (None,None,None)
 
-def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,max_list_p1_and_p2,speciesTreespecification,create_sigma_from_fasta):
+def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
+                 max_list_p1_and_p2,speciesTreespecification,create_sigma_from_fasta,draw,sigma,colors,S_labels_table,
+                 color, lables_flag, draw_marked,x_axis,y_axis):
     if p2[0] is not None:
         pattern_name = '('+str(p1[0:3])+'_'+str(p2[0:3])+')_Double-Mode'
     else:
         pattern_name = str(p1[0:3]) + '_Single-Mode'
+
     file = open(os.getcwd()+'/data/saved_data/marked_RSAM_finder_'+speciesTreespecification+'_pattern='+pattern_name+'.txt', 'w')
     file.write(str(marked_nodes))
     file.close()
@@ -164,13 +168,19 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
             file.close()
     print('marked vertices: ' + str(marked_nodes))
 
+    if draw:
+        draw_for_users.main(G,sigma,old_sigma,colors,S_labels_table,
+                            p1,p2,speciesTreespecification,color,lables_flag,draw_marked,x_axis,y_axis)
+
+
+
     print('Class: %s Pattern: %s\nNumber of co-optimal out of %s solutions: %s with cost %s' % (str(speciesTreespecification),pattern_name
                                                                                                         ,str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
                                                                                                         str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
     print('Running time: %s\nk: %s\nTH_edges: %s' % (
         str(datetime.now() - starting_time), str(k), str(p1[3])))
     return
-    quit()
+
 
 def valid_pattern(ev,col,dist):
     if type(ev) == list and len(ev) <= 3:
@@ -186,7 +196,9 @@ def valid_pattern(ev,col,dist):
 
                 ##********  MAIN ***********
 
-def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma, p,number_of_planted_vertices,  p1, p2,GUI,create_sigma_from_fasta):
+def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
+          p,number_of_planted_vertices,  p1, p2,GUI,create_sigma_from_fasta,track_solution,draw,
+          color,lables_flag,draw_marked,x_axis,y_axis):
     starting_time = datetime.now()
     if not GUI:
         speciesTreespecification = input('Specie tree extension (will be used also for the S_edgelist extenstion)= ')
@@ -253,8 +265,8 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
     S_colors = {}
     all_vertices = {}
 
-    fix.main(os.getcwd()+'/data/',[''],create_sigma_from_fasta)
     taxa_names.main(os.getcwd() + '/data/', [''], speciesTreespecification,create_sigma_from_fasta)
+    fix.main(os.getcwd()+'/data/',[''],create_sigma_from_fasta)
     create_sigma.main(os.getcwd()+'/data/',[''],speciesTreespecification,create_sigma_from_fasta)
 
     G = tr.Tree.get_from_path(os.getcwd()+"/data/G.txt", schema="newick")
@@ -289,11 +301,11 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
 
     p1 = (p1[0],p1[1],p1[2],len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges)
 
-    S_dis_matrix = inits.init_distance_S(S_dis_matrix, os.getcwd()+'/data/' ,speciesTreespecification)
+    S_dis_matrix = inits.init_distance_S(S_dis_matrix, os.getcwd()+'/data/',speciesTreespecification)
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, k,
                                                                      nodes_table, D_cost, S_cost, loss_cost, HT_cost,os.getcwd(),
-                                                                     sigma,save_data,S_dis_matrix)
+                                                                     sigma,save_data,S_dis_matrix,track_solution)
 
     new_G = nx.DiGraph()
     nCr_lookup_table = {}
@@ -325,8 +337,12 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
         list_of_scores_for_rand_num.update({rand_num:all_vertices})
     all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
 
-    end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_score_p1_list,max_score_p1_and_p2_list,speciesTreespecification,create_sigma_from_fasta)
-    return
+
+    end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,
+                 old_sigma,max_score_p1_list,max_score_p1_and_p2_list,
+                 speciesTreespecification,create_sigma_from_fasta,draw,
+                 sigma,colors,S_labels_table,color,lables_flag,draw_marked,x_axis,y_axis)
+    quit()
 
 if __name__ == "__main__":
     main()

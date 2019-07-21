@@ -46,13 +46,13 @@ def main(path, COGS_names,create_sigma_from_fasta):
             file = open(path + name+ "/old_new_names.txt", 'w')
             file.write(str(names_map))
             file.close()
-        else:
-            file = open(path + '' + "/NCBI_tax_ID.txt", 'w')
-            file.write(str(''))
-            file.close()
-            file = open(path + '' + "/old_new_names.txt", 'w')
-            file.write(str(''))
-            file.close()
+    else:
+        file = open(path + '' + "/NCBI_tax_ID.txt", 'w')
+        file.write(str(''))
+        file.close()
+        file = open(path + '' + "/old_new_names.txt", 'w')
+        file.write(str(''))
+        file.close()
 
 if __name__ == "__main__":
     main(path,COGS_names)
