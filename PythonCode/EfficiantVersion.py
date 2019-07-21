@@ -12,7 +12,7 @@ from copy import deepcopy
 
 
 
-def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, path, sigma, save_data,S_dis_matrix):
+def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, path, sigma, save_data,S_dis_matrix,track_solution):
     print('Building hypergraph...')
     H = nx.MultiDiGraph()
     H.clear()
@@ -150,7 +150,8 @@ def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, pa
     #print('     No. of nodes: '+str(H_number_of_nodes * k)+'        No. on edges: '+str(len(H.edges())))
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
-    print(track_a_solution(H_root, H, S, G, nx.DiGraph(), 0,-1)[0].nodes(data=True))
+    if track_solution:
+        print(track_a_solution(H_root, H, S, G, nx.DiGraph(), int(track_solution),-1)[0].nodes(data=True))
     print('Finished building hypergraph.\n')
     return H,H_number_of_nodes, nodes_table
 
