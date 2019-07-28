@@ -12,12 +12,11 @@ from copy import deepcopy
 
 
 
-def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, path, sigma, save_data,S_dis_matrix,track_solution):
-    print('Building hypergraph...')
+def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, path, sigma, save_data,S_dis_matrix,track_solution, res):
     H = nx.MultiDiGraph()
     H.clear()
 
-    H, H_number_of_nodes, nodes_table = inits.init_leafs_efficient(S,G, H, k, 0,sigma,nodes_table)
+    H, H_number_of_nodes, nodes_table = inits.init_leafs_efficient(G, H, k, 0,sigma,nodes_table)
     incomp = inits.init_dict_inf(H, S, G, k, nodes_table, 'incomp', sigma, S_dis_matrix, loss_cost)
     subtree = inits.init_dict_inf(H, S, G, k, nodes_table, 'subtree', sigma, S_dis_matrix, loss_cost)
     subtreeLoss = inits.init_dict_inf(H, S, G, k, nodes_table, 'subtreeLoss', sigma, S_dis_matrix, loss_cost)
@@ -119,42 +118,39 @@ def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, pa
                 incomp[u.label][y.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][z.label],k,H,nodes_table,'cost_without_losses')
                 incomp[u.label][z.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][y.label],k,H,nodes_table,'cost_without_losses')
     if save_data:
-        print('     Writing nodes...')
         file = open(path+'/saved_data/H_nodes_effi.txt', 'w')
         file.write(str(H.nodes(data=True)))
         file.close()
-        print('     Finished writing nodes.\n')
 
-        print('     Writing edges...')
         file = open(path+'/saved_data/H_edges_k='+str(k)+'.txt', 'w')
         file.write(str(H.edges(data=True)))
         file.close()
-        print('     Finished writing edges.\n')
 
-        print('     Writing nodes table...')
         file = open(path+'/saved_data/nodes_table_k='+str(k)+'.txt', 'w')
         file.write(str(nodes_table))
         file.close()
-        print('     Finished writing nodes table.\n')
 
         file = open(path+'/saved_data/incomp.txt', 'w')
         file.write(str(incomp))
         file.close()
-        print('     Finished writing nodes table.\n')
 
         file = open(path+'/saved_data/subtree.txt', 'w')
         file.write(str(subtree))
         file.close()
-        print('     Finished writing nodes table.\n')
 
-    #print('     No. of nodes: '+str(H_number_of_nodes * k)+'        No. on edges: '+str(len(H.edges())))
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]
     if track_solution:
-        print(track_a_solution(H_root, H, S, G, nx.DiGraph(), int(track_solution),-1)[0].nodes(data=True))
-    print('Finished building hypergraph.\n')
+        res['solution'] += 'Solution number '+str(track_solution)+'\n\n'+format_solution(track_a_solution(H_root, H, S, G, nx.DiGraph(), int(track_solution),-1)[0].nodes(data=True))
     return H,H_number_of_nodes, nodes_table
 
+
+def format_solution(sol):
+    res = ''
+    for u in sol:
+        u = u[1]
+        res += '%s->%s (event: %s, cost: %s, list place: %s)\n' % (u['s'], u['t'], str(u['l'][0]['event']), str(u['l'][0]['cost_with_losses']), str(u['l'][0]['list_place']))
+    return res
 
 def find_nodes_in_hypergraph(H, s, t, lp, nodes_table):
     #print('nodes table = %s, \n s = %s, t = %s, lp = %s \nH_nodes = %s' % (str(nodes_table), str(s), str(t),str(lp), str(H.node(data=True))))
@@ -383,17 +379,13 @@ def color_hypergraph(H, S, colors, alpha, S_colors):
     return H, S, S_colors
 
 def remove_prob_zero(H, deleted_nodes):
-    #print('Removing prob. 0...')
     for nd in list(H.node(data=True)):
         if nd[1]['l'][0]['probability'] == 0:
             H.remove_node(nd[0])
             deleted_nodes.append(nd[0])
-    #print("\t\tnode deleted: "+str(deleted_nodes))
-    #print('Finished removing prob. 0.\n')
     return H
 
-def assign_probabilities(S, G, H, gamma):
-    #print('Assigning probs to hypergraph....')
+def assign_probabilities(S, G, H, gamma, res):
     flag = False
     to_try = G.seed_node.label
     to_try_sp = S.seed_node.label
@@ -424,13 +416,12 @@ def assign_probabilities(S, G, H, gamma):
                 for e in incoming_edges_v:
                     e[2]['probability'] = nd['l'][i]['weight']
     if flag == False:
-        print('     ** No reconciliation of '+to_try+' exists. **')
+        res['Error'] = '     ** No reconciliation of '+to_try+' exists.'
         return None, 0
     for nd in H.nodes(data = True):
         for g in range(0,len(nd[1]['l'])):
             if nd[1]['l'][g]['probability'] > max_prob:
                 max_prob = nd[1]['l'][g]['probability']
-    #print('Finished assigning probs to hypergraph.\n')
     return H, max_prob
 
 def assign_weights_to_list(l, gamma):
@@ -499,7 +490,6 @@ def track_a_solution(root, H, S, G, solution, list_place, cost):
             root_numbers_in_H.append([nd for nd in list(H.node(data=True)) if nd[1]['s'] == left_child['s'] and nd[1]['t'] == left_child['t']][0][0])
             root_numbers_in_solution.append(solution_number_of_nodes-1)
             root_numbers_in_solution.append(solution_number_of_nodes-1)
-    #print('Finished tracking ' + str(list_place) + 'th solution...\n')
     return solution, new_nodes_table
 
 def find_number_of_cooptimal(H,G,S):

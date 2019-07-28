@@ -3,7 +3,10 @@ from decimal import *
 import RSAMfinder
 from tkinter import ttk
 import threading
+import tkinter.scrolledtext as tkscrolled
 from PIL import ImageTk, Image
+import os
+import sys
 
 
 class parameters_frame(object):
@@ -12,7 +15,7 @@ class parameters_frame(object):
         self.v = None
 
         if specification == 'general':
-            self.entries = makeform(self.top, labels)
+            self.entries,self.error_labels = makeform(self.top, labels)
         elif specification == 'patterns':
             self.entries = make_patterns_tab(self.top, ['p1','p2'])
         elif specification == 'figure_params':
@@ -50,10 +53,11 @@ def make_patterns_tab(root, patterns):
         colors = ['red','black','None']
         string_var = tk.StringVar(t1)
         string_var.set('None')
-        entries.append((p + 'colors', string_var))
         colors_op = tk.OptionMenu(row, string_var, *colors)
         colors_op.config(width=10)
         colors_op.grid(row=1, column=number_of_events+1)
+        entries.append((p + '_colors', string_var))
+
         string_var = tk.BooleanVar(t1)
         c = tk.Checkbutton(row,variable=string_var)
         entries.append((p + '_dis', string_var))
@@ -122,13 +126,11 @@ def makeform(root, fields):
         t3.bell()  # .bell() plays that ding sound telling you there was invalid input
         return False
 
+    error_labels = {}
     entries = []
     t3 = tk.Frame(root)
     intVal = (t3.register(intValidation), '%S')
     floatVal = (t3.register(floatValidation), '%S')
-    lab = tk.Label(root, text='RSAM-finder')
-    lab.config(width='50')
-    lab.pack()
     for field in fields:
         if len(field) == 3:
             row = tk.Frame(root)
@@ -143,6 +145,9 @@ def makeform(root, fields):
                 ent.insert("end",field[2])
             lab.grid(row=fields.index(field),column=0)
             ent.grid(row=fields.index(field),column=1)
+            error_labels.update({field[0]+' error':tk.StringVar()})
+            lab = tk.Label(row, font=('Helvetica', 18, 'bold'), fg='red', width=5, textvariable=error_labels[field[0]+' error'],justify=tk.LEFT)
+            lab.grid(row=fields.index(field), column=3)
             entries.append((field[0], ent))
             row.pack(side=tk.TOP, padx=0, pady=5)
 
@@ -172,7 +177,7 @@ def makeform(root, fields):
         entries.append(('track_solution', ent))
         ent.grid(row=0, column=1)
         row.pack(side=tk.TOP, fill=tk.X, padx=0, pady=5)
-    return entries
+    return entries,error_labels
 
 
 class Main_Frame(object):
@@ -199,14 +204,23 @@ class Main_Frame(object):
         b2 = tk.Button(top, text='Quit', command=top.quit)
         b2.pack(side=tk.TOP, padx=5, pady=5)
 
+        self.result = {'text': '', 'error': '', 'solution': ''}
+        self.msg_error = None
         # run mainloop
         self.top.mainloop()
 
     def bar_init(self,t1,t2,t3):
-        self.window = tk.Toplevel(root)
         ent1 = t1.work_task()
         ent2 = t2.work_task()
         ent3 = t3.work_task()
+        for ent in ent1:
+            if ent[0] not in ['track_solution','create_sigma','draw']:
+                if ent1[ent1.index(ent)][1].get() == '':
+                    t1.error_labels[ent[0]+' error'].set('*')
+                    return
+                else:
+                    t1.error_labels[ent[0] + ' error'].set('')
+        self.window = tk.Toplevel(root)
         msg = tk.Message(self.window, text='RSAM-finder in progress...')
         msg.grid(row=0, column=0)
         self.load_bar = ttk.Progressbar(self.window)
@@ -223,7 +237,7 @@ class Main_Frame(object):
         # 8 here is for speed of bounce
         self.load_bar.start(8)
         # start the work-intensive thread, again a var can be passed in here too if desired
-        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2']))
+        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2'], self.result))
         self.work_thread.start()
         # close the work thread
         self.work_thread.join()
@@ -232,32 +246,48 @@ class Main_Frame(object):
         # reconfigure the bar so it appears reset
         self.load_bar.config(value=0, maximum=0)
         self.window.destroy()
-        msg = tk.Label(self.top, width=30, text='Results can be found in /data/results.')
-        msg.pack()
-        self.b1.destroy()
+        if self.result['error'] != '':
+            if self.msg_error:
+                self.msg_error.destroy()
+            self.msg_error = tk.Label(self.top, fg="red", width=50, height=3, text=self.result['error'])
+            self.msg_error.pack()
+            self.result['error'] = ''
+            self.result['text'] = ''
+            self.result['solution'] = ''
+        else:
+            msg = tkscrolled.ScrolledText(self.top, width=100, height=10)
+            msg.insert(1.0, self.result['text'])
+            if self.msg_error:
+                self.msg_error.destroy()
+            msg.pack()
+            self.b1.destroy()
+            b3 = tk.Button(self.top, text='Restart',command=lambda: os.execl(sys.executable, sys.executable, * sys.argv))
+            b3.pack()
 
-    def work_task(self, entries, patterns):
+        if self.result['solution'] != '':
+            solution_frame = tk.Toplevel()
+            TKScrollTXT = tkscrolled.ScrolledText(solution_frame, width=80, height=50)
+            TKScrollTXT.insert(1.0, self.result['solution'])
+            TKScrollTXT.pack(side=tk.LEFT)
+
+    def work_task(self, entries, patterns, res):
         p1_EV = []
-        p1_colors = None
-        p1_dis = False
         p2_EV = []
-        p2_colors = None
-        p2_dis = False
         for e in entries:
-            if e[1] != None:
+            if e[1]:
                 for p in patterns:
                     if e[0].find(p) != -1:
                         if e[0][3:].find('event') != -1:
                             eval(p + '_EV').append(e[1].get())
                         if e[0][3:].find('colors') != -1:
-                            exec(p + '_colors = e[1].get()')
+                            exec("%s = '%s'" % (p+'_color',e[1].get()),locals(),globals())
                         if e[0][3:].find('dis') != -1:
-                            exec(p + '_dis = e[1].get()')
-        p1 = (p1_EV, p1_colors, p1_dis)
-        if not p2_EV is None:
-            p2 = (p2_EV, p2_colors, p2_dis)
+                            exec("%s = '%s'" % (p + '_dis', e[1].get()), locals(), globals())
+        p1 = (p1_EV, p1_color, p1_dis)
+        if p2_EV != ['None','None','None']:
+            p2 = (p2_EV, p2_color, p2_dis)
         else:
-            p2 = (None, None, False)
+            p2 = [None,None,None]
         vars = []
         for entry in entries:
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
@@ -269,7 +299,7 @@ class Main_Frame(object):
         RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
                         int(loss_cost),
                         Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, True, create_sigma,
-                        track_solution, draw, color,labels,draw_marked,x,y)
+                        track_solution, draw, color,labels,draw_marked,x,y, res)
 
 
 class Notebook:

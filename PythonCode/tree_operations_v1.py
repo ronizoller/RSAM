@@ -122,7 +122,7 @@ def edge_weight_based_on_interesting_vertices(x, y, z, interesting_vertices_p,ma
             for nd in interesting_vertices_p:
                 if nd['curr']['event'] == 'HT':
                     if (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == y['label']) or (nd['curr']['s'] == x.label and nd['HT_to_in_G']['s'] == z['label']):
-                        if p[2]:
+                        if p[2] or p[2] != 'False':
                             dis_factor = interesting_vertices_p[interesting_vertices_p.index(nd)]['distance']/max_distance
                         else :
                             dis_factor = 1
@@ -143,9 +143,9 @@ def edge_weight_based_on_interesting_vertices(x, y, z, interesting_vertices_p,ma
                             res_p += interesting_vertices_p[interesting_vertices_p.index(nd)]['probability']
                         else :
                             res_p += 1
-        if z != None:
+        if z:
             res_p += z[name]
-        if y != None :
+        if y:
             res_p += y[name]
     return res_p
 
@@ -262,7 +262,7 @@ def normlize_weights(G,k,p,name):
     return G
 
 def find_max_scores(G,number_of_planted_vertices,name,TH):
-    max_score_p = [0]*number_of_planted_vertices
+    max_score_p = [-1]*number_of_planted_vertices
     max_score = max_score_p
     if name == 'p1':
         for nd in (reversed(list(nx.topological_sort(G)))):

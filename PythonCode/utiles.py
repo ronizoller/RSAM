@@ -52,7 +52,6 @@ def compute_avg_diff(l):
     return sum/length
 
 def p_value_calculation(fro, all, nCr_lookup_table, fact_lookup_table, accur, Pr_red, Pr_black, label):
-    #print('Calculating p_value')
     if fro == all:
         return 0, nCr_lookup_table, fact_lookup_table
     else:
@@ -64,7 +63,6 @@ def p_value_calculation(fro, all, nCr_lookup_table, fact_lookup_table, accur, Pr
         return res, nCr_lookup_table, fact_lookup_table
 
 def init_internal_labels (tree, char, old_sigma, path):
-    #print('Inisilasing internal leafs...')
     counter = 1
     dic = ''
     for nd in tree.postorder_node_iter():
@@ -75,11 +73,6 @@ def init_internal_labels (tree, char, old_sigma, path):
             if char == 'u':
                 dic = dic + ' (' + old_sigma[nd.taxon.label] + ') '
             dic = dic + '\n'
-    #for nd in tree.postorder_node_iter():
-    #   if nd.label == 'u365' or nd.label == 'u364':
-    #       child = nd.child_nodes()
-    #       nd.remove_child(child[0])
-    #       print('     '+str(child[0])+' was deleted')
     to_create = path + '/saved_data/'
     os.makedirs(os.path.dirname(to_create), exist_ok=True)
     tree_operations.collapse_edges(tree)
@@ -91,7 +84,6 @@ def init_internal_labels (tree, char, old_sigma, path):
         file = open(path + '/saved_data/S_keys.txt', 'w')
         file.write(str(dic))
         file.close()
-    #print('Finished inisilasing internal leafs.\n')
     return tree
 
 class heap_items:
@@ -104,9 +96,7 @@ class heap_items:
             return self.val[1] < other.val[1]
 
 def nCr(n,r, nCr_lookup_table, fact_lookup_table):
-    #print('     Calculating '+str(n)+' choose '+str(r)+'...\n')
     if (n,r) in nCr_lookup_table:
-        #print('     Finished calculating '+str(n)+' choose '+str(r))
         return [nCr_lookup_table[(n,r)],nCr_lookup_table,fact_lookup_table]
     else :
         temp = utiles.fact(n,fact_lookup_table)
@@ -122,7 +112,6 @@ def nCr(n,r, nCr_lookup_table, fact_lookup_table):
         fact_lookup_table = temp[1]
 
         nCr_lookup_table.update({(n,r): fact_n // fact_r // fact_nr})
-        #print('Finished calculating '+str(n)+' choose '+str(r))
         return  nCr_lookup_table[(n,r)],nCr_lookup_table,fact_lookup_table
 
 def expected(probs, l):
@@ -216,7 +205,6 @@ def average_of_list(dict,num):
                             sum[0] += score1[0]
                             sum[1] += score1[1]
                 res.update({u: (sum[0]/num,sum[1]/num)})
-    #print('         Average list: %s\n' % str(res))
     return res
 
 def average_of_list_check_diff(dict):
@@ -336,7 +324,6 @@ def kmin_list(l_input, subtree1, subtree2, H, nodes_table, key):
         l = subtree1.copy() + subtree2.copy()
         list_of_values = [x[1][key] for x in subtree1 + subtree2]
     res = []
-    #print('l: ' + str(l)+' k: '+str(k))
     end = len(list_of_values)
     for i in range(0,end):
         if min(list_of_values) == math.inf:
@@ -344,7 +331,6 @@ def kmin_list(l_input, subtree1, subtree2, H, nodes_table, key):
         else:
             temp_index = list_of_values.index(min(list_of_values))
             temp_item = l[temp_index]
-            #print('temp_index: %s, min value: %s,list of values: %s\n\n' % (str(temp_index),str(temp_item),str(list_of_values)))
             l.remove(l[temp_index])
             list_of_values.remove(list_of_values[temp_index])
             if type(temp_item) == tuple:
@@ -352,14 +338,11 @@ def kmin_list(l_input, subtree1, subtree2, H, nodes_table, key):
             else:
                 res.append(
                     effi.find_nodes_in_hypergraph(H, temp_item['s'], temp_item['t'], temp_item['list_place'], nodes_table)[0])
-    #if end < k:
-        #res = res +[None]*(k-end)
-    #print('min form l: '+str(res)+'\n')
     return res
 
 def update_top_ranking_list(new_score,list):
     j = 0
-    if new_score > list[0]:
+    if new_score > list[0] and new_score > 0:
         while new_score > list[j] and j < len(list)-1:
             j += 1
         if new_score < list[j]:

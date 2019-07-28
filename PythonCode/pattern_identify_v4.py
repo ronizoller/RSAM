@@ -7,7 +7,6 @@ start = '*'
 end = '*'
 
 def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
-    print('Identifing patterns...')
     avg_diffrence = utiles.compute_avg_diff(G_nodes_to_weight)
     for u in G.postorder_node_iter():
         G_nodes_identified.update({u.label:0})
@@ -32,7 +31,6 @@ def identify_pattern2(G, H, k, G_nodes_to_weight, G_nodes_identified):
                     if math.fabs(G_nodes_to_weight[(curr['s'],child1_in_H['s'])][1] - G_nodes_to_weight[(curr['s'],child2_in_H['s'])][0]) > avg_diffrence:
                         new_prob = G_nodes_identified[curr['s']] + curr['probability']
                         G_nodes_identified.update({curr['s']:new_prob})
-    print('Finished dentifing patterns...\n')
     return G_nodes_identified
 
 def find_signi_distance(new_G, all_vertices, p1,p2,max_score_p1_list,max_score_p1_and_p2_list ,check_diffrence_between_solutions):
@@ -63,23 +61,14 @@ def find_signi_distance(new_G, all_vertices, p1,p2,max_score_p1_list,max_score_p
                         w_p1_score = w['p1']
                         w_p2_score = w['p2']
 
-            if p2[0] == None:
-                print(
-                    '(Single-mode)     %s (v = %s, w = %s) :\n        p1 score:  %s , edges in subtree u: %s\n     TH_edges: %s, max_scores p1: %s\n' %
-                    (u['label'], str(v['label']), str(w['label']), str(u_p1_score),
-                     str(u['edges_in_subtree']),str(p1[3]), str(max_score_p1_list)))
-
+            if not p2[0]:
                 if u['edges_in_subtree'] >= p1[3]:
-                        if check_diffrence_between_solutions:
-                            all_vertices.update({u['label']: u_p1_score})
-                        elif u_p1_score in max_score_p1_list:
-                                marked_nodes.update({u['label']: [u_p1_score,'Single-mode']})
+                    if check_diffrence_between_solutions:
+                        all_vertices.update({u['label']: u_p1_score})
+                    elif u_p1_score in max_score_p1_list:
+                        print(u)
+                        marked_nodes.update({u['label']: [u_p1_score,'Single-mode']})
             else:
-                print(
-                    '(Douple-mode)     %s (v = %s, w = %s) :\n        v p1 score:  %s, w p2 score: %s,w p1 score:  %s, v p2 score: %s , edges in subtree u: %s\n     TH_edges p1: %s\n      max_scores p1+p2: %s\n' %
-                    (u['label'], str(v['label']), str(w['label']), str(v_p1_score), str(w_p2_score),str(w_p1_score), str(v_p2_score),
-                     str(u['edges_in_subtree']),str(p1[3]), str(max_score_p1_and_p2_list)))
-
                 if v['edges_in_subtree'] >= p1[3] and w['edges_in_subtree'] >= p1[3]:
                         if check_diffrence_between_solutions:
                             all_vertices.update({u['label']: u_p1_score})

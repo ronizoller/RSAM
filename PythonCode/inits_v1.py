@@ -12,7 +12,7 @@ def find_max_S_d(max_S_d, S_dis_matrix):
     return max_S_d
 
 
-def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table):
+def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table):
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
             H.add_node(H_number_of_nodes, s=leaf.label, t=sigma[leaf.label],l=list())
@@ -32,8 +32,6 @@ def init_leafs_efficient(S,G, H, k, H_number_of_nodes,sigma,nodes_table):
 
 
 def init_distance_S(S_dis_matrix,path,spe):
-    #print('Initing Distances...')
-
     input = open(path+'/saved_data/S_edgelist_'+spe+'.txt', 'r')
     edgelist = []
     for line in input:
@@ -42,7 +40,6 @@ def init_distance_S(S_dis_matrix,path,spe):
     networkx_S = nx.parse_edgelist(edgelist, nodetype = str, data=(('weight',any),))
     for nd1 in networkx_S.nodes():
         for nd2 in networkx_S.nodes():
-            #S_dis_matrix.update({(nd1,nd2):nx.shortest_path_length(networkx_S, source=nd1, target=nd2, weight='weight')})      #for weighted tree
             S_dis_matrix.update(
                 {(nd1, nd2): nx.shortest_path_length(networkx_S, source=nd1, target=nd2)})
     file = open(path+'/saved_data/S_dist_matrix'+'.txt', 'w')
@@ -51,16 +48,13 @@ def init_distance_S(S_dis_matrix,path,spe):
     return S_dis_matrix
 
 def init_nodes_table(S,G,nodes_table):
-    #print('Initilasinig node table...')
     for s_nd in S.postorder_node_iter():
         nodes_table[s_nd.label] = {}
         for g_nd in G.postorder_node_iter():
             nodes_table[s_nd.label].update({g_nd.label:-1})
-    #print('Finished initilasinig node table.\n')
     return nodes_table
 
 def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
-    #print('Initialasing hypergraph leafs...')
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
             H.add_node(H_number_of_nodes,s=leaf.label,t=sigma[leaf.label],l=list())
@@ -75,7 +69,6 @@ def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
                 new_item = {'s':leaf.label,'t':sigma[leaf.label],'cost':cost,'event':"leaf",'list_place':i}
                 H.nodes[big_node]['l'].insert(i,new_item)
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
-    #print('Finished initialasing hypergraph leafs.\n')
     return H,H_number_of_nodes, nodes_table
 
 def init_taxon_to_label_table(S,G,sigma):
@@ -92,7 +85,6 @@ def init_taxon_to_label_table(S,G,sigma):
     return S_labels_table,G_labels_table,sigma
 
 def update_sigma(sigma,exect_names,S_labels_table,G_labels_table):
-    #print('Updating sigma...')
     old_sigma = sigma
 
     for u, x in sigma.items():
@@ -105,19 +97,12 @@ def update_sigma(sigma,exect_names,S_labels_table,G_labels_table):
                 sigma = dict((u,x) for u,x in sigma.items() if not (((S_labels_table[x]).replace("_"," ").find(x) != -1 or x.find((S_labels_table[x]).replace("_"," ")) != -1) and (((G_labels_table[u]).replace("_"," ").find(u) != -1) or (u.find(G_labels_table[u]).replace("_"," ")) != 1)))      #if lables are strings
                 sigma.update({G_labels_table[x]: S_labels_table[u]})
         else:
-            #print ('        Couldnt find match for: '+u+' and '+x)
             sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
             old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
-        #print('     Writing sigma...')
-        #file = open(path+'/saved_data/sigma.txt', 'w')
-        #file.write(str(sigma))
-        #file.close()
-        #print('     Finished writing sigma.\n')
-    #print('Finished updating sigma.\n')
     return sigma,old_sigma
 
+
 def update_colors(S,colors,exact_names):
-    #print('Updating colors...')
     old_colors = colors.copy()
     for leaf_S in S.leaf_nodes():
         if not leaf_S.taxon is None:
@@ -138,7 +123,6 @@ def update_colors(S,colors,exact_names):
                 colors = dict((x, color) for x, color in colors.items() if not x == leaf_S.taxon.label)
                 colors.update({leaf_S.label:  random.choice(['black', 'red'])})
                 old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})
-    #print('Finished updating colors.\n')
     return colors,old_colors
 
 def init_H_field(H, field, init,in_list, for_edge):

@@ -39,7 +39,6 @@ from decimal import *
 
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
-    print('Finding pattern '+str(pattern))
     if pattern[0] is not None:
         total_red = S_colors[S.seed_node.label][0]
         total_black = S_colors[S.seed_node.label][1]
@@ -110,7 +109,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
                             if p_value_curr_black < p and p_value_HT_to_black < p:
                                     interesting_vertices.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                                'probability': curr['probability'], 'distance' : S_dis_matrix[(curr['t'], HT_to.label)]})
-                    elif pattern[1] == None:
+                    elif not pattern[1] or pattern[1] == 'None':
                         interesting_vertices.append({'curr': curr, 'HT_to_in_G': HT_to_in_G,
                                                      'probability': curr['probability'],
                                                      'distance': S_dis_matrix[(curr['t'], HT_to.label)]})
@@ -119,15 +118,14 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
                     elif pattern[1] == 'black' and p_value_curr_black < p:
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
-                    elif pattern[1] == None:
+                    elif not pattern[1] or pattern[1] == 'None':
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
-        print('Finished finding pattern\n')
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return (None,None,None)
 
 def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                  max_list_p1_and_p2,speciesTreespecification,create_sigma_from_fasta,draw,sigma,colors,S_labels_table,
-                 color, lables_flag, draw_marked,x_axis,y_axis):
+                 color, lables_flag, draw_marked,x_axis,y_axis, res):
     if p2[0] is not None:
         pattern_name = '('+str(p1[0:3])+'_'+str(p2[0:3])+')_Double-Mode'
     else:
@@ -166,39 +164,45 @@ def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
             file = open(os.getcwd()+'/data/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
             file.write(str(lists))
             file.close()
-    print('marked vertices: ' + str(marked_nodes))
+
+    res['text'] += 'marked vertices:\n' + format_marked_vertices(marked_nodes)+'\n'
 
     if draw:
         draw_for_users.main(G,sigma,old_sigma,colors,S_labels_table,
                             p1,p2,speciesTreespecification,color,lables_flag,draw_marked,x_axis,y_axis)
 
+    res['text'] += 'Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
+                                                                                  str((hypergraph.find_number_of_cooptimal(H,G,S)[1])))+'\n'
+    res['text'] += 'Running time: %s\n' % (str(datetime.now() - starting_time))+'\n\bMore information can be found under /saved_data.'
 
-
-    print('Class: %s Pattern: %s\nNumber of co-optimal out of %s solutions: %s with cost %s' % (str(speciesTreespecification),pattern_name
-                                                                                                        ,str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
-                                                                                                        str((hypergraph.find_number_of_cooptimal(H,G,S)[1]))))
-    print('Running time: %s\nk: %s\nTH_edges: %s' % (
-        str(datetime.now() - starting_time), str(k), str(p1[3])))
     return
 
 
-def valid_pattern(ev,col,dist):
+def format_marked_vertices(marked_nodes):
+    res = ''
+    for node, lst in marked_nodes.items():
+        res += 'node: %s (score %s)\n' % (str(node), str(round(lst[0], 4)))
+    return res
+
+
+def valid_pattern(ev, col, dist, res):
     if type(ev) == list and len(ev) <= 3:
         if col in ['red','black','None'] :
             if dist in [True,False]:
                 return True
             else:
-                print('distance is not valid')
+                res['error'] += 'distance is not valid'
         else:
-            print('color is not valid')
+            res['error'] += 'color is not valid'
     else:
-        print('EV is not valid')
+        res['error'] += 'EV is not valid'
 
                 ##********  MAIN ***********
 
-def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
+
+def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
           p,number_of_planted_vertices,  p1, p2,GUI,create_sigma_from_fasta,track_solution,draw,
-          color,lables_flag,draw_marked,x_axis,y_axis):
+          color,lables_flag,draw_marked,x_axis,y_axis, res):
     starting_time = datetime.now()
     if not GUI:
         speciesTreespecification = input('Specie tree extension (will be used also for the S_edgelist extenstion)= ')
@@ -216,7 +220,6 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
         p2 = None
         if single:
             while p1 == None:
-                print('p1= ')
                 ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
                 ev = ev.split()
                 col = input("   color=  (red/black/None) ")
@@ -227,10 +230,9 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
                     p1 = (ev,col,dist)
                     p2 = (None, None, False)
                 else:
-                    print('pattern is not valid, please try again: ')
+                    res['error'] += 'pattern is not valid, please try again: '
         else:
-            while p1 == None or p2 == None:
-                print('p1= ')
+            while not p1 or not p2:
                 ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ") # save hypergraph data
                 ev = ev.split()
                 col = input("   color=  (red/black/None) ")
@@ -240,9 +242,8 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
                         col = None
                     p1 = (ev,col,dist)
                 else:
-                    print('pattern is not valid, please try again: ')
+                    res['error'] += 'pattern is not valid, please try again: '
                 if p1 != None:
-                    print('p2= ')
                     ev = input(
                         "   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
                     ev = ev.split()
@@ -253,7 +254,7 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
                             col = None
                         p2 = (ev, col, dist)
                     else:
-                        print('pattern is not valid, please try again: ')
+                        res['error'] += 'pattern is not valid, please try again: '
 
     all_vertices_with_index = {}
     list_of_scores_for_rand_num = {}
@@ -269,20 +270,41 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
     fix.main(os.getcwd()+'/data/',[''],create_sigma_from_fasta)
     create_sigma.main(os.getcwd()+'/data/',[''],speciesTreespecification,create_sigma_from_fasta)
 
-    G = tr.Tree.get_from_path(os.getcwd()+"/data/G.txt", schema="newick")
-    S = tr.Tree.get_from_path(os.getcwd()+"/data/S_"+speciesTreespecification+".txt", schema="newick")
+    try:
+        G = tr.Tree.get_from_path(os.getcwd()+"/data/G.txt", schema="newick")
+    except:
+        res['error'] += "Gene tree '/data/G.txt' was not found."
+        return
 
-    input1 = open(os.getcwd()+'/data/sigma.txt', 'r')
+    try:
+        S = tr.Tree.get_from_path(os.getcwd()+"/data/S_"+speciesTreespecification+".txt", schema="newick")
+    except:
+        res['error'] += "Species tree '/data/S_"+speciesTreespecification+".txt' was not found."
+        return
+
+    try:
+        input1 = open(os.getcwd()+'/data/sigma.txt', 'r')
+    except:
+        res['error'] += "sigma '/data/sigma.txt' was not found."
+        return
+
     sigma = []
     for line in input1:
         sigma.append(eval(line))
     sigma = sigma[0]
 
-    input1 = open(os.getcwd()+'/data/colors.txt', 'r')
-    colors = []
-    for line in input1:
-        colors.append(eval(line))
-    colors = colors[0]
+    if (p1[1] and p1[1] != 'None') or (p2[1] and p2[1] != 'None'):
+        try:
+            input1 = open(os.getcwd()+'/data/colors.txt', 'r')
+        except:
+            res['error'] += "One should provide coloring function.\n'/data/color.txt' was not found."
+            return
+        colors = []
+        for line in input1:
+            colors.append(eval(line))
+        colors = colors[0]
+    else:
+        colors = {}
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
     S = utiles.init_internal_labels(S, 'x', sigma, os.getcwd()+'/data/')
@@ -305,14 +327,14 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, k,
                                                                      nodes_table, D_cost, S_cost, loss_cost, HT_cost,os.getcwd(),
-                                                                     sigma,save_data,S_dis_matrix,track_solution)
+                                                                     sigma,save_data,S_dis_matrix,track_solution, res)
 
     new_G = nx.DiGraph()
     nCr_lookup_table = {}
     fact_lookup_table = {}
     max_score_p1_list = []
     max_score_p1_and_p2_list = []
-    H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma)
+    H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma, res)
     if H is None:
         list_of_scores_for_rand_num.update({rand_num: {}})
     else:
@@ -341,7 +363,7 @@ def main (speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,ga
     end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,
                  old_sigma,max_score_p1_list,max_score_p1_and_p2_list,
                  speciesTreespecification,create_sigma_from_fasta,draw,
-                 sigma,colors,S_labels_table,color,lables_flag,draw_marked,x_axis,y_axis)
+                 sigma,colors,S_labels_table,color,lables_flag,draw_marked,x_axis,y_axis,res)
     quit()
 
 if __name__ == "__main__":
