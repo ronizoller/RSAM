@@ -76,12 +76,9 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
 
                 if 'HT' in pattern[0] and curr['event'] == 'HT' and curr['probability'] > 0:
                     incoming_edges_curr = [e for e in incoming_edges if e[2]['target'] == i]
-                    horizontally_trans_to_option1 = S.find_node(
-                        lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
-                    horizontally_trans_to_option2 = S.find_node(
-                        lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[1][0]]['t']))
-                    if ((tree_operations.is_not_ancestor(horizontally_trans_to_option1, x)) and (
-                    tree_operations.is_not_ancestor(x, horizontally_trans_to_option1))):
+                    horizontally_trans_to_option1 = S.find_node(lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[0][0]]['t']))
+                    horizontally_trans_to_option2 = S.find_node(lambda n: (n.label == H.nodes(data=True)[incoming_edges_curr[1][0]]['t']))
+                    if tree_operations.is_not_ancestor(horizontally_trans_to_option1, x) and tree_operations.is_not_ancestor(x, horizontally_trans_to_option1):
                         HT_to = horizontally_trans_to_option1
                         HT_to_in_G = H.nodes(data=True)[incoming_edges_curr[0][0]]
                     else:
@@ -121,7 +118,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
                     elif not pattern[1] or pattern[1] == 'None':
                         interesting_vertices.append({'curr': curr, 'probability': curr['probability']})
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
-    return (None,None,None)
+    return None,None,None
 
 def end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,old_sigma,max_list_p1,
                  max_list_p1_and_p2,speciesTreespecification,create_sigma_from_fasta,draw,sigma,colors,S_labels_table,
@@ -201,70 +198,20 @@ def valid_pattern(ev, col, dist, res):
 
 
 def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
-          p,number_of_planted_vertices,  p1, p2,GUI,create_sigma_from_fasta,track_solution,draw,
-          color,lables_flag,draw_marked,x_axis,y_axis, res):
+          p,number_of_planted_vertices,  p1, p2, create_sigma_from_fasta, track_solution,draw,
+          color, lables_flag, draw_marked, x_axis, y_axis, res):
+
     starting_time = datetime.now()
-    if not GUI:
-        speciesTreespecification = input('Specie tree extension (will be used also for the S_edgelist extenstion)= ')
-        k = int(input('k= '))
-        TH_edges = int(input('Threshold Edges in Subtree= '))
-        HT_cost = int(input('HT event cost= '))
-        D_cost = int(input('Duplication event Cost= '))
-        S_cost = int(input('Speciation event Cost= '))
-        gamma = int(input('Gamma (1 recomended)= '))  # factor for probability assignment
-        p = Decimal(input('p (0.05 recomended)= '))  # p_value
-        number_of_planted_vertices = int(input('Number of Vertices to find= ')) # number of vertices that will be reported
-        #save_data = bool(input('Save hypergraph data? (False/True) '))  # save hypergraph data
-        single = input('Single mode pattern? (True/False) ') == 'True'  # save hypergraph data
-        p1 = None
-        p2 = None
-        if single:
-            while p1 == None:
-                ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
-                ev = ev.split()
-                col = input("   color=  (red/black/None) ")
-                dist = input("   distance=  (True/False) ") == 'True'
-                if valid_pattern(ev,col,dist):
-                    if col == 'None':
-                        col = None
-                    p1 = (ev,col,dist)
-                    p2 = (None, None, False)
-                else:
-                    res['error'] += 'pattern is not valid, please try again: '
-        else:
-            while not p1 or not p2:
-                ev = input("   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ") # save hypergraph data
-                ev = ev.split()
-                col = input("   color=  (red/black/None) ")
-                dist = input("   distance=  (True/False) ") == 'True'
-                if valid_pattern(ev,col,dist):
-                    if col == 'None':
-                        col = None
-                    p1 = (ev,col,dist)
-                else:
-                    res['error'] += 'pattern is not valid, please try again: '
-                if p1 != None:
-                    ev = input(
-                        "   EV=  (please provide at most 3 names out of 'S','D','HT', separated by space) ")  # save hypergraph data
-                    ev = ev.split()
-                    col = input("   color=  (red/black/None) ")
-                    dist = input("   distance=  (True/False) ") == 'True'
-                    if valid_pattern(ev, col, dist):
-                        if col == 'None':
-                            col = None
-                        p2 = (ev, col, dist)
-                    else:
-                        res['error'] += 'pattern is not valid, please try again: '
 
     all_vertices_with_index = {}
-    list_of_scores_for_rand_num = {}
+    list_of_scores = {}
     noise_level = 0
-    rand_num = 0
     random_for_prec_curr = 1
     S_dis_matrix = {}
     nodes_table = {}
     S_colors = {}
     all_vertices = {}
+    marked_nodes = {}
 
     taxa_names.main(os.getcwd() + '/data/', [''], speciesTreespecification,create_sigma_from_fasta)
     fix.main(os.getcwd()+'/data/',[''],create_sigma_from_fasta)
@@ -335,9 +282,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     max_score_p1_list = []
     max_score_p1_and_p2_list = []
     H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma, res)
-    if H is None:
-        list_of_scores_for_rand_num.update({rand_num: {}})
-    else:
+    if H:
         S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
 
         interesting_vertices_p1, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,S_dis_matrix,nCr_lookup_table,fact_lookup_table, p1,S_colors,p)
@@ -346,28 +291,25 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
         max_S_d_of_HT = tree_operations.find_max_d_of_HT(S_dis_matrix, interesting_vertices_p1,p1)
 
         new_G = tree_operations.weight_G_based_on_same_color_HT(G, new_G,interesting_vertices_p1,interesting_vertices_p2, max_S_d_of_HT,p1,p2,False)
+        new_G = tree_operations.number_of_possible_events_in_subtree(new_G)
         new_G = tree_operations.number_of_edges_in_subtree(new_G)
-        new_G = tree_operations.normlize_weights(new_G,k,p1,'p1')
-        new_G = tree_operations.normlize_weights(new_G,k,p2,'p2')
+        new_G = tree_operations.normlize_weights(new_G, k, p1, 'p1', 'possible_events')
+        new_G = tree_operations.normlize_weights(new_G, k, p2, 'p2', 'possible_events')
 
         if p2[0] is None:
             max_score_p1_list = tree_operations.find_max_scores(new_G,number_of_planted_vertices,'p1',p1[3])
         else:
             max_score_p1_and_p2_list = tree_operations.find_max_scores(new_G,number_of_planted_vertices,'p2',p1[3])
-        marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices,p1, p2, max_score_p1_list, max_score_p1_and_p2_list, False)
+        marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices,p1, p2, max_score_p1_list, max_score_p1_and_p2_list)
 
-        list_of_scores_for_rand_num.update({rand_num:all_vertices})
-    all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores_for_rand_num,random_for_prec_curr)})
-
+    list_of_scores.update({0: all_vertices})
+    all_vertices_with_index.update({noise_level:utiles.average_of_list(list_of_scores,random_for_prec_curr)})
 
     end_function(H,S,G,k,starting_time,p1,p2,marked_nodes,
                  old_sigma,max_score_p1_list,max_score_p1_and_p2_list,
                  speciesTreespecification,create_sigma_from_fasta,draw,
                  sigma,colors,S_labels_table,color,lables_flag,draw_marked,x_axis,y_axis,res)
     quit()
-
-if __name__ == "__main__":
-    main()
 
 
 

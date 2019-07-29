@@ -5,8 +5,7 @@ from tkinter import ttk
 import threading
 import tkinter.scrolledtext as tkscrolled
 from PIL import ImageTk, Image
-import os
-import sys
+import os,sys,random,time
 
 
 class parameters_frame(object):
@@ -15,7 +14,7 @@ class parameters_frame(object):
         self.v = None
 
         if specification == 'general':
-            self.entries,self.error_labels = makeform(self.top, labels)
+            self.entries, self.error_labels, self.error = makeform(self, self.top, labels)
         elif specification == 'patterns':
             self.entries = make_patterns_tab(self.top, ['p1','p2'])
         elif specification == 'figure_params':
@@ -25,7 +24,14 @@ class parameters_frame(object):
         return self.entries
 
     def callback_color(self,vars):
-        print('TODO')
+        print('')
+
+    def callback_random_sol(self,bool_var,entry):
+        if bool_var.get():
+            entry.delete(0,tk.END)
+            entry.config(state='disabled')
+        else:
+            entry.config(state='normal')
 
 def make_patterns_tab(root, patterns):
     entries = []
@@ -39,6 +45,7 @@ def make_patterns_tab(root, patterns):
             lab.grid(row=0, column=names.index(name)+1)
         lab = tk.Label(row, width=20, text=p)
         lab.grid(row=1,column=0)
+
         number_of_events = 3
         for i in range(0,number_of_events):
             string_var = tk.StringVar(t1)
@@ -81,20 +88,27 @@ def make_figure_parameters(self,root):
     c = []
     entries = []
     t1 = tk.Frame(root)
-    names = ['color','labels','draw marked']
+    names = [('color','Whether or not the figuer will be colored.\n'
+                      'If a duplication event is part of p1 or'
+                      'p2, duplications will also be colored.'),
+             ('labels', 'Whether or not labels will appear in the figure.'),
+             ('draw marked','Whether or not mark the interesting vertices in the figure.')]
     for name in names:
-        lab = tk.Label(t1, text=name,width=10)
-        lab.grid(row=0, column=names.index(name))
+        lab = tk.Label(t1, text=name[0],width=10)
+        ind = names.index(name)
+        lab.grid(row=0, column=ind)
         bool_var.append(tk.BooleanVar(t1))
-        c.append(tk.Checkbutton(t1, variable=bool_var[names.index(name)],command=lambda param=bool_var[names.index(name)]: self.callback_color(param)))
-        entries.append((name, bool_var[names.index(name)]))
-        c[names.index(name)].grid(row=1, column=names.index(name))
+        c.append(tk.Checkbutton(t1, variable=bool_var[ind],command=lambda param=bool_var[ind]: self.callback_color(param)))
+        entries.append((name[0], bool_var[ind]))
+        c[ind].grid(row=1, column=ind)
         t1.pack(side=tk.TOP, padx=5, pady=5)
+        CreateToolTip(lab, text=name[1])
 
     row = tk.Frame(root)
+    CreateToolTip(row, text='Figure proportions')
     floatVal = (row.register(floatValidation), '%S')
 
-    lab = tk.Label(row, width=2, text='x')
+    lab = tk.Label(row, width=2, text='x:')
     ent = tk.Entry(row, validate='key', vcmd=floatVal,width=5)
     ent.insert("end",'10')
     lab.grid(row=0, column=0)
@@ -105,7 +119,7 @@ def make_figure_parameters(self,root):
     lab = tk.Label(row, width=5, text='X')
     lab.grid(row=0, column=2)
 
-    lab = tk.Label(row, width=2, text='y')
+    lab = tk.Label(row, width=2, text='y:')
     ent = tk.Entry(row, validate='key', vcmd=floatVal,width=5)
     ent.insert("end",'20')
     lab.grid(row=0, column=3)
@@ -115,7 +129,7 @@ def make_figure_parameters(self,root):
     return entries
 
 
-def makeform(root, fields):
+def makeform(param_frame, root, fields):
     def intValidation(S):
         flag = True
         for s in S:
@@ -131,8 +145,9 @@ def makeform(root, fields):
     t3 = tk.Frame(root)
     intVal = (t3.register(intValidation), '%S')
     floatVal = (t3.register(floatValidation), '%S')
+
     for field in fields:
-        if len(field) == 3:
+        if len(field) >= 3:
             row = tk.Frame(root)
             lab = tk.Label(row, width=30, text=field[0])
             if field[1] == 'float':
@@ -145,39 +160,65 @@ def makeform(root, fields):
                 ent.insert("end",field[2])
             lab.grid(row=fields.index(field),column=0)
             ent.grid(row=fields.index(field),column=1)
+            if field[0].find('cost') == -1:
+                CreateToolTip(lab, text=field[3])
             error_labels.update({field[0]+' error':tk.StringVar()})
             lab = tk.Label(row, font=('Helvetica', 18, 'bold'), fg='red', width=5, textvariable=error_labels[field[0]+' error'],justify=tk.LEFT)
             lab.grid(row=fields.index(field), column=3)
             entries.append((field[0], ent))
             row.pack(side=tk.TOP, padx=0, pady=5)
 
-    if 'general_settings' in fields:
-        row = tk.Frame(root,background='grey')
-        lab = tk.Label(row, text='create sigma from FASTA file', width=30,background='grey')
-        lab.grid(row=0, column=0)
-        create_sigma = tk.BooleanVar(t3)
-        c = tk.Checkbutton(row, variable=create_sigma,background='black')
-        c.grid(row=0, column=1)
-        entries.append(('create_sigma', create_sigma))
+    row = tk.Frame(root,background='grey')
+    lab = tk.Label(row, text='create sigma from FASTA file', width=30,background='grey')
+    lab.grid(row=0, column=0)
+    CreateToolTip(lab, text='If this option is selected, the user\n'
+                            'should provide a FASTA file, called\n'
+                            ' FASTA_(extention).txt, Otherwise,\n'
+                            ' the user should proves Gene tree where\n'
+                            ' the leaves are labeled with their\n'
+                            ' corresponding Species, in the following\n'
+                            ' format: (species name)g -> (species name).\n'
+                            'For example, Ag->A.')
+    create_sigma = tk.BooleanVar(t3)
+    c = tk.Checkbutton(row, variable=create_sigma,background='black')
+    c.grid(row=0, column=1)
+    entries.append(('create_sigma', create_sigma))
 
-        lab = tk.Label(row, text='Draw the gene tree', width=20,background='grey')
-        lab.grid(row=0, column=2)
-        draw = tk.BooleanVar(t3)
-        c = tk.Checkbutton(row, variable=draw,background='black')
-        c.grid(row=0, column=3)
-        entries.append(('draw', draw))
-        row.pack(side=tk.TOP, fill=tk.X, padx=0, pady=5)
+    lab = tk.Label(row, text='Draw the gene tree', width=20,background='grey')
+    lab.grid(row=0, column=2)
+    draw = tk.BooleanVar(t3)
+    c = tk.Checkbutton(row, variable=draw,background='black')
+    c.grid(row=0, column=3)
+    entries.append(('draw', draw))
+    row.pack(side=tk.TOP, fill=tk.X, padx=0, pady=5)
 
-        row = tk.Frame(root)
-        lab = tk.Label(row, text='track solution number:', width=40)
-        lab.grid(row=0, column=0)
+    row = tk.Frame(root)
+    lab = tk.Label(row, text='track solution number:', width=20)
+    lab.grid(row=0, column=0)
+    CreateToolTip(lab, text='If this option is selected, the program will\n'
+                            'output the desired solution. One can select a\n'
+                            'random solution, and the output will be one \n'
+                            'random solution out od the k.')
 
-        intVal = (t3.register(intValidation), '%S')
-        ent = tk.Entry(row, validate='key', vcmd=intVal)
-        entries.append(('track_solution', ent))
-        ent.grid(row=0, column=1)
-        row.pack(side=tk.TOP, fill=tk.X, padx=0, pady=5)
-    return entries,error_labels
+    intVal = (t3.register(intValidation), '%S')
+    track_sol_ent = tk.Entry(row, validate='key', vcmd=intVal, width=5)
+    entries.append(('track_solution', track_sol_ent))
+    track_sol_ent.grid(row=0, column=1)
+
+    bool_var = tk.BooleanVar(row)
+    butt = tk.Checkbutton(row, variable=bool_var, command=lambda: param_frame.callback_random_sol(bool_var,track_sol_ent))
+    butt.grid(row=0, column= 3)
+    lab = tk.Label(row, text='random solution', width=15)
+    lab.grid(row=0, column=2)
+    entries.append(('random_sol', bool_var))
+
+    error = tk.StringVar()
+    lab = tk.Label(row, font=('Helvetica', 11, 'bold'), fg='red', width=20,
+                   textvariable=error, justify=tk.LEFT)
+    lab.grid(row=0, column=4)
+
+    row.pack()
+    return entries, error_labels, error
 
 
 class Main_Frame(object):
@@ -187,11 +228,19 @@ class Main_Frame(object):
         panel = tk.Label(root, image=img)
         panel.pack(side="top", fill="both", expand="yes")
 
-        parameter_lables = [['Specie tree extension', 'string', None], ['k', 'int', '50'],
-                  ['Threshold Edges\nin Subtree', 'float', '0.1'],
-                  ['HT event cost', 'float', '1'], ['Duplication event Cost', 'float', '1'],
-                  ['Speciation event Cost', 'float', '0'], ['Loss event Cost', 'float', '0'], ['Gamma', 'float', '1'],
-                  ['p', 'float', '0.05'], ['Number of Vertices to find', 'int', 1],'general_settings']
+        parameter_lables = [['Specie tree extension', 'string', None,'This is the extentiuon of the file S_(extention).txt\n'
+                                                                     'This is also the extention for the FASTA file.'],
+                            ['k', 'int', '50','Value of k for the k-best hypergraph'],
+                            ['Threshold Edges\nin Subtree', 'float', '0.1','The minimal number of edges in subtrees that\n'
+                                                                           'will considered when looking for top scoring vertices\n'
+                                                                           'within the gene tree.'],
+                            ['HT event cost', 'float', '1'], ['Duplication event cost', 'float', '1'],['Speciation event cost', 'float', '0'], ['Loss event cost', 'float', '0'],
+                            ['Gamma', 'float', '1','A parameter related to the probablity calculation.\n'
+                                                   'As gamma grows lower, hypernodes with higher (worse)\n'
+                                                   'scores are assigned probabilities much lower than'
+                                                   ' hypernodes with lower scores.'],
+                            ['p', 'float', '0.05',"Defins how much is 'mostly red' and 'mostly black'"],
+                            ['Number of Vertices to find', 'int', 1,'How many Gene tree vertices will be reported.']]
 
         nb = Notebook(self.top,'RSAM-Finder')
         t1 = nb.add_tab('General Prarmeters', parameters_frame, parameter_lables,'general')
@@ -214,7 +263,7 @@ class Main_Frame(object):
         ent2 = t2.work_task()
         ent3 = t3.work_task()
         for ent in ent1:
-            if ent[0] not in ['track_solution','create_sigma','draw']:
+            if ent[0] not in ['track_solution','create_sigma','draw','random_sol']:
                 if ent1[ent1.index(ent)][1].get() == '':
                     t1.error_labels[ent[0]+' error'].set('*')
                     return
@@ -227,17 +276,17 @@ class Main_Frame(object):
         self.load_bar.grid(row=1, column=0)
         # first layer of isolation, note var being passed along to the self.start_bar function
         # target is the function being started on a new thread, so the "bar handler" thread
-        self.start_bar_thread = threading.Thread(target=self.start_bar, args=(ent1+ent2+ent3,))
+        self.start_bar_thread = threading.Thread(target=self.start_bar, args=(ent1+ent2+ent3, t1))
         # start the bar handling thread
         self.start_bar_thread.start()
 
-    def start_bar(self, ent):
+    def start_bar(self, ent, t1):
         # the load_bar needs to be configured for indeterminate amount of bouncing
         self.load_bar.config(mode='determinate', maximum=100, value=0)
         # 8 here is for speed of bounce
         self.load_bar.start(8)
         # start the work-intensive thread, again a var can be passed in here too if desired
-        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2'], self.result))
+        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2'], self.result, t1))
         self.work_thread.start()
         # close the work thread
         self.work_thread.join()
@@ -254,7 +303,7 @@ class Main_Frame(object):
             self.result['error'] = ''
             self.result['text'] = ''
             self.result['solution'] = ''
-        else:
+        elif self.result['text'] != '':
             msg = tkscrolled.ScrolledText(self.top, width=100, height=10)
             msg.insert(1.0, self.result['text'])
             if self.msg_error:
@@ -270,7 +319,7 @@ class Main_Frame(object):
             TKScrollTXT.insert(1.0, self.result['solution'])
             TKScrollTXT.pack(side=tk.LEFT)
 
-    def work_task(self, entries, patterns, res):
+    def work_task(self, entries, patterns, res, t1):
         p1_EV = []
         p2_EV = []
         for e in entries:
@@ -293,12 +342,17 @@ class Main_Frame(object):
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
                 text = entry[1].get()
                 vars.append(text)
-        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution,color,labels,draw_marked,x,y = vars
+        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,labels,draw_marked,x,y = vars
         if track_solution == "":
             track_solution = False
+        elif int(track_solution) > int(k):
+            t1.error.set('must be lower than k')
+            return
+        if random_sol:
+            track_solution = random.choice(range(0,int(k)))
         RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
                         int(loss_cost),
-                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, True, create_sigma,
+                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
                         track_solution, draw, color,labels,draw_marked,x,y, res)
 
 
@@ -318,6 +372,45 @@ class Notebook:
     def run(self):
         self.root.mainloop()
 
+
+class ToolTip(object):
+    def __init__(self, widget):
+        self.widget = widget
+        self.tipwindow = None
+        self.id = None
+        self.x = self.y = 0
+
+    def showtip(self, text):
+        time.sleep(2)
+        self.text = text
+        if self.tipwindow or not self.text:
+            return
+        x, y, cx, cy = self.widget.bbox("insert")
+        x = x + self.widget.winfo_rootx() + 57
+        y = y + cy + self.widget.winfo_rooty() +27
+        self.tipwindow = tw = tk.Toplevel(self.widget)
+        tw.wm_overrideredirect(1)
+        tw.wm_geometry("+%d+%d" % (x, y))
+        label = tk.Label(tw, text=self.text, justify=tk.LEFT,
+                      background="#ffffe0", relief=tk.SOLID, borderwidth=1,
+                      font=("tahoma", "10", "normal"))
+        label.pack(ipadx=1)
+
+    def hidetip(self):
+        tw = self.tipwindow
+        self.tipwindow = None
+        if tw:
+            tw.destroy()
+
+
+def CreateToolTip(widget, text):
+    toolTip = ToolTip(widget)
+    def enter(event):
+        toolTip.showtip(text)
+    def leave(event):
+        toolTip.hidetip()
+    widget.bind('<Enter>', enter)
+    widget.bind('<Leave>', leave)
 
 root = tk.Tk()
 Main_Frame(root)

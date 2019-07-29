@@ -11,7 +11,6 @@ def is_a_leaf (u):
     return (u.child_nodes() == [])
 
 def collapse_edges(tree):
-    #print('Collapsing edges...')
     for nd in tree.postorder_node_iter():
         if len(nd.child_nodes()) == 1:
             if tree.seed_node == nd:
@@ -21,7 +20,6 @@ def collapse_edges(tree):
                 temp_child = nd.child_nodes()[0]    #its only child
                 temp_parent.remove_child(nd)
                 temp_parent.add_child(temp_child)
-    #print('Finished collapsing edges.\n')
     return tree
 
 def has_right_child(x):
@@ -31,13 +29,11 @@ def has_left_child(x):
     return len(x.adjacent_nodes()) >= 2
 
 def is_not_ancestor (nd,x):
-    #print('     in is_not_ans, nd = %s, x = %s' % (str(nd),str(x)))
     if (nd == x):
         return False
     else:
         ans = True
         for y in nd.ancestor_iter():
-            #print('     y = %s' % str(y))
             if (y == x):
                 ans = ans and False
             else:
@@ -45,13 +41,9 @@ def is_not_ancestor (nd,x):
         return ans
 
 def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
-    #print('Coloring internal vertices of S...')
     for u in tree.postorder_node_iter():
         tree_internal_colors.update({u.label: [0, 0]})
-
     for u in tree.postorder_node_iter():
-        reds = 0
-        blacks = 0
         if u.is_leaf():
             if tree_name == 'S':
                 temp_color = colors[u.label]
@@ -61,11 +53,9 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
                 tree_internal_colors.update({u.label : [1,0]})
             elif temp_color == 'black':
                 tree_internal_colors.update({u.label: [0, 1]})
-
         else:
             reds = tree_internal_colors[u.label][0]
             blacks = tree_internal_colors[u.label][1]
-
             child = u.child_nodes()
             i = 0
             while i < len(child):
@@ -73,14 +63,13 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
                 blacks += tree_internal_colors[child[i].label][1]
                 i += 1
                 tree_internal_colors.update({u.label: [reds, blacks]})
-    #print('Finished coloring internal vertices of S...')
     return tree_internal_colors
 
 def weight_G_based_on_same_color_HT (G, new_G, interesting_vertices_p1,interesting_vertices_p2,max_distance,p1,p2,copmare_solutions):
     index = 1
 
     for u in G.postorder_node_iter():
-        new_G.add_node(index, label=u.label, p1=0, p2=0, ind=index)      #same_HT_score[0] = reds score, same_HT_score[1] = blacks score
+        new_G.add_node(index, label=u.label, p1=0, p2=0, ind=index)
         if not is_a_leaf(u):
             child = u.child_nodes()
             if has_left_child(u) and has_right_child(u):
@@ -157,7 +146,6 @@ def random_son(t,u):
 
 
 def number_of_edges_in_subtree(G):
-    #print ('Counting edges in G...')
     for nd in (reversed(list(nx.topological_sort(G)))):
         out = G.out_edges([nd], data=True)
         out = [e for e in out]
@@ -167,7 +155,21 @@ def number_of_edges_in_subtree(G):
         while i < len(out):
             nd['edges_in_subtree'] += 1 + G.nodes(data = True)[out[i][1]]['edges_in_subtree']
             i += 1
-    #print ('Finished counting edges in G')
+    return G
+
+
+def number_of_possible_events_in_subtree(G):
+    for nd in (reversed(list(nx.topological_sort(G)))):
+        out = G.out_edges([nd], data=True)
+        out = [e for e in out]
+        nd = G.nodes(data=True)[nd]
+        i = 0
+        nd.update({'possible_events' : 0})
+        while i < len(out):
+            nd['possible_events'] += G.nodes(data = True)[out[i][1]]['possible_events']
+            i += 1
+        if len(out) > 0:
+            nd['possible_events'] += 1
     return G
 
 def find_max_d_of_HT(dis, interesting_vertices,pattern):
@@ -179,8 +181,9 @@ def find_max_d_of_HT(dis, interesting_vertices,pattern):
                 if HT_curr_dis > maxi:
                     maxi = HT_curr_dis
         return maxi
-    else :
+    else:
         return
+
 
 def number_of_leafs (tree, name):
     counter = 0
@@ -188,6 +191,7 @@ def number_of_leafs (tree, name):
         if u.is_leaf():
             counter += 1
     return counter
+
 
 def remove_unsigma_genes(G,sigma,taxon):
     to_remove = []
@@ -201,6 +205,7 @@ def remove_unsigma_genes(G,sigma,taxon):
                     to_remove.append(u.taxon.label)
     return to_remove
 
+
 def leaf_in_subtrees (tree, tree_name,u, old_sigma,gen):
     if not gen:
         u = find_node_in_tree(tree, u)
@@ -209,7 +214,6 @@ def leaf_in_subtrees (tree, tree_name,u, old_sigma,gen):
     u_child = u.child_nodes()
     if len(u_child) > 1:
         right_subtree_leafs_nodes = u_child[1].leaf_nodes()
-    #print('right subtree = %s' % str(right_subtree_leafs_nodes))
         for leaf in right_subtree_leafs_nodes:
             if tree_name == 'G':
                 if not gen:
@@ -220,7 +224,6 @@ def leaf_in_subtrees (tree, tree_name,u, old_sigma,gen):
                 right_subtree_leafs.append(leaf.taxon.label)
     if len(u_child) > 0:
         left_subtree_leafs_nodes = u_child[0].leaf_nodes()
-        #print('left subtree = %s' % str(left_subtree_leafs_nodes))
         for leaf in left_subtree_leafs_nodes:
             if tree_name == 'G':
                 if not gen:
@@ -232,6 +235,7 @@ def leaf_in_subtrees (tree, tree_name,u, old_sigma,gen):
 
     return right_subtree_leafs, left_subtree_leafs
 
+
 def max_dis(S_dis_matrix):
     max = 0
     for couple,dis in S_dis_matrix.items():
@@ -239,13 +243,12 @@ def max_dis(S_dis_matrix):
             max = dis
     return max
 
+
 def find_node_in_tree(tree,nd):
     for u in tree.postorder_node_iter():
         if u.label == nd:
             return u
 
-def extract_list_of_leafs(name,tree,old_sigma):
-    unmarked = leaf_in_subtrees(tree, name, old_sigma)
 
 def find_node_in_networkx_tree(tree,label):
     for u in (list(nx.topological_sort(tree))):
@@ -254,14 +257,15 @@ def find_node_in_networkx_tree(tree,label):
             return u
     return None
 
-def normlize_weights(G,k,p,name):
+
+def normlize_weights(G, k, p, name, field):
     for nd in (reversed(list(nx.topological_sort(G)))):
         if p[0] is not None:
-            if (G.nodes(data = True)[nd]['edges_in_subtree'] * k) > 0:
-                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0]) * G.nodes(data = True)[nd]['edges_in_subtree'] * k )
+            if (G.nodes(data = True)[nd][field] * k) > 0:
+                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0]) * G.nodes(data = True)[nd][field] * k )
     return G
 
-def find_max_scores(G,number_of_planted_vertices,name,TH):
+def find_max_scores(G, number_of_planted_vertices, name, TH):
     max_score_p = [-1]*number_of_planted_vertices
     max_score = max_score_p
     if name == 'p1':

@@ -10,7 +10,6 @@ import tree_operations_v1 as tree_operations
 import inits_v1 as inits
 import random
 import draw
-from numpy import inf
 
 p1 = (['S'], None, False)
 p2 = (None,False,False)
