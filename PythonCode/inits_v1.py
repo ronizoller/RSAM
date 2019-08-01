@@ -32,7 +32,7 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table):
 
 
 def init_distance_S(S_dis_matrix,path,spe):
-    input = open(path+'/saved_data/S_edgelist_'+spe+'.txt', 'r')
+    input = open(path+'/saved_data/S_edgelist.txt', 'r')
     edgelist = []
     for line in input:
         edgelist.append(eval(line))

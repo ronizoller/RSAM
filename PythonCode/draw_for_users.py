@@ -26,12 +26,10 @@ def number_of_scpecies_doup(G,old_sigma,number_of_douplications):
             should_be_found.append(name)
     return should_be_found
 
-def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis, y_axis,draw_marked,double_mode,lables_flag,ext,color,number_of_douplications):
-    print('Drawing new G...')
+def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis, y_axis,draw_marked,double_mode,lables_flag,ext,color,number_of_douplications,path):
     plt.clf()
     special_colors = []
     should_be_found = number_of_scpecies_doup(G,old_sigma,number_of_douplications)
-    print()
     for i in range(0, len(should_be_found)):
         special_colors.append(hex_code_colors())
     tree_to_draw = nx.DiGraph()
@@ -85,20 +83,17 @@ def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S
                         l = l + "\n (" + str(x.taxon) + ")"
                         l = l+'\n'+str(old_sigma[x.taxon.label])
                         labels1.update({r: l})
-
     nx.draw(tree_to_draw, pos1, arrows=True, node_size=nodes_size, node_color=nodes_color,
             width=1)
     if lables_flag:
         text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
         for _, t in text.items():
             t.set_rotation('vertical')
-    plt.savefig(os.getcwd()+'/data/figures/new_G_pattern=' + pattern + '_' + ext + '.png')
-    print('Finished drawing new G.\n')
+    plt.savefig(path + '/figures/new_G_pattern=' + pattern + '_' + ext + '.png')
     return
 
 
-def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis,y_axis,draw_marked,double_mode,lables_flag,ext, color):
-    print('Drawing new G...')
+def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis,y_axis,draw_marked,double_mode,lables_flag,ext, color, path):
     plt.clf()
 
     tree_to_draw = nx.DiGraph()
@@ -158,8 +153,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
         text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
         for _, t in text.items():
             t.set_rotation('vertical')
-    plt.savefig(os.getcwd()+'/data/figures/new_G_pattern='+pattern+'_'+ext+'.png')
-    print('Finished drawing new G.\n')
+    plt.savefig(path + '/figures/new_G_pattern='+pattern+'_'+ext+'.png')
     return
 
 def hex_code_colors():
@@ -179,7 +173,7 @@ def hex_code_colors():
     return "#" + z.upper()
 
 
-def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,draw_marked,x_axis,y_axis):
+def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,draw_marked,x_axis,y_axis, path, res):
     p1 = (p1[0],p1[1],p1[2])
     new_G = nx.DiGraph()
     new_G = tree_operations.copy_G(G,new_G)
@@ -190,7 +184,11 @@ def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,dra
         pattern_name = '(' + str(p1) + '_' + str(p2) + ')_Double-Mode'
     else:
         pattern_name = str(p1) + '_Single-Mode'
-    input = open(os.getcwd()+'/data/saved_data/marked_RSAM_finder_' + ext + '_pattern=' + pattern_name + '.txt', 'r')
+    try:
+        input = open(path + '/saved_data/marked_RSAM_finder_' + ext + '_pattern=' + pattern_name + '.txt', 'r')
+    except:
+        res['error'] += '/saved_data/marked_RSAM_finder_' + ext + '_pattern=' + pattern_name + ".txt was not found."
+        return
     if draw_marked:
         marked_nodes = []
         for line in input:
@@ -202,21 +200,20 @@ def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,dra
     big_size = 20
     number_of_douplications = 1
 
-    to_create = os.getcwd() + '/data/figures/'
+    to_create = path + '/figures/'
     os.makedirs(os.path.dirname(to_create), exist_ok=True)
 
     if 'D' in p1[0]:
         draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma,
                       lables_flag, pattern_name, big_size,S_labels_table,x_axis, y_axis,
-                      draw_marked, double_mode, lables_flag, ext, color, number_of_douplications)
+                      draw_marked, double_mode, lables_flag, ext, color, number_of_douplications, path)
 
     else:
         draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma,
                     lables_flag, pattern_name,
                                  big_size,S_labels_table, x_axis,
-                    y_axis, draw_marked, double_mode, lables_flag, ext, color)
+                    y_axis, draw_marked, double_mode, lables_flag, ext, color, path)
 
-    print('Number of leafs of G: '+str(tree_operations.number_of_leafs(G,'G')))
     return
 
 if __name__ == "__main__":

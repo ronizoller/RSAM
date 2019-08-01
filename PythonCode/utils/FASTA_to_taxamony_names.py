@@ -9,7 +9,7 @@ path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/'
 def main(path,cogs_names,exte,create_sigma):
     if create_sigma:
         for name in cogs_names:
-            with open(path+name+'/FASTA_'+exte+'.txt','r') as fp:
+            with open(path+name+'/FASTA.txt','r') as fp:
                 res = ''
                 for line in fp:
                     if line[0] == '>':
@@ -26,7 +26,7 @@ def main(path,cogs_names,exte,create_sigma):
             file.write(str(res))
             file.close()
     else:
-        S = tr.Tree.get_from_path(os.getcwd() + "/data/S_test" + ".txt", schema="newick")
+        S = tr.Tree.get_from_path(os.getcwd() + "/data/" + exte +"/S.txt", schema="newick")
         res = ''
         for leaf in S.leaf_nodes():
             if not tree_operations.isolated(leaf):

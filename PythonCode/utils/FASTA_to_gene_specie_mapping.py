@@ -9,14 +9,14 @@ def main (path,COGS_names,exte,create_form_fasta):
     if create_form_fasta:
         for name in COGS_names:
             res = '{ '
-            S_text = open(path+name+'/S_'+exte+'.txt', 'r').read()
+            S_text = open(path+name+'/S.txt', 'r').read()
             input = open(path+name+"/old_new_names.txt", 'r')
             old_new_names = []
             for line in input:
                 old_new_names.append(eval(line))
             old_new_names = old_new_names[0]
 
-            with open(path+name+'/FASTA_'+exte+'.txt','r') as fp:
+            with open(path+name+'/FASTA.txt','r') as fp:
                 for line in fp:
                     if line[0] == '>':
                         start = 1
@@ -40,7 +40,7 @@ def main (path,COGS_names,exte,create_form_fasta):
             file.write(str(res))
             file.close()
     else:
-        G = tr.Tree.get_from_path(os.getcwd() + "/data/G.txt", schema="newick")
+        G = tr.Tree.get_from_path(os.getcwd() + "/data/" + exte + "/G.txt", schema="newick")
         res = '{ '
         for leaf in G.leaf_nodes():
             if not tree_operations.isolated(leaf):

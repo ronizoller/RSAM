@@ -12,7 +12,7 @@ from copy import deepcopy
 
 
 
-def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, path, sigma, save_data,S_dis_matrix,track_solution, res):
+def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, sigma,S_dis_matrix,track_solution, res):
     H = nx.MultiDiGraph()
     H.clear()
 
@@ -117,26 +117,6 @@ def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, pa
                 z = x.adjacent_nodes()[1]
                 incomp[u.label][y.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][z.label],k,H,nodes_table,'cost_without_losses')
                 incomp[u.label][z.label] += utiles.kmin_positive(incomp[u.label][x.label]+subtree[u.label][y.label],k,H,nodes_table,'cost_without_losses')
-    if save_data:
-        file = open(path+'/saved_data/H_nodes_effi.txt', 'w')
-        file.write(str(H.nodes(data=True)))
-        file.close()
-
-        file = open(path+'/saved_data/H_edges_k='+str(k)+'.txt', 'w')
-        file.write(str(H.edges(data=True)))
-        file.close()
-
-        file = open(path+'/saved_data/nodes_table_k='+str(k)+'.txt', 'w')
-        file.write(str(nodes_table))
-        file.close()
-
-        file = open(path+'/saved_data/incomp.txt', 'w')
-        file.write(str(incomp))
-        file.close()
-
-        file = open(path+'/saved_data/subtree.txt', 'w')
-        file.write(str(subtree))
-        file.close()
 
     H_root = [nd for nd in list(H.node(data=True)) if
               nd[1]['s'] == G.seed_node.label and nd[1]['t'] == S.seed_node.label]

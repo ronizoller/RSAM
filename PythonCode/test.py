@@ -14,7 +14,7 @@ class parameters_frame(object):
         self.v = None
 
         if specification == 'general':
-            self.entries, self.error_labels, self.error = makeform(self, self.top, labels)
+            self.entries, self.error_labels, self.error, self.only_draw = makeform(self, self.top, labels)
         elif specification == 'patterns':
             self.entries = make_patterns_tab(self.top, ['p1','p2'])
         elif specification == 'figure_params':
@@ -32,6 +32,26 @@ class parameters_frame(object):
             entry.config(state='disabled')
         else:
             entry.config(state='normal')
+
+    def callback_only_draw(self,bool_var,entries,fields):
+        temp_ents = list(filter(lambda x: x[0] not in ['track_solution','create_sigma','draw','random_sol','Specie tree extension',
+                                                        'only_draw'], entries))
+        draw_check_butt = list(filter(lambda x: x[0] == 'draw', entries))[0]
+
+        if bool_var.get():
+            for entry in temp_ents:
+                entry[1].delete(0,tk.END)
+                entry[1].config(state='disabled')
+            draw_check_butt[1].set('1')
+        else:
+            for entry in temp_ents:
+                entry[1].config(state='normal')
+                entry[1].delete(0,tk.END)
+                entry[1].insert("end",fields[temp_ents.index(entry)+1][2])
+            draw_check_butt[1].set('0')
+
+
+
 
 def make_patterns_tab(root, patterns):
     entries = []
@@ -146,16 +166,27 @@ def makeform(param_frame, root, fields):
     intVal = (t3.register(intValidation), '%S')
     floatVal = (t3.register(floatValidation), '%S')
 
+    row = tk.Frame(root)
+
+    bool_var1 = tk.BooleanVar(row)
+    butt = tk.Checkbutton(row, variable=bool_var1,
+                          command=lambda: param_frame.callback_only_draw(bool_var1, entries, fields))
+    butt.grid(row=0, column=1)
+    lab = tk.Label(row, text='only draw', width=10)
+    lab.grid(row=0, column=0)
+    entries.append(('only_draw', bool_var1))
+    row.pack(side=tk.TOP, padx=0, pady=5)
+
     for field in fields:
         if len(field) >= 3:
             row = tk.Frame(root)
-            lab = tk.Label(row, width=30, text=field[0])
+            lab = tk.Label(row, width=20, text=field[0])
             if field[1] == 'float':
-                ent = tk.Entry(row, validate='key',vcmd=floatVal)
+                ent = tk.Entry(row, validate='key',vcmd=floatVal,width=10)
             elif field[1] == 'int':
-                ent = tk.Entry(row, validate='key', vcmd=intVal)
+                ent = tk.Entry(row, validate='key', vcmd=intVal,width=10)
             else:
-                ent = tk.Entry(row, validate='key')
+                ent = tk.Entry(row, validate='key',width=10)
             if field[2] != None:
                 ent.insert("end",field[2])
             lab.grid(row=fields.index(field),column=0)
@@ -163,7 +194,7 @@ def makeform(param_frame, root, fields):
             if field[0].find('cost') == -1:
                 CreateToolTip(lab, text=field[3])
             error_labels.update({field[0]+' error':tk.StringVar()})
-            lab = tk.Label(row, font=('Helvetica', 18, 'bold'), fg='red', width=5, textvariable=error_labels[field[0]+' error'],justify=tk.LEFT)
+            lab = tk.Label(row, font=('Helvetica', 18, 'bold'), fg='red', width=5, textvariable=error_labels[field[0] + ' error'],justify=tk.LEFT)
             lab.grid(row=fields.index(field), column=3)
             entries.append((field[0], ent))
             row.pack(side=tk.TOP, padx=0, pady=5)
@@ -218,7 +249,7 @@ def makeform(param_frame, root, fields):
     lab.grid(row=0, column=4)
 
     row.pack()
-    return entries, error_labels, error
+    return entries, error_labels, error, bool_var1
 
 
 class Main_Frame(object):
@@ -228,9 +259,9 @@ class Main_Frame(object):
         panel = tk.Label(root, image=img)
         panel.pack(side="top", fill="both", expand="yes")
 
-        parameter_lables = [['Specie tree extension', 'string', None,'This is the extentiuon of the file S_(extention).txt\n'
+        parameter_lables = [['Specie tree extension', 'string', '','This is the extentiuon of the file S_(extention).txt\n'
                                                                      'This is also the extention for the FASTA file.'],
-                            ['k', 'int', '50','Value of k for the k-best hypergraph'],
+                            ['k', 'int', '10','Value of k for the k-best hypergraph'],
                             ['Threshold Edges\nin Subtree', 'float', '0.1','The minimal number of edges in subtrees that\n'
                                                                            'will considered when looking for top scoring vertices\n'
                                                                            'within the gene tree.'],
@@ -262,11 +293,14 @@ class Main_Frame(object):
         ent1 = t1.work_task()
         ent2 = t2.work_task()
         ent3 = t3.work_task()
+
+        only_draw = t1.only_draw.get()
         for ent in ent1:
-            if ent[0] not in ['track_solution','create_sigma','draw','random_sol']:
-                if ent1[ent1.index(ent)][1].get() == '':
-                    t1.error_labels[ent[0]+' error'].set('*')
-                    return
+            if ent[0] not in ['track_solution','create_sigma','draw','random_sol','only_draw']:
+                if not only_draw or (ent[0] == 'Specie tree extension'):
+                    if ent1[ent1.index(ent)][1].get() == '':
+                        t1.error_labels[ent[0]+' error'].set('*')
+                        return
                 else:
                     t1.error_labels[ent[0] + ' error'].set('')
         self.window = tk.Toplevel(root)
@@ -298,7 +332,7 @@ class Main_Frame(object):
         if self.result['error'] != '':
             if self.msg_error:
                 self.msg_error.destroy()
-            self.msg_error = tk.Label(self.top, fg="red", width=50, height=3, text=self.result['error'])
+            self.msg_error = tk.Label(self.top, fg="red", width=70, height=3, text=self.result['error'])
             self.msg_error.pack()
             self.result['error'] = ''
             self.result['text'] = ''
@@ -342,7 +376,7 @@ class Main_Frame(object):
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
                 text = entry[1].get()
                 vars.append(text)
-        speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,labels,draw_marked,x,y = vars
+        only_draw ,speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,labels,draw_marked,x,y = vars
         if track_solution == "":
             track_solution = False
         elif int(track_solution) > int(k):
@@ -350,10 +384,13 @@ class Main_Frame(object):
             return
         if random_sol:
             track_solution = random.choice(range(0,int(k)))
+
+        if t1.only_draw.get():
+            k = TH_edges = HT_cost = D_cost = S_cost = loss_cost = gamma = p = number_of_planted_vertices = 0
+            track_solution = 0
         RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
-                        int(loss_cost),
-                        Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
-                        track_solution, draw, color,labels,draw_marked,x,y, res)
+                        int(loss_cost), Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
+                        track_solution, draw, color,labels,draw_marked,x,y, res, only_draw)
 
 
 class Notebook:

@@ -18,20 +18,18 @@ def get_edgelist(tree):
 
 
 def init_internal_labels (tree,char):
-    print('Inisilasing internal leafs...')
     counter = 1
     for nd in tree.postorder_node_iter():
         nd.label = char+str(counter)
         counter += 1
-    print('Finished inisilasing internal leafs.\n')
     return tree
 
 def main(path,exte):
-    t = tr.Tree.get_from_path(path+"/S_"+exte+".txt", schema="newick")
+    t = tr.Tree.get_from_path(path+"/S.txt", schema="newick")
     t = init_internal_labels(t,'x')
-    path_curr = path + '/saved_data/S_edgelist_'+exte+'.txt'
+    path_curr = path + '/saved_data/S_edgelist.txt'
     os.makedirs(os.path.dirname(path_curr), exist_ok=True)
-    file = open(path+'/saved_data/S_edgelist_'+exte+'.txt', 'w')
+    file = open(path + '/saved_data/S_edgelist.txt', 'w')
     file.write(str(get_edgelist(t)))
     file.close()
 
