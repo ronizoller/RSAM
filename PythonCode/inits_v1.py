@@ -12,9 +12,9 @@ def find_max_S_d(max_S_d, S_dis_matrix):
     return max_S_d
 
 
-def init_leafs_efficient(G, H, k, H_number_of_nodes,sigma,nodes_table):
+def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
     for leaf in G.leaf_nodes():
-        if not tree_operations.isolated(leaf):
+        if not tree_operations.isolated(leaf) and leaf.label in sigma:
             H.add_node(H_number_of_nodes, s=leaf.label, t=sigma[leaf.label],l=list())
             big_node = H_number_of_nodes
             H_number_of_nodes += 1
@@ -55,6 +55,7 @@ def init_nodes_table(S,G,nodes_table):
             nodes_table[s_nd.label].update({g_nd.label:-1})
     return nodes_table
 
+
 def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
@@ -72,27 +73,29 @@ def init_leafs(G, H, k, H_number_of_nodes, sigma,nodes_table):
             nodes_table[sigma[leaf.label]][leaf.label] = big_node
     return H,H_number_of_nodes, nodes_table
 
-def init_taxon_to_label_table(S,G,sigma):
+
+def init_taxon_to_label_table(S, G, sigma):
     S_labels_table = {}
     G_labels_table = {}
+
     for leaf_S in S.leaf_nodes():
-        if leaf_S.taxon != None:
-            S_labels_table.update({leaf_S.taxon.label: leaf_S.label})
+        if leaf_S.taxon:
+            S_labels_table.update({leaf_S.taxon.label.replace(' ',''): leaf_S.label})
     for leaf_G in G.leaf_nodes():
-        if leaf_G.taxon != None:
+        if leaf_G.taxon:
             G_labels_table.update({leaf_G.taxon.label: leaf_G.label})
         else :
             sigma.update({leaf_G.label:'x'+leaf_G.label[1:]})
     return S_labels_table,G_labels_table,sigma
 
-def update_sigma(sigma,exect_names,S_labels_table,G_labels_table):
-    old_sigma = sigma
 
-    for u, x in sigma.items():
-        if (u in G_labels_table) and (x in S_labels_table):
+def update_sigma(sigma, exect_names, S_labels_table, G_labels_table):
+    old_sigma = sigma.copy()
+    sigma = {}
+    for u, x in old_sigma.items():
+        if u in G_labels_table and x in S_labels_table:
             if exect_names:
-                sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (
-                (S_labels_table[x]).replace("_", " ") == x1 and (G_labels_table[u]).replace("_"," ") == u1))  # if lables are strings
+                sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (S_labels_table[x].replace("_", " ") == x1 and (G_labels_table[u]).replace("_"," ") == u1))
                 sigma.update({G_labels_table[u]: S_labels_table[x]})
             else:
                 sigma = dict((u,x) for u,x in sigma.items() if not (((S_labels_table[x]).replace("_"," ").find(x) != -1 or x.find((S_labels_table[x]).replace("_"," ")) != -1) and (((G_labels_table[u]).replace("_"," ").find(u) != -1) or (u.find(G_labels_table[u]).replace("_"," ")) != 1)))      #if lables are strings
@@ -126,6 +129,7 @@ def update_colors(S,colors,exact_names):
                 old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})
     return colors,old_colors
 
+
 def init_H_field(H, field, init,in_list, for_edge):
     if not for_edge:
         for nd in H.nodes(data=True):
@@ -152,7 +156,7 @@ def init_dict_inf(H,S,G,k,nodes_table,dict,sigma,S_dis_matrix,loss_cost):
                 if effi.find_nodes_in_hypergraph(H, u.label, x.label, -1, nodes_table):
                     res[u.label].update({x.label:[effi.find_nodes_in_hypergraph(H, u.label, x.label, i, nodes_table)[0] for i in range (0,k)]})
                     S.find_node(lambda n: (n.label == sigma[u.label]))
-                elif u.is_leaf() and (x in S.find_node(lambda n: (n.label == sigma[u.label])).ancestor_iter()):
+                elif u.label in sigma and u.is_leaf() and (x in S.find_node(lambda n: (n.label == sigma[u.label])).ancestor_iter()):
                     if dict == 'subtree':
                         res[u.label].update({x.label: [effi.find_nodes_in_hypergraph(H, u.label, sigma[u.label], i, nodes_table)[0]
                                                        for i in range(0, k)]})

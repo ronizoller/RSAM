@@ -16,10 +16,11 @@ def build_hyper_garph(S, G, k,nodes_table, D_cost, S_cost,loss_cost, HT_cost, si
     H = nx.MultiDiGraph()
     H.clear()
 
-    H, H_number_of_nodes, nodes_table = inits.init_leafs_efficient(G, H, k, 0,sigma,nodes_table)
+    H, H_number_of_nodes, nodes_table = inits.init_leafs_efficient(G, H, k, 0, sigma, nodes_table)
     incomp = inits.init_dict_inf(H, S, G, k, nodes_table, 'incomp', sigma, S_dis_matrix, loss_cost)
     subtree = inits.init_dict_inf(H, S, G, k, nodes_table, 'subtree', sigma, S_dis_matrix, loss_cost)
     subtreeLoss = inits.init_dict_inf(H, S, G, k, nodes_table, 'subtreeLoss', sigma, S_dis_matrix, loss_cost)
+
     for u in G.postorder_node_iter():
         if not tree_operations.is_a_leaf(u):
             for x in S.postorder_node_iter():
@@ -368,7 +369,7 @@ def remove_prob_zero(H, deleted_nodes):
 def assign_probabilities(S, G, H, gamma, res):
     flag = False
     to_try = G.seed_node.label
-    to_try_sp = S.seed_node.label
+    #to_try_sp = S.seed_node.label
     max_prob = 0
     for nd in list(reversed(list(nx.topological_sort(H)))):
         outgoing_edges = H.out_edges([nd],data=True)
@@ -377,7 +378,7 @@ def assign_probabilities(S, G, H, gamma, res):
         for i in range(0,len(nd['l'])):
             outgoing_edges_v = [e for e in outgoing_edges if e[2]['source'] == i]
             incoming_edges_v = [e for e in incoming_edges if e[2]['target'] == i]
-            if (nd['s'] != to_try or nd['t'] != to_try_sp):
+            if nd['s'] != to_try :
                 if outgoing_edges_v == []:
                     s = 0
                 else:
@@ -395,7 +396,7 @@ def assign_probabilities(S, G, H, gamma, res):
                 nd['l'][i].update({'probability': nd['l'][i]['weight']})
                 for e in incoming_edges_v:
                     e[2]['probability'] = nd['l'][i]['weight']
-    if flag == False:
+    if not flag:
         res['Error'] = '     ** No reconciliation of '+to_try+' exists.'
         return None, 0
     for nd in H.nodes(data = True):

@@ -205,10 +205,10 @@ def number_of_leafs(tree, name):
 def remove_unsigma_genes(G,sigma,taxon):
     to_remove = []
     for u in G.postorder_node_iter():
-        if u.is_leaf():
+        if u.taxon:
             if taxon:
-                if not u.taxon.label in sigma:
-                    to_remove.append(u.taxon.label)
+                if u.taxon.label not in sigma:
+                    to_remove.append(u.taxon.label.replace(' ','_'))
             else:
                 if not u.label in sigma:
                     to_remove.append(u.taxon.label)

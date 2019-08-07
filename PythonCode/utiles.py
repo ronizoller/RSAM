@@ -68,7 +68,7 @@ def init_internal_labels (tree, char, old_sigma, path):
     for nd in tree.postorder_node_iter():
         nd.label = char+str(counter)
         counter += 1
-        if not nd.taxon == None:
+        if nd.taxon and nd.taxon.label in old_sigma:
             dic = dic + nd.label + ' : ' +  nd.taxon.label
             if char == 'u':
                 dic = dic + ' (' + old_sigma[nd.taxon.label] + ') '

@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/multi2bi.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" afterPath="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" afterPath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/Tree_Grnarator.py" afterPath="$PROJECT_DIR$/PythonCode/Tree_Grnarator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/draw.py" afterPath="$PROJECT_DIR$/PythonCode/draw.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/inits_v1.py" afterPath="$PROJECT_DIR$/PythonCode/inits_v1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/test.py" afterPath="$PROJECT_DIR$/PythonCode/test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" afterPath="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py" afterPath="$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utiles.py" afterPath="$PROJECT_DIR$/PythonCode/utiles.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py" afterPath="$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" afterPath="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
     </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
@@ -32,8 +35,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="261" column="123" selection-start-line="261" selection-start-column="123" selection-end-line="261" selection-end-column="123" />
+            <state relative-caret-position="148">
+              <caret line="26" column="13" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="13" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#3290#3552#0" expanded="false" />
@@ -43,11 +46,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fix_taxa_names_in_FASTA.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
+      <file leaf-file-name="FASTA_to_gene_specie_mapping.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="58" />
+            <state relative-caret-position="152">
+              <caret line="17" column="106" selection-start-line="17" selection-start-column="104" selection-end-line="17" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+              <folding>
+                <element signature="e#8008#10064#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utiles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -56,60 +81,38 @@
       <file leaf-file-name="Draw_new_G.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/Draw_new_G.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="-1888">
+              <caret line="49" column="158" selection-start-line="49" selection-start-column="156" selection-end-line="49" selection-end-column="158" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="draw_for_users.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2835">
-              <caret line="189" column="11" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="304" column="40" selection-start-line="304" selection-start-column="25" selection-end-line="304" selection-end-column="40" />
-              <folding>
-                <element signature="e#721#742#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newick2edgelist.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="29" column="37" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13">
-              <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+            <state relative-caret-position="73">
+              <caret line="112" column="25" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi2bi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/utils/multi2bi.py">
+      <file leaf-file-name="FASTA_to_taxamony_names.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-135">
-              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            <state relative-caret-position="173">
+              <caret line="34" column="102" selection-start-line="34" selection-start-column="100" selection-end-line="34" selection-end-column="102" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EfficiantVersion.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/EfficiantVersion.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="441" column="17" selection-start-line="441" selection-start-column="12" selection-end-line="441" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -118,8 +121,8 @@
       <file leaf-file-name="tree_operations_v1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="227">
+              <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
               <folding>
                 <element signature="e#1150#2137#0" expanded="false" />
                 <element signature="e#2278#5102#0" expanded="false" />
@@ -129,25 +132,15 @@
                 <element signature="e#7440#7870#0" expanded="false" />
                 <element signature="e#7934#8246#0" expanded="false" />
                 <element signature="e#8286#8406#0" expanded="false" />
-                <element signature="e#8847#9901#0" expanded="false" />
-                <element signature="e#9935#10045#0" expanded="false" />
-                <element signature="e#10084#10167#0" expanded="false" />
-                <element signature="e#10218#10367#0" expanded="false" />
-                <element signature="e#10418#10701#0" expanded="false" />
-                <element signature="e#10770#11886#0" expanded="false" />
-                <element signature="e#11914#12655#0" expanded="false" />
-                <element signature="e#12701#12851#0" expanded="false" />
+                <element signature="e#8860#9914#0" expanded="false" />
+                <element signature="e#9948#10058#0" expanded="false" />
+                <element signature="e#10097#10180#0" expanded="false" />
+                <element signature="e#10231#10380#0" expanded="false" />
+                <element signature="e#10431#10714#0" expanded="false" />
+                <element signature="e#10783#11899#0" expanded="false" />
+                <element signature="e#11927#12668#0" expanded="false" />
+                <element signature="e#12714#12864#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tree_Grnarator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/Tree_Grnarator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="93" column="47" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="47" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -173,23 +166,26 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/PythonCode/utiles.py" />
         <option value="$PROJECT_DIR$/PythonCode/pattern_identify_v4.py" />
         <option value="$PROJECT_DIR$/PythonCode/Draw_new_G.py" />
-        <option value="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
         <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
-        <option value="$PROJECT_DIR$/PythonCode/test.py" />
         <option value="$PROJECT_DIR$/PythonCode/create_species_tree/__init__.py" />
         <option value="$PROJECT_DIR$/PythonCode/Tree_Grnarator.py" />
-        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utils/multi2bi.py" />
+        <option value="$PROJECT_DIR$/PythonCode/test.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py" />
-        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+        <option value="$PROJECT_DIR$/PythonCode/data/COG3550/S_binary.txt" />
+        <option value="$PROJECT_DIR$/PythonCode/utils/multi2bi.py" />
+        <option value="/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/dendropy/datamodel/treemodel.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py" />
         <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
+        <option value="$PROJECT_DIR$/PythonCode/draw.py" />
+        <option value="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" />
+        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utiles.py" />
+        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
       </list>
     </option>
   </component>
@@ -500,13 +496,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
-    </task>
-    <task id="LOCAL-00019" summary="7.3&#10;">
-      <created>1551951651268</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1551951651268</updated>
     </task>
     <task id="LOCAL-00020" summary="11.3">
       <created>1552326312770</created>
@@ -844,7 +833,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564646709809</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="automatic binarisation">
+      <created>1565180558159</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1565180558160</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -853,10 +849,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24539231" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4536741" sideWeight="0.23486045" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4536741" sideWeight="0.23802002" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28722003" sideWeight="0.49605057" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4536741" sideWeight="0.7651395" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.49815693" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4536741" sideWeight="0.76198" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -883,7 +879,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="14&#10;" />
     <MESSAGE value="drawing is working, new pattern is OK (duplications not tested)" />
     <MESSAGE value="I think now the new noise will be goon&#10;" />
     <MESSAGE value="27.3" />
@@ -908,7 +903,8 @@
     <MESSAGE value="GUI update" />
     <MESSAGE value="hovering help windows" />
     <MESSAGE value="GUI improved" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI improved" />
+    <MESSAGE value="automatic binarisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="automatic binarisation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -933,73 +929,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/phyliptree(binary,proteobacteria).phy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="0" column="2204" selection-start-line="0" selection-start-column="2204" selection-end-line="0" selection-end-column="2204" />
-          <caret line="0" column="2275" selection-start-line="0" selection-start-column="2275" selection-end-line="0" selection-end-column="2275" />
-          <caret line="0" column="8483" selection-start-line="0" selection-start-column="8483" selection-end-line="0" selection-end-column="8483" />
-          <caret line="0" column="15401" selection-start-line="0" selection-start-column="15401" selection-end-line="0" selection-end-column="15401" />
-          <caret line="0" column="16284" selection-start-line="0" selection-start-column="16284" selection-end-line="0" selection-end-column="16284" />
-          <caret line="0" column="17930" selection-start-line="0" selection-start-column="17930" selection-end-line="0" selection-end-column="17930" />
-          <caret line="0" column="18478" selection-start-line="0" selection-start-column="18478" selection-end-line="0" selection-end-column="18478" />
-          <caret line="0" column="23814" selection-start-line="0" selection-start-column="23814" selection-end-line="0" selection-end-column="23814" />
-          <caret line="0" column="26901" selection-start-line="0" selection-start-column="26901" selection-end-line="0" selection-end-column="26901" />
-          <caret line="0" column="28999" selection-start-line="0" selection-start-column="28999" selection-end-line="0" selection-end-column="28999" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3550/phyliptree(binary,proteobacteria).phy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="0" column="707" selection-start-line="0" selection-start-column="707" selection-end-line="0" selection-end-column="707" />
-          <caret line="0" column="780" selection-start-line="0" selection-start-column="780" selection-end-line="0" selection-end-column="780" />
-          <caret line="0" column="5073" selection-start-line="0" selection-start-column="5073" selection-end-line="0" selection-end-column="5073" />
-          <caret line="0" column="5082" selection-start-line="0" selection-start-column="5082" selection-end-line="0" selection-end-column="5082" />
-          <caret line="0" column="7025" selection-start-line="0" selection-start-column="7025" selection-end-line="0" selection-end-column="7025" />
-          <caret line="0" column="10681" selection-start-line="0" selection-start-column="10681" selection-end-line="0" selection-end-column="10681" />
-          <caret line="0" column="14423" selection-start-line="0" selection-start-column="14423" selection-end-line="0" selection-end-column="14423" />
-          <caret line="0" column="15565" selection-start-line="0" selection-start-column="15565" selection-end-line="0" selection-end-column="15565" />
-          <caret line="0" column="19453" selection-start-line="0" selection-start-column="19453" selection-end-line="0" selection-end-column="19453" />
-          <caret line="0" column="20056" selection-start-line="0" selection-start-column="20056" selection-end-line="0" selection-end-column="20056" />
-          <caret line="0" column="20064" selection-start-line="0" selection-start-column="20064" selection-end-line="0" selection-end-column="20064" />
-          <caret line="0" column="20831" selection-start-line="0" selection-start-column="20831" selection-end-line="0" selection-end-column="20831" />
-          <caret line="0" column="21284" selection-start-line="0" selection-start-column="21284" selection-end-line="0" selection-end-column="21284" />
-          <caret line="0" column="24373" selection-start-line="0" selection-start-column="24373" selection-end-line="0" selection-end-column="24373" />
-          <caret line="0" column="26243" selection-start-line="0" selection-start-column="26243" selection-end-line="0" selection-end-column="26243" />
-          <caret line="0" column="29087" selection-start-line="0" selection-start-column="29087" selection-end-line="0" selection-end-column="29087" />
-          <caret line="0" column="34921" selection-start-line="0" selection-start-column="34921" selection-end-line="0" selection-end-column="34921" />
-          <caret line="0" column="35041" selection-start-line="0" selection-start-column="35041" selection-end-line="0" selection-end-column="35041" />
-          <caret line="0" column="35560" selection-start-line="0" selection-start-column="35560" selection-end-line="0" selection-end-column="35560" />
-          <caret line="0" column="36676" selection-start-line="0" selection-start-column="36676" selection-end-line="0" selection-end-column="36676" />
-          <caret line="0" column="38769" selection-start-line="0" selection-start-column="38769" selection-end-line="0" selection-end-column="38769" />
-          <caret line="0" column="38828" selection-start-line="0" selection-start-column="38828" selection-end-line="0" selection-end-column="38828" />
-          <caret line="0" column="39835" selection-start-line="0" selection-start-column="39835" selection-end-line="0" selection-end-column="39835" />
-          <caret line="0" column="41231" selection-start-line="0" selection-start-column="41231" selection-end-line="0" selection-end-column="41231" />
-          <caret line="0" column="42357" selection-start-line="0" selection-start-column="42357" selection-end-line="0" selection-end-column="42357" />
-          <caret line="0" column="43263" selection-start-line="0" selection-start-column="43263" selection-end-line="0" selection-end-column="43263" />
-          <caret line="0" column="47288" selection-start-line="0" selection-start-column="47288" selection-end-line="0" selection-end-column="47288" />
-          <caret line="0" column="47655" selection-start-line="0" selection-start-column="47655" selection-end-line="0" selection-end-column="47655" />
-          <caret line="0" column="48455" selection-start-line="0" selection-start-column="48455" selection-end-line="0" selection-end-column="48455" />
-          <caret line="0" column="49816" selection-start-line="0" selection-start-column="49816" selection-end-line="0" selection-end-column="49816" />
-          <caret line="0" column="50910" selection-start-line="0" selection-start-column="50910" selection-end-line="0" selection-end-column="50910" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG3549/GeneTree(binary,proteobacteria)_local.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="0" column="5517" selection-start-line="0" selection-start-column="3904" selection-end-line="0" selection-end-column="5517" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/find_additional_domains.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1011,13 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/draw.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="194" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1186,13 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="881">
-          <caret line="344" column="44" selection-start-line="344" selection-start-column="44" selection-end-line="344" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/find_next_gene.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1207,13 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -1225,22 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/Draw_new_G.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1261,34 +1153,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/create_species_tree/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/PythonCode/EfficiantVersion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/dendropy/datamodel/treemodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="5303" column="27" selection-start-line="5303" selection-start-column="22" selection-end-line="5303" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="261" column="123" selection-start-line="261" selection-start-column="123" selection-end-line="261" selection-end-column="123" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#3290#3552#0" expanded="false" />
-            <element signature="e#5348#5633#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/Tree_Grnarator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1305,10 +1169,128 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/data/COG3550/S_binary.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../TreeReconciliation/trees/COG3550/phyliptree(binary,proteobacteria).phy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/data/COG3550/G_binary.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/data/COG3550/G.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1032">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/dendropy/datamodel/treemodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="5306" column="0" selection-start-line="5306" selection-start-column="0" selection-end-line="5306" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="27" column="45" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/multi2bi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/Draw_new_G.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1888">
+          <caret line="49" column="158" selection-start-line="49" selection-start-column="156" selection-end-line="49" selection-end-column="158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/draw.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="267" column="25" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#3290#3552#0" expanded="false" />
+            <element signature="e#5348#5633#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="17" column="106" selection-start-line="17" selection-start-column="104" selection-end-line="17" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="112" column="25" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="34" column="102" selection-start-line="34" selection-start-column="100" selection-end-line="34" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/EfficiantVersion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="441" column="17" selection-start-line="441" selection-start-column="12" selection-end-line="441" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="227">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
           <folding>
             <element signature="e#1150#2137#0" expanded="false" />
             <element signature="e#2278#5102#0" expanded="false" />
@@ -1318,49 +1300,33 @@
             <element signature="e#7440#7870#0" expanded="false" />
             <element signature="e#7934#8246#0" expanded="false" />
             <element signature="e#8286#8406#0" expanded="false" />
-            <element signature="e#8847#9901#0" expanded="false" />
-            <element signature="e#9935#10045#0" expanded="false" />
-            <element signature="e#10084#10167#0" expanded="false" />
-            <element signature="e#10218#10367#0" expanded="false" />
-            <element signature="e#10418#10701#0" expanded="false" />
-            <element signature="e#10770#11886#0" expanded="false" />
-            <element signature="e#11914#12655#0" expanded="false" />
-            <element signature="e#12701#12851#0" expanded="false" />
+            <element signature="e#8860#9914#0" expanded="false" />
+            <element signature="e#9948#10058#0" expanded="false" />
+            <element signature="e#10097#10180#0" expanded="false" />
+            <element signature="e#10231#10380#0" expanded="false" />
+            <element signature="e#10431#10714#0" expanded="false" />
+            <element signature="e#10783#11899#0" expanded="false" />
+            <element signature="e#11927#12668#0" expanded="false" />
+            <element signature="e#12714#12864#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/multi2bi.py">
+    <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/newick2edgelist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="37" />
+        <state relative-caret-position="326">
+          <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="304" column="40" selection-start-line="304" selection-start-column="25" selection-end-line="304" selection-end-column="40" />
+        <state relative-caret-position="208">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
           <folding>
-            <element signature="e#721#742#0" expanded="true" />
+            <element signature="e#8008#10064#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>

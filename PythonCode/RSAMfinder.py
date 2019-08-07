@@ -21,7 +21,6 @@ speciesTreespecification = 'bacteria'
 
 import networkx as nx
 import dendropy as tr
-import dendropy as tr
 import math
 import utiles
 import draw_for_users
@@ -37,6 +36,7 @@ from utils import extract_from_FASTA_v1 as extr
 from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
 from utils import multi2bi
+import draw as d
 
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
@@ -217,24 +217,22 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     all_vertices = {}
     marked_nodes = {}
 
-    taxa_names.main(path, [''], speciesTreespecification,create_sigma_from_fasta)
+    taxa_names.main(path,create_sigma_from_fasta,res)
     fix.main(path,[''],create_sigma_from_fasta)
-    create_sigma.main(path,[''],speciesTreespecification,create_sigma_from_fasta)
+    create_sigma.main(path,create_sigma_from_fasta,res)
 
     if not os.path.isfile(path + '/G_binary.txt'):
         try:
             G = tr.Tree.get_from_path(path+"/G.txt", schema="newick")
             G = multi2bi.main(G)
             G = tree_operations.collapse_edges(G)
-            file = open(path + '/G_binary.txt', 'w')
-            file.write(str(G)+';')
-            file.close()
-        except:
-            res['error'] += "Gene tree '/data/G.txt' was not found.\n" \
+            G.write(path=path+"G_binary.txt", schema="newick")
+        except  Exception as e:
+            res['error'] += "\nGene tree '/data/G.txt' was not found.\n" \
                             "In order to create it, go to https://www.ebi.ac.uk/Tools/msa/clustalo/\n" \
                             "and follow the instructions:\n" \
                             "Choose File -> select 'FASTA.txt' from data/your_data/ directory\n" \
-                            "-> select OUTPUT FORMAT: -> wait until job is done..\n" \
+                            "-> select OUTPUT FORMAT: -> wait until job is done..\n"+str(e)+ \
                             ""
             return
     else:
@@ -245,11 +243,9 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
             S = tr.Tree.get_from_path(path + "/S.txt", schema="newick")
             S = multi2bi.main(S)
             S = tree_operations.collapse_edges(S)
-            file = open(path + '/S_binary.txt', 'w')
-            file.write(str(S)+';')
-            file.close()
+            S.write(path=path+"S_binary.txt", schema="newick")
         except:
-            res['error'] += "Species tree '/data/S.txt' was not found.\n" \
+            res['error'] += "\nSpecies tree '/data/S.txt' was not found.\n" \
                         "In order to create it, please go to https://www.ncbi.nlm.nih.gov/Taxonomy/CommonTree/wwwcmt.cgi\n" \
                         "and follow the instructions:\n" \
                         " -> Choose File -> select the file 'NCBI_tax_ID.txt' from the folder data/your_data \n" \
@@ -284,20 +280,17 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     else:
         colors = {}
 
-
-    G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
+    #to_remove = tree_operations.remove_unsigma_genes(G, sigma, True)
+    #if to_remove:
+    #    G.prune_taxa_with_labels(to_remove)
 
     S = utiles.init_internal_labels(S, 'x', sigma, path)
     G = utiles.init_internal_labels(G, 'u', sigma, path)
 
-    G = tree_operations.collapse_edges(G)
-    S = tree_operations.collapse_edges(S)
     n2e.main(path,speciesTreespecification)
 
     S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S,G,sigma)
     sigma, old_sigma = inits.update_sigma(sigma,True,S_labels_table,G_labels_table)
-    if tree_operations.remove_unsigma_genes(G, sigma, False) is not []:
-        G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, False))
     colors,old_colors = inits.update_colors(S, colors,True)
     TH_edges = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges
     p1 = (p1[0],p1[1],p1[2],TH_edges)
@@ -306,7 +299,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H = nx.MultiDiGraph()
     max_score_p1_list = max_score_p1_and_p2_list = [-1] * number_of_planted_vertices
-
+    d.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '', False)
     if not only_draw:
         H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, k,
                                                                          nodes_table, D_cost, S_cost, loss_cost, HT_cost,
@@ -317,6 +310,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
         fact_lookup_table = {}
         max_score_p1_list = []
         max_score_p1_and_p2_list = []
+        print(H.nodes(data=True))
         H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma, res)
         if H:
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
@@ -337,6 +331,8 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
             else:
                 max_score_p1_and_p2_list = tree_operations.find_max_scores(new_G,number_of_planted_vertices,'p2',p1[3])
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices,p1, p2, max_score_p1_list, max_score_p1_and_p2_list)
+        else:
+            print('no reconciliation')
 
         list_of_scores.update({0: all_vertices})
         all_vertices_with_index.update({0:utiles.average_of_list(list_of_scores,1)})

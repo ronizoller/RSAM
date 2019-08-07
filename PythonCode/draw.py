@@ -263,7 +263,7 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext, to_color):
                     if (u.label == temp_sol['Marked'] or u.label == temp_sol['list_of_couples'][p][0] or u.label == temp_sol['list_of_couples'][p][1]) and not degel:
                         nodes_color_G.append('blue')
                         degel = True
-        if not degel and tree_operations.is_a_leaf(u) and not tree_operations.isolated(u) and sigma[u.label] in colors and to_color:
+        if not degel and tree_operations.is_a_leaf(u) and u.label in sigma and not tree_operations.isolated(u) and sigma[u.label] in colors and to_color:
             if colors[sigma[u.label]] == 'red':
                 nodes_color_G.append('red')
             elif colors[sigma[u.label]] == 'black':

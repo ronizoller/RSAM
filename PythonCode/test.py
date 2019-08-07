@@ -332,7 +332,9 @@ class Main_Frame(object):
         if self.result['error'] != '':
             if self.msg_error:
                 self.msg_error.destroy()
-            self.msg_error = tk.Label(self.top, fg="red", width=70, height=3, text=self.result['error'])
+            self.msg_error = tkscrolled.ScrolledText(self.top, width=100, height=10)
+            self.msg_error.insert(1.0, self.result['error'],'error')
+            self.msg_error.tag_config('error',foreground='red')
             self.msg_error.pack()
             self.result['error'] = ''
             self.result['text'] = ''
