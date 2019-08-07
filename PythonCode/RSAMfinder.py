@@ -21,6 +21,7 @@ speciesTreespecification = 'bacteria'
 
 import networkx as nx
 import dendropy as tr
+import dendropy as tr
 import math
 import utiles
 import draw_for_users
@@ -35,7 +36,7 @@ import os
 from utils import extract_from_FASTA_v1 as extr
 from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
-from decimal import *
+from utils import multi2bi
 
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
@@ -220,19 +221,44 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     fix.main(path,[''],create_sigma_from_fasta)
     create_sigma.main(path,[''],speciesTreespecification,create_sigma_from_fasta)
 
+    if not os.path.isfile(path + '/G_binary.txt'):
+        try:
+            G = tr.Tree.get_from_path(path+"/G.txt", schema="newick")
+            G = multi2bi.main(G)
+            G = tree_operations.collapse_edges(G)
+            file = open(path + '/G_binary.txt', 'w')
+            file.write(str(G)+';')
+            file.close()
+        except:
+            res['error'] += "Gene tree '/data/G.txt' was not found.\n" \
+                            "In order to create it, go to https://www.ebi.ac.uk/Tools/msa/clustalo/\n" \
+                            "and follow the instructions:\n" \
+                            "Choose File -> select 'FASTA.txt' from data/your_data/ directory\n" \
+                            "-> select OUTPUT FORMAT: -> wait until job is done..\n" \
+                            ""
+            return
+    else:
+        G = tr.Tree.get_from_path(path + "/G_binary.txt", schema="newick")
 
-
-    try:
-        G = tr.Tree.get_from_path(path+"/G.txt", schema="newick")
-    except:
-        res['error'] += "Gene tree '/data/G.txt' was not found."
-        return
-
-    try:
-        S = tr.Tree.get_from_path(path + "/S.txt", schema="newick")
-    except:
-        res['error'] += "Species tree '/data/S.txt' was not found."
-        return
+    if not os.path.isfile(path + '/S_binary.txt'):
+        try:
+            S = tr.Tree.get_from_path(path + "/S.txt", schema="newick")
+            S = multi2bi.main(S)
+            S = tree_operations.collapse_edges(S)
+            file = open(path + '/S_binary.txt', 'w')
+            file.write(str(S)+';')
+            file.close()
+        except:
+            res['error'] += "Species tree '/data/S.txt' was not found.\n" \
+                        "In order to create it, please go to https://www.ncbi.nlm.nih.gov/Taxonomy/CommonTree/wwwcmt.cgi\n" \
+                        "and follow the instructions:\n" \
+                        " -> Choose File -> select the file 'NCBI_tax_ID.txt' from the folder data/your_data \n" \
+                        "-> Add from file: -> select the subtree you want (e.i. Proteobacteria) and press Choose ->\n" \
+                        "Expand All -> Save As phylip tree.\n " \
+                        "Finally you need to rename the file 'S.txt' and move it to the data/your_data/ directory."
+            return
+    else:
+        S = tr.Tree.get_from_path(path + "/S_binary.txt", schema="newick")
 
     try:
         input1 = open(path + '/sigma.txt', 'r')
@@ -257,6 +283,8 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
         colors = colors[0]
     else:
         colors = {}
+
+
     G.prune_taxa_with_labels(tree_operations.remove_unsigma_genes(G, sigma, True))
 
     S = utiles.init_internal_labels(S, 'x', sigma, path)

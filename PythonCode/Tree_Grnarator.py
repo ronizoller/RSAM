@@ -53,6 +53,7 @@ if compare_subtrees and evolutinary_event=='HT':
     pattern = "same_color"
 sym = 'Specie'
 
+
 def randome_leave_from_tree(t,number_of_leaves,dend):
     ran = (randint(1,number_of_leaves))
     i = 1
@@ -68,6 +69,8 @@ def randome_leave_from_tree(t,number_of_leaves,dend):
                 return leaf
             else:
                 i += 1
+
+
 def random_vertex_in_tree(number_of_vertex,tree):
     ran = (randint(1, number_of_vertex))
     p = 0
@@ -76,9 +79,11 @@ def random_vertex_in_tree(number_of_vertex,tree):
             return u
         p += 1
 
+
 def randome_leave_from_node (nd):
     to_return = random.choice(nd.leaf_nodes())
     return to_return
+
 
 def random_again(t,iter):
     number_of_iter = 0

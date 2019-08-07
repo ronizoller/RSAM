@@ -47,6 +47,7 @@ def init_distance_S(S_dis_matrix,path,spe):
     file.close()
     return S_dis_matrix
 
+
 def init_nodes_table(S,G,nodes_table):
     for s_nd in S.postorder_node_iter():
         nodes_table[s_nd.label] = {}

@@ -25,7 +25,7 @@ def init_internal_labels (tree,char):
     return tree
 
 def main(path,exte):
-    t = tr.Tree.get_from_path(path+"/S.txt", schema="newick")
+    t = tr.Tree.get_from_path(path+"/S_binary.txt", schema="newick")
     t = init_internal_labels(t,'x')
     path_curr = path + '/saved_data/S_edgelist.txt'
     os.makedirs(os.path.dirname(path_curr), exist_ok=True)

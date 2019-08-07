@@ -8,25 +8,29 @@ def isolated(x):
     return x.taxon is None
 
 def is_a_leaf (u):
-    return (u.child_nodes() == [])
+    return u.child_nodes() == []
 
 def collapse_edges(tree):
-    for nd in tree.postorder_node_iter():
-        if len(nd.child_nodes()) == 1:
-            if tree.seed_node == nd:
-                tree.reroot_at_node(nd.child_nodes()[0])
-            else:
-                temp_parent = nd.parent_node
-                temp_child = nd.child_nodes()[0]    #its only child
-                temp_parent.remove_child(nd)
-                temp_parent.add_child(temp_child)
+    if tree:
+        for nd in tree.postorder_node_iter():
+            if len(nd.child_nodes()) == 1:
+                if tree.seed_node == nd:
+                    tree.reroot_at_node(nd.child_nodes()[0])
+                else:
+                    temp_parent = nd.parent_node
+                    temp_child = nd.child_nodes()[0]    #its only child
+                    temp_parent.remove_child(nd)
+                    temp_parent.add_child(temp_child)
     return tree
+
 
 def has_right_child(x):
     return len(x.adjacent_nodes()) >= 1
 
+
 def has_left_child(x):
     return len(x.adjacent_nodes()) >= 2
+
 
 def is_not_ancestor (nd,x):
     if (nd == x):
@@ -39,6 +43,7 @@ def is_not_ancestor (nd,x):
             else:
                 ans = ans and True
         return ans
+
 
 def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
     for u in tree.postorder_node_iter():
@@ -64,6 +69,7 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
                 i += 1
                 tree_internal_colors.update({u.label: [reds, blacks]})
     return tree_internal_colors
+
 
 def weight_G_based_on_same_color_HT (G, new_G, interesting_vertices_p1,interesting_vertices_p2,max_distance,p1,p2,copmare_solutions):
     index = 1
@@ -104,6 +110,7 @@ def weight_G_based_on_same_color_HT (G, new_G, interesting_vertices_p1,interesti
         index += 1
     return new_G
 
+
 def edge_weight_based_on_interesting_vertices(x, y, z, interesting_vertices_p,max_distance, p,compare_solutions,name):
     res_p = 0
     if p[0] is not None:
@@ -137,6 +144,7 @@ def edge_weight_based_on_interesting_vertices(x, y, z, interesting_vertices_p,ma
         if y:
             res_p += y[name]
     return res_p
+
 
 def random_son(t,u):
     out = t.out_edges(u[1]['ind'], data=True)
@@ -172,6 +180,7 @@ def number_of_possible_events_in_subtree(G):
             nd['possible_events'] += 1
     return G
 
+
 def find_max_d_of_HT(dis, interesting_vertices,pattern):
     if 'HT' in pattern[0]:
         maxi = 0
@@ -185,7 +194,7 @@ def find_max_d_of_HT(dis, interesting_vertices,pattern):
         return
 
 
-def number_of_leafs (tree, name):
+def number_of_leafs(tree, name):
     counter = 0
     for u in tree.postorder_node_iter():
         if u.is_leaf():
@@ -265,6 +274,7 @@ def normlize_weights(G, k, p, name, field):
                 G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0]) * G.nodes(data = True)[nd][field] * k )
     return G
 
+
 def find_max_scores(G, number_of_planted_vertices, name, TH):
     max_score_p = [-1]*number_of_planted_vertices
     max_score = max_score_p
@@ -286,6 +296,7 @@ def find_max_scores(G, number_of_planted_vertices, name, TH):
                         max_score = utiles.update_top_ranking_list(child1['p2']+child2['p1'], max_score)
     return max_score
 
+
 def copy_G(G,new_G):
     index = 1
     for u in G.postorder_node_iter():
@@ -301,6 +312,7 @@ def copy_G(G,new_G):
                 new_G.add_edge(index, list(G.postorder_node_iter()).index(child[0]) + 1)
         index += 1
     return new_G
+
 
 def reroot_and_save(tree,nd,path,ext):
     new_root = find_node_in_tree(tree,nd)
