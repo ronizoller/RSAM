@@ -21,7 +21,7 @@ def main(path,create_sigma,res):
                             res += line[start]
                         start += 1
                     res += '\n'
-        file = open(path  + "/taxa_names.txt", 'w')
+        file = open(path + "/taxa_names.txt", 'w')
         file.write(str(res))
         file.close()
     else:

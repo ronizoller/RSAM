@@ -23,8 +23,17 @@ class parameters_frame(object):
     def work_task (self):
         return self.entries
 
-    def callback_color(self,vars):
-        print('')
+    def callback_color(self,bool_var,entries):
+        ent = list(filter(
+            lambda x: x[0] == 'number_of_dup', entries))[0]
+
+        if not bool_var.get():
+            ent[1].delete(0, tk.END)
+            ent[1].config(state='disabled')
+        else:
+            ent[1].config(state='normal')
+            ent[1].delete(0, tk.END)
+            ent[1].insert("end", '3')
 
     def callback_random_sol(self,bool_var,entry):
         if bool_var.get():
@@ -104,6 +113,16 @@ def floatValidation(S):
 
 
 def make_figure_parameters(self,root):
+    def intValidation(S):
+        flag = True
+        for s in S:
+            if s not in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
+                flag = False
+        if flag:
+            return True
+        t1.bell()  # .bell() plays that ding sound telling you there was invalid input
+        return False
+
     bool_var = []
     c = []
     entries = []
@@ -118,11 +137,24 @@ def make_figure_parameters(self,root):
         ind = names.index(name)
         lab.grid(row=0, column=ind)
         bool_var.append(tk.BooleanVar(t1))
-        c.append(tk.Checkbutton(t1, variable=bool_var[ind],command=lambda param=bool_var[ind]: self.callback_color(param)))
+        c.append(tk.Checkbutton(t1, variable=bool_var[ind],command=lambda param=bool_var[ind]: self.callback_color(param,entries)))
         entries.append((name[0], bool_var[ind]))
         c[ind].grid(row=1, column=ind)
+        c[ind].select()
         t1.pack(side=tk.TOP, padx=5, pady=5)
         CreateToolTip(lab, text=name[1])
+
+    lab = tk.Label(t1, width=15, text='Minimal number\nof duplications\nto color.')
+    intVal = (t1.register(intValidation), '%S')
+    ent = tk.Entry(t1, validate='key', vcmd=intVal, width=5)
+    ent.insert("end", '3')
+    lab.grid(row=2, column=0)
+    ent.grid(row=3, column=0)
+    CreateToolTip(lab, text='This is the minumal number of duplication\n'
+                            ' that will be colored if duplication event is\n'
+                            'a part of p1' )
+    entries.append(('number_of_dup', ent))
+    t1.pack(side=tk.TOP, padx=0, pady=5)
 
     row = tk.Frame(root)
     CreateToolTip(row, text='Figure proportions')
@@ -130,7 +162,7 @@ def make_figure_parameters(self,root):
 
     lab = tk.Label(row, width=2, text='x:')
     ent = tk.Entry(row, validate='key', vcmd=floatVal,width=5)
-    ent.insert("end",'10')
+    ent.insert("end",'50')
     lab.grid(row=0, column=0)
     ent.grid(row=0, column=1)
     entries.append(('x', ent))
@@ -141,10 +173,18 @@ def make_figure_parameters(self,root):
 
     lab = tk.Label(row, width=2, text='y:')
     ent = tk.Entry(row, validate='key', vcmd=floatVal,width=5)
-    ent.insert("end",'20')
+    ent.insert("end",'40')
     lab.grid(row=0, column=3)
     ent.grid(row=0, column=4)
     entries.append(('y', ent))
+    row.pack(side=tk.TOP, padx=0, pady=5)
+
+    row = tk.Frame(root)
+    lab = tk.Label(row, text='Draw Species and Gene trees', width=25)
+    lab.grid(row=0, column=0)
+    draw_S_and_G = tk.BooleanVar(root)
+    tk.Checkbutton(row, variable=draw_S_and_G).grid(row=1,column=0)
+    entries.append(('draw_S_and_G', draw_S_and_G))
     row.pack(side=tk.TOP, padx=0, pady=5)
     return entries
 
@@ -214,6 +254,7 @@ def makeform(param_frame, root, fields):
     c = tk.Checkbutton(row, variable=create_sigma,background='black')
     c.grid(row=0, column=1)
     entries.append(('create_sigma', create_sigma))
+    c.select()
 
     lab = tk.Label(row, text='Draw the gene tree', width=20,background='grey')
     lab.grid(row=0, column=2)
@@ -303,6 +344,10 @@ class Main_Frame(object):
                         return
                 else:
                     t1.error_labels[ent[0] + ' error'].set('')
+        for ent in ent3:
+            if ent[0] == 'number_of_dup':
+                if ent3[ent3.index(ent)][1].get() == '':
+                    ent3[ent3.index(ent)][1].insert(1.0, '0')
         self.window = tk.Toplevel(root)
         msg = tk.Message(self.window, text='RSAM-finder in progress...')
         msg.grid(row=0, column=0)
@@ -378,7 +423,9 @@ class Main_Frame(object):
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
                 text = entry[1].get()
                 vars.append(text)
-        only_draw ,speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,labels,draw_marked,x,y = vars
+        only_draw ,speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost,\
+        gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,\
+        labels,draw_marked,number_of_dup, x, y, draw_S_and_G = vars
         if track_solution == "":
             track_solution = False
         elif int(track_solution) > int(k):
@@ -392,7 +439,7 @@ class Main_Frame(object):
             track_solution = 0
         RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
                         int(loss_cost), Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
-                        track_solution, draw, color,labels,draw_marked,x,y, res, only_draw)
+                        track_solution, draw, color,labels,draw_marked,x,y, res, only_draw, draw_S_and_G, int(number_of_dup))
 
 
 class Notebook:

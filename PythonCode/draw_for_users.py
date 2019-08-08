@@ -11,7 +11,8 @@ import tree_operations_v1 as tree_operations
 import random
 import os
 
-def number_of_scpecies_doup(G,old_sigma,number_of_douplications):
+
+def number_of_scpecies_doup(G, old_sigma, number_of_douplications):
     leafs_names = {}
     should_be_found = []
     for u in G.postorder_node_iter():
@@ -24,9 +25,12 @@ def number_of_scpecies_doup(G,old_sigma,number_of_douplications):
     for name,score in leafs_names.items():
         if score > number_of_douplications:
             should_be_found.append(name)
+            should_be_found.append(name)
     return should_be_found
 
-def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis, y_axis,draw_marked,double_mode,lables_flag,ext,color,number_of_douplications,path):
+
+def draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma, lables, pattern,size, S_labels_table, x_axis, y_axis,
+                  draw_marked, double_mode, lables_flag, ext, color, number_of_douplications, path):
     plt.clf()
     special_colors = []
     should_be_found = number_of_scpecies_doup(G,old_sigma,number_of_douplications)
@@ -42,7 +46,7 @@ def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S
             while i < len(child):
                 if len(child) >= i + 1:
                     tree_to_draw.add_edge(index, list(G.postorder_node_iter()).index(child[i]) + 1)
-                i = i + 1
+                i += 1
         index += 1
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
@@ -62,7 +66,7 @@ def draw_new_doup(marked_nodes, sigma, new_G, G,old_sigma, lables,pattern,size,S
         if new_G.out_degree(nd[0]) == 0 and not new_G.in_degree(nd[0]) == 0 and color:
             temp_name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
             for should in should_be_found:
-                if temp_name.find(should) != -1 and (not flag):
+                if not flag and(temp_name.find(should) != -1 or temp_name.replace(' ','').find(should) != -1):
                     nodes_color.append(special_colors[should_be_found.index(should)])
                     nodes_size.append(200)
                     flag = True
@@ -173,7 +177,7 @@ def hex_code_colors():
     return "#" + z.upper()
 
 
-def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,draw_marked,x_axis,y_axis, path, res):
+def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,draw_marked,x_axis,y_axis, path, res, number_of_duplications):
     p1 = (p1[0],p1[1],p1[2])
     new_G = nx.DiGraph()
     new_G = tree_operations.copy_G(G,new_G)
@@ -198,7 +202,6 @@ def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,dra
         marked_nodes = {}
 
     big_size = 20
-    number_of_douplications = 1
 
     to_create = path + '/figures/'
     os.makedirs(os.path.dirname(to_create), exist_ok=True)
@@ -206,7 +209,7 @@ def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,dra
     if 'D' in p1[0]:
         draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma,
                       lables_flag, pattern_name, big_size,S_labels_table,x_axis, y_axis,
-                      draw_marked, double_mode, lables_flag, ext, color, number_of_douplications, path)
+                      draw_marked, double_mode, lables_flag, ext, color, number_of_duplications, path)
 
     else:
         draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma,

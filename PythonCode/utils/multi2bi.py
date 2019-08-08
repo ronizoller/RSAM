@@ -12,13 +12,10 @@ def split_randomly_into_two_sets(list_of_child):
             left_tree.seed_node.add_child(list_of_child[i])
         else:
             right_tree.seed_node.add_child(list_of_child[i])
-    if left_subtree_size in (0,1):
-        if left_subtree_size == 0:
-            left_tree = None
-
-    if left_subtree_size in (len(list_of_child),len(list_of_child)-1):
-        if left_subtree_size == len(list_of_child):
-            right_tree = None
+    if left_subtree_size == 0:
+        left_tree = None
+    if left_subtree_size == len(list_of_child):
+        right_tree = None
     return tree_operations.collapse_edges(left_tree),tree_operations.collapse_edges(right_tree)
 
 

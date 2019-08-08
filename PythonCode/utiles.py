@@ -62,17 +62,18 @@ def p_value_calculation(fro, all, nCr_lookup_table, fact_lookup_table, accur, Pr
             res = res + nCr_temp * pow(Pr_red, j) * pow(Pr_black, all - j)
         return res, nCr_lookup_table, fact_lookup_table
 
+
 def init_internal_labels (tree, char, old_sigma, path):
     counter = 1
     dic = ''
     for nd in tree.postorder_node_iter():
         nd.label = char+str(counter)
         counter += 1
-        if nd.taxon and nd.taxon.label in old_sigma:
+        if nd.taxon:
             dic = dic + nd.label + ' : ' +  nd.taxon.label
             if char == 'u':
                 dic = dic + ' (' + old_sigma[nd.taxon.label] + ') '
-            dic = dic + '\n'
+            dic += '\n'
     to_create = path + '/saved_data/'
     os.makedirs(os.path.dirname(to_create), exist_ok=True)
     tree_operations.collapse_edges(tree)
@@ -365,3 +366,9 @@ def index_with_repeting(lst,item,list_of_returned):
     list_of_returned[index] = 1
     lst.reverse()
     return index,list_of_returned
+
+def is_prefix_of (str,dic):
+    for key,val in dic.items():
+        if key.startswith(str):
+            return key
+    return False

@@ -134,7 +134,6 @@ def format_solution(sol):
     return res
 
 def find_nodes_in_hypergraph(H, s, t, lp, nodes_table):
-    #print('nodes table = %s, \n s = %s, t = %s, lp = %s \nH_nodes = %s' % (str(nodes_table), str(s), str(t),str(lp), str(H.node(data=True))))
     if (lp > -1):
         if nodes_table[t][s] >= 0 and len(H.nodes(data=True)[nodes_table[t][s]]['l']) > lp:
             ans = H.nodes(data=True)[nodes_table[t][s]]['l'][lp]
@@ -406,6 +405,7 @@ def assign_probabilities(S, G, H, gamma, res):
     return H, max_prob
 
 def assign_weights_to_list(l, gamma):
+    gamma = float(gamma)
     x_min = l[0]['cost_with_losses']
     x_max = l[len(l)-1]['cost_with_losses']
     index = len(l)

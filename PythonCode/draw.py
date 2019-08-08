@@ -5,7 +5,7 @@ import tree_operations_v1 as tree_operations
 from networkx.drawing.nx_agraph import graphviz_layout
 import matplotlib.pyplot as plt
 import inits_v1 as inits
-import math
+import os
 import utiles
 import seaborn as sns
 import numpy as np
@@ -299,9 +299,11 @@ def draw_S_and_G(S,G, old_sigma, colors, sigma,path,sol,ext, to_color):
 
     nx.draw_networkx_edges(S_to_draw, postree_S,ax=ax[0])
     nx.draw_networkx_edges(G_to_draw, postree_G,ax=ax[1])
+
+    to_create = path + '/figures/'
+    os.makedirs(os.path.dirname(to_create), exist_ok=True)
+
     plt.savefig(path + '/figures/S+G'+ext+'.png')
-    print('Drawing S and G')
-    quit()
 
 def draw_G_diffrent_optimal_solutions(marked_nodes, colors, sigma, old_sigma, new_G, G, k, path, both, alpha, labels, TH_compare_subtrees, TH_both, TH_pattern_in_subtree,compare_subtrees,evolutinary_event,pattern,iterations, factor,size):
     print('Drawing new G...')

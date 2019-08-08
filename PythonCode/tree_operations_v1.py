@@ -209,8 +209,9 @@ def remove_unsigma_genes(G,sigma,taxon):
             if taxon:
                 if u.taxon.label not in sigma:
                     to_remove.append(u.taxon.label.replace(' ','_'))
+                    to_remove.append(u.taxon.label)
             else:
-                if not u.label in sigma:
+                if u.label not in sigma:
                     to_remove.append(u.taxon.label)
     return to_remove
 

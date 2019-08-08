@@ -123,7 +123,7 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
 
 def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max_list_p1,
                  max_list_p1_and_p2, speciesTreespecification, create_sigma_from_fasta, draw, sigma, colors, S_labels_table,
-                 color, lables_flag, draw_marked,x_axis,y_axis, res, path, only_draw, TH_edges):
+                 color, lables_flag, draw_marked,x_axis,y_axis, res, path, only_draw, TH_edges, number_of_dup):
     if not only_draw:
         if p2[0] is not None:
             pattern_name = '('+str(p1[0:3])+'_'+str(p2[0:3])+')_Double-Mode'
@@ -168,7 +168,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
 
     if draw:
         draw_for_users.main(G, sigma, old_sigma, colors, S_labels_table,
-                            p1, p2, speciesTreespecification, color, lables_flag, draw_marked, x_axis, y_axis, path, res)
+                            p1, p2, speciesTreespecification, color, lables_flag, draw_marked, x_axis, y_axis, path, res, number_of_dup)
     if not only_draw:
         res['text'] += 'Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
                                                                                   str((hypergraph.find_number_of_cooptimal(H,G,S)[1])))+'\n'
@@ -203,11 +203,15 @@ def valid_pattern(ev, col, dist, res):
 
 def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
           p,number_of_planted_vertices,  p1, p2, create_sigma_from_fasta, track_solution,draw,
-          color, lables_flag, draw_marked, x_axis, y_axis, res, only_draw):
+          color, lables_flag, draw_marked, x_axis, y_axis, res, only_draw, draw_S_and_G, number_of_dup):
 
     starting_time = datetime.now()
 
     path = os.getcwd()+'/data/'+speciesTreespecification + '/'
+
+    for file in [path+"sigma.txt",path+'/saved_data/G_keys.txt',path+'/saved_data/S_dist_matrix.txt',path+'/saved_data/S_edgelist.txt',path+'/saved_data/S_keys.txt']:
+        if os.path.exists(file):
+            os.remove(file)
 
     all_vertices_with_index = {}
     list_of_scores = {}
@@ -217,17 +221,33 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     all_vertices = {}
     marked_nodes = {}
 
-    taxa_names.main(path,create_sigma_from_fasta,res)
-    fix.main(path,[''],create_sigma_from_fasta)
-    create_sigma.main(path,create_sigma_from_fasta,res)
+    taxa_names.main(path, create_sigma_from_fasta, res)
+    fix.main(path, create_sigma_from_fasta, res)
+    create_sigma.main(path, create_sigma_from_fasta, res)
+
+    try:
+        input1 = open(path + '/sigma.txt', 'r')
+    except:
+        res['error'] += "sigma '/data/sigma.txt' was not found."
+        return
+
+    sigma = []
+    for line in input1:
+        sigma.append(eval(line))
+    sigma = sigma[0]
 
     if not os.path.isfile(path + '/G_binary.txt'):
         try:
             G = tr.Tree.get_from_path(path+"/G.txt", schema="newick")
+
+            to_remove = tree_operations.remove_unsigma_genes(G, sigma, True)
+            if to_remove:
+                G.prune_taxa_with_labels(to_remove)
+
             G = multi2bi.main(G)
             G = tree_operations.collapse_edges(G)
             G.write(path=path+"G_binary.txt", schema="newick")
-        except  Exception as e:
+        except Exception as e:
             res['error'] += "\nGene tree '/data/G.txt' was not found.\n" \
                             "In order to create it, go to https://www.ebi.ac.uk/Tools/msa/clustalo/\n" \
                             "and follow the instructions:\n" \
@@ -256,16 +276,8 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     else:
         S = tr.Tree.get_from_path(path + "/S_binary.txt", schema="newick")
 
-    try:
-        input1 = open(path + '/sigma.txt', 'r')
-    except:
-        res['error'] += "sigma '/data/sigma.txt' was not found."
-        return
-
-    sigma = []
-    for line in input1:
-        sigma.append(eval(line))
-    sigma = sigma[0]
+    G.prune_leaves_without_taxa()
+    S.prune_leaves_without_taxa()
 
     if (p1[1] and p1[1] != 'None') or (p2[1] and p2[1] != 'None'):
         try:
@@ -280,17 +292,14 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     else:
         colors = {}
 
-    #to_remove = tree_operations.remove_unsigma_genes(G, sigma, True)
-    #if to_remove:
-    #    G.prune_taxa_with_labels(to_remove)
-
     S = utiles.init_internal_labels(S, 'x', sigma, path)
     G = utiles.init_internal_labels(G, 'u', sigma, path)
 
     n2e.main(path,speciesTreespecification)
 
     S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S,G,sigma)
-    sigma, old_sigma = inits.update_sigma(sigma,True,S_labels_table,G_labels_table)
+
+    sigma, old_sigma = inits.update_sigma(sigma,S_labels_table,G_labels_table)
     colors,old_colors = inits.update_colors(S, colors,True)
     TH_edges = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges
     p1 = (p1[0],p1[1],p1[2],TH_edges)
@@ -299,7 +308,8 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     nodes_table = inits.init_nodes_table(S, G, nodes_table)
     H = nx.MultiDiGraph()
     max_score_p1_list = max_score_p1_and_p2_list = [-1] * number_of_planted_vertices
-    d.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '', False)
+    if draw_S_and_G:
+        d.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '', False)
     if not only_draw:
         H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, k,
                                                                          nodes_table, D_cost, S_cost, loss_cost, HT_cost,
@@ -310,7 +320,6 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
         fact_lookup_table = {}
         max_score_p1_list = []
         max_score_p1_and_p2_list = []
-        print(H.nodes(data=True))
         H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma, res)
         if H:
             S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
@@ -332,7 +341,8 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
                 max_score_p1_and_p2_list = tree_operations.find_max_scores(new_G,number_of_planted_vertices,'p2',p1[3])
             marked_nodes,all_vertices = pattern_identify.find_signi_distance(new_G, all_vertices,p1, p2, max_score_p1_list, max_score_p1_and_p2_list)
         else:
-            print('no reconciliation')
+            res['error'] += 'No reconciliation could be found'
+            return
 
         list_of_scores.update({0: all_vertices})
         all_vertices_with_index.update({0:utiles.average_of_list(list_of_scores,1)})
@@ -340,7 +350,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     end_function(H, S, G, k, starting_time, p1, p2, marked_nodes,
                  old_sigma ,max_score_p1_list, max_score_p1_and_p2_list,
                  speciesTreespecification, create_sigma_from_fasta, draw,
-                 sigma, colors, S_labels_table, color,lables_flag, draw_marked, x_axis, y_axis, res, path, only_draw, TH_edges)
+                 sigma, colors, S_labels_table, color,lables_flag, draw_marked, x_axis, y_axis, res, path, only_draw, TH_edges, number_of_dup)
     quit()
 
 
