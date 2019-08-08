@@ -6,6 +6,7 @@ def main(path,create_sigma_from_fasta,res):
     if create_sigma_from_fasta:
         if not os.path.isfile(path + '/old_new_names.txt'):
             ids = ''
+            ids_species_list = {}
             names_map = {}
             with open(path+'/taxa_names.txt','r') as file1:
                 for prev_name in file1:
@@ -35,6 +36,7 @@ def main(path,create_sigma_from_fasta,res):
                                     new_name = line[old_name_index_end:len(line)-1]
                                     if prev_name == old_name:
                                         ids += line[:id_end]+'\n'
+                                        ids_species_list.update({line[:id_end]:new_name})
                                         names_map.update({old_name:new_name})
                                         flag = True
                             if not flag:
@@ -52,6 +54,7 @@ def main(path,create_sigma_from_fasta,res):
         file = open(path + "/old_new_names.txt", 'w')
         file.write(str(''))
         file.close()
+    return ids_species_list
 
 if __name__ == "__main__":
     main(path,COGS_names)
