@@ -47,6 +47,9 @@ def main(path,create_sigma_from_fasta,res):
             file = open(path + "/old_new_names.txt", 'w')
             file.write(str(names_map))
             file.close()
+            file = open(path + "/IDs_species_maping.txt", 'w')
+            file.write(str(ids_species_list))
+            file.close()
     else:
         file = open(path + "/NCBI_tax_ID.txt", 'w')
         file.write(str(''))
@@ -54,7 +57,10 @@ def main(path,create_sigma_from_fasta,res):
         file = open(path + "/old_new_names.txt", 'w')
         file.write(str(''))
         file.close()
-    return ids_species_list
+        file = open(path + "/IDs_species_maping.txt", 'w')
+        file.write(str(''))
+        file.close()
+    return
 
 if __name__ == "__main__":
     main(path,COGS_names)

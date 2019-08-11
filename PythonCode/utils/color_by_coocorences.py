@@ -6,7 +6,17 @@ def find_nth(haystack, needle, n):
     return start
 
 
-def main(list_of_ids_species,COG_to_find):
+def main(COG_to_find,path,res):
+    try:
+        input1 = open(path + '/IDs_species_maping.txt', 'r')
+    except:
+        res['error'] += "/IDs_species_maping.txt was not found."
+        return
+
+    list_of_ids_species = []
+    for line in input1:
+        list_of_ids_species.append(eval(line))
+    list_of_ids_species = list_of_ids_species[0]
     list_of_ids = list(list_of_ids_species.keys())
     with open('species.mappings.v11.0.txt', 'r') as fp:
         specie_cogs = {}
@@ -23,7 +33,11 @@ def main(list_of_ids_species,COG_to_find):
             colors.update({list_of_ids_species[id]:'red'})
         else:
             colors.update({list_of_ids_species[id]:'black'})
-    return colors
+    file = open(path + "/colors.txt", 'w')
+    file.write(str(colors))
+    file.close()
+
+    return
 
 if __name__ == '__main__':
     main()
