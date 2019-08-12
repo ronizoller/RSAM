@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" afterPath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/inits_v1.py" afterPath="$PROJECT_DIR$/PythonCode/inits_v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" afterPath="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utiles.py" afterPath="$PROJECT_DIR$/PythonCode/utiles.py" />
     </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
@@ -101,11 +99,21 @@
       <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+            <state relative-caret-position="171">
+              <caret line="112" column="56" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utiles.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -168,7 +176,6 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/multi2bi.py" />
         <option value="$PROJECT_DIR$/PythonCode/data/COG3550/S.txt" />
         <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utiles.py" />
         <option value="$PROJECT_DIR$/PythonCode/draw.py" />
         <option value="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" />
         <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
@@ -179,6 +186,7 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" />
         <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utiles.py" />
         <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
       </list>
     </option>
@@ -532,13 +540,6 @@
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
     </task>
-    <task id="LOCAL-00026" summary="drawing is working, new pattern is OK (duplications not tested)">
-      <created>1553172374107</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1553172374107</updated>
-    </task>
     <task id="LOCAL-00027" summary="drawing is working, new pattern is OK (duplications not tested)">
       <created>1553174422930</created>
       <option name="number" value="00027" />
@@ -875,7 +876,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565601282772</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="fix problem with S_labels#3">
+      <created>1565602375604</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1565602375605</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -914,7 +922,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="RSAM vs One Best check" />
     <MESSAGE value="RSAM vs One Best is working fine" />
     <MESSAGE value="HT with no colors&#10;" />
     <MESSAGE value="now spurtting semi-automatic trees &#10;" />
@@ -939,7 +946,8 @@
     <MESSAGE value="will re-run all COGS" />
     <MESSAGE value="fix problem with S_labels" />
     <MESSAGE value="fix problem with S_labels#2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix problem with S_labels#2" />
+    <MESSAGE value="fix problem with S_labels#3" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix problem with S_labels#3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1215,13 +1223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="277" column="9" selection-start-line="277" selection-start-column="4" selection-end-line="277" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/draw.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4590">
@@ -1321,20 +1322,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          <folding>
-            <element signature="e#2741#3044#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+          <folding>
+            <element signature="e#2014#2110#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="369" column="0" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1349,20 +1358,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding>
-            <element signature="e#2014#2110#0" expanded="false" />
+            <element signature="e#2741#3044#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+        <state relative-caret-position="171">
+          <caret line="112" column="56" selection-start-line="112" selection-start-column="56" selection-end-line="112" selection-end-column="56" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

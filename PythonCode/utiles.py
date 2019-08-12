@@ -367,8 +367,12 @@ def index_with_repeting(lst,item,list_of_returned):
     lst.reverse()
     return index,list_of_returned
 
+
 def is_prefix_of (str,dic):
     for key,val in dic.items():
-        if key.startswith(str):
+        if key == str:
+            return key
+    for key,val in dic.items():
+        if key.find(str) != -1 or str.find(key) != -1:
             return key
     return False
