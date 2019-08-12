@@ -16,7 +16,14 @@ def find_max_S_d(max_S_d, S_dis_matrix):
 def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
-            H.add_node(H_number_of_nodes, s=leaf.label, t=sigma[leaf.label],l=list())
+            target = ''
+            if leaf in sigma:
+                target = sigma[leaf.label]
+            else:
+                for species in sigma:
+                    if leaf.find(species) != -1 or species.find(leaf) != -1:
+                        target = species
+            H.add_node(H_number_of_nodes, s=leaf.label, t=target,l=list())
             big_node = H_number_of_nodes
             H_number_of_nodes += 1
             for i in range(0,k):
@@ -95,6 +102,8 @@ def init_taxon_to_label_table(S, G, sigma):
 
 
 def update_sigma(sigma, S_labels_table, G_labels_table):
+    print('S_labels_table: '+str(S_labels_table))
+    print('G_labls_table: '+str(G_labels_table))
     old_sigma = sigma.copy()
     sigma = {}
     for u, x in old_sigma.items():
@@ -106,6 +115,9 @@ def update_sigma(sigma, S_labels_table, G_labels_table):
         else:
             sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
             old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
+    print('sigma: '+str(sigma))
+    print('old_sigma: '+str(old_sigma))
+
     return sigma,old_sigma
 
 

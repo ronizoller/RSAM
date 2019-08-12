@@ -31,11 +31,13 @@ def main(COG_to_find,path,res):
             elif id in list_of_ids:
                 specie_cogs.update({id:[COG]})
     colors = {}
-    for id,COGS in specie_cogs.items():
+    print('specie_cogs: '+str(specie_cogs))
+    for id, COGS in specie_cogs.items():
         if COG_to_find in COGS:
-            colors.update({list_of_ids_species[id]:'red'})
+            colors.update({list_of_ids_species[id].replace(' ',''):'red'})
         else:
-            colors.update({list_of_ids_species[id]:'black'})
+            colors.update({list_of_ids_species[id].replace(' ',''):'black'})
+        print(colors)
     file = open(path + "/colors.txt", 'w')
     file.write(str(colors))
     file.close()

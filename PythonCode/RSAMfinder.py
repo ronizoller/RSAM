@@ -225,7 +225,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     marked_nodes = {}
 
     taxa_names.main(path, create_sigma_from_fasta, res)
-    id_list = fix.main(path, create_sigma_from_fasta, res)
+    fix.main(path, create_sigma_from_fasta, res)
     create_sigma.main(path, create_sigma_from_fasta, res)
 
     color_by_coocorences.main('COG1566',path,res)

@@ -4,9 +4,7 @@
     <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" afterPath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/break_into_classes.py" afterPath="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/inits_v1.py" afterPath="$PROJECT_DIR$/PythonCode/inits_v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/test.py" afterPath="$PROJECT_DIR$/PythonCode/test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" afterPath="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" />
     </list>
     <ignored path="Supplementary Materials/" />
@@ -42,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color_by_coocorences.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="color_by_coocorences.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+            <state relative-caret-position="288">
+              <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -67,8 +65,8 @@
       <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="212" column="22" selection-start-line="212" selection-start-column="10" selection-end-line="212" selection-end-column="22" />
+            <state relative-caret-position="96">
+              <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
               <folding>
                 <element signature="e#721#742#0" expanded="true" />
               </folding>
@@ -100,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+            <state relative-caret-position="198">
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -177,19 +175,18 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
-        <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/test.py" />
-        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" />
+        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+        <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1440" />
-    <option name="y" value="-211" />
+    <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -535,13 +532,6 @@
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
     </task>
-    <task id="LOCAL-00024" summary="drawing is working, new pattern is OK (duplications not tested)">
-      <created>1553171017085</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1553171017085</updated>
-    </task>
     <task id="LOCAL-00025" summary="drawing is working, new pattern is OK (duplications not tested)">
       <created>1553172238546</created>
       <option name="number" value="00025" />
@@ -878,19 +868,26 @@
       <option name="project" value="LOCAL" />
       <updated>1565526545424</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fix problem with S_labels">
+      <created>1565598243756</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1565598243758</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-211" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24539231" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2513312" sideWeight="0.14428647" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28722003" sideWeight="0.49605057" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31093544" sideWeight="0.14744602" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28647497" sideWeight="0.49394417" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.49815693" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2513312" sideWeight="0.85571355" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31093544" sideWeight="0.85255396" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -917,7 +914,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="7.4" />
     <MESSAGE value="10.4" />
     <MESSAGE value="RSAM vs One Best check" />
     <MESSAGE value="RSAM vs One Best is working fine" />
@@ -942,7 +938,8 @@
     <MESSAGE value="todo- the hypergraph is not constructed correctly; check with a test data" />
     <MESSAGE value="working, need to finish the coloring by co-occorence" />
     <MESSAGE value="will re-run all COGS" />
-    <option name="LAST_COMMIT_MESSAGE" value="will re-run all COGS" />
+    <MESSAGE value="fix problem with S_labels" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix problem with S_labels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -967,13 +964,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/_pydecimal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1314,26 +1304,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1346,12 +1316,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+    <entry file="file://$PROJECT_DIR$/PythonCode/logo.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="212" column="22" selection-start-line="212" selection-start-column="10" selection-end-line="212" selection-end-column="22" />
+        <state relative-caret-position="180">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
           <folding>
-            <element signature="e#721#742#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1368,9 +1343,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="288">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
+          <folding>
+            <element signature="e#721#742#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
