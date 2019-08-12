@@ -146,8 +146,8 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
             for nd,x in marked_nodes.items():
                 if index < len(max_list):
                     leaves = G.leaf_nodes()
-                    r = G.child_nodes()[0].leaf_nodes()
-                    l = G.child_nodes()[1].leaf_nodes()
+                    r = G.seed_node.child_nodes()[0].leaf_nodes()
+                    l = G.seed_node.child_nodes()[1].leaf_nodes()
                     lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
                     if p2[0] is None:
                         itm = x[0]
@@ -228,7 +228,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     fix.main(path, create_sigma_from_fasta, res)
     create_sigma.main(path, create_sigma_from_fasta, res)
 
-    color_by_coocorences.main('COG1566',path,res)
+    #color_by_coocorences.main('COG1566',path,res)
 
     try:
         input1 = open(path + '/sigma.txt', 'r')

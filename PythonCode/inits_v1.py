@@ -17,12 +17,13 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
     for leaf in G.leaf_nodes():
         if not tree_operations.isolated(leaf):
             target = ''
-            if leaf in sigma:
+            if leaf.label in sigma:
                 target = sigma[leaf.label]
             else:
                 for species in sigma:
-                    if leaf.find(species) != -1 or species.find(leaf) != -1:
-                        target = species
+                    if leaf.label.find(species) != -1 or species.find(leaf.label) != -1:
+                        target = sigma[species]
+                print(target)
             H.add_node(H_number_of_nodes, s=leaf.label, t=target,l=list())
             big_node = H_number_of_nodes
             H_number_of_nodes += 1
@@ -33,9 +34,10 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
                 else:
                     cost_no_losses = math.inf
                     cost_with_losses = math.inf
-                new_item = {'s':  leaf.label,  't':  sigma[leaf.label],'cost_without_losses': cost_no_losses, 'cost_with_losses': cost_with_losses, 'event':"leaf", 'list_place':  i}
+                new_item = {'s':  leaf.label,  't':  target,'cost_without_losses': cost_no_losses, 'cost_with_losses': cost_with_losses, 'event':"leaf", 'list_place':  i}
                 H.nodes[big_node]['l'].insert(i,new_item)
-            nodes_table[sigma[leaf.label]][leaf.label] = big_node
+            nodes_table[target][leaf.label] = big_node
+    print('YOFFI')
     return H,H_number_of_nodes, nodes_table
 
 

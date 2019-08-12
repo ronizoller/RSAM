@@ -5,7 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" afterPath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/inits_v1.py" afterPath="$PROJECT_DIR$/PythonCode/inits_v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" afterPath="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" afterPath="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
     </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
@@ -65,8 +65,8 @@
       <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
+            <state relative-caret-position="156">
+              <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
               <folding>
                 <element signature="e#721#742#0" expanded="true" />
               </folding>
@@ -89,8 +89,8 @@
       <file leaf-file-name="extract_from_FASTA_v1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="30" column="39" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="39" />
+            <state relative-caret-position="141">
+              <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
               <folding>
                 <element signature="e#2014#2110#0" expanded="false" />
               </folding>
@@ -101,8 +101,8 @@
       <file leaf-file-name="inits_v1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            <state relative-caret-position="396">
+              <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -173,12 +173,12 @@
         <option value="$PROJECT_DIR$/PythonCode/EfficiantVersion.py" />
         <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
         <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/test.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py" />
         <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
       </list>
     </option>
@@ -532,13 +532,6 @@
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
     </task>
-    <task id="LOCAL-00025" summary="drawing is working, new pattern is OK (duplications not tested)">
-      <created>1553172238546</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1553172238546</updated>
-    </task>
     <task id="LOCAL-00026" summary="drawing is working, new pattern is OK (duplications not tested)">
       <created>1553172374107</created>
       <option name="number" value="00026" />
@@ -875,7 +868,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565598243758</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="fix problem with S_labels#2">
+      <created>1565601282772</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1565601282772</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -914,7 +914,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="10.4" />
     <MESSAGE value="RSAM vs One Best check" />
     <MESSAGE value="RSAM vs One Best is working fine" />
     <MESSAGE value="HT with no colors&#10;" />
@@ -939,7 +938,8 @@
     <MESSAGE value="working, need to finish the coloring by co-occorence" />
     <MESSAGE value="will re-run all COGS" />
     <MESSAGE value="fix problem with S_labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix problem with S_labels" />
+    <MESSAGE value="fix problem with S_labels#2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix problem with S_labels#2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1270,16 +1270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="39" />
-          <folding>
-            <element signature="e#2014#2110#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1351,18 +1341,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="223" column="21" selection-start-line="223" selection-start-column="21" selection-end-line="223" selection-end-column="21" />
+        <state relative-caret-position="156">
+          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
           <folding>
             <element signature="e#721#742#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+          <folding>
+            <element signature="e#2014#2110#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/inits_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        <state relative-caret-position="396">
+          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

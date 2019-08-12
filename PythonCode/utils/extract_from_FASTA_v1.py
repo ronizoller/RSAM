@@ -54,6 +54,7 @@ def main(lists, path, ext, nd, pattern, gene_list):
                         name = line[line.find('[') + 1:line.find(']')]
                         gene_name = line[1:line.find('[')].replace('_',' ')
                         for leaf in list:
+                            leaf = leaf.label
                             if gene_list:
                                 if leaf+' ' == gene_name or leaf == gene_name:
                                     flag = True
