@@ -32,17 +32,21 @@ def has_left_child(x):
     return len(x.adjacent_nodes()) >= 2
 
 
-def is_not_ancestor (nd,x):
-    if (nd == x):
+def is_not_ancestor(nd,x):
+    if nd == x:
         return False
     else:
         ans = True
         for y in nd.ancestor_iter():
-            if (y == x):
+            if y == x:
                 ans = ans and False
             else:
                 ans = ans and True
         return ans
+
+
+def is_ancestor(nd,x):
+    return not is_not_ancestor(nd,x)
 
 
 def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):

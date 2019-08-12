@@ -145,9 +145,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
         if create_sigma_from_fasta:
             for nd,x in marked_nodes.items():
                 if index < len(max_list):
-                    leaves = G.leaf_nodes()
-                    r = G.seed_node.child_nodes()[0].leaf_nodes()
-                    l = G.seed_node.child_nodes()[1].leaf_nodes()
+                    r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
                     lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
                     if p2[0] is None:
                         itm = x[0]
@@ -155,7 +153,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
                         itm = x[0]+x[1]
                     ind, list_of_returns = utiles.index_with_repeting(max_list, itm, list_of_returns)
                     if p2[0] is None:
-                        extr.main([(leaves,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
+                        extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
                     else:
                         extr.main([(r, '_' + speciesTreespecification)], path, speciesTreespecification,
                                   str(ind) + '_node_' + str(nd) + '_'+x[2]+'_right', pattern_name, True)

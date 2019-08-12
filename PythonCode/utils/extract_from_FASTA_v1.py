@@ -54,15 +54,14 @@ def main(lists, path, ext, nd, pattern, gene_list):
                         name = line[line.find('[') + 1:line.find(']')]
                         gene_name = line[1:line.find('[')].replace('_',' ')
                         for leaf in list:
-                            leaf = leaf.label
                             if gene_list:
-                                if leaf+' ' == gene_name or leaf == gene_name:
+                                if leaf+' ' == gene_name or leaf == gene_name :
                                     flag = True
                             else:
                                 if leaf+' ' == old_new_names[name].replace(' ', '') or leaf == old_new_names[name].replace(' ', ''):
                                     flag = True
                     if flag:
-                        res = res + line
+                        res += line
                 path_curr_to_save = path + '/saved_data/results/' + pattern + '/FASTA_result_' + ext + '_' + nd + '.txt'
                 os.makedirs(os.path.dirname(path_curr_to_save), exist_ok=True)
                 file = open(path_curr_to_save, 'w')
