@@ -5,7 +5,7 @@ import os
 
 path = os.getcwd()+'/data/'
 
-classes = ['gamma']
+classes = ['entero']
 COG = 'COG2931'
 
 for clas in classes:

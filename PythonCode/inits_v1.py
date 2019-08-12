@@ -83,9 +83,11 @@ def init_taxon_to_label_table(S, G, sigma):
         if leaf_S.taxon:
             S_labels_table.update({leaf_S.taxon.label: leaf_S.label})
             S_labels_table.update({leaf_S.taxon.label.replace(' ',''): leaf_S.label})
+            S_labels_table.update({leaf_S.taxon.label.replace(' ','_'): leaf_S.label})
     for leaf_G in G.leaf_nodes():
         if leaf_G.taxon:
             G_labels_table.update({leaf_G.taxon.label.replace(' ','_'): leaf_G.label})
+            G_labels_table.update({leaf_G.taxon.label.replace(' ',''): leaf_G.label})
             G_labels_table.update({leaf_G.taxon.label: leaf_G.label})
         else:
             sigma.update({leaf_G.label:'x'+leaf_G.label[1:]})
@@ -96,8 +98,8 @@ def update_sigma(sigma, S_labels_table, G_labels_table):
     old_sigma = sigma.copy()
     sigma = {}
     for u, x in old_sigma.items():
-        gene = utiles.is_prefix_of(u,G_labels_table)
-        species = utiles.is_prefix_of(x,S_labels_table)
+        gene = utiles.is_prefix_of(u, G_labels_table)
+        species = utiles.is_prefix_of(x, S_labels_table)
         if gene and species:
             sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (S_labels_table[species].replace("_", " ") == x1 and (G_labels_table[gene]).replace("_"," ") == u1))
             sigma.update({G_labels_table[gene]: S_labels_table[species]})

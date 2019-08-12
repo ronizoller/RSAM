@@ -145,7 +145,9 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
         if create_sigma_from_fasta:
             for nd,x in marked_nodes.items():
                 if index < len(max_list):
-                    r,l = tree_operations.leaf_in_subtrees(G,'S',nd, old_sigma,False)
+                    leaves = G.leaf_nodes()
+                    r = G.child_nodes()[0].leaf_nodes()
+                    l = G.child_nodes()[1].leaf_nodes()
                     lists += 'For %s:\nlist = %s\n' % (str(nd),str(r+l))+'\n\n'
                     if p2[0] is None:
                         itm = x[0]
@@ -153,7 +155,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
                         itm = x[0]+x[1]
                     ind, list_of_returns = utiles.index_with_repeting(max_list, itm, list_of_returns)
                     if p2[0] is None:
-                        extr.main([(r+l,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
+                        extr.main([(leaves,'_'+speciesTreespecification)],path,speciesTreespecification,str(ind)+'th_solution_node_'+str(nd),pattern_name,True)
                     else:
                         extr.main([(r, '_' + speciesTreespecification)], path, speciesTreespecification,
                                   str(ind) + '_node_' + str(nd) + '_'+x[2]+'_right', pattern_name, True)
@@ -226,7 +228,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     id_list = fix.main(path, create_sigma_from_fasta, res)
     create_sigma.main(path, create_sigma_from_fasta, res)
 
-    #color_by_coocorences.main(id_list,'COG1566',path)
+    color_by_coocorences.main('COG1566',path,res)
 
     try:
         input1 = open(path + '/sigma.txt', 'r')

@@ -162,7 +162,7 @@ def make_figure_parameters(self,root):
 
     lab = tk.Label(row, width=2, text='x:')
     ent = tk.Entry(row, validate='key', vcmd=floatVal,width=5)
-    ent.insert("end",'50')
+    ent.insert("end",'100')
     lab.grid(row=0, column=0)
     ent.grid(row=0, column=1)
     entries.append(('x', ent))
@@ -312,7 +312,7 @@ class Main_Frame(object):
                                                    'scores are assigned probabilities much lower than'
                                                    ' hypernodes with lower scores.'],
                             ['p', 'float', '0.05',"Defins how much is 'mostly red' and 'mostly black'"],
-                            ['Number of Vertices to find', 'int', 1,'How many Gene tree vertices will be reported.']]
+                            ['Number of Vertices to find', 'int', 5,'How many Gene tree vertices will be reported.']]
 
         nb = Notebook(self.top,'RSAM-Finder')
         t1 = nb.add_tab('General Prarmeters', parameters_frame, parameter_lables,'general')
@@ -344,10 +344,6 @@ class Main_Frame(object):
                         return
                 else:
                     t1.error_labels[ent[0] + ' error'].set('')
-        for ent in ent3:
-            if ent[0] == 'number_of_dup':
-                if ent3[ent3.index(ent)][1].get() == '':
-                    ent3[ent3.index(ent)][1].insert(1.0, '0')
         self.window = tk.Toplevel(root)
         msg = tk.Message(self.window, text='RSAM-finder in progress...')
         msg.grid(row=0, column=0)
@@ -426,6 +422,9 @@ class Main_Frame(object):
         only_draw ,speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost,\
         gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,\
         labels,draw_marked,number_of_dup, x, y, draw_S_and_G = vars
+
+        if number_of_dup == '':
+            number_of_dup = 0
         if track_solution == "":
             track_solution = False
         elif int(track_solution) > int(k):

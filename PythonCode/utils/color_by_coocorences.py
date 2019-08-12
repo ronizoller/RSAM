@@ -1,3 +1,6 @@
+import os
+
+
 def find_nth(haystack, needle, n):
     start = haystack.find(needle)
     while start >= 0 and n > 1:
@@ -18,7 +21,7 @@ def main(COG_to_find,path,res):
         list_of_ids_species.append(eval(line))
     list_of_ids_species = list_of_ids_species[0]
     list_of_ids = list(list_of_ids_species.keys())
-    with open('species.mappings.v11.0.txt', 'r') as fp:
+    with open(os.getcwd()+'/utils/species.mappings.v11.0.txt', 'r') as fp:
         specie_cogs = {}
         for line in fp:
             id = line[0:find_nth(line,'\t',0)]
