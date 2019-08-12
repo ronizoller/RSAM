@@ -50,5 +50,6 @@ Create a new dictonary under /data folder, with your COG's name (for example, /d
 8. Select Pylogenetic Tree -> Download Phylogenetic Tree Data and save the tree as G.txt into data/YOU_COG
 
 ## Sample Data Sets
-We provide two sample data sets. The directory /data contains the Gene and Species trees for COG3549 and COG2602. In addition, we provide the corresponding Sigma function, which is a mapping between the leafs of the input trees, and the (optional) coloring function of the Specie tree leafs.
+We provide two sample data sets. The directory /Supplementary Materials contains two sub-folder, each comtains all the data for the two examples we provide in the paper.
+The Gene and Species trees for COG3549 and COG2602, the corresponding Sigma function, which is a mapping between the leafs of the input trees, and the (optional) coloring function of the Specie tree leafs.
 We also give the results of the queries discussed in the paper, in a FASTA format.
