@@ -376,3 +376,10 @@ def is_prefix_of (str,dic):
         if key.find(str) != -1 or str.find(key) != -1:
             return key
     return False
+
+
+def find_in_substreing_different_forms(str1,str2):
+    ans = str1.replace(' ','').find(str2) != -1 or str1.replace('_','').find(str2) != -1 or str1.find(str2.replace(' ','')) != -1 or str1.find(str2.replace('_','')) != -1 or \
+           str2.replace(' ','').find(str1) != -1 or str2.replace('_','').find(str1) != -1 or str2.find(str1.replace(' ','')) != -1 or str2.find(str1.replace('_','')) != -1
+    return ans
+

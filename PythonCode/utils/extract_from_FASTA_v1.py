@@ -1,11 +1,12 @@
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602/'
-list1  = ['1144888.CM001467 gene305', '1232452.BAIB02000016 gene2604', '272951.rsib orf860', '1297569.MESS2 510063', '63737.Npun F3979', '452659.RrIowa 1453', '1319815.HMPREF0202 02107', '1123252.ATZF01000005 gene4030', '1235802.C823 04230', '1265503.KB905173 gene4231', '1340434.AXVA01000018 gene854', '1340434.AXVA01000018 gene853', '748247.AZKH 1955', '1442598.JABW01000001 gene1818', '452659.RrIowa 1454', '518637.EUBIFOR 00819', '411461.DORFOR 02711', '616991.JPOO01000003 gene1901', '1232452.BAIB02000016 gene2605', '1442598.JABW01000001 gene1817', '334545.CCMG01000009 gene781', '1192868.CAIU01000023 gene3319', '1382305.AZUC01000063 gene3300', '1123252.ATZF01000005 gene4031', '616991.JPOO01000003 gene1902', '686578.AFFX01000001 gene1409', '1038866.KB902813 gene2158', '1279017.AQYJ01000029 gene3878', '272951.rsib orf859', '32049.SYNPCC7002 A2334', '575586.HMPREF0016 02934', '1265503.KB905173 gene4229', '1265503.KB905168 gene1329', '1123008.KB905696 gene3083', '28229.ND2E 4012', '1265503.KB905173 gene4230']
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG3093'
+list1 = ['323261.Noc 2763 ', '160488.PP 1585 ', '351348.Maqu 3198 ', '1055815.AYYA01000030 gene759 ', '1007105.PT7 0143 ', '398578.Daci 1211 ', '545264.KB898746 gene880 ', '396595.TK90 0224 ', '225937.HP15 4163 ', '351746.Pput 4192 ', '1112209.AHVZ01000006 gene1775 ', '472759.Nhal 1146 ', '863365.XHC 2235 ', '1255043.TVNIR 0522 ']
 
 gene_list = True
-ext = 'bacteria_u569_2'
+ext = '_res'
 import os
 pattern = ''
 save_aligned = False
+
 
 def main(lists, path, ext, nd, pattern, gene_list):
     if pattern == '':
@@ -25,8 +26,14 @@ def main(lists, path, ext, nd, pattern, gene_list):
                         gene_name = line[1:line.find('[')].replace('_', ' ')
                         for leaf in lst:
                             if gene_list:
-                                if leaf + ' ' == gene_name or leaf == gene_name:
+
+                                if leaf + ' ' == gene_name or leaf == gene_name or\
+                                                        leaf + ' ' == gene_name.replace(' ','_') or\
+                                                leaf == gene_name.replace(' ',''):
                                     flag = True
+                                    print(leaf)
+                                    print(gene_name)
+                                    print('')
                             else:
                                 if leaf + ' ' == old_new_names[name].replace(' ', '') or leaf == old_new_names[name].replace(' ', '') or\
                                         leaf + ' ' == old_new_names[name] or leaf == old_new_names[name]:

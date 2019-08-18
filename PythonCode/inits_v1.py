@@ -23,7 +23,6 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
                 for species in sigma:
                     if leaf.label.find(species) != -1 or species.find(leaf.label) != -1:
                         target = sigma[species]
-                print(target)
             H.add_node(H_number_of_nodes, s=leaf.label, t=target,l=list())
             big_node = H_number_of_nodes
             H_number_of_nodes += 1
@@ -37,7 +36,6 @@ def init_leafs_efficient(G, H, k, H_number_of_nodes, sigma, nodes_table):
                 new_item = {'s':  leaf.label,  't':  target,'cost_without_losses': cost_no_losses, 'cost_with_losses': cost_with_losses, 'event':"leaf", 'list_place':  i}
                 H.nodes[big_node]['l'].insert(i,new_item)
             nodes_table[target][leaf.label] = big_node
-    print('YOFFI')
     return H,H_number_of_nodes, nodes_table
 
 
@@ -104,8 +102,6 @@ def init_taxon_to_label_table(S, G, sigma):
 
 
 def update_sigma(sigma, S_labels_table, G_labels_table):
-    print('S_labels_table: '+str(S_labels_table))
-    print('G_labls_table: '+str(G_labels_table))
     old_sigma = sigma.copy()
     sigma = {}
     for u, x in old_sigma.items():
@@ -117,30 +113,21 @@ def update_sigma(sigma, S_labels_table, G_labels_table):
         else:
             sigma = dict((u1, x1) for u1, x1 in sigma.items() if not (u1 == u and x1 == x))     #remove unsigma mappings
             old_sigma = dict((u1, x1) for u1, x1 in old_sigma.items() if not (u1 == u and x1 == x))
-    print('sigma: '+str(sigma))
-    print('old_sigma: '+str(old_sigma))
 
     return sigma,old_sigma
 
 
-def update_colors(S,colors,exact_names):
+def update_colors(S,colors):
     old_colors = colors.copy()
     for leaf_S in S.leaf_nodes():
         if not leaf_S.taxon is None:
             degel = False
-            for x,color in colors.items():
-                if not exact_names:
-                    if x.replace("_","").find(leaf_S.taxon.label) != -1:
-                        colors = dict((x, color) for x,color in colors.items() if (x.replace("_","").find(leaf_S.taxon.label) == -1 or leaf_S.taxon.label .find(x.replace("_","")) == -1))
+            for x,color in old_colors.items():
+                    if utiles.find_in_substreing_different_forms(x,leaf_S.taxon.label):
+                        colors = dict((x, color) for x,color in colors.items() if not utiles.find_in_substreing_different_forms(x,leaf_S.taxon.label))
                         colors.update({leaf_S.label: color})
                         degel = True
-                else:
-                    if x.replace("_","") == leaf_S.taxon.label:
-                        colors = dict((x, color) for x,color in colors.items() if (x != leaf_S.taxon.label))
-                        colors.update({leaf_S.label: color})
-                        degel = True
-            if degel == False:
-                #print('     No lable was assigned to: '+str(leaf_S))
+            if not degel:
                 colors = dict((x, color) for x, color in colors.items() if not x == leaf_S.taxon.label)
                 colors.update({leaf_S.label:  random.choice(['black', 'red'])})
                 old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})

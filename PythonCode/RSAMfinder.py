@@ -303,7 +303,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     S_labels_table, G_labels_table,sigma = inits.init_taxon_to_label_table(S,G,sigma)
 
     sigma, old_sigma = inits.update_sigma(sigma,S_labels_table,G_labels_table)
-    colors,old_colors = inits.update_colors(S, colors,True)
+    colors,old_colors = inits.update_colors(S, colors)
     TH_edges = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges
     p1 = (p1[0],p1[1],p1[2],TH_edges)
 

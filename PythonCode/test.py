@@ -306,7 +306,7 @@ class Main_Frame(object):
                             ['Threshold Edges\nin Subtree', 'float', '0.1','The minimal number of edges in subtrees that\n'
                                                                            'will considered when looking for top scoring vertices\n'
                                                                            'within the gene tree.'],
-                            ['HT event cost', 'float', '1'], ['Duplication event cost', 'float', '1'],['Speciation event cost', 'float', '0'], ['Loss event cost', 'float', '0'],
+                            ['HT event cost', 'float', '1'], ['Duplication event cost', 'float', '1'],['Speciation event cost', 'float', '0'], ['Loss event cost', 'float', '1'],
                             ['Gamma', 'float', '1','A parameter related to the probablity calculation.\n'
                                                    'As gamma grows lower, hypernodes with higher (worse)\n'
                                                    'scores are assigned probabilities much lower than'

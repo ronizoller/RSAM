@@ -1,17 +1,16 @@
 import extract_from_FASTA_v1 as extr
 
 
-
-path_source = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602/'
-path_target = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/archive/COG3682'
-pattern = "((['HT'], 'red', True)_(['S', 'D', 'HT'], 'black', False))_Double-Mode"
+path_source = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2602/'
+path_target = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG3682_BlaI'
+pattern = "((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode"
 range_to_search = range(1,2)
 old_genes  = []
-file_to_examine = "FASTA_result_0_p1.txt"
-all = True
+file_to_examine = "FASTA_result_COG2602_1_node_u841_Double-mode,u840_p1_left.txt"
+all = False
 
 if all:
-    path = path_source + 'FASTA_bacteria.txt'
+    path = path_source + 'FASTA.txt'
 else:
     path = path_source + "/saved_data/results/"+pattern+'/'+file_to_examine
 
@@ -24,7 +23,7 @@ with open(path , 'r') as fp:
             if gene_name[len(gene_name)-1] == ' ':
                 gene_name = gene_name [:len(gene_name)-1]
             old_genes.append(gene_name)
-input = open(path_source+'/0/sigma0.0.txt', 'r')
+input = open(path_source+'/sigma.txt', 'r')
 sigma = []
 for line in input:
     sigma.append(eval(line))
@@ -66,7 +65,7 @@ for gene in old_genes:
         species_genes.update({gene:sigma[gene.replace('_',' ')]})
         species.append(sigma[gene.replace('_',' ')])
 
-with open(path_target + '/FASTA_bacteria.txt', 'r') as fp:
+with open(path_target + '/FASTA.txt', 'r') as fp:
     flag = False
     for line in fp:
         if line[0] == '>':
