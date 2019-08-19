@@ -151,9 +151,15 @@ def init_H_field(H, field, init,in_list, for_edge):
     return H
 
 
-def init_dict_inf(H,S,G,k,nodes_table,dict,sigma,S_dis_matrix,loss_cost):
+def init_dict_inf(H, S, G, k, nodes_table, dict, sigma, S_dis_matrix, loss_cost):
     res = {}
     for u in G.postorder_node_iter():
+        if u.label in sigma:
+            target = sigma[u.label]
+        else:
+            for species in sigma:
+                if u.label.find(species) != -1 or species.find(u.label) != -1:
+                    target = sigma[species]
         res.update({u.label:{}})
         for x in S.postorder_node_iter():
             if dict == 'subtree' or dict == 'subtreeLoss':

@@ -1,7 +1,3 @@
-                ## pattern
-### EV\subseteq {S,D,HT}, color\in {red,black,None}, distance\in {True,False}
-### only p1 can have HT  in EV
-
 p1 = ([], None, False)
 p2 = (None, None, False)
 
@@ -23,7 +19,7 @@ import networkx as nx
 import dendropy as tr
 import math
 import utiles
-import draw_for_users
+
 from utils import newick2edgelist as n2e
 from utils import fix_taxa_names_in_FASTA as fix
 import tree_operations_v1 as tree_operations
@@ -36,7 +32,6 @@ from utils import extract_from_FASTA_v1 as extr
 from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
 from utils import multi2bi
-import draw as d
 from utils import color_by_coocorences
 
 
@@ -168,6 +163,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
         res['text'] += 'marked vertices:\n' + format_marked_vertices(marked_nodes)+'\n'
 
     if draw:
+        import draw_for_users
         draw_for_users.main(G, sigma, old_sigma, colors, S_labels_table,
                             p1, p2, speciesTreespecification, color, lables_flag, draw_marked, x_axis, y_axis, path, res, number_of_dup)
     if not only_draw:
@@ -312,6 +308,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     H = nx.MultiDiGraph()
     max_score_p1_list = max_score_p1_and_p2_list = [-1] * number_of_planted_vertices
     if draw_S_and_G:
+        import draw as d
         d.draw_S_and_G(S, G, old_sigma, colors, sigma, path, None, '', False)
     if not only_draw:
         H, H_number_of_nodes, nodes_table = hypergraph.build_hyper_garph(S, G, k,
@@ -357,6 +354,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
     quit()
 
 
-
-
-
+if __name__ == '__main__':
+    main('COG3549',10,0.05,1,1,0,1,1,
+          0.05, 5,  (['HT'],'None','True'), (None,None,None), True, False,False,
+          False, False, False, 1, 1,{'text': '','error': ''}, False, False, 0)
