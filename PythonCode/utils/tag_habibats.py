@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2367(class_A)/'
 #first prtric then dina
 
 patric = True
@@ -32,6 +32,9 @@ for line in input:
 res = ""
 not_anottated = []
 
+neg = ['Negative','negative','-','_']
+pos = ['Positive','positive','+','gram +','Posotive']
+
 alive = ["HUMAN","Yellowfin tuna","bovine","Anomalops katoptron","Macaca","Canis","Milkfish","salmon","Rabbit","Tursiops","flounder","Aplysia","Paralichthys","cattle","Timber rattlesnake","Goat","ANIMAL","Pagrus major","Abalone","cow","Multiple",'mice',"rumen microbiome","Bird","snail","tern","Bat","Pig","Danaus","Entylia carinata","butterfly","Chicken","Nilaparvata","Aleurodicus","Crab","Coleopteran","Human","Silk worm","Termite","Acanthamoeba sp","Duck","Goose", "Animal","clams","Caenorhabditis","Ark clam","Fish", "Mouse", "Bos taurus","bear", "Mus musculus", "Apis mellifera",
          "rabbit", "rabbit"," Sponge", "Seal","Rattus","Lizard","Photoblepharon palpebratus","human","Drosophila","Cows","insect","Litopenaeus vannamei","Danio rerio","Sheep","Salvelinus namaycush","booklouse","Ctenocephalides",
          "Cat","animals"]
@@ -48,38 +51,42 @@ old_new_names = []
 for line in input1:
     old_new_names.append(eval(line))
 old_new_names = old_new_names[0]
+tagged = []
 
 for name in missing_tags:
     i = 0
     flag = False
     for tag_name in tags_names:
         if tag_name.find(name) != -1:
-            for tag in alive:
+            for tag in pos:
                 if tags_habitat[i] != "" and (tag.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag) != -1) and not flag :
                     res = res + ", '" + old_new_names[name.replace('_',' ')].replace(' ','')+"':'red' "
                     flag = True
-            for tag_env in env:
+            for tag_env in neg:
                 if tags_habitat[i] != "" and (tag_env.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag_env) != -1) and not flag:
                     res = res + ", '" + old_new_names[name.replace('_', ' ')].replace(' ','') + "':'black' "
                     flag = True
-        i = i+1
-    if flag == False:
+        i+=1
+    if not flag:
         j = 0
         for tag_name in tags_names:
             flag2 = True
             if tag_name.find(name) != -1:
-                for tag in alive:
+                for tag in pos:
                     if tags_habitat[j] != "" and flag2 and (tags_habitat[j] not in list_not_to_dis):
                         print("%s was not tagged, tag = %s" % (str(name),str(tags_habitat[j])))
                         flag2 = False
-                for tag_env in env:
+                for tag_env in neg:
                     if tags_habitat[j] != "" and flag2 and (tags_habitat[j] not in list_not_to_dis):
                         print("%s was not tagged, tag = %s" % (str(name), str(tags_habitat[j])))
                         flag2 = False
                         flag = True
             j = j + 1
-        not_anottated.append(name)
-with open(path+"/0/colors0.0.txt", "a") as myfile:
+        if name not in not_anottated:
+            not_anottated.append(name)
+    elif name not in tagged:
+        tagged.append(name)
+with open(path+"/colors.txt", "a") as myfile:
     myfile.write(res+"}")
 
 if patric:
@@ -96,3 +103,5 @@ else:
         miss = miss + "\n" + name
     file.write(miss)
     file.close()
+
+print('number of tagged species: '+str(len(tagged)))

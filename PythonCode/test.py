@@ -395,6 +395,7 @@ class Main_Frame(object):
             TKScrollTXT = tkscrolled.ScrolledText(solution_frame, width=80, height=50)
             TKScrollTXT.insert(1.0, self.result['solution'])
             TKScrollTXT.pack(side=tk.LEFT)
+        os.system("say 'התוכנית הסתיימה'")
 
     def work_task(self, entries, patterns, res, t1):
         p1_EV = []

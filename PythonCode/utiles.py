@@ -70,7 +70,7 @@ def init_internal_labels (tree, char, old_sigma, path):
         nd.label = char+str(counter)
         counter += 1
         if nd.taxon:
-            dic = dic + nd.label + ' : ' +  nd.taxon.label
+            dic = dic + nd.label + ' : ' + nd.taxon.label
             if char == 'u':
                 dic = dic + ' (' + old_sigma[nd.taxon.label] + ') '
             dic += '\n'

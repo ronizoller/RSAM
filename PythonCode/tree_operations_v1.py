@@ -61,7 +61,9 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
             if temp_color == 'red':
                 tree_internal_colors.update({u.label : [1,0]})
             elif temp_color == 'black':
-                tree_internal_colors.update({u.label: [0, 1]})
+                tree_internal_colors.update({u.label: [0,1]})
+            elif temp_color == 'pink':
+                tree_internal_colors.update({u.label: [0,0]})
         else:
             reds = tree_internal_colors[u.label][0]
             blacks = tree_internal_colors[u.label][1]
