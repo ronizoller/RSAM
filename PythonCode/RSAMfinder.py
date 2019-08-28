@@ -198,8 +198,8 @@ def valid_pattern(ev, col, dist, res):
                 ##********  MAIN ***********
 
 
-def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gamma,
-          p,number_of_planted_vertices,  p1, p2, create_sigma_from_fasta, track_solution,draw,
+def main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+          p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
           color, lables_flag, draw_marked, x_axis, y_axis, res, only_draw, draw_S_and_G, number_of_dup):
 
     starting_time = datetime.now()
@@ -359,6 +359,6 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
 
 
 if __name__ == '__main__':
-    main('COG3549',10,0.05,1,1,0,1,1,
-          0.05, 5,  (['HT'],'None','True'), (None,None,None), True, False,False,
+    main('COG2367(class_A,single)',50, 0.1, 1, 1, 0, 1, 1,
+          0.05, 5,  (['HT','None','None'],'red','True'), (None,None,None), True, False, False,
           False, False, False, 1, 1,{'text': '','error': ''}, False, False, 0)
