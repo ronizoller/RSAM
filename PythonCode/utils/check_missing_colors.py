@@ -1,4 +1,7 @@
-path = '/Users/ronizoller/Google Drive (ronizo@post.bgu.ac.il)/COGS/COG2602'
+import os
+
+
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2367(class_A)/'
 res = ''
 
 input1 = open(path + "/old_new_names.txt", 'r')

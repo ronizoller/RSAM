@@ -110,7 +110,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
             while i < len(child):
                 if len(child) >= i + 1:
                     tree_to_draw.add_edge(index, list(G.postorder_node_iter()).index(child[i]) + 1)
-                i = i + 1
+                i += 1
         index += 1
     labels1 = nx.get_node_attributes(new_G, 'label')
     pos1 = graphviz_layout(tree_to_draw, prog='dot')
@@ -120,9 +120,12 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
     nodes_color = []
     nodes_size = []
     if draw_marked:
-        max_size = max([x[0] for u, x in marked_nodes.items()])
-        if double_mode:
-            max_size = max([x[0]+x[1] for u,x in marked_nodes.items()])
+        if marked_nodes != {}:
+            max_size = max([x[0] for u, x in marked_nodes.items()])
+            if double_mode:
+                max_size = max([x[0]+x[1] for u,x in marked_nodes.items()])
+        else:
+            max_size = 200
     exp_facor = math.log(size)
 
     for nd in new_G.nodes(data=True):
@@ -130,8 +133,10 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
             name = list(S_labels_table.keys())[list(S_labels_table.values()).index(sigma[nd[1]['label']])]
             if colors[sigma[nd[1]['label']]] == 'red':
                 nodes_color.append('red')
-            else:
+            elif colors[sigma[nd[1]['label']]] == 'black':
                 nodes_color.append('grey')
+            elif colors[sigma[nd[1]['label']]] == 'pink':
+                nodes_color.append('pink')
             nodes_size.append(200)
         elif nd[1]['label'] in marked_nodes:
             nodes_color.append('blue')
@@ -145,7 +150,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
     if lables:
         for r, l in labels1.items():
             for x in G.postorder_node_iter():
-                if x.taxon != None:
+                if x.taxon:
                     if x.label == l:
                         l = l + "\n (" + str(x.taxon) + ")"
                         l = l+'\n'+str(old_sigma[x.taxon.label])

@@ -129,8 +129,9 @@ def update_colors(S,colors):
                         degel = True
             if not degel:
                 colors = dict((x, color) for x, color in colors.items() if not x == leaf_S.taxon.label)
-                colors.update({leaf_S.label:  random.choice(['black', 'red'])})
-                old_colors.update({leaf_S.taxon.label:  random.choice(['black', 'red'])})
+                #colors.update({leaf_S.label:  random.choice(['black', 'red'])})
+                colors.update({leaf_S.label: 'pink'})
+                old_colors.update({leaf_S.taxon.label: 'pink'})
     return colors,old_colors
 
 

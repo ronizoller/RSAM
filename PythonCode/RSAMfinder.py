@@ -260,6 +260,10 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
             return
     else:
         G = tr.Tree.get_from_path(path + "/G_binary.txt", schema="newick")
+        to_remove = tree_operations.remove_unsigma_genes(G, sigma, True)
+        if to_remove:
+            G.prune_taxa_with_labels(to_remove)
+        G = tree_operations.collapse_edges(G)
 
     if not os.path.isfile(path + '/S_binary.txt'):
         try:
@@ -304,7 +308,7 @@ def main(speciesTreespecification,k,TH_edges,HT_cost,D_cost,S_cost,loss_cost,gam
 
     sigma, old_sigma = inits.update_sigma(sigma,S_labels_table,G_labels_table)
     colors,old_colors = inits.update_colors(S, colors)
-    TH_edges = len(tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[0]+tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges
+    TH_edges = len(tree_operations.leaf_in_subtrees(G, 'S', G.seed_node.label, old_sigma, False)[0] + tree_operations.leaf_in_subtrees(G,'S',G.seed_node.label, old_sigma,False)[1])*TH_edges
     p1 = (p1[0],p1[1],p1[2],TH_edges)
 
     S_dis_matrix = inits.init_distance_S(S_dis_matrix,path,speciesTreespecification)
