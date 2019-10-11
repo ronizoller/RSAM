@@ -398,7 +398,8 @@ def change_sigma(sigma, old_sigma, S, G, couples_list,number_of_HT_to_make,S_lab
         r_leafs_HT_to, l_leafs_HT_to = tree_operations.leaf_in_subtrees(S,'S', HT_to_in_S, old_sigma,True)
         all_leafs_HT_to = r_leafs_HT_to+l_leafs_HT_to
 
-        number_of_HT_to_make = min([number_of_HT_to_make,len(all_HT_leafs),len(all_leafs_HT_to)])
+        #number_of_HT_to_make = min([number_of_HT_to_make,len(all_HT_leafs),len(all_leafs_HT_to)])
+        number_of_HT_to_make = min([len(all_HT_leafs),len(all_leafs_HT_to)])
         if len(all_leafs_HT_to) == 0:
             all_leafs_HT_to = [HT_to_in_S.taxon.label]
         old_sigma_temp = old_sigma.copy()
@@ -724,7 +725,7 @@ def main(S,G,number_of_leaves,path,k,running_time,number_of_planted_vertices):
         names.append(sym + str(i))
     S.populate(number_of_leaves, names_library=names)
     count_nodes_and_update_internal_names(S)
-    S = random_again(S, number_of_leaves / 4)
+    #S = random_again(S, number_of_leaves / 4)
     colors = random_colors(S, colors)
 
     G = S.copy("newick")

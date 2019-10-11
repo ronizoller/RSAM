@@ -136,7 +136,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
             elif colors[sigma[nd[1]['label']]] == 'black':
                 nodes_color.append('grey')
             elif colors[sigma[nd[1]['label']]] == 'pink':
-                nodes_color.append('pink')
+                nodes_color.append('white')
             nodes_size.append(200)
         elif nd[1]['label'] in marked_nodes:
             nodes_color.append('blue')

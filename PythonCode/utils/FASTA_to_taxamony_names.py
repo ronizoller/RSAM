@@ -1,5 +1,4 @@
 cogs_names = ['COG1396']
-import os
 import tree_operations_v1 as tree_operations
 import dendropy as tr
 
@@ -24,6 +23,7 @@ def main(path,create_sigma,res):
         file = open(path + "/taxa_names.txt", 'w')
         file.write(str(res))
         file.close()
+
     else:
         try:
             S = tr.Tree.get_from_path(path + "/S.txt", schema="newick")

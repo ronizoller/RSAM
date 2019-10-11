@@ -1,7 +1,7 @@
 import os
 
 
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2367(class_A)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2602(class_D,single)/'
 res = ''
 
 input1 = open(path + "/old_new_names.txt", 'r')

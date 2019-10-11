@@ -8,6 +8,7 @@ def main(path,create_sigma_from_fasta,res):
             ids = ''
             ids_species_list = {}
             names_map = {}
+            array_to_color = []
             with open(path+'/taxa_names.txt','r') as file1:
                 for prev_name in file1:
                     flag = False
@@ -38,6 +39,7 @@ def main(path,create_sigma_from_fasta,res):
                                         ids += line[:id_end]+'\n'
                                         ids_species_list.update({line[:id_end]:new_name})
                                         names_map.update({old_name:new_name})
+                                        array_to_color += [new_name.replace(' ','_'),new_name,old_name.replace(' ','_'),old_name]
                                         flag = True
                             if not flag:
                                 res['error'] += ('There is no mapping for speice '+str(prev_name))
@@ -50,11 +52,17 @@ def main(path,create_sigma_from_fasta,res):
             file = open(path + "/IDs_species_maping.txt", 'w')
             file.write(str(ids_species_list))
             file.close()
+            file = open(path + "/taxa_names_array.txt", 'w')
+            file.write(str(array_to_color))
+            file.close()
     else:
         file = open(path + "/NCBI_tax_ID.txt", 'w')
         file.write(str(''))
         file.close()
         file = open(path + "/old_new_names.txt", 'w')
+        file.write(str(''))
+        file.close()
+        file = open(path + "/taxa_names_array.txt", 'w')
         file.write(str(''))
         file.close()
         file = open(path + "/IDs_species_maping.txt", 'w')
