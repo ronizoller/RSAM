@@ -20,6 +20,7 @@ import dendropy as tr
 import math
 import utiles
 
+from ast import literal_eval as make_tuple
 from utils import newick2edgelist as n2e
 from utils import fix_taxa_names_in_FASTA as fix
 import tree_operations_v1 as tree_operations
@@ -32,7 +33,7 @@ from utils import extract_from_FASTA_v1 as extr
 from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
 from utils import multi2bi
-from utils import color_by_coocorences
+from decimal import *
 
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
@@ -173,6 +174,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
         res['text'] += 'Minimal number of edges in subtree: %s' % (str(TH_edges))
     res['text'] += '\nNumber of leafs of G: %s\nNumber of leafs of S: %s\nRunning time: %s\n' % (str(tree_operations.number_of_leafs(G,'G')),
                                                                                                                       str(tree_operations.number_of_leafs(S,'S')),str(datetime.now() - starting_time))+'\n\bMore information can be found under /saved_data.'
+    print(res['text'])
     return
 
 
@@ -357,8 +359,82 @@ def main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_co
                  sigma, colors, S_labels_table, color,lables_flag, draw_marked, x_axis, y_axis, res, path, only_draw, TH_edges, number_of_dup)
     quit()
 
+def type_check(type,mass,default_value):
+    def check_list_of_events(lst):
+        if lst:
+            correct_length = len(lst) >= 0 and len(lst) <= 3
+            correct_events = True
+            for event in lst:
+                correct_events = correct_events and event in ['S','D','HT',None,'None']
+            return correct_length and correct_events
+        else:
+            return True
+
+    while True:
+        num = input(mass) or default_value
+        try:
+            if type == 'int':
+                num = int(num)
+            elif type == 'Dec':
+                num = float(num)
+            elif type == 'bool':
+                num = bool(num)
+            elif type == 'pattern':
+                if isinstance(num,str):
+                    num = make_tuple(num)
+                if isinstance(num,tuple) and len(num) == 3 and check_list_of_events(num[0]) and num[1] in ['red','black','None',None] and num[2] in [True,False,'False','True','None',None]:
+                    int(0)
+                else:
+                    int('roni')
+
+            break
+        except ValueError:
+            print('     Wrong type was inserted, please try again.')
+            pass
+    return num
+
 
 if __name__ == '__main__':
-    main('COG2367(class_A,single)',50, 0.1, 1, 1, 0, 1, 1,
-          0.05, 5,  (['HT','None','None'],'red','True'), (None,None,None), True, False, False,
-          False, False, False, 1, 1,{'text': '','error': ''}, False, False, 0)
+    print('\t**   General settings (to use default values press Enter)    **')
+    speciesTreespecification = ''
+    while speciesTreespecification == '':
+        speciesTreespecification = input('Species tree extantion: ')
+        if speciesTreespecification == '':
+            print('     Please enter Species tree extantion.')
+
+    k = type_check('int','k = ',50)
+    TH_edges = type_check('Dec','Threshold Edges in Subtree (default 0.1) = ',0.1)
+    HT_cost = type_check('Dec','HT event cost (default 1) = ',1)
+    D_cost = type_check('Dec','Duplication event cost (default 1) = ',1)
+    S_cost = type_check('Dec','Speciation event cost (default 0) = ',0)
+    loss_cost = type_check('Dec','Loss event cost (default 1) = ',1)
+    gamma = type_check('Dec','Gamma (default 1) = ',1)
+    p = type_check('Dec','p (default 0.05) = ',0.05)
+    number_of_planted_vertices = type_check('int','Number of vertices to find (default 5) = ',5)
+    p1 = type_check('pattern',"First pattern (default (['HT','None','None'],'red','True')) = ",(['HT','None','None'],'red','True'))
+    p2 = type_check('pattern',"Second pattern (default (None,None,None)) = ",(None,None,None))
+    create_sigma_from_fasta = type_check('boll',"Create sigma from FASTA file (default True) = ",True)
+    track_solution = type_check('boll',"track a solution (default False) = ",True)
+
+    print('\n\t**   Drawing settings    **')
+    draw = type_check('boll', "draw the Gene tree (default False) = ", False)
+
+    if draw:
+        color = type_check('boll', "color the Gene tree (default False) = ", False)
+        lables_flag = type_check('boll', "draw lables on the Gene tree (default False) = ", False)
+        draw_marked = type_check('boll', "draw marked vertices of the Gene tree (default False) = ", False)
+        x_axis = type_check('int', "x axis of the Gene tree figure (default 0) = ", 1)
+        y_axis = type_check('int', "y axis of the Gene tree figure (default 0) = ", 1)
+        only_draw = type_check('boll', "Only draw the Gene tree (default False) = ", False)
+        number_of_dup = type_check('int',"Minimal number of duplication to mark if Duplication events are considered in p1 (default 3) = ", 3)
+
+    else:
+        color = lables_flag = draw_marked = only_draw = False
+        x_axis = y_axis = 1
+        number_of_dup = 3
+
+    draw_S_and_G = type_check('boll',"Draw the input trees (default False) = ", False)
+
+    main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+          p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
+          color, lables_flag, draw_marked, x_axis, y_axis, {'text': '','error': ''}, only_draw, draw_S_and_G, number_of_dup)
