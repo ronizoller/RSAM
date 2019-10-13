@@ -33,7 +33,6 @@ from utils import extract_from_FASTA_v1 as extr
 from utils import FASTA_to_taxamony_names as taxa_names
 from utils import FASTA_to_gene_specie_mapping as create_sigma
 from utils import multi2bi
-from decimal import *
 
 
 def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
@@ -118,16 +117,19 @@ def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern
         return interesting_vertices, nCr_lookup_table, fact_lookup_table
     return None,None,None
 
-def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max_list_p1,
-                 max_list_p1_and_p2, speciesTreespecification, create_sigma_from_fasta, draw, sigma, colors, S_labels_table,
-                 color, lables_flag, draw_marked,x_axis,y_axis, res, path, only_draw, TH_edges, number_of_dup):
-    if not only_draw:
-        if p2[0] is not None:
-            pattern_name = '('+str(p1[0:3])+'_'+str(p2[0:3])+')_Double-Mode'
-        else:
-            pattern_name = str(p1[0:3]) + '_Single-Mode'
 
-        file = open(path + '/saved_data/marked_RSAM_finder_'+speciesTreespecification+'_pattern='+pattern_name+'.txt', 'w')
+def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max_list_p1,
+                 max_list_p1_and_p2, speciesTreespecification, colors_ext, create_sigma_from_fasta, draw, sigma, colors, S_labels_table,
+                 color, lables_flag, draw_marked,x_axis,y_axis, res, path, only_draw, TH_edges, number_of_dup):
+    if p2[0] is not None:
+        pattern_name = '(' + str(p1[0:3]) + '_' + str(p2[0:3]) + ')_Double-Mode'
+    else:
+        pattern_name = str(p1[0:3]) + '_Single-Mode'
+    pattern_name += '_colors_' + color_ext
+    if not only_draw:
+        path_curr_to_save = path + '/saved_data/results/' + pattern_name + '/marked_RSAM_finder.txt'
+        os.makedirs(os.path.dirname(path_curr_to_save), exist_ok=True)
+        file = open(path_curr_to_save, 'w')
         file.write(str(marked_nodes))
         file.close()
 
@@ -157,7 +159,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
                                   str(ind) + '_node_'  +str(nd) + '_'+x[2]+'_left', pattern_name, True)
                     index += 1
 
-                file = open(path + '/saved_data/marked_nodes_leafs_lists_' + speciesTreespecification +'_pattern='+pattern_name+'.txt', 'w')
+                file = open(path + '/saved_data/results/'+pattern_name+'/marked_nodes_leafs_lists.txt', 'w')
                 file.write(str(lists))
                 file.close()
 
@@ -166,7 +168,8 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
     if draw:
         import draw_for_users
         draw_for_users.main(G, sigma, old_sigma, colors, S_labels_table,
-                            p1, p2, speciesTreespecification, color, lables_flag, draw_marked, x_axis, y_axis, path, res, number_of_dup)
+                            p1, p2, speciesTreespecification, color_ext, color, lables_flag, draw_marked, x_axis, y_axis,
+                            path + '/saved_data/results/'+pattern_name, res, number_of_dup)
     if not only_draw:
         res['text'] += 'Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
                                                                                   str((hypergraph.find_number_of_cooptimal(H,G,S)[1])))+'\n'
@@ -200,7 +203,7 @@ def valid_pattern(ev, col, dist, res):
                 ##********  MAIN ***********
 
 
-def main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+def main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
           p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
           color, lables_flag, draw_marked, x_axis, y_axis, res, only_draw, draw_S_and_G, number_of_dup):
 
@@ -286,9 +289,9 @@ def main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_co
 
     if (p1[1] and p1[1] != 'None') or (p2[1] and p2[1] != 'None'):
         try:
-            input1 = open(path + '/colors.txt', 'r')
+            input1 = open(path + '/colors_'+color_ext+'.txt', 'r')
         except:
-            res['error'] += "One should provide coloring function.\n'/data/color.txt' was not found."
+            res['error'] += "One should provide coloring function.\n'/data/colors_"+color_ext+".txt' was not found."
             return
         colors = []
         for line in input1:
@@ -355,7 +358,7 @@ def main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_co
 
     end_function(H, S, G, k, starting_time, p1, p2, marked_nodes,
                  old_sigma ,max_score_p1_list, max_score_p1_and_p2_list,
-                 speciesTreespecification, create_sigma_from_fasta, draw,
+                 speciesTreespecification, color_ext, create_sigma_from_fasta, draw,
                  sigma, colors, S_labels_table, color,lables_flag, draw_marked, x_axis, y_axis, res, path, only_draw, TH_edges, number_of_dup)
     quit()
 
@@ -398,11 +401,16 @@ if __name__ == '__main__':
     print('\t**   General settings (to use default values press Enter)    **')
     speciesTreespecification = ''
     while speciesTreespecification == '':
-        speciesTreespecification = input('Species tree extantion: ')
+        speciesTreespecification = input('Data folder: ')
         if speciesTreespecification == '':
-            print('     Please enter Species tree extantion.')
+            print("     Please enter your data folder's name.")
+    color_ext = ''
+    while color_ext == '':
+        color_ext = input('Colors function extension: ')
+        if speciesTreespecification == '':
+            print('     Please enter colors function extension.')
 
-    k = type_check('int','k = ',50)
+    k = type_check('int','k (default 50) = ',50)
     TH_edges = type_check('Dec','Threshold Edges in Subtree (default 0.1) = ',0.1)
     HT_cost = type_check('Dec','HT event cost (default 1) = ',1)
     D_cost = type_check('Dec','Duplication event cost (default 1) = ',1)
@@ -414,7 +422,7 @@ if __name__ == '__main__':
     p1 = type_check('pattern',"First pattern (default (['HT','None','None'],'red','True')) = ",(['HT','None','None'],'red','True'))
     p2 = type_check('pattern',"Second pattern (default (None,None,None)) = ",(None,None,None))
     create_sigma_from_fasta = type_check('boll',"Create sigma from FASTA file (default True) = ",True)
-    track_solution = type_check('boll',"track a solution (default False) = ",True)
+    track_solution = type_check('boll',"track a solution (default False) = ",False)
 
     print('\n\t**   Drawing settings    **')
     draw = type_check('boll', "draw the Gene tree (default False) = ", False)
@@ -435,6 +443,8 @@ if __name__ == '__main__':
 
     draw_S_and_G = type_check('boll',"Draw the input trees (default False) = ", False)
 
-    main(speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+    print('\n\n     ** Running... **')
+
+    main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
           p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
-          color, lables_flag, draw_marked, x_axis, y_axis, {'text': '','error': ''}, only_draw, draw_S_and_G, number_of_dup)
+          color, lables_flag, draw_marked, x_axis, y_axis, {'text': '', 'error': '', 'solution': ''}, only_draw, draw_S_and_G, number_of_dup)

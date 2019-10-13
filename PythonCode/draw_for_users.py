@@ -93,7 +93,7 @@ def draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma, lables, pattern,size
         text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
         for _, t in text.items():
             t.set_rotation('vertical')
-    plt.savefig(path + '/figures/new_G_pattern=' + pattern + '_' + ext + '.png')
+    plt.savefig(path + '/figures/new_G_colors_'+colors_ext+'.png')
     return
 
 
@@ -182,7 +182,8 @@ def hex_code_colors():
     return "#" + z.upper()
 
 
-def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,draw_marked,x_axis,y_axis, path, res, number_of_duplications):
+def main(G, sigma, old_sigma, colors, S_labels_table, p1, p2, ext, colors_ext,
+         color, lables_flag, draw_marked, x_axis, y_axis, path, res, number_of_duplications):
     p1 = (p1[0],p1[1],p1[2])
     new_G = nx.DiGraph()
     new_G = tree_operations.copy_G(G,new_G)
@@ -194,9 +195,9 @@ def main(G,sigma,old_sigma,colors,S_labels_table,p1,p2,ext,color,lables_flag,dra
     else:
         pattern_name = str(p1) + '_Single-Mode'
     try:
-        input = open(path + '/saved_data/marked_RSAM_finder_' + ext + '_pattern=' + pattern_name + '.txt', 'r')
+        input = open(path + 'marked_RSAM_finder.txt', 'r')
     except:
-        res['error'] += '/saved_data/marked_RSAM_finder_' + ext + '_pattern=' + pattern_name + ".txt was not found."
+        res['error'] += "marked_RSAM_finder.txt was not found."
         return
     if draw_marked:
         marked_nodes = []

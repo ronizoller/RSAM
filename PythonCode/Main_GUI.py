@@ -43,8 +43,8 @@ class parameters_frame(object):
             entry.config(state='normal')
 
     def callback_only_draw(self,bool_var,entries,fields):
-        temp_ents = list(filter(lambda x: x[0] not in ['track_solution','create_sigma','draw','random_sol','Specie tree extension',
-                                                        'only_draw'], entries))
+        temp_ents = list(filter(lambda x: x[0] not in ['track_solution','create_sigma','draw','random_sol',"Data Folder's name"
+            ,'Color specification','only_draw'], entries))
         draw_check_butt = list(filter(lambda x: x[0] == 'draw', entries))[0]
 
         if bool_var.get():
@@ -300,8 +300,8 @@ class Main_Frame(object):
         panel = tk.Label(root, image=img)
         panel.pack(side="top", fill="both", expand="yes")
 
-        parameter_lables = [['Specie tree extension', 'string', '',
-                             "This is the folder's name under /data"],
+        parameter_lables = [["Data Folder's name", 'string', '',
+                             "This is the folder's name under /data/"],
                             ['Color specification', 'string', '',
                              'This is the extension of the file colors_(extension).txt'],
                             ['k', 'int', '10','Value of k for the k-best hypergraph'],
@@ -340,7 +340,7 @@ class Main_Frame(object):
         only_draw = t1.only_draw.get()
         for ent in ent1:
             if ent[0] not in ['track_solution','create_sigma','draw','random_sol','only_draw']:
-                if not only_draw or (ent[0] == 'Specie tree extension'):
+                if not only_draw or (ent[0] == "Data Folder's name") or (ent[0] == 'SColor specification'):
                     if ent1[ent1.index(ent)][1].get() == '':
                         t1.error_labels[ent[0]+' error'].set('*')
                         return
