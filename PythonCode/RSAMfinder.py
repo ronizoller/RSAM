@@ -125,7 +125,7 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
         pattern_name = '(' + str(p1[0:3]) + '_' + str(p2[0:3]) + ')_Double-Mode'
     else:
         pattern_name = str(p1[0:3]) + '_Single-Mode'
-    pattern_name += '_colors_' + color_ext
+    pattern_name += '_colors_' + colors_ext
     if not only_draw:
         path_curr_to_save = path + '/saved_data/results/' + pattern_name + '/marked_RSAM_finder.txt'
         os.makedirs(os.path.dirname(path_curr_to_save), exist_ok=True)
@@ -168,8 +168,8 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
     if draw:
         import draw_for_users
         draw_for_users.main(G, sigma, old_sigma, colors, S_labels_table,
-                            p1, p2, speciesTreespecification, color_ext, color, lables_flag, draw_marked, x_axis, y_axis,
-                            path + '/saved_data/results/'+pattern_name, res, number_of_dup)
+                            p1, p2, speciesTreespecification, colors_ext, color, lables_flag, draw_marked, x_axis, y_axis,
+                            path + '/saved_data/results/'+pattern_name +'/', res, number_of_dup)
     if not only_draw:
         res['text'] += 'Number of co-optimal out of %s solutions: %s with cost %s' % (str(k),str(hypergraph.find_number_of_cooptimal(H,G,S)[0]),
                                                                                   str((hypergraph.find_number_of_cooptimal(H,G,S)[1])))+'\n'
@@ -203,7 +203,7 @@ def valid_pattern(ev, col, dist, res):
                 ##********  MAIN ***********
 
 
-def main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+def main(speciesTreespecification, colors_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
           p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
           color, lables_flag, draw_marked, x_axis, y_axis, res, only_draw, draw_S_and_G, number_of_dup):
 
@@ -289,9 +289,9 @@ def main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_co
 
     if (p1[1] and p1[1] != 'None') or (p2[1] and p2[1] != 'None'):
         try:
-            input1 = open(path + '/colors_'+color_ext+'.txt', 'r')
+            input1 = open(path + '/colors_'+colors_ext+'.txt', 'r')
         except:
-            res['error'] += "One should provide coloring function.\n'/data/colors_"+color_ext+".txt' was not found."
+            res['error'] += "One should provide coloring function.\n'/data/colors_"+colors_ext+".txt' was not found."
             return
         colors = []
         for line in input1:
@@ -358,7 +358,7 @@ def main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_co
 
     end_function(H, S, G, k, starting_time, p1, p2, marked_nodes,
                  old_sigma ,max_score_p1_list, max_score_p1_and_p2_list,
-                 speciesTreespecification, color_ext, create_sigma_from_fasta, draw,
+                 speciesTreespecification, colors_ext, create_sigma_from_fasta, draw,
                  sigma, colors, S_labels_table, color,lables_flag, draw_marked, x_axis, y_axis, res, path, only_draw, TH_edges, number_of_dup)
     quit()
 
@@ -404,9 +404,9 @@ if __name__ == '__main__':
         speciesTreespecification = input('Data folder: ')
         if speciesTreespecification == '':
             print("     Please enter your data folder's name.")
-    color_ext = ''
-    while color_ext == '':
-        color_ext = input('Colors function extension: ')
+    colors_ext = ''
+    while colors_ext == '':
+        colors_ext = input('Colors function extension: ')
         if speciesTreespecification == '':
             print('     Please enter colors function extension.')
 
@@ -445,6 +445,6 @@ if __name__ == '__main__':
 
     print('\n\n     ** Running... **')
 
-    main(speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
+    main(speciesTreespecification, colors_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost, gamma,
           p, number_of_planted_vertices, p1, p2, create_sigma_from_fasta, track_solution, draw,
           color, lables_flag, draw_marked, x_axis, y_axis, {'text': '', 'error': '', 'solution': ''}, only_draw, draw_S_and_G, number_of_dup)

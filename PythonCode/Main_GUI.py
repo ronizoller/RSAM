@@ -227,7 +227,7 @@ def makeform(param_frame, root, fields):
                 ent = tk.Entry(row, validate='key', vcmd=intVal,width=10)
             else:
                 ent = tk.Entry(row, validate='key',width=10)
-            if field[2] != None:
+            if field[2]:
                 ent.insert("end",field[2])
             lab.grid(row=fields.index(field),column=0)
             ent.grid(row=fields.index(field),column=1)
@@ -340,7 +340,7 @@ class Main_Frame(object):
         only_draw = t1.only_draw.get()
         for ent in ent1:
             if ent[0] not in ['track_solution','create_sigma','draw','random_sol','only_draw']:
-                if not only_draw or (ent[0] == "Data Folder's name") or (ent[0] == 'SColor specification'):
+                if not only_draw or (ent[0] == "Data Folder's name") or (ent[0] == 'Color specification'):
                     if ent1[ent1.index(ent)][1].get() == '':
                         t1.error_labels[ent[0]+' error'].set('*')
                         return
@@ -363,7 +363,7 @@ class Main_Frame(object):
         # 8 here is for speed of bounce
         self.load_bar.start(8)
         # start the work-intensive thread, again a var can be passed in here too if desired
-        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2'], self.result, t1))
+        self.work_thread = threading.Thread(target=self.work_task, args=(ent, ['p1','p2'], t1))
         self.work_thread.start()
         # close the work thread
         self.work_thread.join()
@@ -399,7 +399,7 @@ class Main_Frame(object):
             TKScrollTXT.pack(side=tk.LEFT)
         os.system("say 'התוכנית הסתיימה'")
 
-    def work_task(self, entries, patterns, res, t1):
+    def work_task(self, entries, patterns, t1):
         p1_EV = []
         p2_EV = []
         for e in entries:
@@ -441,7 +441,7 @@ class Main_Frame(object):
             track_solution = 0
         RSAMfinder.main(speciesTreespecification, color_ext, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
                         int(loss_cost), Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
-                        track_solution, draw, color,labels,draw_marked,x,y, res, only_draw, draw_S_and_G, int(number_of_dup))
+                        track_solution, draw, color,labels,draw_marked,x,y, self.result, only_draw, draw_S_and_G, int(number_of_dup))
 
 
 class Notebook:

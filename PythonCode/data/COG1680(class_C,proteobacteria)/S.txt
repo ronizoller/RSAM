@@ -1,0 +1,3695 @@
+(
+(
+(
+(
+(
+'Bacteriovorax sp. BSW11_IV':4,
+'Bacteriovorax sp. BAL6_X':4,
+'Bacteriovorax sp. Seq25_V':4
+)Bacteriovorax:4)
+Bacteriovoracaceae:4,
+(
+(
+(
+'Halobacteriovorax marinus SJ':4)
+'Halobacteriovorax marinus':4)
+Halobacteriovorax:4)
+Halobacteriovoraceae:4
+)Bacteriovoracales:4,
+(
+(
+(
+(
+'Bdellovibrio exovorus JSS':4)
+'Bdellovibrio exovorus':4,
+(
+'Bdellovibrio bacteriovorus W':4,
+'Bdellovibrio bacteriovorus HD100':4
+)'Bdellovibrio bacteriovorus':4
+)Bdellovibrio:4)
+Bdellovibrionaceae:4)
+Bdellovibrionales:4
+)Oligoflexia:4,
+(
+(
+(
+(
+(
+'Acidithiobacillus thiooxidans ATCC 19377':4)
+'Acidithiobacillus thiooxidans':4,
+(
+'Acidithiobacillus ferrooxidans ATCC 53993':4,
+'Acidithiobacillus ferrooxidans ATCC 23270':4
+)'Acidithiobacillus ferrooxidans':4
+)Acidithiobacillus:4)
+Acidithiobacillaceae:4)
+Acidithiobacillales:4)
+Acidithiobacillia:4,
+(
+(
+(
+(
+(
+'Desulfarculus baarsii DSM 2075':4)
+'Desulfarculus baarsii':4)
+Desulfarculus:4)
+Desulfarculaceae:4)
+Desulfarculales:4,
+(
+(
+(
+(
+'Desulfovibrio hydrothermalis AM13 = DSM 14728':4)
+'Desulfovibrio hydrothermalis':4,
+(
+'Desulfovibrio gigas DSM 1382 = ATCC 19364':4)
+'Desulfovibrio gigas':4,
+(
+'Desulfovibrio frigidus DSM 17176':4)
+'Desulfovibrio frigidus':4,
+(
+'Desulfovibrio desulfuricans DSM 642':4)
+'Desulfovibrio desulfuricans':4,
+(
+'Desulfovibrio alcoholivorans DSM 5433':4)
+'Desulfovibrio alcoholivorans':4,
+'Desulfovibrio carbinoliphilus':4,
+'Desulfovibrio sp. U5L':4,
+(
+'Desulfovibrio fructosivorans JJ':4)
+'Desulfovibrio fructosivorans':4,
+(
+'Desulfovibrio cf. magneticus IFRC170':4,
+'Desulfovibrio magneticus RS-1':4
+)'Desulfovibrio magneticus':4,
+(
+'Desulfovibrio salexigens DSM 2638':4)
+'Desulfovibrio salexigens':4
+)Desulfovibrio:4)
+Desulfovibrionaceae:4)
+Desulfovibrionales:4,
+(
+(
+(
+(
+'Syntrophorhabdus aromaticivorans UI':4)
+'Syntrophorhabdus aromaticivorans':4)
+Syntrophorhabdus:4)
+Syntrophorhabdaceae:4,
+(
+(
+(
+'Desulfobacca acetoxidans DSM 11109':4)
+'Desulfobacca acetoxidans':4)
+Desulfobacca:4,
+(
+(
+'Desulfomonile tiedjei DSM 6799':4)
+'Desulfomonile tiedjei':4)
+Desulfomonile:4
+)Syntrophaceae:4,
+(
+(
+(
+'Syntrophobacter fumaroxidans MPOB':4)
+'Syntrophobacter fumaroxidans':4)
+Syntrophobacter:4)
+Syntrophobacteraceae:4
+)Syntrophobacterales:4,
+(
+(
+(
+'Desulfuromonas sp. TF':4)
+Desulfuromonas:4,
+(
+(
+'Pelobacter propionicus DSM 2379':4)
+'Pelobacter propionicus':4)
+Pelobacter:4
+)Desulfuromonadaceae:4,
+(
+(
+'Geobacter sp. M21':4,
+'Geobacter sp. M18':4,
+(
+'Geobacter bemidjiensis Bem':4)
+'Geobacter bemidjiensis':4,
+(
+'Geobacter lovleyi SZ':4)
+'Geobacter lovleyi':4,
+(
+'Geobacter daltonii FRC-32':4)
+'Geobacter daltonii':4,
+(
+'Geobacter metallireducens GS-15':4)
+'Geobacter metallireducens':4,
+(
+'Geobacter sulfurreducens PCA':4)
+'Geobacter sulfurreducens':4
+)Geobacter:4)
+Geobacteraceae:4
+)Desulfuromonadales:4,
+(
+(
+(
+(
+'Haliangium ochraceum DSM 14365':4)
+'Haliangium ochraceum':4)
+Haliangium:4)
+Kofleriaceae:4,
+(
+(
+(
+'Chondromyces apiculatus DSM 436':4)
+'Chondromyces apiculatus':4)
+Chondromyces:4,
+(
+(
+'Sorangium cellulosum So0157-2':4,
+'Sorangium cellulosum So ce56':4
+)'Sorangium cellulosum':4)
+Sorangium:4
+)Polyangiaceae:4,
+(
+(
+(
+'Plesiocystis pacifica SIR-1':4)
+'Plesiocystis pacifica':4)
+Plesiocystis:4)
+Nannocystaceae:4,
+(
+(
+(
+'Cystobacter fuscus DSM 2262':4)
+'Cystobacter fuscus':4)
+Cystobacter:4,
+(
+(
+'Stigmatella aurantiaca DW4/3-1':4)
+'Stigmatella aurantiaca':4)
+Stigmatella:4
+)Archangiaceae:4,
+(
+(
+'Anaeromyxobacter sp. Fw109-5':4,
+(
+'Anaeromyxobacter dehalogenans 2CP-C':4)
+'Anaeromyxobacter dehalogenans':4
+)Anaeromyxobacter:4)
+Anaeromyxobacteraceae:4,
+(
+(
+(
+'Corallococcus coralloides DSM 2259':4)
+'Corallococcus coralloides':4)
+Corallococcus:4,
+(
+'Myxococcus hansupus':4,
+(
+'Myxococcus stipitatus DSM 14675':4)
+'Myxococcus stipitatus':4,
+(
+'Myxococcus fulvus HW-1':4)
+'Myxococcus fulvus':4,
+(
+'Myxococcus xanthus DK 1622':4)
+'Myxococcus xanthus':4
+)Myxococcus:4
+)Myxococcaceae:4,
+(
+'Enhygromyxa salina':4)
+Enhygromyxa:4
+)Myxococcales:4,
+(
+(
+(
+(
+'Desulfocapsa sulfexigens DSM 10523':4)
+'Desulfocapsa sulfexigens':4)
+Desulfocapsa:4,
+(
+(
+'Desulfobulbus japonicus DSM 18378':4)
+'Desulfobulbus japonicus':4)
+Desulfobulbus:4,
+(
+(
+'Desulfurivibrio alkaliphilus AHT 2':4)
+'Desulfurivibrio alkaliphilus':4)
+Desulfurivibrio:4,
+(
+(
+'Desulfotalea psychrophila LSv54':4)
+'Desulfotalea psychrophila':4)
+Desulfotalea:4
+)Desulfobulbaceae:4,
+(
+(
+(
+'Desulforegula conservatrix Mb1Pa':4)
+'Desulforegula conservatrix':4)
+Desulforegula:4,
+(
+(
+'Desulfospira joergensenii DSM 10085':4)
+'Desulfospira joergensenii':4)
+Desulfospira:4,
+(
+'Desulfobacula sp. TS':4)
+Desulfobacula:4,
+(
+'Desulfosarcina sp. BuS5':4)
+Desulfosarcina:4,
+(
+(
+'Desulfobacter curvatus DSM 3379':4)
+'Desulfobacter curvatus':4,
+(
+'Desulfobacter postgatei 2ac9':4)
+'Desulfobacter postgatei':4
+)Desulfobacter:4,
+(
+(
+'Desulfatibacillum alkenivorans AK-01':4)
+'Desulfatibacillum alkenivorans':4)
+Desulfatibacillum:4,
+(
+(
+'Desulfobacterium autotrophicum HRM2':4)
+'Desulfobacterium autotrophicum':4)
+Desulfobacterium:4,
+(
+(
+'Desulfococcus multivorans DSM 2059':4)
+'Desulfococcus multivorans':4,
+(
+'Desulfococcus oleovorans Hxd3':4)
+'Desulfococcus oleovorans':4
+)Desulfococcus:4
+)Desulfobacteraceae:4
+)Desulfobacterales:4
+)Deltaproteobacteria:4,
+(
+(
+(
+(
+(
+'Sulfurimonas gotlandica GD1':4)
+'Sulfurimonas gotlandica':4)
+Sulfurimonas:4,
+(
+'Helicobacter trogontum':4)
+Helicobacter:4
+)Helicobacteraceae:4)
+Campylobacterales:4)
+Epsilonproteobacteria:4,
+(
+(
+'Candidatus Micropelagos thuwalensis':4)
+'Candidatus Micropelagos':4,
+'alpha proteobacterium Mf 1.05b.01':4,
+'alpha proteobacterium L41A':4,
+'alpha proteobacterium IMCC14465':4,
+(
+(
+(
+(
+'Kordiimonas gwangyangensis DSM 19435 = JCM 12864':4)
+'Kordiimonas gwangyangensis':4)
+Kordiimonas:4)
+Kordiimonadaceae:4)
+Kordiimonadales:4,
+(
+(
+(
+(
+'Kiloniella laminariae DSM 19542':4)
+'Kiloniella laminariae':4)
+Kiloniella:4)
+Kiloniellaceae:4)
+Kiloniellales:4,
+(
+(
+'Polymorphum gilvum SL003B-26A1':4)
+'Polymorphum gilvum':4)
+Polymorphum:4,
+'SAR116 cluster alpha proteobacterium HIMB100':4,
+(
+(
+'Candidatus Puniceispirillum marinum IMCC1322':4)
+'Candidatus Puniceispirillum marinum':4)
+'Candidatus Puniceispirillum':4,
+(
+(
+'alpha proteobacterium HIMB114':4,
+(
+(
+'Candidatus Pelagibacter ubique HTCC7217':4,
+'Candidatus Pelagibacter ubique HTCC7214':4
+)'Candidatus Pelagibacter ubique':4,
+'Candidatus Pelagibacter sp. IMCC9063':4,
+'Candidatus Pelagibacter sp. HTCC7211':4
+)'Candidatus Pelagibacter':4
+)Pelagibacteraceae:4)
+Pelagibacterales:4,
+'alpha proteobacterium BAL199':4,
+(
+(
+(
+'Parvularcula oceani':4,
+(
+'Parvularcula bermudensis HTCC2503':4)
+'Parvularcula bermudensis':4
+)Parvularcula:4)
+Parvularculaceae:4)
+Parvularculales:4,
+(
+'Rickettsiales bacterium Ac37b':4,
+(
+(
+(
+'Orientia tsutsugamushi str. Boryong':4)
+'Orientia tsutsugamushi':4)
+Orientia:4,
+(
+(
+'Rickettsia helvetica C9P9':4)
+'Rickettsia helvetica':4,
+(
+'Rickettsia australis str. Cutlack':4)
+'Rickettsia australis':4,
+(
+'Rickettsia rickettsii str. Iowa':4)
+'Rickettsia rickettsii':4,
+(
+'Rickettsia bellii OSU 85-389':4,
+'Rickettsia bellii RML369-C':4
+)'Rickettsia bellii':4,
+'Rickettsia tamurae':4,
+(
+'Rickettsia felis URRWXCal2':4)
+'Rickettsia felis':4,
+(
+'Rickettsia akari str. Hartford':4)
+'Rickettsia akari':4,
+(
+'Rickettsia canadensis str. McKiel':4)
+'Rickettsia canadensis':4,
+(
+'Rickettsia sibirica 246':4)
+'Rickettsia sibirica':4,
+(
+'Rickettsia prowazekii str. Madrid E':4)
+'Rickettsia prowazekii':4,
+(
+'Rickettsia typhi str. Wilmington':4)
+'Rickettsia typhi':4
+)Rickettsia:4
+)Rickettsiaceae:4
+)Rickettsiales:4,
+(
+'Rhodospirillales bacterium URHD0088':4,
+(
+(
+'Reyranella massiliensis 521':4)
+'Reyranella massiliensis':4)
+Reyranella:4,
+(
+(
+'Elioraea tepidiphila DSM 17972':4)
+'Elioraea tepidiphila':4)
+Elioraea:4,
+(
+(
+(
+'Geminicoccus roseus DSM 18922':4)
+'Geminicoccus roseus':4)
+Geminicoccus:4)
+Geminicoccaceae:4,
+(
+(
+'Enhydrobacter aerosaccus SK60':4)
+'Enhydrobacter aerosaccus':4)
+Enhydrobacter:4,
+(
+(
+(
+'Magnetospirillum gryphiswaldense MSR-1 v2':4)
+'Magnetospirillum gryphiswaldense':4)
+Magnetospirillum:4,
+(
+'Dongia sp. URHE0060':4)
+Dongia:4,
+(
+(
+'Novispirillum itersonii subsp. itersonii ATCC 12639':4)
+'Novispirillum itersonii':4)
+Novispirillum:4,
+(
+(
+'Oceanibaculum indicum P24':4)
+'Oceanibaculum indicum':4)
+Oceanibaculum:4,
+(
+(
+'Phaeospirillum fulvum MGU-K5':4)
+'Phaeospirillum fulvum':4,
+(
+'Phaeospirillum molischianum DSM 120':4)
+'Phaeospirillum molischianum':4
+)Phaeospirillum:4,
+(
+'Thalassospira australica':4,
+(
+'Thalassospira profundimaris WP0211':4)
+'Thalassospira profundimaris':4,
+(
+'Thalassospira xiamenensis M-5 = DSM 17429':4)
+'Thalassospira xiamenensis':4
+)Thalassospira:4,
+(
+(
+'Azospirillum halopraeferens DSM 3675':4)
+'Azospirillum halopraeferens':4)
+Azospirillum:4,
+(
+(
+'Tistrella mobilis KA081020-065':4)
+'Tistrella mobilis':4)
+Tistrella:4,
+(
+(
+'Rhodovibrio salinarum DSM 9154':4)
+'Rhodovibrio salinarum':4)
+Rhodovibrio:4,
+(
+(
+'Fodinicurvata fenggangensis DSM 21160':4)
+'Fodinicurvata fenggangensis':4,
+(
+'Fodinicurvata sediminis DSM 21159':4)
+'Fodinicurvata sediminis':4
+)Fodinicurvata:4,
+(
+(
+'Rhodospirillum centenum SW':4)
+'Rhodospirillum centenum':4,
+(
+'Rhodospirillum rubrum ATCC 11170':4)
+'Rhodospirillum rubrum':4
+)Rhodospirillum:4
+)Rhodospirillaceae:4,
+(
+(
+(
+'Acidiphilium angustum ATCC 35903':4)
+'Acidiphilium angustum':4)
+Acidiphilium:4,
+(
+(
+'Asaia platycodi SF2.1':4)
+'Asaia platycodi':4)
+Asaia:4,
+(
+'Commensalibacter sp. MX01':4)
+Commensalibacter:4,
+(
+'Saccharibacter sp. AM169':4,
+(
+'Saccharibacter floricola DSM 15669':4)
+'Saccharibacter floricola':4
+)Saccharibacter:4,
+(
+(
+'Rubritepida flocculans DSM 14296':4)
+'Rubritepida flocculans':4)
+Rubritepida:4,
+(
+(
+'Roseomonas gilardii subsp. rosea ATCC BAA-691':4)
+'Roseomonas gilardii':4,
+'Roseomonas sp. B5':4,
+(
+'Roseomonas aerilata DSM 19363':4)
+'Roseomonas aerilata':4
+)Roseomonas:4,
+(
+(
+'Belnapia moabensis DSM 16746':4)
+'Belnapia moabensis':4)
+Belnapia:4,
+'Acetobacteraceae bacterium AT-5844':4,
+(
+(
+'Komagataeibacter rhaeticus AF1':4)
+'Komagataeibacter rhaeticus':4,
+(
+'Komagataeibacter xylinus E25':4)
+'Komagataeibacter xylinus':4,
+(
+'Komagataeibacter medellinensis NBRC 3288':4)
+'Komagataeibacter medellinensis':4
+)Komagataeibacter:4,
+(
+(
+'Granulibacter bethesdensis CGDNIH1':4)
+'Granulibacter bethesdensis':4)
+Granulibacter:4,
+(
+(
+'Gluconobacter frateurii NBRC 103465':4)
+'Gluconobacter frateurii':4,
+(
+'Gluconobacter morbifer G707':4)
+'Gluconobacter morbifer':4,
+(
+'Gluconobacter oxydans H24':4,
+'Gluconobacter oxydans 621H':4
+)'Gluconobacter oxydans':4
+)Gluconobacter:4,
+(
+(
+'Gluconacetobacter diazotrophicus PA1 5':4)
+'Gluconacetobacter diazotrophicus':4)
+Gluconacetobacter:4,
+(
+(
+'Acetobacter okinawensis JCM 25146':4)
+'Acetobacter okinawensis':4,
+(
+'Acetobacter nitrogenifigens DSM 23921 = LMG 23498':4)
+'Acetobacter nitrogenifigens':4,
+(
+'Acetobacter aceti 1023':4,
+'Acetobacter aceti ATCC 23746':4
+)'Acetobacter aceti':4,
+(
+'Acetobacter pasteurianus 3P3':4,
+'Acetobacter pasteurianus IFO 3283-01':4
+)'Acetobacter pasteurianus':4,
+'Acetobacter malorum':4
+)Acetobacter:4,
+(
+'Kozakia baliensis':4)
+Kozakia:4
+)Acetobacteraceae:4
+)Rhodospirillales:4,
+(
+(
+(
+'Candidatus Paracaedimonas acanthamoebae':4)
+'Candidatus Paracaedimonas':4)
+Caedimonadaceae:4,
+(
+(
+(
+'Candidatus Odyssella thessalonicensis L13':4)
+'Candidatus Odyssella thessalonicensis':4)
+'Candidatus Odyssella':4,
+(
+'Candidatus Paracaedibacter symbiosus':4,
+'Candidatus Paracaedibacter acanthamoebae':4
+)'Candidatus Paracaedibacter':4
+)'Candidatus Paracaedibacteraceae':4
+)Holosporales:4,
+(
+(
+'Caulobacteraceae bacterium PMMR1':4,
+(
+(
+'Woodsholea maritima DSM 17123':4)
+'Woodsholea maritima':4)
+Woodsholea:4,
+(
+'Asticcacaulis sp. AC466':4,
+'Asticcacaulis sp. AC402':4,
+'Asticcacaulis sp. AC460':4,
+(
+'Asticcacaulis benevestitus DSM 16100 = ATCC BAA-896':4)
+'Asticcacaulis benevestitus':4,
+(
+'Asticcacaulis biprosthecum C19':4)
+'Asticcacaulis biprosthecium':4,
+(
+'Asticcacaulis excentricus CB 48':4)
+'Asticcacaulis excentricus':4
+)Asticcacaulis:4,
+(
+(
+'Phenylobacterium zucineum HLK1':4)
+'Phenylobacterium zucineum':4)
+Phenylobacterium:4,
+(
+(
+'Brevundimonas bacteroides DSM 4726':4)
+'Brevundimonas bacteroides':4,
+(
+'Brevundimonas aveniformis DSM 17977':4)
+'Brevundimonas aveniformis':4,
+(
+'Brevundimonas diminuta 470-4':4)
+'Brevundimonas diminuta':4,
+(
+'Brevundimonas subvibrioides ATCC 15264':4)
+'Brevundimonas subvibrioides':4,
+'Brevundimonas naejangsanensis':4,
+'Brevundimonas sp. BAL3':4
+)Brevundimonas:4,
+(
+'Caulobacter sp. UNC358MFTsu5.1':4,
+(
+'Caulobacter segnis ATCC 21756':4)
+'Caulobacter segnis':4,
+'Caulobacter sp. K31':4,
+(
+'Caulobacter vibrioides OR37':4,
+'Caulobacter vibrioides CB15':4
+)'Caulobacter vibrioides':4,
+'Caulobacter henricii':4
+)Caulobacter:4
+)Caulobacteraceae:4)
+Caulobacterales:4,
+(
+'Rhodobacterales bacterium Y4I':4,
+(
+(
+'Euryhalocaulis caribicus':4)
+Euryhalocaulis:4,
+(
+(
+'Robiginitomaculum antarcticum DSM 21748':4)
+'Robiginitomaculum antarcticum':4)
+Robiginitomaculum:4,
+(
+(
+'Henriciella marina DSM 19595':4)
+'Henriciella marina':4)
+Henriciella:4,
+(
+(
+'Hellea balneolensis DSM 19091':4)
+'Hellea balneolensis':4)
+Hellea:4,
+(
+(
+'Ponticaulis koreensis DSM 19734':4)
+'Ponticaulis koreensis':4)
+Ponticaulis:4,
+(
+(
+'Hirschia baltica ATCC 49814':4)
+'Hirschia baltica':4,
+(
+'Hirschia maritima DSM 19733':4)
+'Hirschia maritima':4
+)Hirschia:4,
+(
+(
+'Maricaulis maris MCS10':4)
+'Maricaulis maris':4)
+Maricaulis:4,
+(
+'Oceanicaulis sp. HL-87':4,
+(
+'Oceanicaulis alexandrii DSM 11625':4)
+'Oceanicaulis alexandrii':4,
+'Oceanicaulis sp. HTCC2633':4
+)Oceanicaulis:4,
+(
+(
+'Hyphomonas polymorpha PS728':4)
+'Hyphomonas polymorpha':4,
+(
+'Hyphomonas oceanitis SCH89':4)
+'Hyphomonas oceanitis':4,
+(
+'Hyphomonas jannaschiana VP2':4)
+'Hyphomonas jannaschiana':4,
+(
+'Hyphomonas johnsonii MHS-2':4)
+'Hyphomonas johnsonii':4,
+(
+'Hyphomonas adhaerens MHS-3':4)
+'Hyphomonas adhaerens':4,
+'Hyphomonas atlantica':4,
+'Hyphomonas chukchiensis':4,
+'Hyphomonas beringensis':4,
+'Hyphomonas sp. CY54-11-8':4,
+'Hyphomonas sp. T16B2':4,
+'Hyphomonas sp. L-53-1-40':4,
+(
+'Hyphomonas neptunium ATCC 15444':4)
+'Hyphomonas neptunium':4
+)Hyphomonas:4
+)Hyphomonadaceae:4,
+(
+(
+'Falsirhodobacter sp. alg1':4)
+Falsirhodobacter:4,
+(
+'Actibacterium atlanticum':4)
+Actibacterium:4,
+(
+'Defluviimonas sp. 20V17':4)
+Defluviimonas:4,
+'Rhodobacteraceae bacterium HIMB11':4,
+(
+(
+'Limimaricola cinnabarinus LL-001':4)
+'Limimaricola cinnabarinus':4)
+Limimaricola:4,
+(
+(
+'Roseivivax isoporae LMG 25204':4)
+'Roseivivax isoporae':4,
+(
+'Roseivivax halodurans JCM 10272':4)
+'Roseivivax halodurans':4,
+'Roseivivax marinus':4
+)Roseivivax:4,
+(
+(
+'Roseibacterium elongatum DSM 19469':4)
+'Roseibacterium elongatum':4)
+Roseibacterium:4,
+(
+(
+'Celeribacter baekdonensis B30':4)
+'Celeribacter baekdonensis':4)
+Celeribacter:4,
+(
+'Rhodovulum sp. PH10':4)
+Rhodovulum:4,
+(
+(
+'Thioclava pacifica DSM 10166':4)
+'Thioclava pacifica':4,
+'Thioclava indica':4,
+'Thioclava atlantica':4,
+'Thioclava dalianensis':4
+)Thioclava:4,
+(
+(
+'Wenxinia marina DSM 24838':4)
+'Wenxinia marina':4)
+Wenxinia:4,
+(
+(
+'Litoreibacter arenae DSM 19593':4)
+'Litoreibacter arenae':4)
+Litoreibacter:4,
+(
+(
+'Sediminimonas qiaohouensis DSM 21189':4)
+'Sediminimonas qiaohouensis':4)
+Sediminimonas:4,
+(
+(
+'Pannonibacter phragmitetus DSM 14782':4)
+'Pannonibacter phragmitetus':4)
+Pannonibacter:4,
+(
+(
+'Pseudodonghicola xiamenensis DSM 18339':4)
+'Pseudodonghicola xiamenensis':4)
+Pseudodonghicola:4,
+(
+(
+'Gemmobacter nectariphilus DSM 15620':4)
+'Gemmobacter nectariphilus':4)
+Gemmobacter:4,
+(
+'Paenirhodobacter enshiensis':4)
+Paenirhodobacter:4,
+(
+(
+'Pseudophaeobacter arcticus DSM 23566':4)
+'Pseudophaeobacter arcticus':4)
+Pseudophaeobacter:4,
+(
+'Leisingera sp. ANG1':4,
+(
+'Leisingera aquimarina DSM 24565':4)
+'Leisingera aquimarina':4,
+(
+'Leisingera caerulea DSM 24564':4)
+'Leisingera caerulea':4,
+(
+'Leisingera daeponensis DSM 23529':4)
+'Leisingera daeponensis':4
+)Leisingera:4,
+(
+'Pseudovibrio sp. FO-BEG1':4)
+Pseudovibrio:4,
+(
+(
+'Ketogulonicigenium vulgare WSH-001':4)
+'Ketogulonicigenium vulgare':4)
+Ketogulonicigenium:4,
+(
+'Roseibium sp. TrichSKD4':4)
+Roseibium:4,
+(
+'Ahrensia sp. 13_GOM-1096m':4,
+'Ahrensia sp. R2A130':4
+)Ahrensia:4,
+(
+'Thalassobium sp. R2A62':4)
+Thalassobium:4,
+(
+(
+'Sedimentitalea nanhaiensis DSM 24252':4)
+'Sedimentitalea nanhaiensis':4)
+Sedimentitalea:4,
+(
+'Citreicella sp. SE45':4)
+Citreicella:4,
+'Rhodobacteraceae bacterium KLH11':4,
+(
+(
+'Dinoroseobacter shibae DFL 12 = DSM 16493':4)
+'Dinoroseobacter shibae':4)
+Dinoroseobacter:4,
+(
+(
+'Phaeobacter gallaeciensis DSM 26640':4)
+'Phaeobacter gallaeciensis':4,
+(
+'Phaeobacter inhibens DSM 17395':4)
+'Phaeobacter inhibens':4
+)Phaeobacter:4,
+(
+(
+'Octadecabacter antarcticus 307':4)
+'Octadecabacter antarcticus':4,
+(
+'Octadecabacter arcticus 238':4)
+'Octadecabacter arcticus':4
+)Octadecabacter:4,
+'Rhodobacteraceae bacterium HTCC2150':4,
+(
+(
+'Sagittula stellata E-37':4)
+'Sagittula stellata':4)
+Sagittula:4,
+(
+(
+'Labrenzia aggregata IAM 12614':4)
+'Labrenzia aggregata':4)
+Labrenzia:4,
+(
+(
+'Maritimibacter alkaliphilus HTCC2654':4)
+'Maritimibacter alkaliphilus':4)
+Maritimibacter:4,
+'Rhodobacteraceae bacterium HTCC2083':4,
+(
+(
+'Salipiger mucosus DSM 16094':4)
+'Salipiger mucosus':4,
+(
+'Salipiger bermudensis HTCC2601':4)
+'Salipiger bermudensis':4
+)Salipiger:4,
+(
+(
+'Roseobacter litoralis Och 149':4)
+'Roseobacter litoralis':4,
+'Roseobacter sp. CCS2':4,
+'Roseobacter sp. GAI101':4,
+'Roseobacter sp. SK209-2-6':4,
+(
+'Roseobacter denitrificans OCh 114':4)
+'Roseobacter denitrificans':4,
+'Roseobacter sp. AzwK-3b':4,
+'Roseobacter sp. MED193':4
+)Roseobacter:4,
+(
+'Oceanicola sp. HL-35':4,
+(
+'Oceanicola granulosus HTCC2516':4)
+'Oceanicola granulosus':4
+)Oceanicola:4,
+(
+(
+'Yoonia vestfoldensis SKA53':4)
+'Yoonia vestfoldensis':4)
+Yoonia:4,
+(
+'Jannaschia sp. CCS1':4)
+Jannaschia:4,
+(
+'Rhodobacter sp. SW2':4,
+(
+'Rhodobacter sphaeroides ATCC 17025':4,
+'Rhodobacter sphaeroides 2.4.1':4
+)'Rhodobacter sphaeroides':4,
+(
+'Rhodobacter capsulatus SB 1003':4)
+'Rhodobacter capsulatus':4
+)Rhodobacter:4,
+(
+'Thalassobacter stenotrophicus':4)
+Thalassobacter:4,
+(
+'Pseudooceanicola atlanticus':4,
+(
+'Pseudooceanicola nanhaiensis DSM 18065':4)
+'Pseudooceanicola nanhaiensis':4,
+(
+'Pseudooceanicola batsensis HTCC2597':4)
+'Pseudooceanicola batsensis':4
+)Pseudooceanicola:4,
+(
+'Ruegeria halocynthiae':4,
+'Ruegeria conchae':4,
+(
+'Ruegeria lacuscaerulensis ITI-1157':4)
+'Ruegeria lacuscaerulensis':4,
+'Silicibacter sp. TrichCH4B':4,
+'Ruegeria sp. R11':4,
+'Ruegeria sp. TM1040':4,
+(
+'Ruegeria pomeroyi DSS-3':4)
+'Ruegeria pomeroyi':4
+)Ruegeria:4,
+(
+'Haematobacter massiliensis':4)
+Haematobacter:4,
+(
+'Roseovarius sp. MCTG156(2b)':4,
+(
+'Roseovarius mucosus DSM 17069':4)
+'Roseovarius mucosus':4,
+'Roseovarius sp. TM1035':4,
+(
+'Roseovarius nubinhibens ISM':4)
+'Roseovarius nubinhibens':4
+)Roseovarius:4,
+(
+(
+'Sulfitobacter guttiformis KCTC 32187':4)
+'Sulfitobacter guttiformis':4,
+'Sulfitobacter pseudonitzschiae':4,
+'Sulfitobacter sp. 20_GPM-1509m':4,
+'Sulfitobacter noctilucae':4,
+'Sulfitobacter noctilucicola':4,
+'Sulfitobacter geojensis':4,
+(
+'Sulfitobacter donghicola DSW-25 = KCTC 12864 = JCM 14565':4)
+'Sulfitobacter donghicola':4,
+(
+'Sulfitobacter indolifex HEL-45':4)
+'Sulfitobacter indolifex':4,
+'Sulfitobacter mediterraneus':4,
+'Sulfitobacter sp. EE-36':4
+)Sulfitobacter:4,
+(
+'Paracoccus sp. PAMC 22219':4,
+'Paracoccus sanguinis':4,
+(
+'Paracoccus yeei ATCC BAA-599':4)
+'Paracoccus yeei':4,
+(
+'Paracoccus aminophilus JCM 7686':4)
+'Paracoccus aminophilus':4,
+(
+'Paracoccus zeaxanthinifaciens ATCC 21588':4)
+'Paracoccus zeaxanthinifaciens':4,
+'Paracoccus sp. N5':4,
+'Paracoccus sp. J39':4,
+(
+'Paracoccus pantotrophus J46':4)
+'Paracoccus pantotrophus':4,
+'Paracoccus sp. TRP':4,
+'Paracoccus halophilus':4,
+(
+'Paracoccus denitrificans PD1222':4)
+'Paracoccus denitrificans':4,
+'Paracoccus versutus':4
+)Paracoccus:4
+)Rhodobacteraceae:4
+)Rhodobacterales:4,
+(
+(
+(
+'Blastomonas sp. AAP53':4)
+Blastomonas:4,
+(
+'Pacificimonas flava':4)
+Pacificimonas:4,
+(
+'Sandarakinorhabdus sp. AAP62':4,
+(
+'Sandarakinorhabdus limnophila DSM 17366':4)
+'Sandarakinorhabdus limnophila':4
+)Sandarakinorhabdus:4,
+(
+(
+'Citromicrobium bathyomarinum JL354':4)
+'Citromicrobium bathyomarinum':4,
+'Citromicrobium sp. JLT1363':4
+)Citromicrobium:4,
+(
+'Sphingopyxis sp. MWB1':4,
+'Sphingopyxis sp. LC81':4,
+'Sphingopyxis sp. MC1':4,
+(
+'Sphingopyxis baekryungensis DSM 16222':4)
+'Sphingopyxis baekryungensis':4,
+'Sphingopyxis sp. LC363':4,
+(
+'Sphingopyxis alaskensis RB2256':4)
+'Sphingopyxis alaskensis':4
+)Sphingopyxis:4,
+(
+(
+'Zymomonas mobilis subsp. pomaceae ATCC 29192':4,
+'Zymomonas mobilis subsp. mobilis ATCC 10988':4,
+'Zymomonas mobilis subsp. mobilis ZM4 = ATCC 31821':4
+)'Zymomonas mobilis':4)
+Zymomonas:4,
+(
+(
+'Novosphingobium tardaugens NBRC 16725':4)
+'Novosphingobium tardaugens':4,
+'Novosphingobium sp. AP12':4,
+(
+'Novosphingobium acidiphilum DSM 19966':4)
+'Novosphingobium acidiphilum':4,
+(
+'Novosphingobium lindaniclasticum LE124':4)
+'Novosphingobium lindaniclasticum':4,
+(
+'Novosphingobium pentaromativorans US6-1':4)
+'Novosphingobium pentaromativorans':4,
+(
+'Novosphingobium nitrogenifigens DSM 19370':4)
+'Novosphingobium nitrogenifigens':4,
+'Novosphingobium sp. PP1Y':4,
+'Novosphingobium sp. Rr 2-17':4,
+(
+'Novosphingobium aromaticivorans DSM 12444':4)
+'Novosphingobium aromaticivorans':4,
+'Novosphingobium resinovorum':4
+)Novosphingobium:4,
+(
+'Sphingobium sp. ba1':4,
+(
+'Sphingobium ummariense RL-3':4)
+'Sphingobium ummariense':4,
+'Sphingobium sp. YL23':4,
+(
+'Sphingobium lactosutens DS20':4)
+'Sphingobium lactosutens':4,
+(
+'Sphingobium herbicidovorans NBRC 16415':4)
+'Sphingobium herbicidovorans':4,
+'Sphingobium sp. C100':4,
+(
+'Sphingobium xenophagum QYY':4)
+'Sphingobium xenophagum':4,
+'Sphingobium sp. AP49':4,
+(
+'Sphingobium baderi LL03':4)
+'Sphingobium baderi':4,
+'Sphingobium sp. SYK-6':4,
+(
+'Sphingobium japonicum UT26S':4)
+'Sphingobium japonicum':4,
+'Sphingobium chlorophenolicum':4,
+'Sphingobium yanoikuyae':4
+)Sphingobium:4,
+(
+'Sphingomonas sp. 37zxx':4,
+'Sphingomonas taxi':4,
+'Sphingomonas sp. 35-24ZXX':4,
+'Sphingomonas sp. RIT328':4,
+'Sphingomonas sp. UNC305MFCol5.2':4,
+'Sphingomonas sp. FUKUSWIS1':4,
+(
+'Sphingomonas parapaucimobilis NBRC 15100':4)
+'Sphingomonas parapaucimobilis':4,
+(
+'Sphingomonas sanxanigenens DSM 19645 = NX02':4)
+'Sphingomonas sanxanigenens':4,
+(
+'Sphingomonas astaxanthinifaciens DSM 22298':4)
+'Sphingomonas astaxanthinifaciens':4,
+'Sphingomonas sp. PAMC 26617':4,
+'Sphingomonas sp. PAMC 26605':4,
+(
+'Sphingomonas echinoides ATCC 14820':4)
+'Sphingomonas echinoides':4,
+(
+'Sphingomonas melonis DAPP-PG 224':4)
+'Sphingomonas melonis':4,
+(
+'Sphingomonas phyllosphaerae FA2':4,
+'Sphingomonas phyllosphaerae 5.2':4
+)'Sphingomonas phyllosphaerae':4,
+(
+'Sphingomonas elodea ATCC 31461':4)
+'Sphingomonas elodea':4,
+'Sphingomonas sp. KC8':4,
+'Sphingomonas sp. S17':4,
+'Sphingomonas sp. MM-1':4,
+'Sphingomonas sp. PR090111-T3T-6A':4,
+'Sphingomonas sp. Mn802worker':4,
+(
+'Sphingomonas wittichii RW1':4)
+'Sphingomonas wittichii':4,
+'Sphingomonas sp. SKA58':4,
+'Sphingomonas sp. ATCC 31555':4,
+'Sphingomonas paucimobilis':4
+)Sphingomonas:4
+)Sphingomonadaceae:4,
+(
+(
+'Porphyrobacter sp. HL-46':4,
+'Porphyrobacter sp. AAP82':4,
+(
+'Porphyrobacter cryptus DSM 12079':4)
+'Porphyrobacter cryptus':4
+)Porphyrobacter:4,
+(
+'Erythrobacter sp. JL475':4,
+(
+'Erythrobacter litoralis HTCC2594':4)
+'Erythrobacter litoralis':4,
+'Erythrobacter vulgaris':4,
+'Erythrobacter sp. NAP1':4,
+'Erythrobacter sp. SD-21':4,
+'Erythrobacter longus':4
+)Erythrobacter:4
+)Erythrobacteraceae:4
+)Sphingomonadales:4,
+(
+(
+(
+'Chelatococcus sp. GW1':4)
+Chelatococcus:4)
+Chelatococcaceae:4,
+(
+(
+(
+'Salinarimonas rosea DSM 21201':4)
+'Salinarimonas rosea':4)
+Salinarimonas:4)
+Salinarimonadaceae:4,
+(
+(
+(
+'Bartonella tamiae Th239':4)
+'Bartonella tamiae':4)
+Bartonella:4)
+Bartonellaceae:4,
+(
+(
+'Devosia sp. 17-2-E-8':4,
+'Devosia sp. LC5':4
+)Devosia:4,
+(
+(
+'Pelagibacterium halotolerans B2':4)
+'Pelagibacterium halotolerans':4)
+Pelagibacterium:4,
+(
+(
+'Hyphomicrobium zavarzinii ATCC 27496':4)
+'Hyphomicrobium zavarzinii':4,
+'Hyphomicrobium sp. MC1':4,
+(
+'Hyphomicrobium denitrificans ATCC 51888':4)
+'Hyphomicrobium denitrificans':4
+)Hyphomicrobium:4
+)Hyphomicrobiaceae:4,
+(
+(
+'Tepidicaulis marinus':4)
+Tepidicaulis:4,
+(
+(
+'Amorphus coralli DSM 19760':4)
+'Amorphus coralli':4)
+Amorphus:4,
+(
+(
+'Afifella pfennigii DSM 17143':4)
+'Afifella pfennigii':4)
+Afifella:4,
+(
+(
+'Lutibaculum baratangense AMV1':4)
+'Lutibaculum baratangense':4)
+Lutibaculum:4,
+(
+(
+'Parvibaculum lavamentivorans DS-1':4)
+'Parvibaculum lavamentivorans':4)
+Parvibaculum:4
+)Rhodobiaceae:4,
+(
+(
+(
+'Martelella mediterranea DSM 17316':4)
+'Martelella mediterranea':4)
+Martelella:4,
+(
+(
+'Aureimonas ureilytica DSM 18598 = NBRC 106430':4)
+'Aureimonas ureilytica':4)
+Aureimonas:4,
+(
+(
+'Fulvimarina pelagi HTCC2506':4)
+'Fulvimarina pelagi':4)
+Fulvimarina:4
+)Aurantimonadaceae:4,
+(
+(
+(
+'Neomegalonema perideroedes DSM 15528':4)
+'Neomegalonema perideroedes':4)
+Neomegalonema:4,
+(
+'Methylobacterium sp. 88A':4,
+'Methylobacterium sp. 77':4,
+'Methylobacterium sp. 10':4,
+'Methylobacterium sp. GXF4':4,
+(
+'Methylobacterium oryzae CBMB20':4)
+'Methylobacterium oryzae':4,
+'Methylobacterium sp. MB200':4,
+(
+'Methylobacterium nodulans ORS 2060':4)
+'Methylobacterium nodulans':4,
+(
+'Methylobacterium radiotolerans JCM 2831':4)
+'Methylobacterium radiotolerans':4,
+'Methylobacterium sp. 4-46':4
+)Methylobacterium:4,
+(
+(
+'Microvirga flocculans ATCC BAA-817':4)
+'Microvirga flocculans':4,
+'Microvirga lotononidis':4,
+'Microvirga aerilata':4,
+'Microvirga lupini':4
+)Microvirga:4,
+(
+(
+'Methylorubrum populi BJ001':4)
+'Methylorubrum populi':4,
+(
+'Methylorubrum extorquens PA1':4,
+'Methylorubrum extorquens AM1':4
+)'Methylorubrum extorquens':4
+)Methylorubrum:4
+)Methylobacteriaceae:4,
+(
+(
+(
+'Methylocella silvestris BL2':4)
+'Methylocella silvestris':4)
+Methylocella:4,
+(
+'Methylocapsa aurea':4,
+(
+'Methylocapsa acidiphila B2':4)
+'Methylocapsa acidiphila':4
+)Methylocapsa:4,
+(
+(
+'Beijerinckia indica subsp. indica ATCC 9039':4)
+'Beijerinckia indica':4,
+'Beijerinckia mobilis':4
+)Beijerinckia:4
+)Beijerinckiaceae:4,
+(
+(
+(
+'Ochrobactrum rhizosphaerae SJY1':4)
+'Ochrobactrum rhizosphaerae':4,
+(
+'Ochrobactrum anthropi ATCC 49188':4)
+'Ochrobactrum anthropi':4
+)Ochrobactrum:4,
+(
+(
+'Brucella melitensis bv. 1 str. 16M':4)
+'Brucella melitensis':4)
+Brucella:4
+)Brucellaceae:4,
+(
+(
+'Bosea sp. UNC402CLCol':4,
+'Bosea sp. LC85':4,
+'Bosea sp. 117':4
+)Bosea:4,
+(
+'Afipia sp. P52-10':4,
+'Afipia sp. OHSU_I-C4':4,
+(
+'Afipia birgiae 34632':4)
+'Afipia birgiae':4,
+(
+'Afipia felis ATCC 53690':4)
+'Afipia felis':4,
+(
+'Afipia broomeae ATCC 49717':4)
+'Afipia broomeae':4
+)Afipia:4,
+'Bradyrhizobiaceae bacterium SG-6C':4,
+(
+(
+'Nitrobacter winogradskyi Nb-255':4)
+'Nitrobacter winogradskyi':4,
+(
+'Nitrobacter hamburgensis X14':4)
+'Nitrobacter hamburgensis':4
+)Nitrobacter:4,
+(
+(
+'Rhodopseudomonas palustris DX-1':4,
+'Rhodopseudomonas palustris HaA2':4,
+'Rhodopseudomonas palustris BisB5':4,
+'Rhodopseudomonas palustris BisB18':4,
+'Rhodopseudomonas palustris BisA53':4,
+'Rhodopseudomonas palustris CGA009':4
+)'Rhodopseudomonas palustris':4)
+Rhodopseudomonas:4,
+(
+'Bradyrhizobium sp. URHD0069':4,
+'Bradyrhizobium sp. URHA0002':4,
+'Bradyrhizobium sp. OHSU_III':4,
+(
+'Bradyrhizobium oligotrophicum S58':4)
+'Bradyrhizobium oligotrophicum':4,
+'Bradyrhizobium sp. DFCI-1':4,
+'Bradyrhizobium sp. DOA9':4,
+'Bradyrhizobium sp. ARR65':4,
+'Bradyrhizobium sp. WSM3983':4,
+'Bradyrhizobium sp. WSM2793':4,
+(
+'Bradyrhizobium japonicum in8p8':4,
+'Bradyrhizobium japonicum 22':4,
+'Bradyrhizobium japonicum USDA 124':4,
+'Bradyrhizobium japonicum USDA 6':4
+)'Bradyrhizobium japonicum':4,
+(
+'Bradyrhizobium genosp. SA-4 str. CB756':4)
+'Bradyrhizobium genosp. SA-4':4,
+'Bradyrhizobium sp. Cp5.3':4,
+(
+'Bradyrhizobium elkanii WSM2783':4,
+'Bradyrhizobium elkanii WSM1741':4,
+'Bradyrhizobium elkanii USDA 76':4
+)'Bradyrhizobium elkanii':4,
+'Bradyrhizobium sp. S23321':4,
+'Bradyrhizobium sp. WSM1253':4,
+'Bradyrhizobium sp. WSM1743':4,
+'Bradyrhizobium sp. BTAi1':4,
+(
+'Bradyrhizobium diazoefficiens USDA 110':4)
+'Bradyrhizobium diazoefficiens':4,
+'Bradyrhizobium sp. Ai1a-2':4,
+'Bradyrhizobium sp. Ec3.3':4,
+'Bradyrhizobium sp. th.b2':4,
+'Bradyrhizobium sp. ORS 278':4,
+'Bradyrhizobium sp. Tv2a-2':4
+)Bradyrhizobium:4
+)Bradyrhizobiaceae:4,
+(
+(
+(
+'Pleomorphomonas oryzae DSM 16300':4)
+'Pleomorphomonas oryzae':4,
+(
+'Pleomorphomonas koreensis DSM 23070':4)
+'Pleomorphomonas koreensis':4
+)Pleomorphomonas:4,
+(
+(
+'Methylocystis parvus OBBP':4)
+'Methylocystis parvus':4,
+'Methylocystis sp. SB2':4,
+'Methylocystis sp. ATCC 49242':4,
+'Methylocystis sp. SC2':4
+)Methylocystis:4,
+(
+'Methylosinus sp. LW4':4,
+'Methylosinus sp. PW1':4
+)Methylosinus:4
+)Methylocystaceae:4,
+(
+'Xanthobacteraceae bacterium 501b':4,
+(
+(
+'Starkeya novella DSM 506':4)
+'Starkeya novella':4)
+Starkeya:4,
+(
+(
+'Azorhizobium doebereinerae UFLA1-100':4)
+'Azorhizobium doebereinerae':4,
+(
+'Azorhizobium caulinodans ORS 571':4)
+'Azorhizobium caulinodans':4
+)Azorhizobium:4,
+(
+'Xanthobacter sp. 126':4,
+(
+'Xanthobacter autotrophicus Py2':4)
+'Xanthobacter autotrophicus':4
+)Xanthobacter:4
+)Xanthobacteraceae:4,
+(
+(
+'Aliihoeflea sp. 2WW':4)
+Aliihoeflea:4,
+(
+(
+'Pseudaminobacter salicylatoxidans KCT001':4)
+'Pseudaminobacter salicylatoxidans':4)
+Pseudaminobacter:4,
+(
+'Phyllobacterium sp. YR531':4)
+Phyllobacterium:4,
+(
+'Aminobacter sp. J41':4)
+Aminobacter:4,
+(
+'Hoeflea sp. BAL378':4,
+'Hoeflea sp. 108':4,
+(
+'Hoeflea phototrophica DFL-43':4)
+'Hoeflea phototrophica':4
+)Hoeflea:4,
+(
+(
+'Nitratireductor indicus C115':4)
+'Nitratireductor indicus':4,
+(
+'Nitratireductor aquibiodomus NL21 = JCM 21793':4)
+'Nitratireductor aquibiodomus':4,
+'Nitratireductor basaltis':4,
+(
+'Nitratireductor pacificus pht-3B':4)
+'Nitratireductor pacificus':4
+)Nitratireductor:4,
+(
+'Mesorhizobium sp. URHC0008':4,
+'Mesorhizobium sp. NBIMC_P2-C3':4,
+'Mesorhizobium sp. URHA0056':4,
+'Mesorhizobium sp. STM 4661':4,
+(
+'Mesorhizobium metallidurans STM 2683':4)
+'Mesorhizobium metallidurans':4,
+'Mesorhizobium sp. LNJC398B00':4,
+'Mesorhizobium sp. L2C084A000':4,
+(
+'Mesorhizobium amorphae CCNWGS0123':4)
+'Mesorhizobium amorphae':4,
+'Mesorhizobium sp. WSM3626':4,
+'Mesorhizobium sp. WSM3224':4,
+(
+'Mesorhizobium erdmanii USDA 3471':4)
+'Mesorhizobium erdmanii':4,
+(
+'Mesorhizobium loti CJ3sym':4,
+'Mesorhizobium loti R88b':4
+)'Mesorhizobium loti':4,
+(
+'Mesorhizobium ciceri biovar biserrulae WSM1271':4)
+'Mesorhizobium ciceri':4,
+(
+'Mesorhizobium australicum WSM2073':4)
+'Mesorhizobium australicum':4,
+(
+'Mesorhizobium opportunistum WSM2075':4)
+'Mesorhizobium opportunistum':4,
+(
+'Mesorhizobium japonicum MAFF 303099':4)
+'Mesorhizobium japonicum':4
+)Mesorhizobium:4,
+(
+'Chelativorans sp. J32':4,
+'Chelativorans sp. BNC1':4
+)Chelativorans:4,
+(
+'Aquamicrobium defluvii':4)
+Aquamicrobium:4
+)Phyllobacteriaceae:4,
+(
+(
+'Pseudorhizobium pelagicum':4)
+Pseudorhizobium:4,
+(
+'Shinella sp. DD12':4)
+Shinella:4,
+(
+(
+'Kaistia granuli DSM 23481':4)
+'Kaistia granuli':4)
+Kaistia:4,
+(
+(
+'Neorhizobium galegae bv. officinalis bv. officinalis str. HAMBI 1141':4,
+'Neorhizobium galegae bv. orientalis str. HAMBI 540':4
+)'Neorhizobium galegae':4)
+Neorhizobium:4,
+(
+'Ensifer aridi':4,
+'Ensifer sp. BR816':4,
+'Ensifer sp. WSM1721':4,
+(
+'Ensifer sojae CCBAU 05684':4)
+'Ensifer sojae':4
+)Ensifer:4,
+(
+'Rhizobium sp. YS-1r':4,
+'Rhizobium sp. OK494':4,
+'Rhizobium sp. CF394':4,
+'Rhizobium sp. CF097':4,
+'Rhizobium sp. YR519':4,
+'Rhizobium sp. YR295':4,
+(
+'Rhizobium undicola ORS 992 = ATCC 700741':4)
+'Rhizobium undicola':4,
+(
+'Rhizobium selenitireducens ATCC BAA-1503':4)
+'Rhizobium selenitireducens':4,
+'Rhizobium sp. 2MFCol3.1':4,
+(
+'Rhizobium mesoamericanum STM3625':4)
+'Rhizobium mesoamericanum':4,
+'Rhizobium sp. CF122':4,
+'Rhizobium sp. CF080':4,
+'Rhizobium sp. CCGE 510':4,
+(
+'Rhizobium mongolense USDA 1844':4)
+'Rhizobium mongolense':4,
+'Rhizobium sp. IBUN':4,
+(
+'Rhizobium leucaenae USDA 9039':4)
+'Rhizobium leucaenae':4,
+(
+'Rhizobium sullae WSM1592':4)
+'Rhizobium sullae':4,
+(
+'Rhizobium giardinii bv. giardinii H152':4)
+'Rhizobium giardinii':4,
+(
+'Rhizobium gallicum bv. gallicum R602sp':4)
+'Rhizobium gallicum':4,
+(
+'Rhizobium grahamii CCGE 502':4)
+'Rhizobium grahamii':4,
+(
+'Rhizobium tropici CIAT 899':4)
+'Rhizobium tropici':4,
+'Rhizobium vignae':4,
+'Rhizobium alamii':4,
+'Rhizobium favelukesii':4,
+(
+'Rhizobium etli bv. mimosae str. IE4771':4,
+'Rhizobium etli CIAT 652':4,
+'Rhizobium etli CFN 42':4
+)'Rhizobium etli':4,
+(
+'Rhizobium leguminosarum bv. viciae GB30':4,
+'Rhizobium leguminosarum bv. trifolii CB782':4,
+'Rhizobium leguminosarum bv. viciae 248':4,
+'Rhizobium leguminosarum bv. trifolii WSM2304':4,
+'Rhizobium leguminosarum bv. viciae 3841':4
+)'Rhizobium leguminosarum':4
+)Rhizobium:4,
+(
+(
+'Sinorhizobium americanum CCGM7':4)
+'Sinorhizobium americanum':4,
+(
+'Sinorhizobium arboris LMG 14919':4)
+'Sinorhizobium arboris':4,
+'Sinorhizobium sp. CCBAU 05631':4,
+(
+'Sinorhizobium medicae WSM419':4)
+'Sinorhizobium medicae':4,
+(
+'Sinorhizobium meliloti 1021':4)
+'Sinorhizobium meliloti':4,
+(
+'Sinorhizobium fredii USDA 257':4,
+'Sinorhizobium fredii HH103':4,
+'Sinorhizobium fredii NGR234':4
+)'Sinorhizobium fredii':4
+)Sinorhizobium:4,
+(
+'Agrobacterium larrymoorei':4,
+'Agrobacterium rubi':4,
+(
+'Agrobacterium albertimagni AOL15':4)
+'Agrobacterium albertimagni':4,
+'Agrobacterium sp. H13-3':4,
+(
+'Agrobacterium tumefaciens str. Cherry 2E-2-2':4,
+'Agrobacterium tumefaciens CCNWGS0286':4,
+'Agrobacterium radiobacter K84':4
+)'Agrobacterium tumefaciens':4,
+(
+'Agrobacterium vitis S4':4)
+'Agrobacterium vitis':4,
+(
+'Agrobacterium fabrum str. C58':4)
+'Agrobacterium fabrum':4,
+'Agrobacterium rhizogenes':4
+)Agrobacterium:4
+)Rhizobiaceae:4
+)Rhizobiales:4
+)Alphaproteobacteria:4,
+(
+(
+(
+'Candidatus Accumulibacter phosphatis clade IIA str. UW-1':4)
+'Candidatus Accumulibacter phosphatis':4)
+'Candidatus Accumulibacter':4,
+(
+(
+(
+(
+'Methylobacillus glycogenes JCM 2850':4)
+'Methylobacillus glycogenes':4)
+Methylobacillus:4)
+Methylophilaceae:4,
+(
+(
+(
+'Methyloversatilis universalis FAM5':4)
+'Methyloversatilis universalis':4)
+Methyloversatilis:4)
+Sterolibacteriaceae:4,
+(
+(
+'Ferriphaselus sp. R-1':4)
+Ferriphaselus:4,
+(
+(
+'Sideroxydans lithotrophicus ES-1':4)
+'Sideroxydans lithotrophicus':4)
+Sideroxydans:4,
+(
+(
+'Gallionella capsiferriformans ES-2':4)
+'Gallionella capsiferriformans':4)
+Gallionella:4
+)Gallionellaceae:4,
+(
+(
+(
+'Nitrosomonas eutropha C91':4)
+'Nitrosomonas eutropha':4)
+Nitrosomonas:4)
+Nitrosomonadaceae:4
+)Nitrosomonadales:4,
+(
+(
+(
+'Snodgrassella alvi':4)
+Snodgrassella:4)
+Neisseriaceae:4,
+(
+(
+(
+'Andreprevotia chitinilytica DSM 18519':4)
+'Andreprevotia chitinilytica':4)
+Andreprevotia:4,
+(
+(
+'Laribacter hongkongensis HLHK9':4)
+'Laribacter hongkongensis':4)
+Laribacter:4,
+(
+'Pseudogulbenkiania sp. NH8B':4,
+(
+'Pseudogulbenkiania ferrooxidans 2002':4)
+'Pseudogulbenkiania ferrooxidans':4
+)Pseudogulbenkiania:4,
+(
+(
+'Chromobacterium violaceum ATCC 12472':4)
+'Chromobacterium violaceum':4)
+Chromobacterium:4
+)Chromobacteriaceae:4
+)Neisseriales:4,
+(
+(
+(
+(
+'Azospira oryzae PS':4)
+'Azospira oryzae':4)
+Azospira:4)
+Rhodocyclaceae:4,
+(
+(
+(
+'Dechloromonas agitata is5':4)
+'Dechloromonas agitata':4,
+(
+'Dechloromonas aromatica RCB':4)
+'Dechloromonas aromatica':4
+)Dechloromonas:4)
+Azonexaceae:4,
+(
+(
+(
+'Uliginosibacterium gangwonense DSM 18521':4)
+'Uliginosibacterium gangwonense':4)
+Uliginosibacterium:4,
+(
+(
+'Thauera terpenica 58Eu':4)
+'Thauera terpenica':4,
+(
+'Thauera linaloolentis 47Lol = DSM 12138':4)
+'Thauera linaloolentis':4,
+'Thauera sp. 27':4
+)Thauera:4,
+(
+'Azoarcus sp. KH32C':4,
+'Azoarcus sp. BH72':4
+)Azoarcus:4
+)Zoogloeaceae:4
+)Rhodocyclales:4,
+(
+(
+'Aquabacterium sp. NJ1':4)
+Aquabacterium:4,
+(
+(
+'Sphaerotilus natans subsp. natans DSM 6575':4)
+'Sphaerotilus natans':4)
+Sphaerotilus:4,
+(
+(
+'Rubrivivax benzoatilyticus JA2 = ATCC BAA-35':4)
+'Rubrivivax benzoatilyticus':4,
+(
+'Rubrivivax gelatinosus IL144':4)
+'Rubrivivax gelatinosus':4
+)Rubrivivax:4,
+'Burkholderiales bacterium JOSHI_001':4,
+(
+(
+'Methylibium petroleiphilum PM1':4)
+'Methylibium petroleiphilum':4)
+Methylibium:4,
+(
+(
+(
+'Xenophilus azovorans DSM 13620':4)
+'Xenophilus azovorans':4)
+Xenophilus:4,
+(
+(
+'Simplicispira psychrophila DSM 11588':4)
+'Simplicispira psychrophila':4)
+Simplicispira:4,
+(
+'Limnohabitans sp. Rim47':4,
+'Limnohabitans sp. Rim28':4
+)Limnohabitans:4,
+(
+(
+'Candidatus Symbiobacter mobilis CR':4)
+'Candidatus Symbiobacter mobilis':4)
+'Candidatus Symbiobacter':4,
+(
+(
+'Variovorax paradoxus 110B':4,
+'Variovorax paradoxus EPS':4,
+'Variovorax paradoxus S110':4
+)'Variovorax paradoxus':4)
+Variovorax:4,
+(
+(
+'Comamonas granuli NBRC 101663':4)
+'Comamonas granuli':4,
+(
+'Comamonas testosteroni CNB-2':4,
+'Comamonas testosteroni KF-1':4
+)'Comamonas testosteroni':4
+)Comamonas:4,
+(
+(
+'Delftia acidovorans SPH-1':4)
+'Delftia acidovorans':4)
+Delftia:4,
+(
+(
+'Verminephrobacter eiseniae EF01-2':4)
+'Verminephrobacter eiseniae':4)
+Verminephrobacter:4,
+(
+(
+'Ramlibacter tataouinensis TTB310':4)
+'Ramlibacter tataouinensis':4)
+Ramlibacter:4,
+(
+'Acidovorax sp. MR-S7':4,
+'Acidovorax sp. KKS102':4
+)Acidovorax:4,
+(
+(
+'Rhodoferax saidenbachensis ED16':4)
+'Rhodoferax saidenbachensis':4,
+(
+'Rhodoferax ferrireducens T118':4)
+'Rhodoferax ferrireducens':4
+)Rhodoferax:4
+)Comamonadaceae:4,
+(
+(
+(
+'Noviherbaspirillum massiliense JC206':4)
+'Noviherbaspirillum massiliense':4)
+Noviherbaspirillum:4,
+(
+(
+'Collimonas fungivorans Ter331':4)
+'Collimonas fungivorans':4)
+Collimonas:4,
+(
+'Massilia sp. LC238':4,
+'Massilia sp. 9096':4,
+(
+'Massilia timonae CCUG 45783':4)
+'Massilia timonae':4,
+'Massilia consociata':4
+)Massilia:4,
+(
+'Herbaspirillum sp. GW103':4,
+'Herbaspirillum sp. YR522':4,
+'Herbaspirillum sp. CF444':4,
+(
+'Herbaspirillum frisingense GSF30':4)
+'Herbaspirillum frisingense':4,
+(
+'Herbaspirillum seropedicae SmR1':4)
+'Herbaspirillum seropedicae':4
+)Herbaspirillum:4,
+(
+(
+'Oxalobacter formigenes OXCC13':4,
+'Oxalobacter formigenes HOxBLS':4
+)'Oxalobacter formigenes':4)
+Oxalobacter:4,
+(
+'Herminiimonas arsenicoxydans':4)
+Herminiimonas:4,
+(
+(
+'Janthinobacterium agaricidamnosum NBRC 102515 = DSM 9628':4)
+'Janthinobacterium agaricidamnosum':4,
+'Janthinobacterium sp. HH01':4,
+'Janthinobacterium sp. Marseille':4,
+'Janthinobacterium lividum':4
+)Janthinobacterium:4
+)Oxalobacteraceae:4,
+(
+(
+(
+'Advenella kashmirensis W13003':4)
+'Advenella kashmirensis':4,
+(
+'Advenella mimigardefordensis DPN7':4)
+'Advenella mimigardefordensis':4
+)Advenella:4,
+(
+(
+'Pusillimonas noertemannii BS8':4)
+'Pusillimonas noertemannii':4,
+'Pusillimonas sp. T7-7':4
+)Pusillimonas:4,
+(
+'Achromobacter sp. RTa':4,
+(
+'Achromobacter insuavis AXX-A':4)
+'Achromobacter insuavis':4,
+(
+'Achromobacter xylosoxidans NBRC 15126 = ATCC 27061':4,
+'Achromobacter xylosoxidans A8':4
+)'Achromobacter xylosoxidans':4,
+(
+'Achromobacter piechaudii HLE':4,
+'Achromobacter piechaudii ATCC 43553':4
+)'Achromobacter piechaudii':4,
+(
+'Achromobacter arsenitoxydans SY8':4)
+'Achromobacter arsenitoxydans':4
+)Achromobacter:4,
+(
+(
+'Bordetella hinzii ATCC 51730':4)
+'Bordetella hinzii':4,
+'Bordetella sp. FB-8':4,
+(
+'Bordetella bronchiseptica RB50':4)
+'Bordetella bronchiseptica':4,
+'Bordetella petrii':4
+)Bordetella:4,
+(
+'Alcaligenes faecalis':4)
+Alcaligenes:4
+)Alcaligenaceae:4,
+(
+'Burkholderiaceae bacterium PBA':4,
+'Paraburkholderia symbiotica':4,
+(
+'Ralstonia sp. AU12-08':4,
+(
+'Ralstonia pickettii DTP0602':4,
+'Ralstonia pickettii 12J':4
+)'Ralstonia pickettii':4,
+(
+'Ralstonia solanacearum Po82':4,
+'Ralstonia solanacearum PSI07':4,
+'Ralstonia solanacearum GMI1000':4
+)'Ralstonia solanacearum':4
+)Ralstonia:4,
+(
+'Cupriavidus sp. BIS7':4,
+(
+'Cupriavidus taiwanensis LMG 19424':4)
+'Cupriavidus taiwanensis':4,
+'Cupriavidus sp. amp6':4,
+(
+'Cupriavidus necator H16':4)
+'Cupriavidus necator':4,
+(
+'Cupriavidus metallidurans CH34':4)
+'Cupriavidus metallidurans':4,
+(
+'Cupriavidus pinatubonensis JMP134':4)
+'Cupriavidus pinatubonensis':4
+)Cupriavidus:4,
+(
+'Caballeronia jiangsuensis':4,
+'Caballeronia grimmiae':4,
+'Caballeronia sordidicola':4
+)Caballeronia:4,
+(
+(
+'Paraburkholderia phenoliruptrix BR3459a':4)
+'Paraburkholderia phenoliruptrix':4,
+(
+'Paraburkholderia terrae NBRC 100964':4)
+'Paraburkholderia terrae':4,
+(
+'Paraburkholderia ferrariae NBRC 106233':4)
+'Paraburkholderia ferrariae':4,
+(
+'Paraburkholderia bannensis NBRC 103871':4)
+'Paraburkholderia bannensis':4,
+(
+'Paraburkholderia acidipaludis NBRC 101816':4)
+'Paraburkholderia acidipaludis':4,
+(
+'Paraburkholderia bryophila 376MFSha3.1':4)
+'Paraburkholderia bryophila':4,
+(
+'Paraburkholderia nodosa DSM 21604':4)
+'Paraburkholderia nodosa':4,
+(
+'Paraburkholderia mimosarum LMG 23256 = NBRC 106338':4)
+'Paraburkholderia mimosarum':4,
+'Paraburkholderia dilworthii':4,
+'Paraburkholderia sp. CCGE1002':4,
+(
+'Paraburkholderia phytofirmans PsJN':4)
+'Paraburkholderia phytofirmans':4,
+(
+'Paraburkholderia phymatum STM815':4)
+'Paraburkholderia phymatum':4,
+(
+'Paraburkholderia xenovorans LB400':4)
+'Paraburkholderia xenovorans':4,
+'Paraburkholderia sacchari':4
+)Paraburkholderia:4,
+(
+'Pandoraea sp. SD6-2':4,
+'Pandoraea pnomenusa':4
+)Pandoraea:4,
+(
+'Burkholderia sp. 9120':4,
+'Burkholderia sp. K24':4,
+'Burkholderia sp. ABCPW 111':4,
+'Burkholderia sp. lig30':4,
+'Burkholderia sp. YI23':4,
+(
+'Burkholderia gladioli BSR3':4)
+'Burkholderia gladioli':4,
+'Burkholderia sp. WSM2230':4,
+'Burkholderia sp. CCGE1003':4,
+'Burkholderia sp. CCGE1001':4,
+(
+'Burkholderia glumae BGR1':4)
+'Burkholderia glumae':4,
+(
+'Burkholderia multivorans ATCC 17616':4)
+'Burkholderia multivorans':4,
+'Burkholderia oklahomensis':4,
+(
+'Burkholderia ambifaria AMMD':4)
+'Burkholderia ambifaria':4,
+(
+'Burkholderia pseudomallei K96243':4)
+'Burkholderia pseudomallei':4,
+(
+'Burkholderia vietnamiensis G4':4)
+'Burkholderia vietnamiensis':4,
+(
+'Burkholderia mallei ATCC 23344':4)
+'Burkholderia mallei':4,
+(
+'Burkholderia cenocepacia J2315':4)
+'Burkholderia cenocepacia':4,
+'Burkholderia cepacia':4
+)Burkholderia:4
+)Burkholderiaceae:4
+)Burkholderiales:4
+)Betaproteobacteria:4,
+(
+'Gammaproteobacteria bacterium MFB021':4,
+(
+(
+(
+'Haemophilus massiliensis':4)
+Haemophilus:4)
+Pasteurellaceae:4)
+Pasteurellales:4,
+'gamma proteobacterium WG36':4,
+(
+(
+'Wohlfahrtiimonas chitiniclastica DSM 18708':4)
+'Wohlfahrtiimonas chitiniclastica':4)
+Wohlfahrtiimonas:4,
+(
+(
+(
+(
+'Algiphilus aromaticivorans DG1253':4)
+'Algiphilus aromaticivorans':4)
+Algiphilus:4)
+Algiphilaceae:4,
+(
+(
+(
+'Polycyclovorans algicola TG408':4)
+'Polycyclovorans algicola':4)
+Polycyclovorans:4,
+(
+(
+'Solimonas soli DSM 21787':4)
+'Solimonas soli':4,
+(
+'Solimonas flava DSM 18980':4)
+'Solimonas flava':4,
+(
+'Solimonas variicoloris DSM 15731':4)
+'Solimonas variicoloris':4
+)Solimonas:4,
+(
+(
+'Nevskia soli DSM 19509':4)
+'Nevskia soli':4,
+(
+'Nevskia ramosa DSM 11499':4)
+'Nevskia ramosa':4
+)Nevskia:4
+)Sinobacteraceae:4
+)Nevskiales:4,
+(
+(
+'Ignatzschineria larvae DSM 13226':4)
+'Ignatzschineria larvae':4)
+Ignatzschineria:4,
+(
+'endosymbiont of Tevnia jerichonana (vent Tica)':4)
+'endosymbiont of Tevnia jerichonana':4,
+(
+(
+(
+(
+'Salinisphaera hydrothermalis C41B8':4)
+'Salinisphaera hydrothermalis':4,
+(
+'Salinisphaera shabanensis E1L3A':4)
+'Salinisphaera shabanensis':4
+)Salinisphaera:4)
+Salinisphaeraceae:4)
+Salinisphaerales:4,
+(
+(
+'Gallaecimonas xiamenensis 3-C-1':4)
+'Gallaecimonas xiamenensis':4)
+Gallaecimonas:4,
+'gamma proteobacterium NOR5-3':4,
+(
+(
+(
+'Imhoffiella purpurea':4)
+Imhoffiella:4,
+(
+(
+'Thiocapsa marina 5811':4)
+'Thiocapsa marina':4)
+Thiocapsa:4,
+(
+(
+'Thiorhodococcus drewsii AZ1':4)
+'Thiorhodococcus drewsii':4)
+Thiorhodococcus:4,
+(
+'Thiorhodovibrio sp. 970':4)
+Thiorhodovibrio:4,
+(
+(
+'Rheinheimera perlucida DSM 18276':4)
+'Rheinheimera perlucida':4,
+(
+'Rheinheimera baltica DSM 14885':4)
+'Rheinheimera baltica':4,
+'Rheinheimera sp. A13L':4
+)Rheinheimera:4,
+(
+(
+'Nitrosococcus halophilus Nc 4':4)
+'Nitrosococcus halophilus':4)
+Nitrosococcus:4
+)Chromatiaceae:4,
+(
+(
+'Spiribacter curvatus':4,
+(
+'Spiribacter salinus M19-40':4)
+'Spiribacter salinus':4
+)Spiribacter:4,
+(
+'Ectothiorhodospira sp. PHS-1':4)
+Ectothiorhodospira:4,
+(
+'Thioalkalivibrio sp. HK1':4,
+(
+'Thioalkalivibrio nitratireducens DSM 14787':4)
+'Thioalkalivibrio nitratireducens':4,
+'Thioalkalivibrio sp. ALJ16':4,
+(
+'Thioalkalivibrio thiocyanoxidans ARh2':4,
+'Thioalkalivibrio thiocyanoxidans ARh 4':4
+)'Thioalkalivibrio thiocyanoxidans':4,
+(
+'Thioalkalivibrio sulfidiphilus HL-EbGr7':4)
+'Thioalkalivibrio sulfidiphilus':4
+)Thioalkalivibrio:4
+)Ectothiorhodospiraceae:4
+)Chromatiales:4,
+'gamma proteobacterium HTCC5015':4,
+(
+(
+(
+(
+'Oceanimonas smirnovii ATCC BAA-899':4)
+'Oceanimonas smirnovii':4,
+'Oceanimonas sp. GK1':4
+)Oceanimonas:4,
+(
+(
+'Aeromonas diversa CDC 2478-85':4)
+'Aeromonas diversa':4,
+'Aeromonas lacus':4,
+(
+'Aeromonas salmonicida subsp. salmonicida A449':4)
+'Aeromonas salmonicida':4,
+(
+'Aeromonas hydrophila YL17':4,
+'Aeromonas hydrophila subsp. hydrophila ATCC 7966':4
+)'Aeromonas hydrophila':4
+)Aeromonas:4
+)Aeromonadaceae:4)
+Aeromonadales:4,
+(
+(
+(
+(
+'Thiofilum flexile DSM 14609':4)
+'Thiofilum flexile':4)
+Thiofilum:4)
+Thiofilaceae:4,
+(
+(
+(
+'Fangia hongkongensis FSC776 = DSM 21703':4)
+'Fangia hongkongensis':4)
+Fangia:4)
+Fastidiosibacteraceae:4,
+(
+(
+'Francisella sp. FSC1006':4,
+(
+'Francisella noatunensis subsp. orientalis str. Toba 04':4)
+'Francisella noatunensis':4,
+'Francisella sp. TX077308':4
+)Francisella:4)
+Francisellaceae:4,
+(
+(
+(
+'Leucothrix mucor DSM 2157':4)
+'Leucothrix mucor':4)
+Leucothrix:4,
+(
+(
+'Thiothrix lacustris DSM 21227':4)
+'Thiothrix lacustris':4,
+(
+'Thiothrix nivea DSM 5205':4)
+'Thiothrix nivea':4
+)Thiothrix:4,
+(
+(
+'Beggiatoa alba B18LD':4)
+'Beggiatoa alba':4)
+Beggiatoa:4
+)Thiotrichaceae:4,
+(
+(
+'Methylophaga frappieri':4)
+Methylophaga:4,
+(
+(
+'Hydrogenovibrio crunogenus XCL-2':4)
+'Hydrogenovibrio crunogenus':4)
+Hydrogenovibrio:4
+)Piscirickettsiaceae:4
+)Thiotrichales:4,
+(
+(
+(
+(
+'Fluoribacter dumoffii NY 23':4)
+'Fluoribacter dumoffii':4)
+Fluoribacter:4,
+(
+(
+'Legionella sainthelensi ATCC 35248':4)
+'Legionella sainthelensi':4,
+(
+'Legionella fairfieldensis ATCC 49588':4)
+'Legionella fairfieldensis':4,
+(
+'Legionella oakridgensis ATCC 33761 = DSM 21215':4)
+'Legionella oakridgensis':4,
+(
+'Legionella anisa str. Linanisette':4)
+'Legionella anisa':4,
+(
+'Legionella shakespearei DSM 23087':4)
+'Legionella shakespearei':4,
+(
+'Legionella moravica DSM 19234':4)
+'Legionella moravica':4,
+(
+'Legionella lansingensis DSM 19556 = ATCC 49751':4)
+'Legionella lansingensis':4,
+'Legionella massiliensis':4,
+(
+'Legionella longbeachae NSW150':4)
+'Legionella longbeachae':4,
+(
+'Legionella drancourtii LLAP12':4)
+'Legionella drancourtii':4,
+(
+'Legionella pneumophila str. Paris':4,
+'Legionella pneumophila subsp. pneumophila str. Philadelphia 1':4
+)'Legionella pneumophila':4
+)Legionella:4
+)Legionellaceae:4,
+(
+(
+(
+'Coxiella burnetii RSA 493':4)
+'Coxiella burnetii':4)
+Coxiella:4)
+Coxiellaceae:4
+)Legionellales:4,
+(
+(
+(
+'Microbulbifer sp. HZ11':4,
+(
+'Microbulbifer variabilis ATCC 700307':4)
+'Microbulbifer variabilis':4,
+(
+'Microbulbifer agarilyticus S89':4)
+'Microbulbifer agarilyticus':4
+)Microbulbifer:4)
+Microbulbiferaceae:4,
+(
+(
+(
+'Porticoccus hydrocarbonoclasticus MCTG13d':4)
+'Porticoccus hydrocarbonoclasticus':4)
+Porticoccus:4,
+'Gammaproteobacteria bacterium MOLA455':4,
+'gamma proteobacterium HTCC2207':4
+)Porticoccaceae:4,
+(
+(
+(
+'Pseudohaliea rubra DSM 19751':4)
+'Pseudohaliea rubra':4)
+Pseudohaliea:4,
+(
+(
+'Haliea salexigens DSM 19537':4)
+'Haliea salexigens':4)
+Haliea:4,
+'Halieaceae bacterium IMCC3088':4,
+'gamma proteobacterium HIMB55':4,
+(
+(
+'Luminiphilus syltensis NOR5-1B':4)
+'Luminiphilus syltensis':4)
+Luminiphilus:4,
+(
+(
+'Congregibacter litoralis KT71':4)
+'Congregibacter litoralis':4)
+Congregibacter:4,
+'marine gamma proteobacterium HTCC2080':4,
+'marine gamma proteobacterium HTCC2148':4
+)Halieaceae:4,
+(
+'gamma proteobacterium BDW918':4,
+(
+(
+'Spongiibacter tropicus DSM 19543':4)
+'Spongiibacter tropicus':4)
+Spongiibacter:4,
+(
+(
+'Dasania marina DSM 21967':4)
+'Dasania marina':4)
+Dasania:4,
+'marine gamma proteobacterium HTCC2143':4
+)Spongiibacteraceae:4,
+(
+(
+(
+'Marinimicrobium agarilyticum DSM 16975':4)
+'Marinimicrobium agarilyticum':4)
+Marinimicrobium:4,
+(
+(
+'Gilvimarinus chinensis DSM 19667':4)
+'Gilvimarinus chinensis':4)
+Gilvimarinus:4,
+(
+(
+'Simiduia agarivorans SA1 = DSM 21679':4)
+'Simiduia agarivorans':4)
+Simiduia:4,
+(
+(
+'Cellvibrio mixtus subsp. mixtus J3-8':4)
+'Cellvibrio mixtus':4,
+'Cellvibrio sp. BR':4,
+(
+'Cellvibrio japonicus Ueda107':4)
+'Cellvibrio japonicus':4
+)Cellvibrio:4,
+(
+(
+'Teredinibacter turnerae T7902':4,
+'Teredinibacter turnerae T7901':4
+)'Teredinibacter turnerae':4)
+Teredinibacter:4,
+(
+(
+'Saccharophagus degradans 2-40':4)
+'Saccharophagus degradans':4)
+Saccharophagus:4
+)Cellvibrionaceae:4
+)Cellvibrionales:4,
+'gamma proteobacterium HdN1':4,
+(
+(
+(
+(
+'Saccharospirillum impatiens DSM 12546':4)
+'Saccharospirillum impatiens':4)
+Saccharospirillum:4)
+Saccharospirillaceae:4,
+(
+(
+(
+'Kangiella aquimarina DSM 16071':4)
+'Kangiella aquimarina':4,
+(
+'Kangiella koreensis DSM 16069':4)
+'Kangiella koreensis':4
+)Kangiella:4)
+Kangiellaceae:4,
+(
+(
+(
+'Neptunomonas japonica DSM 18939':4)
+'Neptunomonas japonica':4)
+Neptunomonas:4,
+(
+(
+'Marinobacterium stanieri S30':4)
+'Marinobacterium stanieri':4)
+Marinobacterium:4,
+(
+(
+'Marinomonas mediterranea MMB-1':4)
+'Marinomonas mediterranea':4,
+(
+'Marinomonas posidonica IVIA-Po-181':4)
+'Marinomonas posidonica':4,
+'Marinomonas sp. MWYL1':4
+)Marinomonas:4
+)Oceanospirillaceae:4,
+(
+(
+(
+'Hahella ganghwensis DSM 17046':4)
+'Hahella ganghwensis':4,
+(
+'Hahella chejuensis KCTC 2396':4)
+'Hahella chejuensis':4
+)Hahella:4)
+Hahellaceae:4,
+(
+(
+'Endozoicomonas elysicola':4)
+Endozoicomonas:4)
+Endozoicomonadaceae:4,
+(
+(
+'Alcanivorax sp. P2S70':4,
+'Alcanivorax sp. 43B_GOM-46m':4,
+(
+'Alcanivorax jadensis T9':4)
+'Alcanivorax jadensis':4,
+(
+'Alcanivorax hongdengensis A-11-3':4)
+'Alcanivorax hongdengensis':4,
+'Alcanivorax nanhaiticus':4,
+(
+'Alcanivorax dieselolei B5':4)
+'Alcanivorax dieselolei':4,
+(
+'Alcanivorax borkumensis SK2':4)
+'Alcanivorax borkumensis':4,
+'Alcanivorax sp. DG881':4
+)Alcanivorax:4)
+Alcanivoracaceae:4,
+(
+(
+(
+'Kushneria aurantia DSM 21353':4)
+'Kushneria aurantia':4)
+Kushneria:4,
+(
+(
+'Chromohalobacter salexigens DSM 3043':4)
+'Chromohalobacter salexigens':4)
+Chromohalobacter:4,
+(
+'Halomonas sp. KO116':4,
+'Halomonas sp. HL-48':4,
+'Halomonas sp. TG39a':4,
+'Halomonas sp. PBN3':4,
+'Halomonas sp. 23_GOM-1509m':4,
+'Halomonas huangheensis':4,
+(
+'Halomonas lutea DSM 23508':4)
+'Halomonas lutea':4,
+(
+'Halomonas halocynthiae DSM 14573':4)
+'Halomonas halocynthiae':4,
+(
+'Halomonas anticariensis FP35 = DSM 16096':4)
+'Halomonas anticariensis':4,
+'Halomonas sp. GFAJ-1':4,
+'Halomonas sp. TD01':4,
+(
+'Halomonas zhanjiangensis DSM 21076':4)
+'Halomonas zhanjiangensis':4,
+'Halomonas alkaliantarctica':4,
+'Halomonas salina':4
+)Halomonas:4
+)Halomonadaceae:4
+)Oceanospirillales:4,
+(
+(
+(
+(
+'Moritella marina ATCC 15381':4)
+'Moritella marina':4,
+(
+'Moritella dasanensis ArB 0140':4)
+'Moritella dasanensis':4
+)Moritella:4)
+Moritellaceae:4,
+(
+(
+(
+'Ferrimonas futtsuensis DSM 18154':4)
+'Ferrimonas futtsuensis':4)
+Ferrimonas:4)
+Ferrimonadaceae:4,
+(
+(
+(
+'Psychromonas ossibalaenae ATCC BAA-1528':4)
+'Psychromonas ossibalaenae':4,
+(
+'Psychromonas ingrahamii 37':4)
+'Psychromonas ingrahamii':4
+)Psychromonas:4)
+Psychromonadaceae:4,
+(
+(
+'Idiomarina atlantica':4,
+'Idiomarina sp. A28L':4,
+(
+'Idiomarina xiamenensis 10-D-4':4)
+'Idiomarina xiamenensis':4,
+'Idiomarina salinarum':4,
+(
+'Idiomarina loihiensis L2TR':4)
+'Idiomarina loihiensis':4
+)Idiomarina:4)
+Idiomarinaceae:4,
+(
+(
+(
+'Catenovulum agarivorans DS-2':4)
+'Catenovulum agarivorans':4)
+Catenovulum:4,
+(
+(
+'Alishewanella agri BL06':4)
+'Alishewanella agri':4,
+(
+'Alishewanella jeotgali KCTC 22429':4)
+'Alishewanella jeotgali':4
+)Alishewanella:4,
+(
+(
+'Aliiglaciecola lipolytica E3':4)
+'Aliiglaciecola lipolytica':4)
+Aliiglaciecola:4,
+(
+(
+'Salinimonas chungwhensis DSM 16280':4)
+'Salinimonas chungwhensis':4)
+Salinimonas:4,
+(
+(
+'Aliagarivorans taiwanensis DSM 22990':4)
+'Aliagarivorans taiwanensis':4)
+Aliagarivorans:4,
+(
+(
+'Aestuariibacter salexigens DSM 15300':4)
+'Aestuariibacter salexigens':4)
+Aestuariibacter:4,
+(
+(
+'Gayadomonas joobiniege G7':4)
+'Gayadomonas joobiniege':4)
+Gayadomonas:4,
+(
+(
+'Paraglaciecola psychrophila 170':4)
+'Paraglaciecola psychrophila':4,
+(
+'Paraglaciecola mesophila KMM 241':4)
+'Paraglaciecola mesophila':4,
+(
+'Paraglaciecola arctica BSs20135':4)
+'Paraglaciecola arctica':4
+)Paraglaciecola:4,
+(
+(
+'Glaciecola punicea ACAM 611':4)
+'Glaciecola punicea':4,
+(
+'Glaciecola nitratireducens FR1064':4)
+'Glaciecola nitratireducens':4,
+'Glaciecola sp. 4H-3-7+YE-5':4,
+'Glaciecola sp. HTCC2999':4
+)Glaciecola:4,
+(
+'Alteromonas sp. LOR':4,
+'Alteromonas sp. ALT199':4,
+(
+'Alteromonas macleodii str. ''Black Sea 11''':4)
+'Alteromonas macleodii':4,
+'Alteromonas naphthalenivorans':4,
+'Alteromonas australica':4,
+'Alteromonas mediterranea':4
+)Alteromonas:4,
+(
+'Marinobacter sp. HL-58':4,
+'Marinobacter sp. MCTG268':4,
+'Marinobacter sp. ES-1':4,
+(
+'Marinobacter santoriniensis NKSG1':4)
+'Marinobacter santoriniensis':4,
+(
+'Marinobacter daepoensis DSM 16072':4)
+'Marinobacter daepoensis':4,
+(
+'Marinobacter lipolyticus SM19':4,
+'Marinobacter lipolyticus BF04_CF-4':4
+)'Marinobacter lipolyticus':4,
+(
+'Marinobacter nanhaiticus D15-8W':4)
+'Marinobacter nanhaiticus':4,
+(
+'Marinobacter algicola DG893':4)
+'Marinobacter algicola':4,
+(
+'Marinobacter hydrocarbonoclasticus VT8':4)
+'Marinobacter hydrocarbonoclasticus':4,
+'Marinobacter sp. ELB17':4,
+(
+'Marinobacter adhaerens HP15':4)
+'Marinobacter adhaerens':4
+)Marinobacter:4
+)Alteromonadaceae:4,
+'Alteromonadales bacterium TW-7':4,
+(
+(
+'Shewanella sp. ECSMB14101':4,
+'Shewanella mangrovi':4,
+(
+'Shewanella waksmanii ATCC BAA-643':4)
+'Shewanella waksmanii':4,
+(
+'Shewanella marina JCM 15074':4)
+'Shewanella marina':4,
+(
+'Shewanella algae JCM 14758':4)
+'Shewanella algae':4,
+(
+'Shewanella violacea DSS12':4)
+'Shewanella violacea':4,
+(
+'Shewanella halifaxensis HAW-EB4':4)
+'Shewanella halifaxensis':4,
+(
+'Shewanella sediminis HAW-EB3':4)
+'Shewanella sediminis':4,
+(
+'Shewanella pealeana ATCC 700345':4)
+'Shewanella pealeana':4,
+(
+'Shewanella woodyi ATCC 51908':4)
+'Shewanella woodyi':4,
+(
+'Shewanella amazonensis SB2B':4)
+'Shewanella amazonensis':4,
+(
+'Shewanella loihica PV-4':4)
+'Shewanella loihica':4,
+(
+'Shewanella putrefaciens CN-32':4)
+'Shewanella putrefaciens':4,
+(
+'Shewanella frigidimarina NCIMB 400':4)
+'Shewanella frigidimarina':4,
+(
+'Shewanella denitrificans OS217':4)
+'Shewanella denitrificans':4,
+(
+'Shewanella piezotolerans WP3':4)
+'Shewanella piezotolerans':4,
+(
+'Shewanella oneidensis MR-1':4)
+'Shewanella oneidensis':4,
+'Shewanella sp. ANA-3':4
+)Shewanella:4)
+Shewanellaceae:4,
+(
+(
+'Pseudoalteromonas piratica':4,
+'Pseudoalteromonas sp. TB64':4,
+(
+'Pseudoalteromonas agarivorans S816':4)
+'Pseudoalteromonas agarivorans':4,
+(
+'Pseudoalteromonas luteoviolacea B = ATCC 29581':4)
+'Pseudoalteromonas luteoviolacea':4,
+(
+'Pseudoalteromonas ruthenica CP76':4)
+'Pseudoalteromonas ruthenica':4,
+(
+'Pseudoalteromonas spongiae UST010723-006':4)
+'Pseudoalteromonas spongiae':4,
+(
+'Pseudoalteromonas rubra DSM 6842':4)
+'Pseudoalteromonas rubra':4,
+(
+'Pseudoalteromonas citrea DSM 8771':4)
+'Pseudoalteromonas citrea':4,
+(
+'Pseudoalteromonas atlantica T6c':4)
+'Pseudoalteromonas atlantica':4,
+(
+'Pseudoalteromonas haloplanktis ATCC 14393':4,
+'Pseudoalteromonas haloplanktis ANT/505':4,
+'Pseudoalteromonas haloplanktis TAC125':4
+)'Pseudoalteromonas haloplanktis':4,
+'Pseudoalteromonas sp. Bsw20308':4,
+'Pseudoalteromonas sp. SM9913':4,
+(
+'Pseudoalteromonas tunicata D2':4)
+'Pseudoalteromonas tunicata':4
+)Pseudoalteromonas:4)
+Pseudoalteromonadaceae:4,
+(
+(
+'Thalassotalea sp. ND16A':4)
+Thalassotalea:4,
+(
+(
+'Colwellia piezophila ATCC BAA-637':4)
+'Colwellia piezophila':4,
+'Colwellia psychrerythraea':4
+)Colwellia:4
+)Colwelliaceae:4
+)Alteromonadales:4,
+'Solemya velum gill symbiont':4,
+(
+(
+(
+(
+'Enterovibrio norvegicus FF-33':4)
+'Enterovibrio norvegicus':4)
+Enterovibrio:4,
+(
+'Grimontia indica':4)
+Grimontia:4,
+(
+(
+'Aliivibrio fischeri ES114':4)
+'Aliivibrio fischeri':4)
+Aliivibrio:4,
+(
+'Photobacterium aphoticum':4,
+(
+'Photobacterium damselae subsp. damselae CIP 102761':4)
+'Photobacterium damselae':4,
+(
+'Photobacterium angustum S14':4)
+'Photobacterium angustum':4,
+(
+'Photobacterium profundum SS9':4)
+'Photobacterium profundum':4
+)Photobacterium:4,
+(
+'Vibrio sp. ER1A':4,
+(
+'Vibrio jasicida MWB 21':4)
+'Vibrio jasicida':4,
+(
+'Vibrio nigripulchritudo SOn1':4)
+'Vibrio nigripulchritudo':4,
+(
+'Vibrio ezurae NBRC 102218':4)
+'Vibrio ezurae':4,
+(
+'Vibrio azureus NBRC 104587':4)
+'Vibrio azureus':4,
+(
+'Vibrio halioticoli NBRC 102217':4)
+'Vibrio halioticoli':4,
+(
+'Vibrio proteolyticus NBRC 13287':4)
+'Vibrio proteolyticus':4,
+(
+'Vibrio breoganii 1C10':4)
+'Vibrio breoganii':4,
+(
+'Vibrio genomosp. F10 str. ZF-129':4)
+'Vibrio genomosp. F10':4,
+(
+'Vibrio cyclitrophicus FF75':4)
+'Vibrio cyclitrophicus':4,
+'Vibrio sp. EJY3':4,
+(
+'Vibrio tubiashii ATCC 19109':4)
+'Vibrio tubiashii':4,
+(
+'Vibrio sinaloensis DSM 21326':4)
+'Vibrio sinaloensis':4,
+(
+'Vibrio scophthalmi LMG 19158':4)
+'Vibrio scophthalmi':4,
+(
+'Vibrio caribbeanicus ATCC BAA-2122':4)
+'Vibrio caribbeanicus':4,
+'Vibrio sp. N418':4,
+(
+'Vibrio orientalis CIP 102891 = ATCC 33934':4)
+'Vibrio orientalis':4,
+(
+'Vibrio alginolyticus NBRC 15630 = ATCC 17749':4,
+'Vibrio alginolyticus 40B':4
+)'Vibrio alginolyticus':4,
+(
+'Vibrio splendidus ZS-139':4)
+'Vibrio splendidus':4,
+(
+'Vibrio parahaemolyticus RIMD 2210633':4)
+'Vibrio parahaemolyticus':4,
+'Vibrio vulnificus':4
+)Vibrio:4
+)Vibrionaceae:4)
+Vibrionales:4,
+(
+(
+(
+(
+'Budvicia aquatica DSM 5075 = ATCC 35567':4)
+'Budvicia aquatica':4)
+Budvicia:4,
+(
+(
+'Leminorella grimontii ATCC 33999 = DSM 5078':4)
+'Leminorella grimontii':4)
+Leminorella:4
+)Budviciaceae:4,
+(
+(
+(
+'Hafnia alvei FB1':4)
+'Hafnia alvei':4)
+Hafnia:4,
+(
+(
+'Edwardsiella hoshinae NBRC 105699 = ATCC 33379':4)
+'Edwardsiella hoshinae':4,
+(
+'Edwardsiella tarda ATCC 15947 = NBRC 105688':4)
+'Edwardsiella tarda':4
+)Edwardsiella:4
+)Hafniaceae:4,
+(
+(
+'Brenneria sp. EniD312':4)
+Brenneria:4,
+(
+'Dickeya sp. 2B12':4,
+'Dickeya sp. DW 0440':4,
+(
+'Dickeya zeae Ech586':4)
+'Dickeya zeae':4,
+(
+'Dickeya paradisiaca Ech703':4)
+'Dickeya paradisiaca':4,
+'Dickeya sp. NCPPB 569':4,
+(
+'Dickeya chrysanthemi Ech1591':4)
+'Dickeya chrysanthemi':4,
+(
+'Dickeya dadantii 3937':4)
+'Dickeya dadantii':4
+)Dickeya:4,
+(
+(
+'Pectobacterium parmentieri WPP163':4)
+'Pectobacterium parmentieri':4,
+(
+'Pectobacterium atrosepticum SCRI1043':4)
+'Pectobacterium atrosepticum':4,
+(
+'Pectobacterium carotovorum subsp. carotovorum PC1':4,
+'Pectobacterium carotovorum subsp. odoriferum':4
+)'Pectobacterium carotovorum':4,
+'Pectobacterium betavasculorum':4
+)Pectobacterium:4
+)Pectobacteriaceae:4,
+(
+(
+(
+'Chania multitudinisentens RB-25':4)
+'Chania multitudinisentens':4)
+Chania:4,
+(
+(
+'Ewingella americana ATCC 33852':4)
+'Ewingella americana':4)
+Ewingella:4,
+(
+(
+'Rahnella aquatilis HX2':4,
+'Rahnella aquatilis CIP 78.65 = ATCC 33071':4
+)'Rahnella aquatilis':4,
+'Rahnella sp. Y9602':4
+)Rahnella:4,
+(
+'Serratia sp. Ag1':4,
+'Serratia sp. DD3':4,
+'Serratia sp. H1n':4,
+(
+'Serratia fonticola AU-AP2C':4)
+'Serratia fonticola':4,
+'Serratia sp. M24T3':4,
+(
+'Serratia proteamaculans 568':4)
+'Serratia proteamaculans':4,
+(
+'Serratia marcescens FGI94':4,
+'Serratia marcescens subsp. marcescens Db11':4
+)'Serratia marcescens':4,
+'Serratia sp. ATCC 39006':4,
+'Serratia plymuthica':4,
+'Serratia grimesii':4
+)Serratia:4,
+(
+(
+'Yersinia massiliensis CCUG 53443':4)
+'Yersinia massiliensis':4,
+(
+'Yersinia aldovae ATCC 35236':4)
+'Yersinia aldovae':4,
+(
+'Yersinia enterocolitica LC20':4,
+'Yersinia enterocolitica subsp. enterocolitica 8081':4
+)'Yersinia enterocolitica':4,
+(
+'Yersinia frederiksenii ATCC 33641':4)
+'Yersinia frederiksenii':4,
+(
+'Yersinia intermedia ATCC 29909':4)
+'Yersinia intermedia':4,
+(
+'Yersinia pestis CO92':4)
+'Yersinia pestis':4,
+'Yersinia ruckeri':4,
+'Yersinia kristensenii':4,
+'Yersinia pseudotuberculosis':4
+)Yersinia:4
+)Yersiniaceae:4,
+(
+(
+(
+'Arsenophonus endosymbiont str. Hangzhou of Nilaparvata lugens':4)
+'Arsenophonus endosymbiont of Nilaparvata lugens':4)
+Arsenophonus:4,
+(
+(
+'Morganella morganii subsp. morganii KT':4)
+'Morganella morganii':4)
+Morganella:4,
+(
+(
+'Providencia burhodogranariea DSM 19968':4)
+'Providencia burhodogranariea':4,
+(
+'Providencia rettgeri Dmel1':4,
+'Providencia rettgeri DSM 1131':4
+)'Providencia rettgeri':4,
+(
+'Providencia alcalifaciens DSM 30120':4)
+'Providencia alcalifaciens':4,
+(
+'Providencia rustigianii DSM 4541':4)
+'Providencia rustigianii':4,
+(
+'Providencia stuartii ATCC 25827':4)
+'Providencia stuartii':4
+)Providencia:4,
+(
+(
+'Xenorhabdus bovienii SS-2004':4)
+'Xenorhabdus bovienii':4,
+(
+'Xenorhabdus nematophila ATCC 19061':4)
+'Xenorhabdus nematophila':4
+)Xenorhabdus:4,
+(
+'Photorhabdus asymbiotica':4,
+(
+'Photorhabdus laumondii subsp. laumondii TTO1':4)
+'Photorhabdus laumondii':4
+)Photorhabdus:4,
+(
+(
+'Proteus mirabilis HI4320':4)
+'Proteus mirabilis':4,
+(
+'Proteus penneri ATCC 35198':4)
+'Proteus penneri':4,
+'Proteus vulgaris':4
+)Proteus:4
+)Morganellaceae:4,
+(
+(
+(
+'Raoultella ornithinolytica B6':4)
+'Raoultella ornithinolytica':4)
+Raoultella:4,
+(
+'Mangrovibacter sp. MFB070':4)
+Mangrovibacter:4,
+'Enterobacteriaceae bacterium LSJC7':4,
+'Enterobacteriaceae bacterium B14':4,
+(
+(
+'Pseudescherichia vulneris NBRC 102420':4)
+'Pseudescherichia vulneris':4)
+Pseudescherichia:4,
+(
+(
+'Atlantibacter hermannii NBRC 105704':4)
+'Atlantibacter hermannii':4)
+Atlantibacter:4,
+(
+(
+'Cronobacter condimenti 1330':4)
+'Cronobacter condimenti':4)
+Cronobacter:4,
+(
+(
+'Buttiauxella agrestis ATCC 33320':4)
+'Buttiauxella agrestis':4)
+Buttiauxella:4,
+(
+(
+'Kluyvera ascorbata ATCC 33433':4)
+'Kluyvera ascorbata':4)
+Kluyvera:4,
+(
+(
+'Trabulsiella guamensis ATCC 49490':4)
+'Trabulsiella guamensis':4)
+Trabulsiella:4,
+(
+(
+'Leclercia adecarboxylata ATCC 23216 = NBRC 102595':4)
+'Leclercia adecarboxylata':4)
+Leclercia:4,
+'Plautia stali symbiont':4,
+'Enterobacteriaceae bacterium strain FGI 57':4,
+(
+(
+'Shimwellia blattae DSM 4481 = NBRC 105725':4)
+'Shimwellia blattae':4)
+Shimwellia:4,
+(
+'Enterobacter sp. R4-368':4,
+(
+'Enterobacter cloacae JD6301':4,
+'Enterobacter cloacae EcWSU1':4,
+'Enterobacter cloacae subsp. cloacae ATCC 13047':4
+)'Enterobacter cloacae':4,
+(
+'Enterobacter asburiae LF7a':4)
+'Enterobacter asburiae':4,
+'Enterobacter sp. 638':4
+)Enterobacter:4,
+(
+(
+'Shigella flexneri 2a str. 301':4)
+'Shigella flexneri':4)
+Shigella:4,
+(
+'Cedecea neteri':4)
+Cedecea:4,
+(
+'Escherichia sp. TW09308':4,
+(
+'Escherichia albertii KF1':4,
+'Escherichia albertii TW07627':4
+)'Escherichia albertii':4,
+(
+'Escherichia coli str. K-12 substr. MG1655':4,
+'Escherichia coli ATCC 8739':4,
+'Escherichia coli BL21(DE3)':4,
+'Escherichia coli 536':4,
+'Escherichia coli str. K-12 substr. W3110':4,
+'Escherichia coli CFT073':4,
+'Escherichia coli O157:H7 str. EDL933':4
+)'Escherichia coli':4
+)Escherichia:4,
+(
+(
+'Salmonella bongori N268-08':4,
+'Salmonella bongori NCTC 12419':4
+)'Salmonella bongori':4,
+(
+'Salmonella enterica subsp. enterica serovar Typhi str. CT18':4,
+'Salmonella enterica subsp. enterica serovar Typhimurium':4
+)'Salmonella enterica':4
+)Salmonella:4,
+(
+(
+'[Enterobacter] lignolyticus SCF1':4)
+'[Enterobacter] lignolyticus':4,
+'Pluralibacter gergoviae':4
+)Pluralibacter:4,
+(
+(
+'Citrobacter sedlakii NBRC 105722':4)
+'Citrobacter sedlakii':4,
+(
+'Citrobacter farmeri GTC 1319':4)
+'Citrobacter farmeri':4,
+'Citrobacter sp. S-77':4,
+(
+'Citrobacter rodentium ICC168':4)
+'Citrobacter rodentium':4,
+(
+'Citrobacter youngae ATCC 29220':4)
+'Citrobacter youngae':4,
+'Citrobacter portucalensis':4,
+'Citrobacter amalonaticus':4
+)Citrobacter:4,
+(
+(
+'Klebsiella aerogenes KCTC 2190':4)
+'Klebsiella aerogenes':4,
+'Klebsiella pneumoniae':4,
+'Klebsiella oxytoca':4
+)Klebsiella:4
+)Enterobacteriaceae:4,
+(
+(
+(
+'Phaseolibacter flectens ATCC 12775':4)
+'Phaseolibacter flectens':4)
+Phaseolibacter:4,
+(
+'Tatumella saanichensis':4,
+(
+'Tatumella ptyseos ATCC 33301':4)
+'Tatumella ptyseos':4,
+'Tatumella morbirosei':4
+)Tatumella:4,
+(
+(
+'Erwinia amylovora CFBP1430':4)
+'Erwinia amylovora':4,
+(
+'Erwinia billingiae Eb661':4)
+'Erwinia billingiae':4,
+(
+'Erwinia pyrifoliae Ep1/96':4)
+'Erwinia pyrifoliae':4,
+(
+'Erwinia tasmaniensis Et1/99':4)
+'Erwinia tasmaniensis':4,
+'Erwinia typographi':4
+)Erwinia:4,
+(
+'Pantoea sp. PSNIH1':4,
+'Pantoea sp. PSNIH2':4,
+'Pantoea sp. IMH':4,
+'Pantoea sp. A4':4,
+'Pantoea rwandensis':4,
+(
+'Pantoea vagans C9-1':4)
+'Pantoea vagans':4,
+(
+'Pantoea ananatis AJ13355':4,
+'Pantoea ananatis LMG 20103':4
+)'Pantoea ananatis':4,
+'Pantoea sp. Sc1':4,
+'Pantoea sp. At-9b':4,
+'Pantoea sp. aB':4,
+'Pantoea stewartii':4,
+'Pantoea agglomerans':4
+)Pantoea:4
+)Erwiniaceae:4
+)Enterobacterales:4,
+(
+(
+(
+'Luteibacter sp. 9135':4,
+'Luteibacter sp. 9143':4
+)Luteibacter:4,
+(
+(
+'Dyella ginsengisoli LA-4':4)
+'Dyella ginsengisoli':4)
+Dyella:4,
+(
+(
+'Rudaea cellulosilytica DSM 22992':4)
+'Rudaea cellulosilytica':4)
+Rudaea:4,
+(
+(
+'Frateuria aurantia DSM 6220':4)
+'Frateuria aurantia':4)
+Frateuria:4,
+(
+(
+'Rhodanobacter thiooxydans LCS2':4)
+'Rhodanobacter thiooxydans':4,
+(
+'Rhodanobacter fulvus Jip2':4)
+'Rhodanobacter fulvus':4,
+(
+'Rhodanobacter spathiphylli B39':4)
+'Rhodanobacter spathiphylli':4,
+'Rhodanobacter denitrificans':4
+)Rhodanobacter:4
+)Rhodanobacteraceae:4,
+(
+(
+(
+'Thermomonas fusca DSM 15424':4)
+'Thermomonas fusca':4)
+Thermomonas:4,
+(
+(
+'Silanimonas lenta DSM 16282':4)
+'Silanimonas lenta':4)
+Silanimonas:4,
+(
+(
+'Arenimonas metalli CF5-1':4)
+'Arenimonas metalli':4,
+(
+'Arenimonas malthae CC-JY-1':4)
+'Arenimonas malthae':4,
+(
+'Arenimonas oryziterrae DSM 21050 = YC6267':4)
+'Arenimonas oryziterrae':4,
+(
+'Arenimonas composti TR7-09 = DSM 18010':4)
+'Arenimonas composti':4
+)Arenimonas:4,
+(
+(
+'Luteimonas huabeiensis HB2':4)
+'Luteimonas huabeiensis':4,
+'Luteimonas sp. J29':4
+)Luteimonas:4,
+(
+'Pseudoxanthomonas sp. GW2':4,
+(
+'Pseudoxanthomonas spadix BD-a59':4)
+'Pseudoxanthomonas spadix':4,
+(
+'Pseudoxanthomonas suwonensis J43':4,
+'Pseudoxanthomonas suwonensis 11-1':4
+)'Pseudoxanthomonas suwonensis':4
+)Pseudoxanthomonas:4,
+(
+(
+'Stenotrophomonas maltophilia 5BA-I-2':4,
+'Stenotrophomonas maltophilia PML168':4,
+'Stenotrophomonas maltophilia K279a':4,
+'Stenotrophomonas maltophilia R551-3':4
+)'Stenotrophomonas maltophilia':4)
+Stenotrophomonas:4,
+(
+'Xylella taiwanensis':4,
+(
+'Xylella fastidiosa 9a5c':4)
+'Xylella fastidiosa':4
+)Xylella:4,
+(
+(
+'Lysobacter daejeonensis GH1-9':4)
+'Lysobacter daejeonensis':4,
+(
+'Lysobacter defluvii IMMIB APB-9 = DSM 18482':4)
+'Lysobacter defluvii':4,
+(
+'Lysobacter dokdonensis DS-58':4)
+'Lysobacter dokdonensis':4,
+(
+'Lysobacter concretionis Ko07 = DSM 16239':4)
+'Lysobacter concretionis':4,
+(
+'Lysobacter arseniciresistens ZS79':4)
+'Lysobacter arseniciresistens':4,
+'Lysobacter antibioticus':4
+)Lysobacter:4,
+(
+'Xanthomonas cannabis':4,
+(
+'Xanthomonas cassavae CFBP 4642':4)
+'Xanthomonas cassavae':4,
+(
+'Xanthomonas translucens DAR61454':4)
+'Xanthomonas translucens':4,
+(
+'Xanthomonas fragariae LMG 25863':4)
+'Xanthomonas fragariae':4,
+(
+'Xanthomonas vesicatoria ATCC 35937':4)
+'Xanthomonas vesicatoria':4,
+(
+'Xanthomonas hortorum pv. carotae str. M081':4)
+'Xanthomonas hortorum':4,
+(
+'Xanthomonas arboricola pv. celebensis':4)
+'Xanthomonas arboricola':4,
+(
+'Xanthomonas albilineans GPE PC73':4)
+'Xanthomonas albilineans':4,
+(
+'Xanthomonas oryzae pv. oryzicola BLS256':4,
+'Xanthomonas oryzae pv. oryzae PXO99A':4
+)'Xanthomonas oryzae':4,
+(
+'Xanthomonas axonopodis pv. vasculorum':4)
+'Xanthomonas axonopodis':4,
+(
+'Xanthomonas phaseoli pv. phaseoli':4)
+'Xanthomonas phaseoli':4,
+(
+'Xanthomonas campestris pv. vesicatoria str. 85-10':4)
+'Xanthomonas euvesicatoria':4,
+(
+'Xanthomonas citri pv. fuscans':4,
+'Xanthomonas citri pv. citri str. 306':4
+)'Xanthomonas citri':4,
+(
+'Xanthomonas campestris pv. musacearum NCPPB 4379':4,
+'Xanthomonas campestris pv. campestris':4
+)'Xanthomonas campestris':4
+)Xanthomonas:4
+)Xanthomonadaceae:4
+)Xanthomonadales:4,
+(
+(
+(
+(
+'Perlucidibaca piscinae DSM 21586':4)
+'Perlucidibaca piscinae':4)
+Perlucidibaca:4,
+(
+(
+'Alkanindiges illinoisensis DSM 15370':4)
+'Alkanindiges illinoisensis':4)
+Alkanindiges:4,
+(
+(
+'Moraxella macacae 0408225':4)
+'Moraxella macacae':4,
+(
+'Moraxella caprae DSM 19149':4)
+'Moraxella caprae':4,
+(
+'Moraxella boevrei DSM 14165':4)
+'Moraxella boevrei':4,
+(
+'Moraxella catarrhalis O35E':4)
+'Moraxella catarrhalis':4,
+(
+'Moraxella bovoculi 237':4)
+'Moraxella bovoculi':4
+)Moraxella:4,
+(
+(
+'Psychrobacter aquaticus CMS 56':4)
+'Psychrobacter aquaticus':4,
+'Psychrobacter sp. JCM 18900':4,
+(
+'Psychrobacter phenylpyruvicus DSM 7000 = NBRC 102152':4)
+'Psychrobacter phenylpyruvicus':4,
+(
+'Psychrobacter lutiphocae DSM 21542':4)
+'Psychrobacter lutiphocae':4,
+'Psychrobacter sp. PAMC 21119':4,
+'Psychrobacter sp. TB67':4,
+'Psychrobacter sp. 1501(2011)':4,
+'Psychrobacter sp. TB15':4,
+'Psychrobacter sp. PRwf-1':4,
+(
+'Psychrobacter cryohalolentis K5':4)
+'Psychrobacter cryohalolentis':4,
+(
+'Psychrobacter arcticus 273-4':4)
+'Psychrobacter arcticus':4
+)Psychrobacter:4,
+(
+'Acinetobacter sp. HR7':4,
+(
+'Acinetobacter nectaris CIP 110549':4)
+'Acinetobacter nectaris':4,
+(
+'Acinetobacter indicus CIP 110367':4)
+'Acinetobacter indicus':4,
+(
+'Acinetobacter haemolyticus MTCC 9819':4)
+'Acinetobacter haemolyticus':4,
+(
+'Acinetobacter bohemicus ANC 3994':4)
+'Acinetobacter bohemicus':4,
+'Acinetobacter sp. NIPH 809':4,
+'Acinetobacter sp. NIPH 758':4,
+'Acinetobacter sp. NIPH 899':4,
+'Acinetobacter sp. NIPH 2100':4,
+'Acinetobacter sp. ANC 3862':4,
+'Acinetobacter sp. ANC 4105':4,
+(
+'Acinetobacter gyllenbergii NIPH 230':4)
+'Acinetobacter gyllenbergii':4,
+(
+'Acinetobacter guillouiae NIPH 991':4)
+'Acinetobacter guillouiae':4,
+(
+'Acinetobacter beijerinckii CIP 110307':4)
+'Acinetobacter beijerinckii':4,
+(
+'Acinetobacter venetianus RAG-1 = CIP 110063':4)
+'Acinetobacter venetianus':4,
+'Acinetobacter sp. CIP 56.2':4,
+'Acinetobacter sp. CIP 102129':4,
+(
+'Acinetobacter bouvetii DSM 14964 = CIP 107468':4)
+'Acinetobacter bouvetii':4,
+'Acinetobacter sp. P8-3-8':4,
+(
+'Acinetobacter ursingii DSM 16037 = CIP 107286':4)
+'Acinetobacter ursingii':4,
+'Acinetobacter sp. NCTC 7422':4,
+(
+'Acinetobacter pittii PHEA-2':4)
+'Acinetobacter pittii':4,
+(
+'Acinetobacter radioresistens SH164':4)
+'Acinetobacter radioresistens':4,
+(
+'Acinetobacter lwoffii WJ10621':4,
+'Acinetobacter lwoffii NCTC 5866 = CIP 64.10 = NIPH 512':4,
+'Acinetobacter lwoffii SH145':4
+)'Acinetobacter lwoffii':4,
+(
+'Acinetobacter johnsonii SH046':4)
+'Acinetobacter johnsonii':4,
+(
+'Acinetobacter sp. RUH2624':4)
+'Acinetobacter nosocomialis':4,
+'Acinetobacter sp. ATCC 27244':4,
+'Acinetobacter seifertii':4,
+'Acinetobacter soli':4,
+'Acinetobacter sp. Ver3':4,
+(
+'Acinetobacter oleivorans DR1':4)
+'Acinetobacter oleivorans':4,
+(
+'Acinetobacter rudis CIP 110305':4)
+'Acinetobacter rudis':4,
+'Acinetobacter towneri':4,
+'Acinetobacter tjernbergiae':4,
+'Acinetobacter tandoii':4,
+'Acinetobacter gerneri':4,
+'Acinetobacter bereziniae':4,
+(
+'Acinetobacter baylyi ADP1':4)
+'Acinetobacter baylyi':4,
+'Acinetobacter sp. CIP-A165':4,
+'Acinetobacter junii':4,
+'Acinetobacter baumannii':4
+)Acinetobacter:4
+)Moraxellaceae:4,
+(
+(
+(
+'Azotobacter vinelandii DJ':4)
+'Azotobacter vinelandii':4)
+Azotobacter:4,
+(
+'Pseudomonas sp. ML96':4,
+'Pseudomonas saudiphocaensis':4,
+'Pseudomonas sp. Ant30-3':4,
+'Pseudomonas sp. RIT357':4,
+'Pseudomonas sp. RL':4,
+(
+'Pseudomonas cichorii JBC1':4)
+'Pseudomonas cichorii':4,
+'Pseudomonas sp. BAY1663':4,
+'Pseudomonas sp. TKP':4,
+(
+'Pseudomonas taeanensis MS-3':4)
+'Pseudomonas taeanensis':4,
+(
+'Pseudomonas moraviensis R28-S':4)
+'Pseudomonas moraviensis':4,
+(
+'Pseudomonas mosselii SJ10':4)
+'Pseudomonas mosselii':4,
+(
+'Pseudomonas pelagia CL-AP6':4)
+'Pseudomonas pelagia':4,
+(
+'Pseudomonas corrugata CFBP 5454':4)
+'Pseudomonas corrugata':4,
+(
+'Pseudomonas knackmussii B13':4)
+'Pseudomonas knackmussii':4,
+'Pseudomonas sp. ATCC 13867':4,
+(
+'Pseudomonas poae RE*1-1-14':4)
+'Pseudomonas poae':4,
+'Pseudomonas sp. G5(2012)':4,
+'Pseudomonas sp. URMO17WK12:I8':4,
+(
+'Pseudomonas nitroreducens HBP1':4,
+'Pseudomonas nitroreducens TX1':4
+)'Pseudomonas nitroreducens':4,
+(
+'Pseudomonas parafulva NBRC 16636 = DSM 17004':4)
+'Pseudomonas parafulva':4,
+(
+'Pseudomonas alcaligenes NBRC 14159':4)
+'Pseudomonas alcaligenes':4,
+(
+'Pseudomonas luteola XLDN4-9':4)
+'Pseudomonas luteola':4,
+'Pseudomonas sp. UW4':4,
+'Pseudomonas sp. Lz4W':4,
+'Pseudomonas sp. M47T1':4,
+'Pseudomonas donghuensis':4,
+(
+'Pseudomonas mandelii PD30':4,
+'Pseudomonas mandelii 36MFCvi1.1':4
+)'Pseudomonas mandelii':4,
+'Pseudomonas furukawaii':4,
+'Pseudomonas sp. GM21':4,
+(
+'Pseudomonas fragi B25':4)
+'Pseudomonas fragi':4,
+(
+'Pseudomonas resinovorans NBRC 106553':4,
+'Pseudomonas resinovorans DSM 21078':4
+)'Pseudomonas resinovorans':4,
+(
+'Pseudomonas extremaustralis 14-3 substr. 14-3b':4)
+'Pseudomonas extremaustralis':4,
+(
+'Pseudomonas psychrotolerans L19':4)
+'Pseudomonas psychrotolerans':4,
+'Pseudomonas brassicacearum':4,
+(
+'Pseudomonas psychrophila HA-4':4)
+'Pseudomonas psychrophila':4,
+(
+'Pseudomonas fulva 12-X':4)
+'Pseudomonas fulva':4,
+'Pseudomonas sp. S9':4,
+'Pseudomonas sp. H2':4,
+'Pseudomonas chlororaphis':4,
+(
+'Pseudomonas caeni DSM 24390':4)
+'Pseudomonas caeni':4,
+'Pseudomonas sp. Chol1':4,
+(
+'Pseudomonas mendocina EGD-AQ5':4,
+'Pseudomonas mendocina NK-01':4,
+'Pseudomonas mendocina ymp':4
+)'Pseudomonas mendocina':4,
+(
+'Pseudomonas entomophila L48':4)
+'Pseudomonas entomophila':4,
+'Pseudomonas simiae':4,
+(
+'Pseudomonas savastanoi pv. phaseolicola 1448A':4)
+'Pseudomonas savastanoi':4,
+'Pseudomonas lutea':4,
+'Pseudomonas alkylphenolica':4,
+(
+'Pseudomonas syringae pv. maculicola str. ES4326':4,
+'Pseudomonas syringae pv. tomato str. DC3000':4
+)'Pseudomonas syringae group genomosp. 3':4,
+(
+'Pseudomonas protegens CHA0':4,
+'Pseudomonas protegens Pf-5':4
+)'Pseudomonas protegens':4,
+'Pseudomonas rhizosphaerae':4,
+(
+'Pseudomonas fluorescens NCIMB 11764':4,
+'Pseudomonas fluorescens F113':4,
+'Pseudomonas fluorescens HK44':4,
+'Pseudomonas fluorescens Q2-87':4,
+'Pseudomonas fluorescens NZ007':4,
+'Pseudomonas fluorescens SBW25':4,
+'Pseudomonas fluorescens Pf0-1':4
+)'Pseudomonas fluorescens':4,
+(
+'Pseudomonas syringae CC1557':4,
+'Pseudomonas syringae CC1513':4,
+'Pseudomonas syringae CC1417':4,
+'Pseudomonas syringae pv. syringae B728a':4
+)'Pseudomonas syringae':4,
+'Pseudomonas cremoricolorata':4,
+'Pseudomonas sp. M1':4,
+(
+'Pseudomonas putida MTCC 5279':4,
+'Pseudomonas putida NBRC 14164':4,
+'Pseudomonas putida S16':4,
+'Pseudomonas putida CSV86':4,
+'Pseudomonas putida W619':4,
+'Pseudomonas putida F1':4,
+'Pseudomonas putida KT2440':4,
+'Pseudomonas putida GB-1':4
+)'Pseudomonas putida':4,
+'Pseudomonas sp. VLB120':4,
+(
+'Pseudomonas stutzeri MF28':4,
+'Pseudomonas stutzeri KOS6':4,
+'Pseudomonas stutzeri NF13':4,
+'Pseudomonas stutzeri CCUG 29243':4,
+'Pseudomonas stutzeri DSM 10701':4,
+'Pseudomonas stutzeri SDM-LAC':4,
+'Pseudomonas stutzeri RCH2':4,
+'Pseudomonas stutzeri TS44':4,
+'Pseudomonas stutzeri A1501':4,
+'Pseudomonas stutzeri ATCC 14405 = CCUG 16156':4
+)'Pseudomonas stutzeri':4,
+(
+'Pseudomonas pseudoalcaligenes AD6':4,
+'Pseudomonas pseudoalcaligenes CECT 5344':4
+)'Pseudomonas oleovorans':4,
+'Pseudomonas aeruginosa':4
+)Pseudomonas:4
+)Pseudomonadaceae:4
+)Pseudomonadales:4
+)Gammaproteobacteria:4
+)Proteobacteria:4;
