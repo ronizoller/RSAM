@@ -300,8 +300,10 @@ class Main_Frame(object):
         panel = tk.Label(root, image=img)
         panel.pack(side="top", fill="both", expand="yes")
 
-        parameter_lables = [['Specie tree extension', 'string', '','This is the extentiuon of the file S_(extention).txt\n'
-                                                                     'This is also the extention for the FASTA file.'],
+        parameter_lables = [['Specie tree extension', 'string', '',
+                             "This is the folder's name under /data"],
+                            ['Color specification', 'string', '',
+                             'This is the extension of the file colors_(extension).txt'],
                             ['k', 'int', '10','Value of k for the k-best hypergraph'],
                             ['Threshold Edges\nin Subtree', 'float', '0.1','The minimal number of edges in subtrees that\n'
                                                                            'will considered when looking for top scoring vertices\n'
@@ -420,7 +422,7 @@ class Main_Frame(object):
             if entry[0].find('p1') == -1 and entry[0].find('p2') == -1:
                 text = entry[1].get()
                 vars.append(text)
-        only_draw ,speciesTreespecification, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost,\
+        only_draw ,speciesTreespecification, color_ext, k, TH_edges, HT_cost, D_cost, S_cost, loss_cost,\
         gamma, p, number_of_planted_vertices, create_sigma, draw, track_solution, random_sol, color,\
         labels,draw_marked,number_of_dup, x, y, draw_S_and_G = vars
 
@@ -437,7 +439,7 @@ class Main_Frame(object):
         if t1.only_draw.get():
             k = TH_edges = HT_cost = D_cost = S_cost = loss_cost = gamma = p = number_of_planted_vertices = 0
             track_solution = 0
-        RSAMfinder.main(speciesTreespecification, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
+        RSAMfinder.main(speciesTreespecification, color_ext, int(k), Decimal(TH_edges), int(HT_cost), int(D_cost), int(S_cost),
                         int(loss_cost), Decimal(gamma), Decimal(p), int(number_of_planted_vertices), p1, p2, create_sigma,
                         track_solution, draw, color,labels,draw_marked,x,y, res, only_draw, draw_S_and_G, int(number_of_dup))
 

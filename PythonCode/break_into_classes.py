@@ -6,7 +6,7 @@ import os
 path = os.getcwd()+'/data/'
 
 classes = ['_proteobacteria']
-COG = 'COG2367(class_A)'
+COG = 'COG1680(class_C,single,proteobacteria)'
 
 for clas in classes:
     S = tr.Tree.get_from_path(path + '/' + COG + "/S.txt", schema="newick")

@@ -1,6 +1,6 @@
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG2602(class_D,gram_strain,all)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG1680(class_C,dual,proteobacteria)/'
 
-tag_by_gram_pos_neg = True
+tag_by_gram_pos_neg = False
 
 input = open(path + '/taxa_names.txt', 'r')
 
@@ -59,11 +59,11 @@ for name in missing_tags:
                 name.replace(' ', '').replace('_', '').find(tag_name.replace(' ', '').replace('_', '')) != -1:
             for tag in to_be_red:
                 if tags_habitat[i].replace('\t',"") != "" and (tag.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag) != -1) and not flag :
-                    res = res + ", '" + old_new_names[name.replace('_',' ')].replace(' ','')+"':'red' "
+                    res = res + old_new_names[name.replace('_',' ')].replace(' ','')+"':'red', "
                     flag = True
             for tag_env in to_be_black:
                 if tags_habitat[i].replace('\t',"") != "" and (tag_env.find(tags_habitat[i]) != -1 or tags_habitat[i].find(tag_env) != -1) and not flag:
-                    res = res + ", '" + old_new_names[name.replace('_', ' ')].replace(' ','') + "':'black' "
+                    res = res + old_new_names[name.replace('_', ' ')].replace(' ','') + "':'black', "
                     flag = True
         i+=1
     if not flag:
