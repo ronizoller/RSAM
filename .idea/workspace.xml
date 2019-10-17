@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="color extension added">
-      <change beforePath="$PROJECT_DIR$/.idea/RSAM1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RSAM1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/taxa_names.txt" beforeDir="false" afterPath="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/taxa_names.txt" afterDir="false" />
-    </list>
+    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="color extension added" />
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
     <ignored path="Supplementary Materials/COG3549/" />
@@ -73,7 +67,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
+            <state relative-caret-position="242">
               <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
               <folding>
                 <element signature="e#19575#20724#0" />
@@ -165,13 +159,6 @@
               <item name="RSAM" type="462c0819:PsiDirectoryNode" />
               <item name="PythonCode" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RSAM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RSAM" type="462c0819:PsiDirectoryNode" />
-              <item name="PythonCode" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="COG1680(class_C,proteobacteria)" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -361,14 +348,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
-      <workItem from="1570968529095" duration="609000" />
-    </task>
-    <task id="LOCAL-00035" summary="27.3">
-      <created>1554195451999</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1554195452001</updated>
+      <workItem from="1570968529095" duration="1835000" />
     </task>
     <task id="LOCAL-00036" summary="27.3">
       <created>1554392346740</created>
@@ -706,15 +686,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570955306571</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="color extension added">
+      <created>1570969144263</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1570969144263</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="609000" />
+    <option name="totallyTimeSpent" value="1835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1688" height="1020" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26744187" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1018,7 +1004,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
+        <state relative-caret-position="242">
           <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
           <folding>
             <element signature="e#19575#20724#0" />
