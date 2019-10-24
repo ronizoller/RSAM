@@ -30,7 +30,7 @@ def number_of_scpecies_doup(G, old_sigma, number_of_douplications):
 
 
 def draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma, lables, pattern,size, S_labels_table, x_axis, y_axis,
-                  draw_marked, double_mode, lables_flag, ext, color, number_of_douplications, path):
+                  draw_marked, double_mode, lables_flag, colors_ext, color, number_of_douplications, path):
     plt.clf()
     special_colors = []
     should_be_found = number_of_scpecies_doup(G,old_sigma,number_of_douplications)
@@ -97,7 +97,7 @@ def draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma, lables, pattern,size
     return
 
 
-def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis,y_axis,draw_marked,double_mode,lables_flag,ext, color, path):
+def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,size,S_labels_table,x_axis,y_axis,draw_marked,double_mode,lables_flag,colors_ext, color, path):
     plt.clf()
 
     tree_to_draw = nx.DiGraph()
@@ -162,7 +162,7 @@ def draw_new_HT(marked_nodes, colors, sigma, new_G, G,old_sigma, lables,pattern,
         text = nx.draw_networkx_labels(tree_to_draw, pos1, labels1, font_size=7)
         for _, t in text.items():
             t.set_rotation('vertical')
-    plt.savefig(path + '/figures/new_G_pattern='+pattern+'_'+ext+'.png')
+    plt.savefig(path + '/figures/new_G_colors_'+colors_ext+'.png')
     return
 
 def hex_code_colors():
@@ -215,13 +215,13 @@ def main(G, sigma, old_sigma, colors, S_labels_table, p1, p2, ext, colors_ext,
     if 'D' in p1[0]:
         draw_new_doup(marked_nodes, sigma, new_G, G, old_sigma,
                       lables_flag, pattern_name, big_size,S_labels_table,x_axis, y_axis,
-                      draw_marked, double_mode, lables_flag, ext, color, number_of_duplications, path)
+                      draw_marked, double_mode, lables_flag, colors_ext, color, number_of_duplications, path)
 
     else:
         draw_new_HT(marked_nodes, colors, sigma, new_G, G, old_sigma,
                     lables_flag, pattern_name,
                                  big_size,S_labels_table, x_axis,
-                    y_axis, draw_marked, double_mode, lables_flag, ext, color, path)
+                    y_axis, draw_marked, double_mode, lables_flag, colors_ext, color, path)
 
     return
 

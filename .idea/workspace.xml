@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="color extension added" />
+    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="colors can be in the same folder">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/habitat.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/species.mappings.v11.0.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/colors.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_RSAM_finder_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_nodes_leafs_lists_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_right.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/RSAM1.iml" afterPath="$PROJECT_DIR$/.idea/RSAM1.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/Main_GUI.py" afterPath="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_dist_matrix.txt" afterPath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_dist_matrix.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/draw_for_users.py" afterPath="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" afterPath="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
+    </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
     <ignored path="Supplementary Materials/COG3549/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,63 +38,85 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="RSAM1" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main_GUI.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5550">
-              <caret line="377" selection-start-line="377" selection-end-line="377" />
+            <state relative-caret-position="429">
+              <caret line="502" column="14" selection-start-line="502" selection-start-column="14" selection-end-line="502" selection-end-column="14" />
+              <folding>
+                <element signature="e#2162#3558#0" expanded="false" />
+                <element signature="e#3589#3851#0" expanded="false" />
+                <element signature="e#3897#6811#0" expanded="false" />
+                <element signature="e#6859#11267#0" expanded="false" />
+                <element signature="e#11300#19143#0" expanded="false" />
+                <element signature="e#13812#15012#0" expanded="false" />
+                <element signature="e#15056#16988#0" expanded="false" />
+                <element signature="e#17046#19143#0" expanded="false" />
+                <element signature="e#19166#19586#0" expanded="false" />
+                <element signature="e#19616#20515#0" expanded="false" />
+                <element signature="e#20555#20748#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="parse_metadata.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="73" column="91" selection-start-line="73" selection-start-column="91" selection-end-line="73" selection-end-column="91" />
+              <folding>
+                <element signature="e#51#2550#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="draw_for_users.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3165">
-              <caret line="211" column="20" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="20" />
+            <state relative-caret-position="-365">
+              <caret line="164" column="59" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="59" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="color_species.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_species.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="915">
               <caret line="61" column="23" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="FASTA_to_taxamony_names.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
+            <state relative-caret-position="-2675">
+              <caret line="173" column="57" selection-start-line="173" selection-start-column="57" selection-end-line="173" selection-end-column="57" />
               <folding>
-                <element signature="e#19575#20724#0" />
+                <element signature="e#8118#10055#0" expanded="false" />
+                <element signature="e#16938#19148#0" expanded="false" />
+                <element signature="e#19575#20724#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -115,7 +161,6 @@
         <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/test.py" />
-        <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
         <option value="$PROJECT_DIR$/PythonCode/Tree_Grnarator.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/check_missing_colors.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/tag_habibats.py" />
@@ -124,52 +169,185 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
         <option value="$PROJECT_DIR$/PythonCode/tests.py" />
         <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
-        <option value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
-        <option value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
         <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
         <option value="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt" />
+        <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
+        <option value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
+        <option value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="RSAM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RSAM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RSAM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RSAM" type="462c0819:PsiDirectoryNode" />
-              <item name="PythonCode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RSAM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RSAM" type="462c0819:PsiDirectoryNode" />
-              <item name="PythonCode" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Supplementary Materials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PythonCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PythonCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PythonCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PythonCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="COG2602(class_D,habitat,all)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RSAM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PythonCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="COG2602(class_D,habitat,all)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="saved_data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -178,6 +356,136 @@
         <option name="myModuleName" value="RSAM1" />
       </console-settings>
     </option>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/RSAM1.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/taxa_names.txt</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/G_keys.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_dist_matrix.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_edgelist.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_keys.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_RSAM_finder_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_nodes_leafs_lists_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_left.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_right.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_left.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_right.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_left.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_right.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_left.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_right.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_left.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_right.txt</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -191,7 +499,126 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.parse_metadata">
+    <configuration default="false" name="RSAMfinder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="break_into_classes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="color_species" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="parse_metadata" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -211,132 +638,111 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="RSAMfinder" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RSAM1" />
+    <configuration default="true" type="tests" factoryName="Doctests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="break_into_classes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RSAM1" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="color_species" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RSAM1" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="parse_metadata" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RSAM1" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RSAM1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
     </configuration>
-    <list>
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.parse_metadata" />
-      <item itemvalue="Python.color_species" />
-      <item itemvalue="Python.break_into_classes" />
-      <item itemvalue="Python.RSAMfinder" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.RSAMfinder" />
+      <item index="1" class="java.lang.String" itemvalue="Python.break_into_classes" />
+      <item index="2" class="java.lang.String" itemvalue="Python.color_species" />
+      <item index="3" class="java.lang.String" itemvalue="Python.parse_metadata" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test" />
     </list>
     <recent_temporary>
-      <list>
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.RSAMfinder" />
-        <item itemvalue="Python.color_species" />
-        <item itemvalue="Python.parse_metadata" />
-        <item itemvalue="Python.break_into_classes" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.parse_metadata" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.color_species" />
+        <item index="3" class="java.lang.String" itemvalue="Python.break_into_classes" />
+        <item index="4" class="java.lang.String" itemvalue="Python.RSAMfinder" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -700,30 +1106,27 @@
     <option name="totallyTimeSpent" value="1835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1688" height="1020" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26744187" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49815693" weight="0.3290735" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7921071" visible="true" weight="0.3254282" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48341233" weight="0.3940362" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.47991544" weight="0.43741766" />
-      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49394417" weight="0.32800853" />
-      <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49605057" weight="0.3290735" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.20789288" side_tool="true" visible="true" weight="0.2735426" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38266385" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40184453" sideWeight="0.2184637" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35356763" sideWeight="0.4781464" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.49394417" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40184453" sideWeight="0.7815363" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3940362" sideWeight="0.48341233" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,10 +1185,56 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/Draw_new_G.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3165">
+          <caret line="211" column="20" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="171" column="74" selection-start-line="171" selection-start-column="74" selection-end-line="171" selection-end-column="74" />
+          <folding>
+            <element signature="e#8118#10055#0" expanded="false" />
+            <element signature="e#16938#19148#0" expanded="false" />
+            <element signature="e#19575#20724#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1361">
+          <caret line="377" column="0" selection-start-line="377" selection-start-column="0" selection-end-line="377" selection-end-column="0" />
+          <folding>
+            <element signature="e#2162#3558#0" expanded="false" />
+            <element signature="e#3589#3851#0" expanded="false" />
+            <element signature="e#3897#6811#0" expanded="false" />
+            <element signature="e#6859#11267#0" expanded="false" />
+            <element signature="e#11300#19143#0" expanded="false" />
+            <element signature="e#13812#15012#0" expanded="false" />
+            <element signature="e#15056#16988#0" expanded="false" />
+            <element signature="e#17046#19143#0" expanded="false" />
+            <element signature="e#19166#19586#0" expanded="false" />
+            <element signature="e#19616#20515#0" expanded="false" />
+            <element signature="e#20555#20748#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/os.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tkinter/ttk.py" />
@@ -794,7 +1243,7 @@
     <entry file="file://$PROJECT_DIR$/PythonCode/pattern_identify_v4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1200">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -820,20 +1269,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/get_habitat.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/data/test/G_binary.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        <state relative-caret-position="0">
+          <caret line="0" column="4" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/data/test/S_binary.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -849,14 +1295,11 @@
     <entry file="file://$PROJECT_DIR$/PythonCode/draw.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4590">
-          <caret line="306" selection-start-line="306" selection-end-line="306" />
+          <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/tkinter/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/PythonCode/logo.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_by_coocorences.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
@@ -882,8 +1325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/extract_from_FASTA_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="62" />
+        <state relative-caret-position="0">
+          <caret line="0" column="8" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -897,7 +1340,7 @@
     <entry file="file://$PROJECT_DIR$/PythonCode/utiles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -920,22 +1363,21 @@
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
-          <caret line="45" selection-start-line="45" selection-end-line="47" selection-end-column="24" />
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/check_missing_colors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="88" />
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/string_to_array.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15107" selection-start-column="15107" selection-end-column="15107" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="15107" selection-start-line="0" selection-start-column="15107" selection-end-line="0" selection-end-column="15107" />
         </state>
       </provider>
     </entry>
@@ -947,34 +1389,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/tests.py" />
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="73" column="101" selection-start-line="73" selection-start-column="101" selection-end-line="73" selection-end-column="101" />
-          <folding>
-            <element signature="e#51#2550#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5550">
-          <caret line="377" selection-start-line="377" selection-end-line="377" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3165">
-          <caret line="211" column="20" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -982,32 +1401,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
           <caret line="61" column="23" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_gram_strain.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        <state relative-caret-position="0">
+          <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="158" column="71" selection-start-line="158" selection-start-column="71" selection-end-line="158" selection-end-column="71" />
+        <state relative-caret-position="-2675">
+          <caret line="173" column="57" selection-start-line="173" selection-start-column="57" selection-end-line="173" selection-end-column="57" />
           <folding>
-            <element signature="e#19575#20724#0" />
+            <element signature="e#8118#10055#0" expanded="false" />
+            <element signature="e#16938#19148#0" expanded="false" />
+            <element signature="e#19575#20724#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-365">
+          <caret line="164" column="59" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="502" column="14" selection-start-line="502" selection-start-column="14" selection-end-line="502" selection-end-column="14" />
+          <folding>
+            <element signature="e#2162#3558#0" expanded="false" />
+            <element signature="e#3589#3851#0" expanded="false" />
+            <element signature="e#3897#6811#0" expanded="false" />
+            <element signature="e#6859#11267#0" expanded="false" />
+            <element signature="e#11300#19143#0" expanded="false" />
+            <element signature="e#13812#15012#0" expanded="false" />
+            <element signature="e#15056#16988#0" expanded="false" />
+            <element signature="e#17046#19143#0" expanded="false" />
+            <element signature="e#19166#19586#0" expanded="false" />
+            <element signature="e#19616#20515#0" expanded="false" />
+            <element signature="e#20555#20748#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="73" column="91" selection-start-line="73" selection-start-column="91" selection-end-line="73" selection-end-column="91" />
+          <folding>
+            <element signature="e#51#2550#0" expanded="false" />
           </folding>
         </state>
       </provider>

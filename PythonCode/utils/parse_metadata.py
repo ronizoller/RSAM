@@ -71,7 +71,7 @@ class genome:
         return self.genome_name.replace(' ','').replace('_','').find(name.replace(' ','').replace('_','')) != -1 or\
                name.replace(' ','').replace('_','').find(self.genome_name.replace(' ','').replace('_','')) != -1
 
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG1680(class_C,single,proteobacteria)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219(BlaR,proteobacteria)/'
 
 input1 = open(path + '/taxa_names_array.txt', 'r')
 to_tag = []

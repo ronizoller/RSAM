@@ -56,10 +56,8 @@ class parameters_frame(object):
             for entry in temp_ents:
                 entry[1].config(state='normal')
                 entry[1].delete(0,tk.END)
-                entry[1].insert("end",fields[temp_ents.index(entry)+1][2])
+                entry[1].insert("end",fields[temp_ents.index(entry)+2][2])
             draw_check_butt[1].set('0')
-
-
 
 
 def make_patterns_tab(root, patterns):
@@ -100,6 +98,7 @@ def make_patterns_tab(root, patterns):
         c.grid(row=1, column=number_of_events+2)
         row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
     return entries
+
 
 def floatValidation(S):
     flag = True
@@ -317,9 +316,9 @@ class Main_Frame(object):
                             ['Number of Vertices to find', 'int', 5,'How many Gene tree vertices will be reported.']]
 
         nb = Notebook(self.top,'RSAM-Finder')
-        t1 = nb.add_tab('General Prarmeters', parameters_frame, parameter_lables,'general')
+        t1 = nb.add_tab('General Parameters', parameters_frame, parameter_lables,'general')
         t2 = nb.add_tab('Pattern Definitions', parameters_frame,[],'patterns')
-        t3 = nb.add_tab('Figure Prarmeters', parameters_frame, [], 'figure_params')
+        t3 = nb.add_tab('Figure Parameters', parameters_frame, [], 'figure_params')
 
         self.b1 = tk.Button(top, text='Run',
                             command=lambda: self.bar_init(t1,t2,t3))
@@ -445,7 +444,7 @@ class Main_Frame(object):
 
 
 class Notebook:
-    def __init__(self, top,title):
+    def __init__(self,top,title):
         self.root = top
         self.root.title(title)
         self.notebook = ttk.Notebook(self.root)
@@ -499,6 +498,7 @@ def CreateToolTip(widget, text):
         toolTip.hidetip()
     widget.bind('<Enter>', enter)
     widget.bind('<Leave>', leave)
+
 
 root = tk.Tk()
 Main_Frame(root)
