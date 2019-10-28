@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG1680(class_C,dual,proteobacteria)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219(BlaR,all)/'
 
 tag_by_gram_pos_neg = False
 
@@ -87,7 +87,10 @@ for name in missing_tags:
         tagged.append(name)
 
 res += '}'
-file = open(path + '' + "/colors.txt", 'w')
+if tag_by_gram_pos_neg:
+    file = open(path + '' + "/colors_gram_starin.txt", 'w')
+else:
+    file = open(path + '' + "/colors_habitat.txt", 'w')
 file.write(str(res))
 file.close()
 
