@@ -274,11 +274,12 @@ def find_node_in_networkx_tree(tree,label):
     return None
 
 
-def normlize_weights(G, k, p, name, field):
+def normlize_weights(G, k, p, pattern_name, field):
     for nd in (reversed(list(nx.topological_sort(G)))):
         if p[0] is not None:
-            if (G.nodes(data = True)[nd][field] * k) > 0:
-                G.nodes(data = True)[nd][name] = G.nodes(data = True)[nd][name]/ (len(p[0]) * G.nodes(data = True)[nd][field] * k )
+            if (G.nodes(data=True)[nd][field] * k) > 0:
+                true_len = len(list(event for event in p[0] if event not in ['None',None]))
+                G.nodes(data=True)[nd][pattern_name] /= (true_len * G.nodes(data=True)[nd][field] * k)
     return G
 
 
