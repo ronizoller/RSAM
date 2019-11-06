@@ -1,0 +1,296 @@
+Pseudoalteromonas sp. SM9913
+Novosphingobium sp. Rr 217
+Legionella anisa
+Arenimonas malthae
+Colwellia psychrerythraea
+Rhodanobacter denitrificans
+Dyella ginsengisoli
+Pseudoalteromonas spongiae
+Xanthomonas albilineans
+Shewanella denitrificans
+Stigmatella aurantiaca
+Legionella pneumophila Paris
+Colwellia piezophila
+Xanthomonas cassavae
+Luteibacter sp. 9143
+Oceanicaulis sp. HTCC2633
+Sphingobium sp. AP49
+Rhodanobacter thiooxydans
+Saccharophagus degradans
+Oceanicaulis sp. HTCC2633
+Bradyrhizobium sp. BTAi1
+Bradyrhizobium sp. ARR65
+Ruegeria conchae
+Asticcacaulis sp. AC402
+Pseudoxanthomonas sp. GW2
+Caulobacter sp. UNC358MFTsu51
+Pseudoxanthomonas suwonensis J43
+Xanthomonas translucens
+Cellvibrio sp. BR
+Citromicrobium sp. JLT1363
+Stenotrophomonas maltophilia R5513
+Sphingobium sp. SYK6
+Myxococcus xanthus
+Legionella pneumophila Paris
+Pseudoalteromonas tunicata
+Ralstonia sp. AU1208
+Sphingopyxis sp. MC1
+Xanthomonas campestris vesicatoria
+Erythrobacter litoralis
+Rheinheimera sp. A13L
+Hyphomonas sp. CY54118
+Sorangium cellulosum So ce56
+Sphingomonas phyllosphaerae FA2
+Rheinheimera sp. A13L
+Hyphomonas sp. T16B2
+Pseudoalteromonas tunicata
+Myxococcus fulvus
+Shewanella sp. ECSMB14101
+Idiomarina sp. A28L
+Xanthomonas hortorum
+Sphingobium japonicum UT26S
+Sphingobium ummariense
+Alteromonadales bacterium TW7
+Teredinibacter turnerae T7902
+Sphingomonas sp. Mn802worker
+Shewanella loihica
+Shewanella piezotolerans
+Sphingomonas sp. UNC305MFCol52
+Legionella pneumophila Philadelphia
+Xanthomonas hortorum
+Myxococcus xanthus
+Stenotrophomonas maltophilia 5BAI2
+Hyphomonas adhaerens
+Sphingomonas sp. RIT328
+Erythrobacter sp. NAP1
+Caulobacter sp. K31
+Xanthomonas oryzae oryzicola
+Rhodanobacter denitrificans
+Sphingopyxis alaskensis
+Myxococcus xanthus
+Sphingobium xenophagum
+Xanthomonas oryzae PXO99A
+Sphingobium sp. YL23
+Stenotrophomonas maltophilia K279a
+Bradyrhizobium sp. ARR65
+Thalassolituus oleivorans
+Fluoribacter dumoffii
+Xanthomonas campestris campestris
+Myxococcus fulvus
+Sphingomonas sp. MM1
+Novosphingobium resinovorum
+Hyphomonas johnsonii
+Dyella ginsengisoli
+Alteromonas australica
+Sphingomonas sp. SKA58
+Sphingobium sp. C100
+Sphingomonas taxi
+Stenotrophomonas maltophilia PML168
+Sorangium cellulosum So ce56
+Caulobacter henricii
+Stenotrophomonas maltophilia R5513
+Lysobacter antibioticus
+Massilia sp. LC238
+Ruegeria halocynthiae
+Hyphomonas adhaerens
+Lysobacter antibioticus
+Colwellia piezophila
+Rhodanobacter thiooxydans
+Alteromonadales bacterium TW7
+Sphingomonas sp. 3524ZXX
+Myxococcus fulvus
+Labrenzia aggregata
+Arenimonas metalli
+Caulobacter henricii
+Enhygromyxa salina
+Xanthomonas fragariae
+Enhygromyxa salina
+Myxococcus fulvus
+Bradyrhizobium genosp.
+Glaciecola nitratireducens
+Pseudoalteromonas sp. Bsw20308
+Sphingopyxis sp. MC1
+Janthinobacterium lividum
+Xanthomonas campestris vesicatoria
+Sphingomonas sp. PR090111T3T6A
+Pseudoalteromonas ruthenica
+Ruegeria sp. TM1040
+Novosphingobium sp. AP12
+Hyphomonas sp. T16B2
+Shewanella violacea
+Sphingopyxis sp. LC363
+Maricaulis maris
+Caulobacter henricii
+Stigmatella aurantiaca
+Lysobacter dokdonensis
+Plesiocystis pacifica
+Thalassotalea sp. ND16A
+Sphingomonas sp. 37zxx
+Pseudoalteromonas spongiae
+Achromobacter insuavis
+Sandarakinorhabdus sp. AAP62
+Massilia consociata
+Rhodanobacter denitrificans
+Janthinobacterium sp. HH01
+Brevundimonas sp. BAL3
+Colwellia psychrerythraea
+Erythrobacter sp. SD21
+Xanthomonas arboricola
+Sulfitobacter mediterraneus
+Roseobacter sp. CCS2
+Thalassotalea sp. ND16A
+Alteromonas sp. LOR
+Caulobacter henricii
+Hyphomonas sp. CY54118
+Bradyrhizobium sp. WSM2793
+Roseobacter sp. SK20926
+Myxococcus xanthus
+Bradyrhizobium japonicum USDA6
+Bradyrhizobium sp. ORS278
+Xanthomonas axonopodis vasculorum
+Asticcacaulis sp. AC460
+Luteibacter sp. 9135
+Massilia timonae
+Lysobacter dokdonensis
+Sphingopyxis sp. LC363
+Hyphomonas polymorpha
+Ruegeria sp. R11
+Rhodobacteraceae bacterium KLH11
+Caulobacter henricii
+Erythrobacter vulgaris
+Xanthomonas campestris vesicatoria
+Bradyrhizobium sp. Ec33
+Legionella longbeachae
+Bradyrhizobium oligotrophicum
+Novosphingobium lindaniclasticum
+Sphingobium yanoikuyae
+Sphingomonas sp. PAMC26617
+Sphingomonas taxi
+Glaciecola nitratireducens
+Asticcacaulis sp. AC460
+Legionella massiliensis
+Sphingobium baderi
+Sphingomonas melonis
+Rhodanobacter spathiphylli
+Parvularcula oceani
+Enhygromyxa salina
+Enhygromyxa salina
+Erythrobacter sp. JL475
+Sphingopyxis sp. LC81
+Citromicrobium bathyomarinum
+Microbulbifer agarilyticus
+Porphyrobacter sp. HL46
+Sphingopyxis sp. LC363
+Ruegeria pomeroyi
+Hyphomonas sp. L53140
+Hyphomonas sp. L53140
+Hyphomonas johnsonii
+Caulobacter sp. UNC358MFTsu51
+Porphyrobacter sp. AAP82
+Xanthomonas campestris vesicatoria
+Sphingomonas sp. UNC305MFCol52
+Plesiocystis pacifica
+Thalassotalea sp. ND16A
+Sphingobium chlorophenolicum
+Dyella ginsengisoli
+Methylosinus sp. PW1
+Roseobacter sp. MED193
+Oceanicaulis sp. HL87
+Hyphomonas oceanitis
+Caulobacter sp. K31
+Massilia sp. 9096
+Erythrobacter sp. JL475
+Roseobacter sp. CCS2
+Cellvibrio mixtus
+Alteromonas australica
+Cellvibrio japonicus
+Massilia sp. LC238
+Pseudoalteromonas agarivorans
+Pseudoxanthomonas suwonensis J43
+Plesiocystis pacifica
+Sphingomonas sp. FUKUSWIS1
+Dyella ginsengisoli
+Teredinibacter turnerae T7901
+Pseudoalteromonas haloplanktis ANT505
+Janthinobacterium lividum
+Caulobacter sp. UNC358MFTsu51
+Rhodanobacter spathiphylli
+Colwellia piezophila
+Stenotrophomonas maltophilia PML168
+Saccharophagus degradans
+Sphingomonas sp. S17
+Stenotrophomonas maltophilia PML168
+Sphingomonas sp. PAMC26605
+Fluoribacter dumoffii
+Janthinobacterium lividum
+Caulobacter sp. K31
+Janthinobacterium sp. HH01
+Pseudoalteromonas haloplanktis ANT505
+Sphingomonas phyllosphaerae 52
+Variovorax paradoxus 110B
+Microbulbifer agarilyticus
+Shewanella waksmanii
+Arenimonas malthae
+Caulobacter henricii
+Stigmatella aurantiaca
+Hyphomonas jannaschiana
+Shewanella amazonensis
+Bradyrhizobium sp. WSM1253
+Pseudoalteromonas spongiae
+Teredinibacter turnerae T7901
+Janthinobacterium lividum
+Roseobacter litoralis
+Sphingomonas parapaucimobilis
+Bradyrhizobium sp. Tv2a2
+Dyella ginsengisoli
+Alteromonas sp. ALT199
+Hyphomonas jannaschiana
+Sphingopyxis sp. LC81
+Janthinobacterium sp. HH01
+Rhodanobacter thiooxydans
+Sphingopyxis sp. MC1
+Stenotrophomonas maltophilia 5BAI2
+Luteibacter sp. 9143
+Roseobacter denitrificans
+Hyphomonas oceanitis
+Pseudoalteromonas spongiae
+Rhodobacterales bacterium Y4I
+Massilia timonae
+Massilia sp. LC238
+Blastomonas sp. AAP53
+Maricaulis maris
+Silicibacter sp. TrichCH4B
+Leisingera sp. ANG1
+Shewanella frigidimarina
+Colwellia piezophila
+Stenotrophomonas maltophilia R5513
+Xanthomonas cassavae
+Phenylobacterium zucineum
+Sphingomonas sp. UNC305MFCol52
+Sphingopyxis sp. MWB1
+Colwellia piezophila
+Xanthomonas campestris musacearum
+Asticcacaulis biprosthecum
+Bradyrhizobium elkanii WSM2783
+Novosphingobium sp. PP1Y
+Herbaspirillum frisingense
+Sphingobium lactosutens
+Janthinobacterium sp. HH01
+Bradyrhizobium sp. WSM3983
+Alteromonas macleodii Black
+Sphingopyxis sp. LC81
+Sphingobium sp. ba1
+Pseudoalteromonas agarivorans
+Myxococcus fulvus
+Thalassobium sp. R2A62
+Bradyrhizobium japonicum USDA124
+Xanthomonas arboricola
+Massilia consociata
+Puniceispirillum marinum
+Arenimonas metalli
+Pseudoxanthomonas suwonensis 111
+Erythrobacter longus
+Asticcacaulis sp. AC466
+Stenotrophomonas maltophilia K279a
+Teredinibacter turnerae T7902
+Cellvibrio sp. BR
