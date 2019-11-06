@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219(BlaR,all)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219(BlaR,proteobacteria)/'
 
 tag_by_gram_pos_neg = False
 
@@ -32,17 +32,27 @@ if tag_by_gram_pos_neg:
 
 else:
     to_be_red = ["HUMAN","Yellowfin tuna","bovine","Anomalops katoptron","Macaca","Canis","Milkfish","salmon","Rabbit","Tursiops","flounder","Aplysia","Paralichthys","cattle","Timber rattlesnake","Goat","ANIMAL","Pagrus major","Abalone","cow","Multiple",'mice',"rumen microbiome","Bird","snail","tern","Bat","Pig","Danaus",
-                 "Entylia carinata","butterfly","Chicken","Nilaparvata","Aleurodicus","Crab","Coleopteran",'silkworm',"Human","Silk worm","Termite","Acanthamoeba sp","Duck","Goose", "Animal","clams","Caenorhabditis","Ark clam","Fish", "Mouse", "Bos taurus","bear", "Mus musculus", "Apis mellifera",
-         "rabbit", "rabbit"," Sponge", "Seal","Rattus","Lizard","Photoblepharon palpebratus","human","Drosophila","Cows","insect","Litopenaeus vannamei","Danio rerio","Sheep","Salvelinus namaycush","booklouse","Ctenocephalides","Gastrointestinal"
-         "Cat","animals"]
-    to_be_black = ["PLANT","Bivalve","Mosquito","Eucalyptus","Taxus cuspidata","Elysia ornata","poplar","Japanese horseradish","Glossina","Polyopes lancifolius","Pinus","banana","spider","Cockroach","Amblyomma","Bemisia","Sea","Pine","Neogoniolithon fosliei","Apple","Pea","Acyrthosiphon pisum","pepper","Ponds","Saintpaulia","Terpios","Mimosa scabrella","Bivalvia","Wheat","Tassel Hyacinth",'Tick',"Maize","fly","Beet","Skeletonema","Insect","Haliclona","Steinernema","Heterorhabditis","Racocetra castanea","mud","Gigaspora","Scutellospora pellucida","Oyster","Trachelipus","Argopecten","Ciona intestinali","Cauliflower","Apium","cabbage","Cichorium","Pear","Brassica","Gymnodinium","Machaerium","carrota","Hedera","Lactuca","Lissodendoryx","Cassava","Manihot","Bursaphelenchus","Quercus robur","Coffee","Figaro","Fragaria","Environmental","Bean","Saccharum","Tubeworm","Solemya","clam","ENV","Soil","Epilithic","lotus","coal mine","cave","milk","chromium","air","ice","Vitis vinifera L. grapevine","mosses","salt","saltern","ocean","planet","sauce","galaga","habitat","tannery wastes","Compost","seafood","saltpan","roots","lake","Lotus corniculatus","rhizospheres","Terrestrial","Mud","soil","sewage sludge","Plant","environmental","tomato","Tomato","Stylosanthes","Least snoutbean","Solanum","Mandevilla","grass","chilli","eggplant","Anthyllis","Maytenus","Astragalus","Lessertia","Prunus","Maytenus","Lessertia","Thale cress","Cherry","Indigofera","Willow","Montipora","Centrosema pubescens","Black mimosa","Chinese silvergrass", "vents","Skeletonema marinoi","Tachigali versicolor","Coral","Poa pratensis","Lotononis carinata","Mortierella elongata","Weeping fig","Cottonwood","groundwater","Date palm","Limoniastrum monopetalum","Cuminum cyminum","Otholobium candicans","lactate","Sponge","Peltigera didactyla","Lycium barbarum","Globobulimina","Lotus corniculatus","Lotus japonicus","Rice","rice","thermal vent","hydrothermal vent","sludge", "Prunus persica",
-       "Soybean","Mimosa flocculosa","pineapple", "Elysia rufescens","clover", "water","Water", "Grape", "Sediment","sediment", "Marine", "Extreme Environments", 'offshore oil field', "Madracis decactis", "Oryza", "Acacia", "Algae", "algae", "Corn","nuts", "Sugarcane", "cotton", "Gossypium", "coccinea","Acanthamoeba",
-         "ambigua", "Robinia","Festuca rubra", "spring","Spring","Asterionella formosa BG1","Stereocaulon","Biserrula","Cicer arietinum","Biserrula pelecinus","chickpea","Bituminaria","pea","Piriformospora indica",
-       "Mimosa pudica","rhizosphere","Pyrus","Aeschynomene","Acanthamoebae","peat bog","aquatic","cellulolytic culture","sanitary sewer","coral","Lake","Aquatic","sea","marine",
-                   "rock","Plautia stali","Dinoflagellate","Macrotermes","Tunicate","Cucurbita","Rafflesia","bean","Sesbania"]
+                 "Entylia carinata","butterfly","Chicken","Nilaparvata","Aleurodicus","Crab","Coleopteran",'silkworm',"Human","Silk worm","Termite","Acanthamoeba sp","Duck","Goose", "Animal","Caenorhabditis","Fish", "Mouse", "Bos taurus","bear", "Mus musculus", "Apis mellifera",
+                "rabbit", "rabbit"," Sponge", "Seal","Rattus","Lizard","Photoblepharon palpebratus","human","Drosophila","Cows","insect","Litopenaeus vannamei","Danio rerio","Sheep","Salvelinus namaycush","booklouse","Ctenocephalides","Gastrointestinal"
+                "Cat","animals"]
+    to_be_black = ["PLANT","Bivalve","Mosquito","Eucalyptus","Taxus cuspidata","Elysia ornata","poplar","Japanese horseradish","Glossina","Polyopes lancifolius","Pinus","banana","spider","Cockroach","Amblyomma","Bemisia","Sea","Pine","Neogoniolithon fosliei","Apple","Pea","Acyrthosiphon pisum","pepper","Ponds","Saintpaulia","Terpios","Mimosa scabrella","Bivalvia","Wheat","Tassel Hyacinth",'Tick',"Maize","fly","Beet","Skeletonema","Insect","Haliclona","Steinernema","Heterorhabditis","Racocetra castanea","mud","Gigaspora","Scutellospora pellucida","Oyster","Trachelipus","Argopecten","Ciona intestinali","Cauliflower","Apium","cabbage","Cichorium","Pear","Brassica","Gymnodinium","Machaerium","carrota","Hedera","Lactuca",
+                   "Lissodendoryx","Cassava","Manihot","Bursaphelenchus","Quercus robur","Coffee","Figaro","Fragaria","Environmental","Bean","Saccharum","Tubeworm","Solemya","clam",
+                   "ENV","Soil","Epilithic","lotus","coal mine","cave","milk","chromium","air","ice","Vitis vinifera L. grapevine","mosses","salt","saltern","ocean","planet",
+                   "sauce","galaga","habitat","tannery wastes","Compost","seafood","saltpan","roots","lake","Lotus corniculatus","rhizospheres","Terrestrial","Mud","soil",
+                   "sewage sludge","Plant","environmental","tomato","Tomato","Stylosanthes","Least snoutbean","Solanum","Mandevilla","grass","chilli","eggplant","Anthyllis","Maytenus",
+                   "Astragalus","Lessertia","Prunus","Maytenus","Lessertia","Thale cress","Cherry","Indigofera","Willow","Montipora","Centrosema pubescens","Black mimosa",
+                   "Chinese silvergrass", "vents","Skeletonema marinoi","Tachigali versicolor","Coral","Poa pratensis","Lotononis carinata","Mortierella elongata","Weeping fig",
+                   "Cottonwood","groundwater","Date palm","Limoniastrum monopetalum","Cuminum cyminum","Otholobium candicans","lactate","Sponge","Peltigera didactyla","Lycium barbarum",
+                   "Globobulimina","Lotus corniculatus","Lotus japonicus","Rice","rice","thermal vent","hydrothermal vent","sludge", "Prunus persica",
+                    "Soybean","Mimosa flocculosa","pineapple", "Elysia rufescens","clover", "water","Water", "Grape", "Sediment","sediment", "Marine", "Extreme Environments",
+                   'offshore oil field',"Madracis decactis", "Oryza", "Acacia", "Algae", "algae", "Corn","nuts", "Sugarcane", "cotton", "Gossypium", "coccinea","Acanthamoeba",
+                    "ambigua", "Robinia","Festuca rubra", "spring","Spring","Asterionella formosa BG1","Stereocaulon","Biserrula","Cicer arietinum","Biserrula pelecinus",
+                   "chickpea","Bituminaria","pea","Piriformospora indica","Mimosa pudica","rhizosphere","Pyrus","Aeschynomene","Acanthamoebae","peat bog","aquatic",
+                   "cellulolytic culture","sanitary sewer","coral","Lake","Aquatic","sea","marine","rock","Plautia stali","Dinoflagellate","Macrotermes","Tunicate","Cucurbita",
+                   "Rafflesia","bean","Sesbania","diesel-oil","Ginseng","clams","Ark clam","iron"]
 
 
-list_not_to_dis = ["Missing","Specialized","Host-Associated","Host-associated","HostAssociated","Host","Unknown","Host Associated"]
+list_not_to_dis = []
 
 input1 = open(path + "/old_new_names.txt", 'r')
 old_new_names = []
@@ -85,6 +95,8 @@ for name in missing_tags:
             not_anottated.append(name)
     elif name not in tagged:
         tagged.append(name)
+    else:
+        print(name)
 
 res += '}'
 if tag_by_gram_pos_neg:
