@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="colors can be in the same folder">
+    <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="colors can be in the same folder (colors fixed)">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/FASTA.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/G.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/IDs_species_maping.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/NCBI_tax_ID.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/S.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/colors_habitat_partial.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/old_new_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/tags_from_patric.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,firmicuts)/taxa_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/FASTA.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/G.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/IDs_species_maping.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/NCBI_tax_ID.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/S.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/colors_habitat_partial.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/old_new_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/tags_from_patric.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteo+fir)/taxa_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/FASTA.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/G.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/IDs_species_maping.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/NCBI_tax_ID.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/S.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/colors_habitat_partial.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/old_new_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/tags_from_patric.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,proteobacteria)/taxa_names.txt" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/habitat.txt" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/species.mappings.v11.0.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_left.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_right.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/figures/new_G_colors_habitat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/marked_RSAM_finder.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode_colors_habitat/marked_nodes_leafs_lists_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,all)/colors_habitat.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,all)/colors_habitat.txt" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219(BlaR,all)/colors_habitat.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/utils/color_species.py" afterPath="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/break_into_classes.py" afterPath="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
     </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
@@ -30,7 +70,7 @@
       <file leaf-file-name="Main_GUI.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
+            <state relative-caret-position="1185">
               <caret line="502" column="14" selection-start-line="502" selection-start-column="14" selection-end-line="502" selection-end-column="14" />
               <folding>
                 <element signature="e#2162#3558#0" expanded="false" />
@@ -52,7 +92,7 @@
       <file leaf-file-name="parse_metadata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state relative-caret-position="105">
               <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="91" />
               <folding>
                 <element signature="e#51#2550#0" expanded="false" />
@@ -71,7 +111,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color_species.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="color_species.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_species.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -81,26 +121,65 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FASTA_to_taxamony_names.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
+      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="4305">
+              <caret line="341" column="61" selection-start-line="341" selection-start-column="46" selection-end-line="341" selection-end-column="61" />
+              <folding>
+                <element signature="e#8118#10055#0" expanded="false" />
+                <element signature="e#19575#20724#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tree_operations_v1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4155">
+              <caret line="281" column="29" selection-start-line="281" selection-start-column="29" selection-end-line="281" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+      <file leaf-file-name="Parse_michals_tagging.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utils/Parse_michals_tagging.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2675">
-              <caret line="173" column="57" selection-start-line="173" selection-start-column="57" selection-end-line="173" selection-end-column="57" />
-              <folding>
-                <element signature="e#8118#10055#0" expanded="false" />
-                <element signature="e#16938#19148#0" expanded="false" />
-                <element signature="e#19575#20724#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="390">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fix_taxa_names_in_FASTA.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="break_into_classes.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PythonCode/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,7 +221,6 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/find_next_gene.py" />
         <option value="$PROJECT_DIR$/PythonCode/utiles.py" />
         <option value="$PROJECT_DIR$/PythonCode/inits_v1.py" />
-        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/test.py" />
         <option value="$PROJECT_DIR$/PythonCode/Tree_Grnarator.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/check_missing_colors.py" />
@@ -150,19 +228,21 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/string_to_array.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
-        <option value="$PROJECT_DIR$/PythonCode/tests.py" />
-        <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
         <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
         <option value="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt" />
         <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
         <option value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
+        <option value="$PROJECT_DIR$/PythonCode/tests.py" />
+        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
+        <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="1701" />
+    <option name="y" value="-86" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -192,7 +272,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -277,6 +356,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,136 +372,6 @@
       </console-settings>
     </option>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/RSAM1.iml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/taxa_names.txt</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/G_keys.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_dist_matrix.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_edgelist.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/S_keys.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_RSAM_finder_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/marked_nodes_leafs_lists_COG2602(class_D,habitat,all)_pattern=((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_left.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_0_node_u530_Double-mode,u529_p1_right.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_left.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_1_node_u898_Double-mode,u897_p1_right.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_left.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_2_node_u220_Double-mode,u156_p1_right.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_left.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_3_node_u245_Double-mode,u244_p1_right.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_left.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/PythonCode/data/COG2602(class_D,habitat,all)/saved_data/results/((['HT', 'None', 'None'], 'red', 'True')_(['S', 'D', 'HT'], 'black', 'False'))_Double-Mode/FASTA_result_COG2602(class_D,habitat,all)_4_node_u1087_Double-mode,u899_p1_right.txt</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -434,25 +384,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.color_species">
-    <configuration default="false" name="RSAMfinder" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="RSAM1" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.break_into_classes">
     <configuration default="false" name="break_into_classes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -521,6 +453,23 @@
       <module name="RSAM1" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PythonCode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="RSAM1" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PythonCode/tests.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -660,19 +609,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.RSAMfinder" />
-      <item index="1" class="java.lang.String" itemvalue="Python.break_into_classes" />
-      <item index="2" class="java.lang.String" itemvalue="Python.color_species" />
-      <item index="3" class="java.lang.String" itemvalue="Python.parse_metadata" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test" />
+      <item index="0" class="java.lang.String" itemvalue="Python.break_into_classes" />
+      <item index="1" class="java.lang.String" itemvalue="Python.color_species" />
+      <item index="2" class="java.lang.String" itemvalue="Python.parse_metadata" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test" />
+      <item index="4" class="java.lang.String" itemvalue="Python.tests" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.color_species" />
-        <item index="1" class="java.lang.String" itemvalue="Python.parse_metadata" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test" />
-        <item index="3" class="java.lang.String" itemvalue="Python.break_into_classes" />
-        <item index="4" class="java.lang.String" itemvalue="Python.RSAMfinder" />
+        <item index="0" class="java.lang.String" itemvalue="Python.break_into_classes" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tests" />
+        <item index="3" class="java.lang.String" itemvalue="Python.color_species" />
+        <item index="4" class="java.lang.String" itemvalue="Python.parse_metadata" />
       </list>
     </recent_temporary>
   </component>
@@ -690,20 +639,6 @@
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
       <workItem from="1570968529095" duration="1835000" />
-    </task>
-    <task id="LOCAL-00039" summary="RSAM vs One Best check">
-      <created>1554972921154</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1554972921154</updated>
-    </task>
-    <task id="LOCAL-00040" summary="RSAM vs One Best check">
-      <created>1554974301971</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1554974301972</updated>
     </task>
     <task id="LOCAL-00041" summary="RSAM vs One Best is working fine">
       <created>1555230757694</created>
@@ -1034,23 +969,36 @@
       <option name="project" value="LOCAL" />
       <updated>1572254877267</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="colors can be in the same folder (colors fixed)">
+      <created>1572256026415</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1572256026415</updated>
+    </task>
+    <task id="LOCAL-00089" summary="normlization bug fixed">
+      <created>1572270249165</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1572270249165</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
+    <frame x="1701" y="-86" width="1440" height="877" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33474278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33403805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40184453" sideWeight="0.2184637" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241107" sideWeight="0.22621565" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35356763" sideWeight="0.4781464" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.49394417" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40184453" sideWeight="0.7815363" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241107" sideWeight="0.77378434" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1061,6 +1009,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1075,10 +1024,11 @@
       <collection />
     </option>
   </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="normlize scores by number of events" />
-    <MESSAGE value="8.5" />
     <MESSAGE value="color G and count maximum ration" />
     <MESSAGE value="ranking vertices" />
     <MESSAGE value="figures were added" />
@@ -1102,7 +1052,9 @@
     <MESSAGE value="color extension added" />
     <MESSAGE value="colors can be in the same folder" />
     <MESSAGE value="BlaR is ready to run" />
-    <option name="LAST_COMMIT_MESSAGE" value="BlaR is ready to run" />
+    <MESSAGE value="colors can be in the same folder (colors fixed)" />
+    <MESSAGE value="normlization bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="normlization bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,14 +1075,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3165">
@@ -1145,7 +1089,6 @@
           <caret line="171" column="74" selection-start-line="171" selection-start-column="74" selection-end-line="171" selection-end-column="74" />
           <folding>
             <element signature="e#8118#10055#0" expanded="false" />
-            <element signature="e#16938#19148#0" expanded="false" />
             <element signature="e#19575#20724#0" expanded="false" />
           </folding>
         </state>
@@ -1279,26 +1222,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="76" column="31" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/data/COG2367(class_A,single)/tags_from_patric.txt" />
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/species.mappings.v11.0.txt" />
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_gene_specie_mapping.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="21" column="33" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1323,23 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/tests.py" />
-    <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1347,21 +1259,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2675">
-          <caret line="173" column="57" selection-start-line="173" selection-start-column="57" selection-end-line="173" selection-end-column="57" />
-          <folding>
-            <element signature="e#8118#10055#0" expanded="false" />
-            <element signature="e#16938#19148#0" expanded="false" />
-            <element signature="e#19575#20724#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
+        <state relative-caret-position="1185">
           <caret line="502" column="14" selection-start-line="502" selection-start-column="14" selection-end-line="502" selection-end-column="14" />
           <folding>
             <element signature="e#2162#3558#0" expanded="false" />
@@ -1389,7 +1289,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="105">
           <caret line="73" column="63" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="91" />
           <folding>
             <element signature="e#51#2550#0" expanded="false" />
@@ -1397,10 +1297,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_species.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4305">
+          <caret line="341" column="61" selection-start-line="341" selection-start-column="46" selection-end-line="341" selection-end-column="61" />
+          <folding>
+            <element signature="e#8118#10055#0" expanded="false" />
+            <element signature="e#19575#20724#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4155">
+          <caret line="281" column="29" selection-start-line="281" selection-start-column="29" selection-end-line="281" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/Parse_michals_tagging.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="47" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/break_into_classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding />
         </state>
       </provider>
