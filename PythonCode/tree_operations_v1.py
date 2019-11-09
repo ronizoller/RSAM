@@ -200,7 +200,7 @@ def find_max_d_of_HT(dis, interesting_vertices,pattern):
         return
 
 
-def number_of_leafs(tree, name):
+def number_of_leafs(tree):
     counter = 0
     for u in tree.postorder_node_iter():
         if u.is_leaf():

@@ -35,11 +35,11 @@ from utils import FASTA_to_gene_specie_mapping as create_sigma
 from utils import multi2bi
 
 
-def find_Pattern(H, S,S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern,S_colors,p):
+def find_Pattern(H, S, S_dis_matrix, nCr_lookup_table, fact_lookup_table, pattern, S_colors, p):
     if pattern[0] is not None:
         total_red = S_colors[S.seed_node.label][0]
         total_black = S_colors[S.seed_node.label][1]
-        num_of_leafs = tree_operations.number_of_leafs(S,'S')
+        num_of_leafs = S_colors[S.seed_node.label][0] + S_colors[S.seed_node.label][1]
         Pr_red = total_red / num_of_leafs
         Pr_black = total_black / num_of_leafs
         interesting_vertices = []

@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81736183-8512-40d5-87cc-b62bf869b116" name="Default" comment="colors can be in the same folder (colors fixed)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/FASTA.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/G.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/G_binary.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/IDs_species_maping.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/S.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/S_binary.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat_partial.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/missing_tags_after_patric.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/old_new_names.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/sigma.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/tags_from_patric.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/taxa_names.txt" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/habitat.txt" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PythonCode/utils/species.mappings.v11.0.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" afterPath="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/G_binary.txt" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/G_binary.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/S_binary.txt" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/S_binary.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat.txt" afterPath="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" afterPath="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
     </list>
     <ignored path="Supplementary Materials/" />
     <ignored path="Supplementary Materials/COG2602/" />
@@ -38,28 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main_GUI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/Main_GUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="502" column="14" selection-start-line="502" selection-start-column="14" selection-end-line="502" selection-end-column="14" />
-              <folding>
-                <element signature="e#2162#3558#0" expanded="false" />
-                <element signature="e#3589#3851#0" expanded="false" />
-                <element signature="e#3897#6811#0" expanded="false" />
-                <element signature="e#6859#11267#0" expanded="false" />
-                <element signature="e#11300#19143#0" expanded="false" />
-                <element signature="e#13812#15012#0" expanded="false" />
-                <element signature="e#15056#16988#0" expanded="false" />
-                <element signature="e#17046#19143#0" expanded="false" />
-                <element signature="e#19166#19586#0" expanded="false" />
-                <element signature="e#19616#20515#0" expanded="false" />
-                <element signature="e#20555#20748#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="parse_metadata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/parse_metadata.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color_species.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="color_species.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_species.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="429">
@@ -92,14 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RSAMfinder.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4305">
-              <caret line="341" column="61" selection-start-line="341" selection-start-column="46" selection-end-line="341" selection-end-column="61" />
+            <state relative-caret-position="345">
+              <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
               <folding>
-                <element signature="e#8118#10055#0" expanded="false" />
-                <element signature="e#19575#20724#0" expanded="false" />
+                <element signature="e#8146#10083#0" expanded="false" />
+                <element signature="e#19603#20752#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -108,18 +78,8 @@
       <file leaf-file-name="tree_operations_v1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4155">
-              <caret line="281" column="29" selection-start-line="281" selection-start-column="29" selection-end-line="281" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Parse_michals_tagging.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PythonCode/utils/Parse_michals_tagging.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="385">
+              <caret line="207" column="18" selection-start-line="207" selection-start-column="18" selection-end-line="207" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -199,23 +159,25 @@
         <option value="$PROJECT_DIR$/PythonCode/utils/string_to_array.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/FASTA_to_taxamony_names.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/fix_taxa_names_in_FASTA.py" />
-        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
         <option value="$PROJECT_DIR$/PythonCode/data/COG1680(class_C,proteobacteria)/colors_habitat.txt" />
         <option value="$PROJECT_DIR$/PythonCode/draw_for_users.py" />
         <option value="$PROJECT_DIR$/PythonCode/Main_GUI.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/parse_metadata.py" />
         <option value="$PROJECT_DIR$/PythonCode/tests.py" />
-        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
         <option value="$PROJECT_DIR$/PythonCode/break_into_classes.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/Parse_michals_tagging.py" />
         <option value="$PROJECT_DIR$/PythonCode/utils/color_species.py" />
+        <option value="$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat.txt" />
+        <option value="$PROJECT_DIR$/PythonCode/RSAMfinder.py" />
+        <option value="$PROJECT_DIR$/PythonCode/tree_operations_v1.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="x" value="1440" />
+    <option name="y" value="-277" />
+    <option name="width" value="1920" />
+    <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -242,6 +204,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -349,7 +312,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,7 +339,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.color_species">
+  <component name="RunManager" selected="Python.test">
     <configuration default="false" name="break_into_classes" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -609,11 +571,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.color_species" />
-        <item index="1" class="java.lang.String" itemvalue="Python.RSAMfinder" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Parse_michals_tagging" />
-        <item index="3" class="java.lang.String" itemvalue="Python.break_into_classes" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.color_species" />
+        <item index="2" class="java.lang.String" itemvalue="Python.RSAMfinder" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Parse_michals_tagging" />
+        <item index="4" class="java.lang.String" itemvalue="Python.break_into_classes" />
       </list>
     </recent_temporary>
   </component>
@@ -631,13 +593,6 @@
       <option name="presentableId" value="Default" />
       <updated>1549983143983</updated>
       <workItem from="1570968529095" duration="1835000" />
-    </task>
-    <task id="LOCAL-00043" summary="HT with no colors&#10;">
-      <created>1555317125533</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1555317125535</updated>
     </task>
     <task id="LOCAL-00044" summary="HT with no colors&#10;">
       <created>1555420244700</created>
@@ -975,34 +930,41 @@
       <option name="project" value="LOCAL" />
       <updated>1573049132340</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="..">
+      <created>1573049370834</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1573049370836</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1835000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="1440" y="-277" width="1920" height="1177" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33403805" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33385992" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241107" sideWeight="0.23044397" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32389048" sideWeight="0.24170616" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35356763" sideWeight="0.4781464" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32800853" sideWeight="0.49394417" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32389048" sideWeight="0.75829387" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49605057" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3940362" sideWeight="0.48341233" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3241107" sideWeight="0.76955605" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.49330515" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3940362" sideWeight="0.48341233" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1021,7 +983,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="figures were added" />
     <MESSAGE value="RSAM-funder file is now user friendly" />
     <MESSAGE value="Final version before WABI" />
     <MESSAGE value="losses added" />
@@ -1046,7 +1007,8 @@
     <MESSAGE value="normlization bug fixed" />
     <MESSAGE value="BlaR is now seperated" />
     <MESSAGE value="handcolored_protoeobacteria" />
-    <option name="LAST_COMMIT_MESSAGE" value="handcolored_protoeobacteria" />
+    <MESSAGE value=".." />
+    <option name="LAST_COMMIT_MESSAGE" value=".." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1067,21 +1029,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PythonCode/draw_for_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3165">
-          <caret line="211" column="20" selection-start-line="211" selection-start-column="16" selection-end-line="211" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="171" column="74" selection-start-line="171" selection-start-column="74" selection-end-line="171" selection-end-column="74" />
           <folding>
-            <element signature="e#8118#10055#0" expanded="false" />
-            <element signature="e#19575#20724#0" expanded="false" />
+            <element signature="e#8146#10083#0" expanded="false" />
+            <element signature="e#19603#20752#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1296,29 +1250,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4305">
-          <caret line="341" column="61" selection-start-line="341" selection-start-column="46" selection-end-line="341" selection-end-column="61" />
-          <folding>
-            <element signature="e#8118#10055#0" expanded="false" />
-            <element signature="e#19575#20724#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4155">
-          <caret line="281" column="29" selection-start-line="281" selection-start-column="29" selection-end-line="281" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1347,11 +1282,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/data/COG4219_BlaR,proteobacteria/colors_habitat.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="0" column="10286" selection-start-line="0" selection-start-column="10286" selection-end-line="0" selection-end-column="10286" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PythonCode/utils/color_species.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
           <caret line="94" column="38" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/tree_operations_v1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="207" column="18" selection-start-line="207" selection-start-column="18" selection-end-line="207" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PythonCode/RSAMfinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+          <folding>
+            <element signature="e#8146#10083#0" expanded="false" />
+            <element signature="e#19603#20752#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
