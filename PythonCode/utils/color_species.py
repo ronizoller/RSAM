@@ -1,4 +1,4 @@
-path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219(BlaR,proteobacteria)/'
+path = '/Users/ronizoller/PycharmProjects/RSAM/PythonCode/data/COG4219_BlaR,proteo+fir/'
 
 tag_by_gram_pos_neg = False
 
@@ -95,8 +95,6 @@ for name in missing_tags:
             not_anottated.append(name)
     elif name not in tagged:
         tagged.append(name)
-    else:
-        print(name)
 
 res += '}'
 if tag_by_gram_pos_neg:

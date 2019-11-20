@@ -49,7 +49,7 @@ def is_ancestor(nd,x):
     return not is_not_ancestor(nd,x)
 
 
-def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
+def color_tree(tree, tree_name, tree_internal_colors, colors, sigma, path):
     for u in tree.postorder_node_iter():
         tree_internal_colors.update({u.label: [0, 0]})
     for u in tree.postorder_node_iter():
@@ -74,6 +74,9 @@ def color_tree(tree, tree_name, tree_internal_colors, colors, sigma):
                 blacks += tree_internal_colors[child[i].label][1]
                 i += 1
                 tree_internal_colors.update({u.label: [reds, blacks]})
+    file = open(path + '/saved_data/S_colors.txt', 'w')
+    file.write(str(tree_internal_colors))
+    file.close()
     return tree_internal_colors
 
 

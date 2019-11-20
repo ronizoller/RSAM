@@ -175,8 +175,8 @@ def end_function(H, S, G, k, starting_time, p1, p2, marked_nodes, old_sigma, max
                                                                                   str((hypergraph.find_number_of_cooptimal(H,G,S)[1])))+'\n'
 
         res['text'] += 'Minimal number of edges in subtree: %s' % (str(TH_edges))
-    res['text'] += '\nNumber of leafs of G: %s\nNumber of leafs of S: %s\nRunning time: %s\n' % (str(tree_operations.number_of_leafs(G,'G')),
-                                                                                                                      str(tree_operations.number_of_leafs(S,'S')),str(datetime.now() - starting_time))+'\n\bMore information can be found under /saved_data.'
+    res['text'] += '\nNumber of leafs of G: %s\nNumber of leafs of S: %s\nRunning time: %s\n' % (str(tree_operations.number_of_leafs(G)),
+                                                                                                                      str(tree_operations.number_of_leafs(S)),str(datetime.now() - starting_time))+'\n\bMore information can be found under /saved_data.'
     print(res['text'])
     return
 
@@ -331,7 +331,7 @@ def main(speciesTreespecification, colors_ext, k, TH_edges, HT_cost, D_cost, S_c
         max_score_p1_and_p2_list = []
         H, max_prob = hypergraph.assign_probabilities(S, G, H, gamma, res)
         if H:
-            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma)
+            S_colors = tree_operations.color_tree(S, 'S', S_colors, colors, sigma, path)
 
             interesting_vertices_p1, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,S_dis_matrix,nCr_lookup_table,fact_lookup_table, p1,S_colors,p)
             interesting_vertices_p2, nCr_lookup_table, fact_lookup_table = find_Pattern(H,S,S_dis_matrix,nCr_lookup_table,fact_lookup_table, p2,S_colors,p)

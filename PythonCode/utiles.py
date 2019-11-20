@@ -56,7 +56,7 @@ def p_value_calculation(fro, all, nCr_lookup_table, fact_lookup_table, accur, Pr
         return 0, nCr_lookup_table, fact_lookup_table
     else:
         res = 0
-        for j in range(fro, all+1):
+        for j in range(fro+1, all):
             temp, nCr_lookup_table, fact_lookup_table = utiles.nCr(all, j, nCr_lookup_table, fact_lookup_table)
             nCr_temp = utiles.first_n_digits(temp, accur)
             res = res + nCr_temp * pow(Pr_red, j) * pow(Pr_black, all - j)
